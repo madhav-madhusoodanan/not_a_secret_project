@@ -3,22 +3,51 @@ import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import {Auth, Explore, Home, Profile, Welcome} from './src/screens';
+
+import {theme} from './src/constants/theme';
+
+export type RootStackParamList = {
+  Auth: undefined;
+  Home: undefined;
+  Welcome: undefined;
+};
+
+export type BottomNavigationStackParamList = {
+  Home: undefined;
+  Profile: undefined;
+  Explore: undefined;
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<BottomNavigationStackParamList>();
 
 export default function App() {
   return (
     <PaperProvider>
       <NavigationContainer>
-        <View>
-          <Text>Home</Text>
-        </View>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}>
+          <Stack.Screen name="Home" component={BottomTabNavigator} />
+          <Stack.Screen name="Welcome" component={Welcome} />
+          <Stack.Screen name="Auth" component={Auth} />
+        </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+function BottomTabNavigator() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Explore" component={Explore} />
+      <Tab.Screen name="Profile" component={Profile} />
+    </Tab.Navigator>
+  );
+}
