@@ -27,7 +27,7 @@ const Tab = createBottomTabNavigator<BottomNavigationStackParamList>();
 
 export default function App() {
   return (
-    <PaperProvider>
+    <PaperProvider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
