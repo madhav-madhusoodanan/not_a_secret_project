@@ -1,12 +1,32 @@
+import {Image} from 'react-native';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
 
-export default function Welcome() {
-  return (
-    <View>
-      <Text></Text>
-    </View>
-  );
-}
+import Onboarding from 'react-native-onboarding-swiper';
 
-const styles = StyleSheet.create({});
+const Welcome = () => (
+  <Onboarding
+    onDone={() => console.log('done')}
+    pages={[
+      {
+        backgroundColor: '#fff',
+        // image: <Image source={require('./images/circle.png')} />,
+        title: 'Onboarding',
+        subtitle: 'Done with React Native Onboarding Swiper',
+      },
+      {
+        backgroundColor: '#fe6e58',
+        // image: <Image source={require('./images/square.png')} />,
+        title: 'The Title',
+        subtitle: 'This is the subtitle that sumplements the title.',
+      },
+      {
+        backgroundColor: '#999',
+        // image: <Image source={require('./images/triangle.png')} />,
+        title: 'Triangle',
+        subtitle: "Beautiful, isn't it?",
+      },
+    ]}
+  />
+);
+
+export default Welcome;

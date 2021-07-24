@@ -33,9 +33,9 @@ export default function App() {
           screenOptions={{
             headerShown: false,
           }}>
-          <Stack.Screen name="Home" component={BottomTabNavigator} />
           <Stack.Screen name="Welcome" component={Welcome} />
           <Stack.Screen name="Auth" component={Auth} />
+          <Stack.Screen name="Home" component={BottomTabNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
