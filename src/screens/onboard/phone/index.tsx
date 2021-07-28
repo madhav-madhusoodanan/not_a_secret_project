@@ -3,6 +3,7 @@ import {StyleSheet, View, KeyboardAvoidingView, Alert} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import {Text, Subheading} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
+import PhoneInput from 'react-native-phone-input';
 import styles from './styles';
 
 import NavButton from '../../../components/button/onboard';
