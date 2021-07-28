@@ -3992,11 +3992,6 @@ globals@^13.6.0, globals@^13.9.0:
   dependencies:
     type-fest "^0.20.2"
 
-google-libphonenumber@^3.2.2:
-  version "3.2.22"
-  resolved "https://registry.yarnpkg.com/google-libphonenumber/-/google-libphonenumber-3.2.22.tgz#04d1df75324d4210c1bbfba0c238a0b08c594d22"
-  integrity sha512-lzEllxWc05n/HEv75SsDrA7zdEVvQzTZimItZm/TZ5XBs7cmx2NJmSlA5I0kZbdKNu8GFETBhSpo+SOhx0JslA==
-
 graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.6, graceful-fs@^4.1.9, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
@@ -5353,7 +5348,7 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=
 
-lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.21, lodash@^4.7.0:
+lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.7.0:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -6656,15 +6651,6 @@ react-native-permissions@^3.0.5:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.0.5.tgz#94542a343abdac801fa0a4593ea2c751cb45c41f"
   integrity sha512-hcvLtHhTyOTXC+CCv79d4Qtdnj6PGuY5Ms0fhW8V6Et1T/mPvzO6++Du4jwEv/oHZ62qMWKUDq0/Tsh63QHuyQ==
-
-react-native-phone-input@^1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/react-native-phone-input/-/react-native-phone-input-1.0.10.tgz#2a9c4f18242bf9f8fa7c94d4d5aaae3b110d81b0"
-  integrity sha512-zUBoY6ZI5vyXPCkP48VJYYMslOD+MB3/ByXGNPhrSW4ZfTG1XAyrhrPXrbxlWmcK6dSkj+9+TzJalR0u4Ac/rA==
-  dependencies:
-    google-libphonenumber "^3.2.2"
-    lodash "^4.17.21"
-    prop-types "^15.5.10"
 
 react-native-reanimated@^2.2.0:
   version "2.2.0"
