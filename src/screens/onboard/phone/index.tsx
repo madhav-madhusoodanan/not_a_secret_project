@@ -12,6 +12,7 @@ export default function Phone() {
   const submitHandler = () => {
     navigate('OneTimePassword');
   };
+
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -19,7 +20,7 @@ export default function Phone() {
         behavior={'height'}
         style={styles.containerAvoidingView}>
         <Subheading style={styles.title}>
-          Let's start with your{'\n'}phone #
+          Let's start with your{'\n'}phone number
         </Subheading>
         <View style={[styles.input, {}]}>
           <View>

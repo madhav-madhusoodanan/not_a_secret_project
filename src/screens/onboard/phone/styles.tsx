@@ -4,14 +4,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // padding: 10,
+    backgroundColor: 'yellow',
   },
+
   containerAvoidingView: {
     flex: 1,
-    alignItems: 'center',
-    padding: 20,
+    // alignItems: 'center',
+    // paddingHorizontal: 20,
   },
   title: {
-    marginTop: 20,
+    // marginTop: 20,
     alignSelf: 'center',
     textAlign: 'center',
     fontWeight: 'bold',
@@ -20,13 +22,15 @@ const styles = StyleSheet.create({
     position: 'relative',
     letterSpacing: 0.5,
     color: 'black',
+    backgroundColor: 'red',
   },
   input: {
     flexDirection: 'row',
-    paddingHorizontal: 25,
+    // paddingHorizontal: 25,
     paddingBottom: 0,
     alignItems: 'center',
     borderBottomWidth: 1.5,
+    borderBottomColor: 'grey',
     width: 235,
     marginTop: 85,
   },
