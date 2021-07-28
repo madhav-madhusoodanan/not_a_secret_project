@@ -40,7 +40,7 @@ const DATA = [
 export default function Welcome() {
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
-    navigate('Home');
+    navigate('Phone');
   };
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const inputRange = DATA.map((_, i) => i * width);

@@ -1,4 +1,4 @@
-import Reactotron from './src/config/Reactotron';
+// import Reactotron from './src/config/Reactotron';
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Provider as PaperProvider} from 'react-native-paper';
@@ -6,14 +6,22 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {Auth, Explore, Home, Profile, Welcome} from './src/screens';
+import {
+  Phone,
+  Explore,
+  Home,
+  Profile,
+  Welcome,
+  OneTimePassword,
+} from './src/screens';
 
 import {theme} from './src/constants/theme';
 
 export type RootStackParamList = {
-  Auth: undefined;
+  Phone: undefined;
   Home: undefined;
   Welcome: undefined;
+  OneTimePassword: undefined;
 };
 
 export type BottomNavigationStackParamList = {
@@ -34,7 +42,8 @@ export default function App() {
             headerShown: false,
           }}>
           <Stack.Screen name="Welcome" component={Welcome} />
-          <Stack.Screen name="Auth" component={Auth} />
+          <Stack.Screen name="Phone" component={Phone} />
+          <Stack.Screen name="OneTimePassword" component={OneTimePassword} />
           <Stack.Screen name="Home" component={BottomTabNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
