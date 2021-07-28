@@ -10,7 +10,7 @@ const NavButton = ({onPress, text}) => {
         labelStyle={styles.labelStyle}
         color="#00AAFF"
         onPress={onPress}
-        icon="phone"
+        // icon="phone"
         style={styles.btn}>
         {text}
       </Button>

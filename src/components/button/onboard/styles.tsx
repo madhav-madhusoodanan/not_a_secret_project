@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 22,
   },
   btn: {
-    borderRadius: 15,
+    borderRadius: 50,
   },
   labelStyle: {
     fontSize: height * 0.022,

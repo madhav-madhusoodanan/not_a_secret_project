@@ -195,9 +195,8 @@ export default function Welcome() {
             );
           })}
         </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
-          <NavButton onPress={submitHandler} text="Continue with Phone" />
-        </View>
+
+        <NavButton onPress={submitHandler} text="Continue with Phone" />
       </View>
     </View>
   );
