@@ -1,4 +1,4 @@
-package com.frontend;
+package uno.verse.app;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
