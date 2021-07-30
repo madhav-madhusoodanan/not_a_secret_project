@@ -1,14 +1,15 @@
-import { useTheme } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
-import { useColorScheme } from 'react-native-appearance';
-import { vw } from 'stream-chat-react-native';
+import {useTheme} from '@react-navigation/native';
+import {useEffect, useState} from 'react';
+// import {useColorScheme} from 'react-native-appearance';
+import {Appearance} from 'react-native';
+import {vw} from 'stream-chat-react-native';
 
 const maxWidth = vw(100) - 72;
 const avatarSize = 40;
 
 export default () => {
-  const { colors: slackColors } = useTheme();
-  const colorScheme = useColorScheme();
+  const {colors: VerseColors} = useTheme();
+  const colorScheme = Appearance.getColorScheme();
   const streamColors =
     colorScheme === 'dark'
       ? {
@@ -30,9 +31,9 @@ export default () => {
           shadow_icon: '#00000080', // 80 = 50% opacity
           targetedMessageBackground: '#302D22',
           transparent: 'transparent',
-          white: slackColors.background,
+          white: VerseColors.background,
           white_smoke: '#13151B',
-          white_snow: slackColors.background,
+          white_snow: VerseColors.background,
         }
       : {
           accent_blue: '#005FFF',
@@ -53,9 +54,9 @@ export default () => {
           shadow_icon: '#00000040', // 40 = 25% opacity; x=0, y=0, radius=4
           targetedMessageBackground: '#FBF4DD', // dark mode = #302D22
           transparent: 'transparent',
-          white: slackColors.background,
+          white: VerseColors.background,
           white_smoke: '#F2F2F2',
-          white_snow: slackColors.background,
+          white_snow: VerseColors.background,
         };
 
   const getChatStyle = () => ({
@@ -124,7 +125,7 @@ export default () => {
           paddingHorizontal: 3,
           width: maxWidth,
         },
-        wrapper: { width: maxWidth },
+        wrapper: {width: maxWidth},
       },
       gallery: {
         galleryContainer: {
@@ -171,7 +172,7 @@ export default () => {
 
   useEffect(() => {
     setChatStyle(getChatStyle());
-  }, [slackColors]);
+  }, [VerseColors]);
 
   return chatStyle;
 };
