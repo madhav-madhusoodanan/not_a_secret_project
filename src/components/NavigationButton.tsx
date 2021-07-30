@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
 
-import layout from '../constants/layout';
+import layout from '../constants/appLayout';
 
 const {
   window: {height, width},

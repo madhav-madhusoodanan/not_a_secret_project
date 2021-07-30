@@ -29,7 +29,8 @@ import {
   OneTimePassword,
 } from './src/screens';
 
-import {theme} from './src/constants/theme';
+import {Theme} from './src/constants/appTheme';
+import {BottomTabs} from './src/components/BottomTabs';
 
 export type RootStackParamList = {
   Phone: undefined;
@@ -49,7 +50,7 @@ const Tab = createBottomTabNavigator<BottomNavigationStackParamList>();
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
+    <PaperProvider theme={Theme}>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{

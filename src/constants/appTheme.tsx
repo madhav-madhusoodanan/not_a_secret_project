@@ -1,6 +1,6 @@
 import {DefaultTheme} from 'react-native-paper';
 
-export const theme = {
+export const Theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
