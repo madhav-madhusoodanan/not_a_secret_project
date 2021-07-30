@@ -1,10 +1,24 @@
 // import Reactotron from './src/config/Reactotron';
-import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+import {
+  ActivityIndicator,
+  Alert,
+  LogBox,
+  StyleSheet,
+  View,
+  Appearance,
+} from 'react-native';
+
+import {
+  SafeAreaProvider,
+  SafeAreaView,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 
 import {
   Phone,

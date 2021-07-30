@@ -1,10 +1,33 @@
-import {StyleSheet} from 'react-native';
-import layout from '../../../constants/layout';
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
+import {Button} from 'react-native-paper';
+
+import layout from '../constants/layout';
+
 const {
   window: {height, width},
   isSmallDevice,
 } = layout;
-export const styles = StyleSheet.create({
+
+const NavButton = ({onPress, text}) => {
+  return (
+    <View style={styles.btnView}>
+      <Button
+        mode="contained"
+        labelStyle={styles.labelStyle}
+        color="#00AAFF"
+        onPress={onPress}
+        // icon="phone"
+        style={styles.btn}>
+        {text}
+      </Button>
+    </View>
+  );
+};
+
+export default NavButton;
+
+const styles = StyleSheet.create({
   btnView: {
     // flex: 1,
     // justifyContent: "flex-end",

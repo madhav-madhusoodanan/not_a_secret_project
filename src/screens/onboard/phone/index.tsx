@@ -5,7 +5,7 @@ import {Text, Subheading} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import styles from './styles';
 
-import NavButton from '../../../components/button/onboard';
+import NavButton from '../../../components/NavigationButton';
 
 export default function Phone() {
   const {navigate, goBack} = useNavigation();
