@@ -31,6 +31,7 @@ import {
 
 import {Theme} from './src/constants/appTheme';
 import {BottomTabs} from './src/components/BottomTabs';
+import {HEADER_HEIGHT} from './src/utils';
 
 export type RootStackParamList = {
   Phone: undefined;
