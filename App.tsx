@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+import {Chat, OverlayProvider} from 'stream-chat-react-native';
 import {
   SafeAreaProvider,
   SafeAreaView,
@@ -21,58 +22,171 @@ import {
 } from 'react-native';
 
 import {
-  Phone,
-  Explore,
-  Home,
-  Profile,
-  Welcome,
-  OneTimePassword,
+  HomeFeedScreen,
+  ExploreScreen,
+  CreatePostScreen,
+  NotificationScreen,
+  ProfileScreen,
 } from './src/screens';
 
 import {Theme} from './src/constants/appTheme';
 import {BottomTabs} from './src/components/BottomTabs';
+import {VerseAppContext} from './src/contexts/VerseAppContext';
 import {HEADER_HEIGHT} from './src/utils';
+import useStreamChatTheme from './src/hooks/useStreamChatTheme';
 
-export type RootStackParamList = {
-  Phone: undefined;
-  Home: undefined;
-  Welcome: undefined;
-  OneTimePassword: undefined;
-};
+LogBox.ignoreAllLogs();
+const Tab = createBottomTabNavigator();
 
-export type BottomNavigationStackParamList = {
-  Home: undefined;
-  Profile: undefined;
-  Explore: undefined;
-};
+const RootStack = createStackNavigator();
+const HomeStack = createStackNavigator();
+const ModalStack = createStackNavigator();
+const AuthStack = createStackNavigator();
 
-const Stack = createStackNavigator<RootStackParamList>();
-const Tab = createBottomTabNavigator<BottomNavigationStackParamList>();
+export default () => {
+  const scheme = Appearance.getColorScheme();
 
-export default function App() {
   return (
     <PaperProvider theme={Theme}>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}>
-          <Stack.Screen name="Welcome" component={Welcome} />
-          <Stack.Screen name="Phone" component={Phone} />
-          <Stack.Screen name="OneTimePassword" component={OneTimePassword} />
-          <Stack.Screen name="Home" component={BottomTabNavigator} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <View style={styles.container}>
+            <VerseAppContext.Provider
+              value={
+                {
+                  // activeChannel,
+                  // activeMessage,
+                  // openUserPicker,
+                  // setActiveChannel,
+                  // setActiveMessage,
+                  // switchUser: userId => {
+                  //   /**
+                  //    * Dev token generations will only work in case of development mode.
+                  //    * So please make sure you have auth check disabled, if you are planning to
+                  //    * check user picker feature.
+                  //    */
+                  //   const token = chatClient.devToken(userId);
+                  //   setCurrentUser({
+                  //     id: userId,
+                  //     token,
+                  //   }),
+                  //     setUserPickerVisible(false);
+                  // },
+                }
+              }>
+              <RootNavigation />
+              {/* <UserPickerModal
+                label={'name'}
+                modalVisible={userPickerVisible}
+                onRequestClose={closeUserPicker}
+                onValueChange={closeUserPicker}
+              /> */}
+            </VerseAppContext.Provider>
+          </View>
+        </NavigationContainer>
+      </SafeAreaProvider>
     </PaperProvider>
   );
-}
+};
 
-function BottomTabNavigator() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Explore" component={Explore} />
-      <Tab.Screen name="Profile" component={Profile} />
+// const ModalStackNavigator = () => (
+//   <ModalStack.Navigator>
+//     <ModalStack.Screen
+//       component={ChannelSearchScreen}
+//       name="ChannelSearchScreen"
+//       options={{headerShown: false}}
+//     />
+//     <ModalStack.Screen
+//       component={JumpToSearchScreen}
+//       name="JumpToSearchScreen"
+//       options={{headerShown: false}}
+//     />
+//     <ModalStack.Screen
+//       component={NewMessageScreen}
+//       name="NewMessageScreen"
+//       options={{headerShown: false}}
+//     />
+//     <ModalStack.Screen
+//       component={ShareMessageScreen}
+//       name="ShareMessageScreen"
+//       options={{headerShown: false}}
+//     />
+//   </ModalStack.Navigator>
+// );
+
+const HomeStackNavigator = () => (
+  <HomeStack.Navigator initialRouteName="HomeFeedScreen">
+    <HomeStack.Screen
+      component={HomeFeedScreen}
+      name="HomeFeedScreen"
+      options={{headerShown: false}}
+    />
+    {/*  <HomeStack.Screen
+      component={ChannelScreen}
+      name="ChannelScreen"
+      options={{headerShown: false}}
+    />
+    <HomeStack.Screen
+      component={DraftsScreen}
+      name="DraftsScreen"
+      options={{headerShown: false}}
+    />
+    <HomeStack.Screen
+      component={ThreadScreen}
+      name="ThreadScreen"
+      options={{headerShown: false}}
+    /> */}
+  </HomeStack.Navigator>
+);
+
+const TabNavigation = () => (
+  <BottomSheetModalProvider>
+    <Tab.Navigator tabBar={props => <BottomTabs {...props} />}>
+      <Tab.Screen component={HomeStackNavigator} name="home" />
+      <Tab.Screen component={ExploreScreen} name={'explore'} />
+      <Tab.Screen component={CreatePostScreen} name={'createPost'} />
+      <Tab.Screen component={NotificationScreen} name={'notifications'} />
+      <Tab.Screen component={ProfileScreen} name={'you'} />
     </Tab.Navigator>
+  </BottomSheetModalProvider>
+);
+
+const RootNavigation = () => {
+  const chatStyles = useStreamChatTheme();
+  const {bottom, top} = useSafeAreaInsets();
+
+  return (
+    // <OverlayProvider bottomInset={bottom + HEADER_HEIGHT} topInset={top}>
+    // <Chat client={ChatClientStore.client} style={chatStyles}>
+    <RootStack.Navigator mode="modal">
+      <RootStack.Screen
+        component={TabNavigation}
+        name="Tabs"
+        options={{headerShown: false}}
+      />
+    </RootStack.Navigator>
+    // </Chat>
+    // </OverlayProvider>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  channelScreenContainer: {flexDirection: 'column', height: '100%'},
+  channelScreenSaveAreaView: {
+    backgroundColor: 'white',
+  },
+  chatContainer: {
+    backgroundColor: 'white',
+    flexGrow: 1,
+    flexShrink: 1,
+  },
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  loadingContainer: {
+    alignItems: 'center',
+    height: '100%',
+    justifyContent: 'center',
+  },
+});

@@ -36,13 +36,15 @@ export const BottomTabs = ({navigation, state}) => {
           iconActive: <SVGIcon height={25} type="home-tab-active" width={25} />,
           title: 'Home',
         };
-      case 'dms':
+      case 'explore':
         return {
-          icon: <SVGIcon height={25} type="dm-tab" width={25} />,
-          iconActive: <SVGIcon height={25} type="dm-tab-active" width={25} />,
-          title: 'DMs',
+          icon: <SVGIcon height={25} type="search-tab" width={25} />,
+          iconActive: (
+            <SVGIcon height={25} type="search-tab-active" width={25} />
+          ),
+          title: 'Explore',
         };
-      case 'mentions':
+      case 'createPost':
         return {
           icon: <SVGIcon height={25} type="mentions-tab" width={25} />,
           iconActive: (
@@ -50,14 +52,20 @@ export const BottomTabs = ({navigation, state}) => {
           ),
           title: 'Mention',
         };
-      case 'search':
+      case 'notifications':
         return {
-          icon: <SVGIcon height={25} type="search-tab" width={25} />,
-          iconActive: (
-            <SVGIcon height={25} type="search-tab-active" width={25} />
-          ),
-          title: 'Mention',
+          icon: <SVGIcon height={25} type="dm-tab" width={25} />,
+          iconActive: <SVGIcon height={25} type="dm-tab-active" width={25} />,
+          title: 'Pings',
         };
+      // case 'notifications':
+      //   return {
+      //     icon: <SVGIcon height={25} type="notifications-tab" width={25} />,
+      //     iconActive: (
+      //       <SVGIcon height={25} type="notifications-tab-active" width={25} />
+      //     ),
+      //     title: 'Pings',
+      //   };
       case 'you':
         return {
           icon: <SVGIcon height={25} type="you-tab" width={25} />,
