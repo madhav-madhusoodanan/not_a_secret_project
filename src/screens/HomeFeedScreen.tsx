@@ -1,20 +1,26 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Button, Text} from 'react-native-paper';
+import {StyleSheet, View, Text} from 'react-native';
+import {Button} from 'react-native-paper';
 
 export default function HomeFeedScreen() {
   return (
-    <View>
+    <View style={styles.container}>
       <Button
         mode="contained"
+        onPress={() => console.log('Button Pressed')}
         style={{
           width: '50%',
         }}>
         Hello
       </Button>
-      <Text>Hello</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    // flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
