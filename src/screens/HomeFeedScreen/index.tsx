@@ -1,9 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, RefreshControl, ScrollView} from 'react-native';
-import {Button, Headline} from 'react-native-paper';
+import {
+  View,
+  Text,
+  RefreshControl,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import {Button, Headline, Menu} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Picker} from '@react-native-picker/picker';
 
 import {styles} from './styles';
 
@@ -19,9 +24,17 @@ export default function HomeFeedScreen() {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
+  const [Goal, setGoal] = React.useState('');
+  const [isOpen, setOpen] = React.useState(false);
+
+  const onPressItemHandler = value => {
+    setGoal(value);
+    setOpen(false);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      {/* <ScrollView
+      <ScrollView
         contentContainerStyle={styles.scrollView}
         refreshControl={
           <RefreshControl
@@ -31,23 +44,43 @@ export default function HomeFeedScreen() {
             onRefresh={onRefresh}
           />
         }>
-        <Text>Pull down to see RefreshControl indicator</Text>
-      </ScrollView> */}
+        <Headline style={styles.headline}>Welcome 👋</Headline>
 
-      <Headline style={styles.headline}>Welcome 👋</Headline>
-      <Picker
-        selectedValue={selectedLanguage}
-        dropdownIconColor={'red'}
-        style={styles.dropdown}
-        mode={'dropdown'}
-        onValueChange={(itemValue, itemIndex) =>
-          setSelectedLanguage(itemValue)
-        }>
-        <Picker.Item label="IITJEE" value="IITJEE" />
-        <Picker.Item label="NEET" value="NEET" />
-        <Picker.Item label="CAT" value="CAT" />
-        <Picker.Item label="UPSC-CSE" value="UPSC-CSE" />
-      </Picker>
+        <Menu
+          visible={isOpen}
+          onDismiss={() => setOpen(false)}
+          anchor={
+            <TouchableOpacity
+              style={styles.pickerButton}
+              onPress={() => setOpen(true)}>
+              <Text style={[styles.pickerButtonActiveText]}>{Goal}</Text>
+            </TouchableOpacity>
+          }>
+          <Menu.Item
+            onPress={() => onPressItemHandler('IIT-JEE 🧑‍🔬')}
+            title="IIT-JEE"
+          />
+          <Menu.Item
+            disabled={true}
+            onPress={() => onPressItemHandler('NEET 💊')}
+            title="NEET"
+          />
+          <Menu.Item
+            disabled={true}
+            onPress={() => onPressItemHandler('CAT 💹')}
+            title="CAT"
+          />
+        </Menu>
+        <Button
+          mode="contained"
+          onPress={() => console.log('Button Pressed')}
+          style={{
+            width: '50%',
+            marginVertical: 20,
+          }}>
+          Hello
+        </Button>
+      </ScrollView>
     </SafeAreaView>
   );
 }

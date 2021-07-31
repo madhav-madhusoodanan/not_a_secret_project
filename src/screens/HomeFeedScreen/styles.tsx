@@ -11,17 +11,13 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     // alignItems: 'center',
     backgroundColor: Theme.colors.background,
   },
 
-  flatlist: {
-    backgroundColor: '#FAFAFA',
-  },
-
   headline: {
-    fontSize: width * 0.066,
+    fontSize: 28,
     // marginRight: width * 0.4975,
     // marginBottom: height * 0.044,
     color: Theme.colors.text,
@@ -31,12 +27,28 @@ export const styles = StyleSheet.create({
 
   scrollView: {
     flex: 1,
-    backgroundColor: 'pink',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // backgroundColor: 'pink',
+    paddingHorizontal: 5,
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 
-  dropdown: {
-    width: 130,
+  pickerButton: {
+    // paddingHorizontal: width * 0.0407,
+    paddingVertical: height * 0.01,
+    marginTop: 10,
+    borderRadius: 24,
+    width: 120,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    elevation: 2,
+  },
+
+  pickerButtonActiveText: {
+    fontFamily: 'Gilroy-Bold',
+    color: '#C62828',
+    fontSize: 20,
   },
 });
