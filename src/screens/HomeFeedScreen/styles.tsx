@@ -25,6 +25,14 @@ export const styles = StyleSheet.create({
     marginRight: width * 0.4975,
     marginBottom: height * 0.044,
     color: Theme.colors.text,
+    fontWeight: 'bold',
     // fontFamily: 'CircularStd-Bold',
+  },
+
+  scrollView: {
+    flex: 1,
+    backgroundColor: 'pink',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

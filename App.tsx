@@ -58,7 +58,7 @@ export default () => {
           animated={true}
           // translucent
           barStyle="light-content"
-          backgroundColor="#fff"
+          backgroundColor={Theme.colors.background}
         />
         <NavigationContainer theme={Theme}>
           <View style={styles.container}>
