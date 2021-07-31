@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+
 import {Chat, OverlayProvider} from 'stream-chat-react-native';
 import {
   SafeAreaProvider,
@@ -18,6 +19,8 @@ import {
   LogBox,
   StyleSheet,
   View,
+  Platform,
+  StatusBar,
   Appearance,
 } from 'react-native';
 
@@ -36,6 +39,8 @@ import {HEADER_HEIGHT} from './src/utils';
 import useStreamChatTheme from './src/hooks/useStreamChatTheme';
 
 LogBox.ignoreAllLogs();
+
+const BAR_HEIGHT = StatusBar.currentHeight;
 const Tab = createBottomTabNavigator();
 
 const RootStack = createStackNavigator();
@@ -49,6 +54,12 @@ export default () => {
   return (
     <PaperProvider>
       <SafeAreaProvider>
+        <StatusBar
+          animated={true}
+          // translucent
+          barStyle="light-content"
+          backgroundColor="#fff"
+        />
         <NavigationContainer theme={Theme}>
           <View style={styles.container}>
             <VerseAppContext.Provider
@@ -181,7 +192,6 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   container: {
-    backgroundColor: 'white',
     flex: 1,
   },
   loadingContainer: {

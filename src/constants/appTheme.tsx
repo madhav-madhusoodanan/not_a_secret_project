@@ -4,7 +4,7 @@ export const Theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: 'white',
+    background: '#fff',
     backgroundSecondary: '#E9E9E9',
     backgroundTertiary: 'white',
     boldText: 'black',

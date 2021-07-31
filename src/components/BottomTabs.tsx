@@ -32,42 +32,42 @@ export const BottomTabs = ({navigation, state}) => {
     switch (key) {
       case 'home':
         return {
-          icon: <SVGIcon height={25} type="home-tab" width={25} />,
-          iconActive: <SVGIcon height={25} type="home-tab-active" width={25} />,
+          icon: <SVGIcon height={26} type="home-tab" width={26} />,
+          iconActive: <SVGIcon height={26} type="home-tab-active" width={26} />,
           title: 'Home',
         };
       case 'explore':
         return {
-          icon: <SVGIcon height={25} type="search-tab" width={25} />,
+          icon: <SVGIcon height={26} type="search-tab" width={26} />,
           iconActive: (
-            <SVGIcon height={25} type="search-tab-active" width={25} />
+            <SVGIcon height={26} type="search-tab-active" width={26} />
           ),
           title: 'Explore',
         };
       case 'createPost':
         return {
-          icon: <SVGIcon height={25} type="post-tab" width={25} />,
-          iconActive: <SVGIcon height={25} type="post-tab-active" width={25} />,
+          icon: <SVGIcon height={26} type="post-tab" width={26} />,
+          iconActive: <SVGIcon height={26} type="post-tab-active" width={26} />,
           title: 'Post',
         };
       // case 'notifications':
       //   return {
-      //     icon: <SVGIcon height={25} type="dm-tab" width={25} />,
-      //     iconActive: <SVGIcon height={25} type="dm-tab-active" width={25} />,
+      //     icon: <SVGIcon height={26} type="dm-tab" width={26} />,
+      //     iconActive: <SVGIcon height={26} type="dm-tab-active" width={26} />,
       //     title: 'Pings',
       //   };
       case 'notifications':
         return {
-          icon: <SVGIcon height={25} type="notifications-tab" width={25} />,
+          icon: <SVGIcon height={26} type="notifications-tab" width={26} />,
           iconActive: (
-            <SVGIcon height={25} type="notifications-tab-active" width={25} />
+            <SVGIcon height={26} type="notifications-tab-active" width={26} />
           ),
           title: 'Pings',
         };
       case 'you':
         return {
-          icon: <SVGIcon height={25} type="you-tab" width={25} />,
-          iconActive: <SVGIcon height={25} type="you-tab-active" width={25} />,
+          icon: <SVGIcon height={26} type="you-tab" width={26} />,
+          iconActive: <SVGIcon height={26} type="you-tab-active" width={26} />,
           title: 'You',
         };
     }
