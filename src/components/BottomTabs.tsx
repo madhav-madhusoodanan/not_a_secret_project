@@ -46,26 +46,24 @@ export const BottomTabs = ({navigation, state}) => {
         };
       case 'createPost':
         return {
-          icon: <SVGIcon height={25} type="mentions-tab" width={25} />,
-          iconActive: (
-            <SVGIcon height={25} type="mentions-tab-active" width={25} />
-          ),
-          title: 'Mention',
-        };
-      case 'notifications':
-        return {
-          icon: <SVGIcon height={25} type="dm-tab" width={25} />,
-          iconActive: <SVGIcon height={25} type="dm-tab-active" width={25} />,
-          title: 'Pings',
+          icon: <SVGIcon height={25} type="post-tab" width={25} />,
+          iconActive: <SVGIcon height={25} type="post-tab-active" width={25} />,
+          title: 'Post',
         };
       // case 'notifications':
       //   return {
-      //     icon: <SVGIcon height={25} type="notifications-tab" width={25} />,
-      //     iconActive: (
-      //       <SVGIcon height={25} type="notifications-tab-active" width={25} />
-      //     ),
+      //     icon: <SVGIcon height={25} type="dm-tab" width={25} />,
+      //     iconActive: <SVGIcon height={25} type="dm-tab-active" width={25} />,
       //     title: 'Pings',
       //   };
+      case 'notifications':
+        return {
+          icon: <SVGIcon height={25} type="notifications-tab" width={25} />,
+          iconActive: (
+            <SVGIcon height={25} type="notifications-tab-active" width={25} />
+          ),
+          title: 'Pings',
+        };
       case 'you':
         return {
           icon: <SVGIcon height={25} type="you-tab" width={25} />,
@@ -114,7 +112,7 @@ export const BottomTabs = ({navigation, state}) => {
             onPress={onPress}
             style={styles.tabContainer}>
             {isFocused ? tab.iconActive : tab.icon}
-            <SCText style={styles.tabTitle}>{tab.title}</SCText>
+            {/* <SCText style={styles.tabTitle}>{tab.title}</SCText> */}
           </TouchableOpacity>
         );
       })}

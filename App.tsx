@@ -47,9 +47,9 @@ export default () => {
   const scheme = Appearance.getColorScheme();
 
   return (
-    <PaperProvider theme={Theme}>
+    <PaperProvider>
       <SafeAreaProvider>
-        <NavigationContainer>
+        <NavigationContainer theme={Theme}>
           <View style={styles.container}>
             <VerseAppContext.Provider
               value={

@@ -1,4 +1,4 @@
-import {DefaultTheme} from 'react-native-paper';
+import {DefaultTheme} from '@react-navigation/native';
 
 export const Theme = {
   ...DefaultTheme,

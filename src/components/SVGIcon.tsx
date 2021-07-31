@@ -13,6 +13,7 @@ import EmojiIcon from '../assets/icons/channel/emoji.svg';
 import FormattingIcon from '../assets/icons/channel/formating.svg';
 import InfoIcon from '../assets/icons/channel/info.svg';
 import ImageAttachmentIcon from '../assets/icons/channel/picture.svg';
+import MentionsTabIcon from '../assets/icons/tab-bar/mentions.svg';
 import SearchIcon from '../assets/icons/channel/search.svg';
 import SendButton from '../assets/icons/channel/send-button.svg';
 import ShortcutsIcon from '../assets/icons/channel/shortcuts.svg';
@@ -25,14 +26,12 @@ import NotificationsIcon from '../assets/icons/profile/notifications.svg';
 import PreferencesIcon from '../assets/icons/profile/preferences.svg';
 import SavedItemsIcon from '../assets/icons/profile/saved-items.svg';
 import ViewProfileIcon from '../assets/icons/profile/view-profile.svg';
-import DMTabIconActive from '../assets/icons/tab-bar/dm-selected.svg';
-import DMTabIcon from '../assets/icons/tab-bar/dm.svg';
 import NotificationsTabIconActive from '../assets/icons/tab-bar/bell-selected.svg';
 import NotificationsTabIcon from '../assets/icons/tab-bar/bell.svg';
 import HomeTabIconActive from '../assets/icons/tab-bar/home-selected.svg';
 import HomeTabIcon from '../assets/icons/tab-bar/home.svg';
-import MentionsTabIconActive from '../assets/icons/tab-bar/mentions-selected.svg';
-import MentionsTabIcon from '../assets/icons/tab-bar/mentions.svg';
+import CreatePostTabIconActive from '../assets/icons/tab-bar/plus-selected.svg';
+import CreatePostTabIcon from '../assets/icons/tab-bar/plus.svg';
 import GlobalSearchSelectedIcon from '../assets/icons/tab-bar/search-selected.svg';
 import GlobalSearchIcon from '../assets/icons/tab-bar/search.svg';
 import YouTabIconActive from '../assets/icons/tab-bar/you-selected.svg';
@@ -44,12 +43,12 @@ const iconMap = {
   'home-tab-active': HomeTabIconActive,
   'search-tab': GlobalSearchIcon,
   'search-tab-active': GlobalSearchSelectedIcon,
-  'mentions-tab': MentionsTabIcon,
-  'mentions-tab-active': MentionsTabIconActive,
-  // 'notifications-tab': NotificationsTabIcon,
-  // 'notifications-tab-active': NotificationsTabIconActive,
-  'dm-tab': DMTabIcon,
-  'dm-tab-active': DMTabIconActive,
+  'post-tab': CreatePostTabIcon,
+  'post-tab-active': CreatePostTabIconActive,
+  'notifications-tab': NotificationsTabIcon,
+  'notifications-tab-active': NotificationsTabIconActive,
+  // 'dm-tab': DMTabIcon,
+  // 'dm-tab-active': DMTabIconActive,
   'you-tab': YouTabIcon,
   'you-tab-active': YouTabIconActive,
 
