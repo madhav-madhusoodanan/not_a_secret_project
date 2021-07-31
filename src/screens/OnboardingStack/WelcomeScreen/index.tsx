@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import {Text} from 'react-native-paper';
-import NavButton from '../../components/NavigationButton';
+import NavButton from '../../../components/NavigationButton';
 import {useNavigation} from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('screen');
