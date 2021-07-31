@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, RefreshControl, ScrollView} from 'react-native';
 import {Button, Headline} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {Picker} from '@react-native-picker/picker';
 
 import {styles} from './styles';
 
@@ -12,7 +13,7 @@ const wait = timeout => {
 
 export default function HomeFeedScreen() {
   const [refreshing, setRefreshing] = React.useState(false);
-
+  const [selectedLanguage, setSelectedLanguage] = useState();
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
@@ -34,6 +35,19 @@ export default function HomeFeedScreen() {
       </ScrollView> */}
 
       <Headline style={styles.headline}>Welcome 👋</Headline>
+      <Picker
+        selectedValue={selectedLanguage}
+        dropdownIconColor={'red'}
+        style={styles.dropdown}
+        mode={'dropdown'}
+        onValueChange={(itemValue, itemIndex) =>
+          setSelectedLanguage(itemValue)
+        }>
+        <Picker.Item label="IITJEE" value="IITJEE" />
+        <Picker.Item label="NEET" value="NEET" />
+        <Picker.Item label="CAT" value="CAT" />
+        <Picker.Item label="UPSC-CSE" value="UPSC-CSE" />
+      </Picker>
     </SafeAreaView>
   );
 }

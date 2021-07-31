@@ -57,7 +57,7 @@ export default () => {
         <StatusBar
           animated={true}
           // translucent
-          barStyle="light-content"
+          barStyle="dark-content"
           backgroundColor={Theme.colors.background}
         />
         <NavigationContainer theme={Theme}>

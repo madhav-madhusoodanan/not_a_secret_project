@@ -10,9 +10,9 @@ const {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: height * 0.045,
-    paddingHorizontal: width * 0.025,
-    alignItems: 'center',
+    paddingTop: 20,
+    paddingHorizontal: 20,
+    // alignItems: 'center',
     backgroundColor: Theme.colors.background,
   },
 
@@ -22,11 +22,11 @@ export const styles = StyleSheet.create({
 
   headline: {
     fontSize: width * 0.066,
-    marginRight: width * 0.4975,
-    marginBottom: height * 0.044,
+    // marginRight: width * 0.4975,
+    // marginBottom: height * 0.044,
     color: Theme.colors.text,
-    fontWeight: 'bold',
-    // fontFamily: 'CircularStd-Bold',
+    textAlign: 'left',
+    fontFamily: 'Gilroy-Bold',
   },
 
   scrollView: {
@@ -34,5 +34,9 @@ export const styles = StyleSheet.create({
     backgroundColor: 'pink',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  dropdown: {
+    width: 130,
   },
 });
