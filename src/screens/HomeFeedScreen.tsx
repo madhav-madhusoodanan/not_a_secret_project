@@ -5,14 +5,7 @@ import {Button, Text} from 'react-native-paper';
 export default function HomeFeedScreen() {
   return (
     <View>
-      <Button
-        mode="contained"
-        style={{
-          width: '50%',
-        }}>
-        Hello
-      </Button>
-      <Text>Hello</Text>
+      <Text></Text>
     </View>
   );
 }

@@ -27,6 +27,8 @@ import SavedItemsIcon from '../assets/icons/profile/saved-items.svg';
 import ViewProfileIcon from '../assets/icons/profile/view-profile.svg';
 import DMTabIconActive from '../assets/icons/tab-bar/dm-selected.svg';
 import DMTabIcon from '../assets/icons/tab-bar/dm.svg';
+import NotificationsTabIconActive from '../assets/icons/tab-bar/bell-selected.svg';
+import NotificationsTabIcon from '../assets/icons/tab-bar/bell.svg';
 import HomeTabIconActive from '../assets/icons/tab-bar/home-selected.svg';
 import HomeTabIcon from '../assets/icons/tab-bar/home.svg';
 import MentionsTabIconActive from '../assets/icons/tab-bar/mentions-selected.svg';
@@ -40,12 +42,14 @@ const iconMap = {
   // Tab related icons
   'home-tab': HomeTabIcon,
   'home-tab-active': HomeTabIconActive,
-  'dm-tab': DMTabIcon,
-  'dm-tab-active': DMTabIconActive,
-  'mentions-tab': MentionsTabIcon,
-  'mentions-tab-active': MentionsTabIconActive,
   'search-tab': GlobalSearchIcon,
   'search-tab-active': GlobalSearchSelectedIcon,
+  'mentions-tab': MentionsTabIcon,
+  'mentions-tab-active': MentionsTabIconActive,
+  // 'notifications-tab': NotificationsTabIcon,
+  // 'notifications-tab-active': NotificationsTabIconActive,
+  'dm-tab': DMTabIcon,
+  'dm-tab-active': DMTabIconActive,
   'you-tab': YouTabIcon,
   'you-tab-active': YouTabIconActive,
 

@@ -89,30 +89,30 @@ export default () => {
   );
 };
 
-const ModalStackNavigator = () => (
-  <ModalStack.Navigator>
-    {/* <ModalStack.Screen
-      component={ChannelSearchScreen}
-      name="ChannelSearchScreen"
-      options={{headerShown: false}}
-    />
-    <ModalStack.Screen
-      component={JumpToSearchScreen}
-      name="JumpToSearchScreen"
-      options={{headerShown: false}}
-    />
-    <ModalStack.Screen
-      component={NewMessageScreen}
-      name="NewMessageScreen"
-      options={{headerShown: false}}
-    />
-    <ModalStack.Screen
-      component={ShareMessageScreen}
-      name="ShareMessageScreen"
-      options={{headerShown: false}}
-    /> */}
-  </ModalStack.Navigator>
-);
+// const ModalStackNavigator = () => (
+//   <ModalStack.Navigator>
+//     <ModalStack.Screen
+//       component={ChannelSearchScreen}
+//       name="ChannelSearchScreen"
+//       options={{headerShown: false}}
+//     />
+//     <ModalStack.Screen
+//       component={JumpToSearchScreen}
+//       name="JumpToSearchScreen"
+//       options={{headerShown: false}}
+//     />
+//     <ModalStack.Screen
+//       component={NewMessageScreen}
+//       name="NewMessageScreen"
+//       options={{headerShown: false}}
+//     />
+//     <ModalStack.Screen
+//       component={ShareMessageScreen}
+//       name="ShareMessageScreen"
+//       options={{headerShown: false}}
+//     />
+//   </ModalStack.Navigator>
+// );
 
 const HomeStackNavigator = () => (
   <HomeStack.Navigator initialRouteName="HomeFeedScreen">
@@ -143,9 +143,9 @@ const TabNavigation = () => (
   <BottomSheetModalProvider>
     <Tab.Navigator tabBar={props => <BottomTabs {...props} />}>
       <Tab.Screen component={HomeStackNavigator} name="home" />
-      <Tab.Screen component={ExploreScreen} name={'dms'} />
-      <Tab.Screen component={CreatePostScreen} name={'mentions'} />
-      <Tab.Screen component={NotificationScreen} name={'search'} />
+      <Tab.Screen component={ExploreScreen} name={'explore'} />
+      <Tab.Screen component={CreatePostScreen} name={'createPost'} />
+      <Tab.Screen component={NotificationScreen} name={'notifications'} />
       <Tab.Screen component={ProfileScreen} name={'you'} />
     </Tab.Navigator>
   </BottomSheetModalProvider>
@@ -156,22 +156,17 @@ const RootNavigation = () => {
   const {bottom, top} = useSafeAreaInsets();
 
   return (
-    <OverlayProvider bottomInset={bottom + HEADER_HEIGHT} topInset={top}>
-      {/* <Chat client={ChatClientStore.client} style={chatStyles}> */}
-      <RootStack.Navigator mode="modal">
-        <RootStack.Screen
-          component={TabNavigation}
-          name="Tabs"
-          options={{headerShown: false}}
-        />
-        <RootStack.Screen
-          component={ModalStackNavigator}
-          name={'Modals'}
-          options={{headerShown: false}}
-        />
-      </RootStack.Navigator>
-      {/* </Chat> */}
-    </OverlayProvider>
+    // <OverlayProvider bottomInset={bottom + HEADER_HEIGHT} topInset={top}>
+    // <Chat client={ChatClientStore.client} style={chatStyles}>
+    <RootStack.Navigator mode="modal">
+      <RootStack.Screen
+        component={TabNavigation}
+        name="Tabs"
+        options={{headerShown: false}}
+      />
+    </RootStack.Navigator>
+    // </Chat>
+    // </OverlayProvider>
   );
 };
 
@@ -189,7 +184,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
   },
-
   loadingContainer: {
     alignItems: 'center',
     height: '100%',
