@@ -38,7 +38,8 @@ export const styles = StyleSheet.create({
     paddingVertical: height * 0.01,
     marginTop: 10,
     borderRadius: 5,
-    width: 150,
+    alignItems: 'center',
+    // width: 150,
     alignSelf: 'flex-start',
     backgroundColor: '#fff',
     flexDirection: 'row',
@@ -48,6 +49,9 @@ export const styles = StyleSheet.create({
   pickerButtonActiveText: {
     fontFamily: 'Gilroy-Bold',
     color: '#C62828',
-    fontSize: 20,
+    fontSize: 24,
+    marginRight: 10,
   },
+
+  pickerButtonMenuIcon: {},
 });

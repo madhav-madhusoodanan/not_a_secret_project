@@ -20,6 +20,7 @@ import ShortcutsIcon from '../assets/icons/channel/shortcuts.svg';
 import CopyTextIcon from '../assets/icons/message/copy-text.svg';
 import DeleteTextIcon from '../assets/icons/message/delete.svg';
 import EditTextIcon from '../assets/icons/message/edit.svg';
+import DropDownIcon from '../assets/icons/feed/dropdown.svg';
 import AwayIcon from '../assets/icons/profile/away.svg';
 import DNDIcon from '../assets/icons/profile/dnd.svg';
 import NotificationsIcon from '../assets/icons/profile/notifications.svg';
@@ -84,6 +85,9 @@ const iconMap = {
   info: InfoIcon,
   'edit-text': EditTextIcon,
   search: SearchIcon,
+
+  // Feed
+  'drop-down': DropDownIcon,
 };
 
 export const SVGIcon = ({fill, height, type, width}) => {

@@ -9,6 +9,7 @@ import {
 import {Button, Headline, Menu} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {SVGIcon} from './../../components/SVGIcon';
 
 import {styles} from './styles';
 
@@ -53,7 +54,14 @@ export default function HomeFeedScreen() {
             <TouchableOpacity
               style={styles.pickerButton}
               onPress={() => setOpen(true)}>
-              <Text style={[styles.pickerButtonActiveText]}>{Goal}</Text>
+              {/* <Text style={[styles.pickerButtonActiveText]}>{Goal}</Text> */}
+              <Text style={[styles.pickerButtonActiveText]}>IIT-JEE 🧑‍🔬</Text>
+              <SVGIcon
+                style={[styles.pickerButtonMenuIcon]}
+                height={25}
+                type="drop-down"
+                width={25}
+              />
             </TouchableOpacity>
           }>
           <Menu.Item
