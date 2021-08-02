@@ -2,7 +2,7 @@ import {useTheme} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 // import {useColorScheme} from 'react-native-appearance';
 import {Appearance} from 'react-native';
-import {vw} from 'stream-chat-react-native';
+// import {vw} from 'stream-chat-react-native';
 
 const maxWidth = vw(100) - 72;
 const avatarSize = 40;

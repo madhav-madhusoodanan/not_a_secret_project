@@ -5,7 +5,6 @@ import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SVGIcon} from './../../components/SVGIcon';
 import {
-  StreamApp,
   FlatFeed,
   Activity,
   StatusUpdateForm,

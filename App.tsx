@@ -33,7 +33,6 @@ import {
 import {Theme} from './src/constants/appTheme';
 import {BottomTabs} from './src/components/BottomTabs';
 import {HEADER_HEIGHT} from './src/utils';
-import useStreamChatTheme from './src/hooks/useStreamChatTheme';
 
 LogBox.ignoreAllLogs();
 
@@ -94,7 +93,6 @@ const TabNavigation = () => (
 );
 
 const RootNavigation = () => {
-  const chatStyles = useStreamChatTheme();
   const {bottom, top} = useSafeAreaInsets();
 
   return (
