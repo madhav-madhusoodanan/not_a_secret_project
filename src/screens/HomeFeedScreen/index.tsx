@@ -22,24 +22,20 @@ export default function HomeFeedScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <Headline style={styles.headline}>Welcome 👋</Headline>
-      <StreamApp
-        apiKey="r249dw973zfa"
-        appId="1133749"
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYmxhY2stcG9uZC0yIn0.POPurfP9551qegOVXF_pQJTcN280w8pLEkm4xR7BoQY">
-        <TouchableOpacity
-          style={styles.pickerButton}
-          onPress={() => console.log('Goal Selection Dropdown Pressed')}>
-          <Text style={[styles.pickerButtonActiveText]}>IIT-JEE</Text>
-          <SVGIcon
-            style={[styles.pickerButtonMenuIcon]}
-            height={25}
-            type="drop-down"
-            width={25}
-          />
-        </TouchableOpacity>
-        <FlatFeed Activity={renderActivity} notify />
-        <StatusUpdateForm feedGroup={'timeline'} />
-      </StreamApp>
+
+      <TouchableOpacity
+        style={styles.pickerButton}
+        onPress={() => console.log('Goal Selection Dropdown Pressed')}>
+        <Text style={[styles.pickerButtonActiveText]}>IIT-JEE</Text>
+        <SVGIcon
+          style={[styles.pickerButtonMenuIcon]}
+          height={25}
+          type="drop-down"
+          width={25}
+        />
+      </TouchableOpacity>
+      <FlatFeed Activity={renderActivity} notify />
+      <StatusUpdateForm feedGroup={'timeline'} />
     </SafeAreaView>
   );
 }

@@ -5,11 +5,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
-
-import {Chat, OverlayProvider} from 'stream-chat-react-native';
+import {StreamApp} from 'react-native-activity-feed';
 import {
   SafeAreaProvider,
-  SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 
@@ -34,7 +32,6 @@ import {
 
 import {Theme} from './src/constants/appTheme';
 import {BottomTabs} from './src/components/BottomTabs';
-import {VerseAppContext} from './src/contexts/VerseAppContext';
 import {HEADER_HEIGHT} from './src/utils';
 import useStreamChatTheme from './src/hooks/useStreamChatTheme';
 
@@ -56,74 +53,23 @@ export default () => {
       <SafeAreaProvider>
         <StatusBar
           animated={true}
-          // translucent
           barStyle="dark-content"
           backgroundColor={Theme.colors.background}
         />
         <NavigationContainer theme={Theme}>
           <View style={styles.container}>
-            <VerseAppContext.Provider
-              value={
-                {
-                  // activeChannel,
-                  // activeMessage,
-                  // openUserPicker,
-                  // setActiveChannel,
-                  // setActiveMessage,
-                  // switchUser: userId => {
-                  //   /**
-                  //    * Dev token generations will only work in case of development mode.
-                  //    * So please make sure you have auth check disabled, if you are planning to
-                  //    * check user picker feature.
-                  //    */
-                  //   const token = chatClient.devToken(userId);
-                  //   setCurrentUser({
-                  //     id: userId,
-                  //     token,
-                  //   }),
-                  //     setUserPickerVisible(false);
-                  // },
-                }
-              }>
+            <StreamApp
+              apiKey="r249dw973zfa"
+              appId="1133749"
+              token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYmxhY2stcG9uZC0yIn0.POPurfP9551qegOVXF_pQJTcN280w8pLEkm4xR7BoQY">
               <RootNavigation />
-              {/* <UserPickerModal
-                label={'name'}
-                modalVisible={userPickerVisible}
-                onRequestClose={closeUserPicker}
-                onValueChange={closeUserPicker}
-              /> */}
-            </VerseAppContext.Provider>
+            </StreamApp>
           </View>
         </NavigationContainer>
       </SafeAreaProvider>
     </PaperProvider>
   );
 };
-
-// const ModalStackNavigator = () => (
-//   <ModalStack.Navigator>
-//     <ModalStack.Screen
-//       component={ChannelSearchScreen}
-//       name="ChannelSearchScreen"
-//       options={{headerShown: false}}
-//     />
-//     <ModalStack.Screen
-//       component={JumpToSearchScreen}
-//       name="JumpToSearchScreen"
-//       options={{headerShown: false}}
-//     />
-//     <ModalStack.Screen
-//       component={NewMessageScreen}
-//       name="NewMessageScreen"
-//       options={{headerShown: false}}
-//     />
-//     <ModalStack.Screen
-//       component={ShareMessageScreen}
-//       name="ShareMessageScreen"
-//       options={{headerShown: false}}
-//     />
-//   </ModalStack.Navigator>
-// );
 
 const HomeStackNavigator = () => (
   <HomeStack.Navigator initialRouteName="HomeFeedScreen">
@@ -132,21 +78,6 @@ const HomeStackNavigator = () => (
       name="HomeFeedScreen"
       options={{headerShown: false}}
     />
-    {/*  <HomeStack.Screen
-      component={ChannelScreen}
-      name="ChannelScreen"
-      options={{headerShown: false}}
-    />
-    <HomeStack.Screen
-      component={DraftsScreen}
-      name="DraftsScreen"
-      options={{headerShown: false}}
-    />
-    <HomeStack.Screen
-      component={ThreadScreen}
-      name="ThreadScreen"
-      options={{headerShown: false}}
-    /> */}
   </HomeStack.Navigator>
 );
 
@@ -167,8 +98,6 @@ const RootNavigation = () => {
   const {bottom, top} = useSafeAreaInsets();
 
   return (
-    // <OverlayProvider bottomInset={bottom + HEADER_HEIGHT} topInset={top}>
-    // <Chat client={ChatClientStore.client} style={chatStyles}>
     <RootStack.Navigator mode="modal">
       <RootStack.Screen
         component={TabNavigation}
@@ -176,8 +105,6 @@ const RootNavigation = () => {
         options={{headerShown: false}}
       />
     </RootStack.Navigator>
-    // </Chat>
-    // </OverlayProvider>
   );
 };
 
