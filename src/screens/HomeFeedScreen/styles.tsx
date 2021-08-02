@@ -12,10 +12,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     paddingHorizontal: 15,
-    // alignItems: 'center',
     backgroundColor: Theme.colors.background,
   },
-
   headline: {
     fontSize: 28,
     // marginRight: width * 0.4975,

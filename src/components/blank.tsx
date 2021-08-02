@@ -10,9 +10,11 @@ const {
   isSmallDevice,
 } = layout;
 
-export default function Layout() {
-  return <SafeAreaView style={styles.container}></SafeAreaView>;
-}
+const Layout = ({children}) => {
+  return <SafeAreaView style={styles.container}>{children}</SafeAreaView>;
+};
+
+export default Layout;
 
 const styles = StyleSheet.create({
   container: {

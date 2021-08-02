@@ -4,6 +4,7 @@ import {Button, Headline, Menu} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SVGIcon} from './../../components/SVGIcon';
+import {SafeAreaLayout} from './../../components/ScreenContainer';
 
 import {styles} from './styles';
 

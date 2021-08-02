@@ -4,6 +4,7 @@ import {Button, Headline, Menu} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SVGIcon} from './../../components/SVGIcon';
+import {SafeAreaLayout} from './../../components/ScreenContainer';
 import {
   FlatFeed,
   Activity,
@@ -21,7 +22,6 @@ export default function HomeFeedScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <Headline style={styles.headline}>Welcome 👋</Headline>
-
       <TouchableOpacity
         style={styles.pickerButton}
         onPress={() => console.log('Goal Selection Dropdown Pressed')}>

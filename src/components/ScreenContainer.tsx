@@ -10,16 +10,18 @@ const {
   isSmallDevice,
 } = layout;
 
-export default function Layout() {
-  return <SafeAreaView style={styles.container}></SafeAreaView>;
-}
+const SafeAreaLayout = ({children}) => {
+  return <SafeAreaView style={styles.container}>{children}</SafeAreaView>;
+};
+
+export default SafeAreaLayout;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 20,
     paddingHorizontal: 15,
-    backgroundColor: Theme.colors.background,
+    // backgroundColor: Theme.colors.background,
+    backgroundColor: 'red',
   },
 });
-
