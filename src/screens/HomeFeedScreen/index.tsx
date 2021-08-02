@@ -21,12 +21,11 @@ export default function HomeFeedScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Headline style={styles.headline}>Welcome 👋</Headline>
       <StreamApp
         apiKey="r249dw973zfa"
         appId="1133749"
         token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYmxhY2stcG9uZC0yIn0.POPurfP9551qegOVXF_pQJTcN280w8pLEkm4xR7BoQY">
-        <Headline style={styles.headline}>Welcome 👋</Headline>
-
         <TouchableOpacity
           style={styles.pickerButton}
           onPress={() => console.log('Goal Selection Dropdown Pressed')}>
@@ -38,17 +37,6 @@ export default function HomeFeedScreen() {
             width={25}
           />
         </TouchableOpacity>
-
-        <Button
-          mode="contained"
-          onPress={() => console.log('Dummy Button Pressed')}
-          style={{
-            width: '50%',
-            marginVertical: 20,
-          }}>
-          Hello
-        </Button>
-
         <FlatFeed Activity={renderActivity} notify />
         <StatusUpdateForm feedGroup={'timeline'} />
       </StreamApp>

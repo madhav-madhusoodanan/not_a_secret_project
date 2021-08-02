@@ -25,25 +25,14 @@ export const styles = StyleSheet.create({
     fontFamily: 'Gilroy-Bold',
   },
 
-  scrollView: {
-    flex: 1,
-    // backgroundColor: 'pink',
-    paddingHorizontal: 5,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-
   pickerButton: {
     // paddingHorizontal: width * 0.0407,
     paddingVertical: height * 0.01,
     marginTop: 10,
     borderRadius: 5,
     alignItems: 'center',
-    // width: 150,
     alignSelf: 'flex-start',
-    backgroundColor: '#fff',
     flexDirection: 'row',
-    elevation: 2,
   },
 
   pickerButtonActiveText: {
