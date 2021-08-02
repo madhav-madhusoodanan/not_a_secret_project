@@ -8,26 +8,7 @@ import {StreamApp, FlatFeed} from 'react-native-activity-feed';
 
 import {styles} from './styles';
 
-const wait = timeout => {
-  return new Promise(resolve => setTimeout(resolve, timeout));
-};
-
 export default function HomeFeedScreen() {
-  const [refreshing, setRefreshing] = React.useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState();
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
-
-  const [Goal, setGoal] = React.useState('');
-  const [isOpen, setOpen] = React.useState(false);
-
-  const onPressItemHandler = value => {
-    setGoal(value);
-    setOpen(false);
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <StreamApp
@@ -38,9 +19,8 @@ export default function HomeFeedScreen() {
 
         <TouchableOpacity
           style={styles.pickerButton}
-          onPress={() => setOpen(true)}>
-          {/* <Text style={[styles.pickerButtonActiveText]}>{Goal}</Text> */}
-          <Text style={[styles.pickerButtonActiveText]}>IIT-JEE 🧑‍🔬</Text>
+          onPress={() => console.log('Goal Selection Dropdown Pressed')}>
+          <Text style={[styles.pickerButtonActiveText]}>IIT-JEE</Text>
           <SVGIcon
             style={[styles.pickerButtonMenuIcon]}
             height={25}
@@ -51,7 +31,7 @@ export default function HomeFeedScreen() {
 
         <Button
           mode="contained"
-          onPress={() => console.log('Button Pressed')}
+          onPress={() => console.log('Dummy Button Pressed')}
           style={{
             width: '50%',
             marginVertical: 20,
