@@ -4,11 +4,21 @@ import {Button, Headline, Menu} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SVGIcon} from './../../components/SVGIcon';
-import {StreamApp, FlatFeed} from 'react-native-activity-feed';
+import {
+  StreamApp,
+  FlatFeed,
+  Activity,
+  StatusUpdateForm,
+  LikeButton,
+} from 'react-native-activity-feed';
 
 import {styles} from './styles';
 
 export default function HomeFeedScreen() {
+  const renderActivity = props => (
+    <Activity {...props} Footer={<LikeButton {...props} />} />
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <StreamApp
@@ -39,7 +49,8 @@ export default function HomeFeedScreen() {
           Hello
         </Button>
 
-        <FlatFeed />
+        <FlatFeed Activity={renderActivity} notify />
+        <StatusUpdateForm feedGroup={'timeline'} />
       </StreamApp>
     </SafeAreaView>
   );
