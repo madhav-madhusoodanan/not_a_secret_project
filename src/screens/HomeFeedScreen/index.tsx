@@ -22,9 +22,9 @@ export default function HomeFeedScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <StreamApp
-        apiKey="tba2bau9mq3h"
-        appId="1136512"
-        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoicG9saXNoZWQtc2NlbmUtOCJ9.HXWXURrKbLXryaHejlJ6Rtrxx6M9euqda3K4VeWlMBI">
+        apiKey="r249dw973zfa"
+        appId="1133749"
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYmxhY2stcG9uZC0yIn0.POPurfP9551qegOVXF_pQJTcN280w8pLEkm4xR7BoQY">
         <Headline style={styles.headline}>Welcome 👋</Headline>
 
         <TouchableOpacity
