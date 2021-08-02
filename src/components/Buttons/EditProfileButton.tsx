@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 
-const EditProfile = ({children, pressed}) => (
+const EditProfileButton = ({children, pressed}) => (
   <TouchableOpacity style={styles.button} onPress={pressed}>
     <Text style={styles.buttonText}>{children}</Text>
   </TouchableOpacity>
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditProfile;
+export default EditProfileButton;
