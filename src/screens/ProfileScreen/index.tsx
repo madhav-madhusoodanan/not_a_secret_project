@@ -1,41 +1,77 @@
-/* eslint-disable react/display-name */
-
 import React from 'react';
-import {ScrollView, StatusBar} from 'react-native';
-import ProfileHeader from './../../components/ProfileHeader';
-import {FlatFeed} from 'react-native-activity-feed';
-import EdirProfileButton from './../../components/Buttons/EditProfileButton';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  ScrollView,
+} from 'react-native';
 
-export const navigationOptions = ({navigation}) => ({
-  headerStyle: {
-    backgroundColor: 'transparent',
-    borderBottomColor: 'transparent',
-  },
-  headerRight: () => (
-    <EdirProfileButton
-      pressed={() => console.log('Edit Button Pressed')}
-      style={{marginRight: 10}}>
-      Edit Profile
-    </EdirProfileButton>
-  ),
-  headerTransparent: true,
-  headerBackTitle: null,
-});
+import {useNavigation} from '@react-navigation/native';
+import {Button} from 'react-native-paper';
+import {styles} from './styles';
 
-// TODO: Convert to FC
-export default class ProfileScreen extends React.Component {
-  componentDidMount() {
-    this._navListener = this.props.navigation.addListener('didFocus', () => {
-      StatusBar.setBarStyle('light-content');
-    });
-  }
+export default function ProfileScreen() {
+  const {navigate, goBack} = useNavigation();
+  // const submitHandler = () => {
+  //   console.log('Follow Button Pressed')
+  // };
 
-  render() {
-    return (
-      <ScrollView style={{flex: 1}}>
-        <ProfileHeader />
-        <FlatFeed feedGroup="user" />
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={{alignSelf: 'center'}}>
+        <View style={styles.profileImage}>
+          <Image
+            source={{
+              uri: 'https://pbs.twimg.com/profile_images/1276570366555684865/7J55FrYi_400x400.jpg',
+            }}
+            style={styles.image}
+            resizeMode="center"
+          />
+        </View>
+      </View>
+
+      <View style={styles.headContainer}>
+        <Text style={[styles.text, {fontWeight: 'bold', fontSize: 20}]}>
+          Miron Catalin
+        </Text>
+        <Text style={[styles.text, {color: '#333', fontSize: 14}]}>
+          @mironcatalin
+        </Text>
+      </View>
+      <View style={styles.statsContainer}>
+        <View style={styles.statsBox}>
+          <Text style={[styles.text, {fontSize: 16}]}>3916</Text>
+          <Text style={[styles.text, styles.subText]}>Followers</Text>
+        </View>
+        <View style={styles.statsBox}>
+          <Text style={[styles.text, {fontSize: 16}]}>394</Text>
+          <Text style={[styles.text, styles.subText]}>Following</Text>
+        </View>
+      </View>
+      <Button onPress={() => console.log('Edit Profile Button Pressed')}>
+        Edit
+      </Button>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.infoContainer}>
+          <Text
+            style={[
+              styles.text,
+              {
+                color: 'purple',
+                fontSize: 14,
+                textAlign: 'left',
+                lineHeight: 22,
+              },
+            ]}>
+            👉 To draw attention attention attention{'\n'} ✈️ Commonly used by
+            travel brands attention {'\n'}🎥 To call attention to you YouTube
+            channel attention{'\n'} 🎉 To indicate an achievement or award
+            attention
+          </Text>
+        </View>
       </ScrollView>
-    );
-  }
+    </SafeAreaView>
+  );
 }
