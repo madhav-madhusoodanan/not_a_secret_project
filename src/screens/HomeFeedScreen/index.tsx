@@ -1,15 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  RefreshControl,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {Button, Headline, Menu} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SVGIcon} from './../../components/SVGIcon';
+import {StreamApp, FlatFeed} from 'react-native-activity-feed';
 
 import {styles} from './styles';
 
@@ -35,50 +30,25 @@ export default function HomeFeedScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
-        contentContainerStyle={styles.scrollView}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            colors={['#00AAFF']}
-            progressBackgroundColor={'#f8f9fa'}
-            onRefresh={onRefresh}
-          />
-        }>
+      <StreamApp
+        apiKey="tba2bau9mq3h"
+        appId="1136512"
+        token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoicG9saXNoZWQtc2NlbmUtOCJ9.HXWXURrKbLXryaHejlJ6Rtrxx6M9euqda3K4VeWlMBI">
         <Headline style={styles.headline}>Welcome 👋</Headline>
 
-        <Menu
-          visible={isOpen}
-          onDismiss={() => setOpen(false)}
-          anchor={
-            <TouchableOpacity
-              style={styles.pickerButton}
-              onPress={() => setOpen(true)}>
-              {/* <Text style={[styles.pickerButtonActiveText]}>{Goal}</Text> */}
-              <Text style={[styles.pickerButtonActiveText]}>IIT-JEE 🧑‍🔬</Text>
-              <SVGIcon
-                style={[styles.pickerButtonMenuIcon]}
-                height={25}
-                type="drop-down"
-                width={25}
-              />
-            </TouchableOpacity>
-          }>
-          <Menu.Item
-            onPress={() => onPressItemHandler('IIT-JEE 🧑‍🔬')}
-            title="IIT-JEE"
+        <TouchableOpacity
+          style={styles.pickerButton}
+          onPress={() => setOpen(true)}>
+          {/* <Text style={[styles.pickerButtonActiveText]}>{Goal}</Text> */}
+          <Text style={[styles.pickerButtonActiveText]}>IIT-JEE 🧑‍🔬</Text>
+          <SVGIcon
+            style={[styles.pickerButtonMenuIcon]}
+            height={25}
+            type="drop-down"
+            width={25}
           />
-          <Menu.Item
-            disabled={true}
-            onPress={() => onPressItemHandler('NEET 💊')}
-            title="NEET"
-          />
-          <Menu.Item
-            disabled={true}
-            onPress={() => onPressItemHandler('CAT 💹')}
-            title="CAT"
-          />
-        </Menu>
+        </TouchableOpacity>
+
         <Button
           mode="contained"
           onPress={() => console.log('Button Pressed')}
@@ -88,7 +58,9 @@ export default function HomeFeedScreen() {
           }}>
           Hello
         </Button>
-      </ScrollView>
+
+        <FlatFeed />
+      </StreamApp>
     </SafeAreaView>
   );
 }

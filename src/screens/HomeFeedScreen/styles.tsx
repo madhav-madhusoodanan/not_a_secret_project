@@ -53,5 +53,7 @@ export const styles = StyleSheet.create({
     marginRight: 10,
   },
 
-  pickerButtonMenuIcon: {},
+  pickerButtonMenuIcon: {
+    color: 'black',
+  },
 });
