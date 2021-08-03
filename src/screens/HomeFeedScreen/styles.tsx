@@ -64,11 +64,10 @@ export const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS,
   },
   post: {
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowOffset: {height: 0, width: 0},
-    marginBottom: 10,
+    backgroundColor: '#f0efeb',
+    // marginBottom: 10,
+    borderRadius: 10,
+    paddingBottom: 15,
   },
   customListView: {
     padding: 15,
@@ -109,5 +108,31 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 170,
     borderRadius: 10,
+  },
+  postFooter: {
+    position: 'relative',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    marginHorizontal: 16,
+    // backgroundColor: 'pink',
+    marginTop: 10,
+  },
+  reactionIcon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 16,
+  },
+  reactionText: {
+    fontSize: 14,
+    marginLeft: 4,
+    fontFamily: 'Inter-Medium',
+  },
+  shareIcon: {
+    position: 'absolute',
+
+    paddingVertical: 10,
+    right: 0,
   },
 });

@@ -9,7 +9,12 @@ import {
   Image,
   FlatList,
 } from 'react-native';
+import CommentIcon from '@iconscout/react-native-unicons/icons/uil-comment';
+import ShareIcon from '@iconscout/react-native-unicons/icons/uil-share-alt';
+import HeartIcon from '@iconscout/react-native-unicons/icons/uil-heart';
 import {Button, Headline, Subheading, Menu} from 'react-native-paper';
+import Lightbox from 'react-native-lightbox-v2';
+import FastImage from 'react-native-fast-image';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SVGIcon} from './../../components/SVGIcon';
@@ -27,7 +32,7 @@ const ITEM_WIDTH = 100;
 const ITEM_HEIGHT = 120;
 const STICKY_ITEM_WIDTH = 40;
 const STICKY_ITEM_HEIGHT = 46;
-const STICKY_ITEM_BACKGROUNDS = ['#9d0208', '#370617'];
+const STICKY_ITEM_BACKGROUNDS = ['#660708', '#370617'];
 const SEPARATOR_SIZE = 16;
 const BORDER_RADIUS = 10;
 
@@ -49,7 +54,7 @@ const StickyItemView = ({
   return <Animated.View style={amazingAnimation} />;
 };
 
-export default function HomeFeedScreen() {
+export default function HomeFeedScreen({navigator}) {
   // methods
   const handleStickyItemPress = () => Alert.alert('Sticky Item Pressed');
 
@@ -140,14 +145,44 @@ export default function HomeFeedScreen() {
           <TouchableOpacity onPress={() => console.log('Image Button Pressed')}>
             <View style={styles.imageContainer}>
               {/* <ScaledImage height={300} source={item.image}></ScaledImage> */}
-              <Image
+              {/* <Lightbox style={{flex: 1}}> */}
+              <FastImage
                 style={styles.postImage}
                 source={{
                   uri: 'https://i.ibb.co/wpwTg4z/book.png',
-                }}></Image>
+                  priority: FastImage.priority.normal,
+                }}
+                resizeMode={FastImage.resizeMode.contain}
+              />
+              {/* </Lightbox> */}
             </View>
           </TouchableOpacity>
+          <View style={styles.postFooter}>
+            <TouchableOpacity style={styles.reactionIcon}>
+              <HeartIcon size="25" color="#e8304a" />
+              <Text style={{...styles.reactionText, color: '#e8304a'}}>12</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.reactionIcon}
+              onPress={() => console.log('Comment Button Pressed')}>
+              <CommentIcon size="20" color="#001d3d" />
+              <Text style={{...styles.reactionText, color: '#001d3d'}}>4</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => console.log('Share Button Pressed')}
+              style={styles.shareIcon}>
+              <ShareIcon size="20" color="#081c15" />
+            </TouchableOpacity>
+          </View>
         </View>
+        {/* <View
+          style={{
+            borderBottomColor: 'black',
+            width: '100%',
+            paddingHorizontal: 16,
+            borderBottomWidth: 2,
+          }}
+        /> */}
       </ScrollView>
     </SafeAreaView>
   );
