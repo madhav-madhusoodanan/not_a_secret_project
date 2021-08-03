@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^3",
+    "@gorhom/sticky-item": "^2.1.1",
     "@react-native-clipboard/clipboard": "^1.8.4",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/blur": "^3.6.0",

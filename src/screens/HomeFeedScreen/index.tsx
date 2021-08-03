@@ -1,48 +1,66 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Animated,
+  FlatList,
+} from 'react-native';
 import {Button, Headline, Menu} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SVGIcon} from './../../components/SVGIcon';
 import {SafeAreaLayout} from './../../components/ScreenContainer';
+import StickyItemFlatList from '@gorhom/sticky-item';
 
 import {styles} from './styles';
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Fourth Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Fifth Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Sixth Item',
-  },
-];
+// dummy data
+const data = [...Array(20)].fill(0).map((_, index) => ({id: `item-${index}`}));
 
-const Item = ({title}) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+// configs
+const ITEM_WIDTH = 90;
+const ITEM_HEIGHT = 150;
+const STICKY_ITEM_WIDTH = 24;
+const STICKY_ITEM_HEIGHT = 24;
+const STICKY_ITEM_BACKGROUNDS = ['#222', '#000'];
+const SEPARATOR_SIZE = 8;
+const BORDER_RADIUS = 10;
+
+const StickyItemView = ({
+  x,
+  threshold,
+  itemWidth,
+  itemHeight,
+  stickyItemWidth,
+  stickyItemHeight,
+  separatorSize,
+  isRTL,
+}) => {
+  const amazingAnimation = {
+    // here you add your custom interactive animation
+    // based on the animated value `x`
+  };
+
+  return <Animated.View style={amazingAnimation} />;
+};
 
 export default function HomeFeedScreen() {
-  const renderItem = ({item}) => <Item title={item.title} />;
+  // methods
+  const handleStickyItemPress = () => Alert.alert('Sticky Item Pressed');
+
+  // render
+  const renderItem = ({item, index}) => (
+    <View
+      key={`item-${index}`}
+      style={{
+        backgroundColor: 'pink',
+        width: ITEM_WIDTH,
+        height: ITEM_HEIGHT,
+      }}
+    />
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -60,11 +78,18 @@ export default function HomeFeedScreen() {
           />
         </TouchableOpacity>
       </View>
-      <FlatList
-        data={DATA}
-        horizontal={true}
+      <StickyItemFlatList
+        itemWidth={ITEM_WIDTH}
+        itemHeight={ITEM_HEIGHT}
+        separatorSize={SEPARATOR_SIZE}
+        borderRadius={BORDER_RADIUS}
+        stickyItemWidth={STICKY_ITEM_WIDTH}
+        stickyItemHeight={STICKY_ITEM_HEIGHT}
+        stickyItemBackgroundColors={STICKY_ITEM_BACKGROUNDS}
+        stickyItemContent={StickyItemView}
+        onStickyItemPress={handleStickyItemPress}
+        data={data}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
       />
     </SafeAreaView>
   );

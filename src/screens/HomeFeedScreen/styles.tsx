@@ -39,16 +39,4 @@ export const styles = StyleSheet.create({
   pickerButtonMenuIcon: {
     color: 'black',
   },
-
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    width: 80,
-    height: 80,
-    marginRight: 10,
-  },
-  title: {
-    fontSize: 32,
-  },
 });

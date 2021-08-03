@@ -943,6 +943,15 @@
     immer "^9.0.3"
     nanoid "^3.1.23"
 
+"@gorhom/sticky-item@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@gorhom/sticky-item/-/sticky-item-2.1.1.tgz#093e2e2f695054bfb9654decce812307cc7b43ae"
+  integrity sha512-fTJwnAQ3t9W0PjO+QiX2UOyXeAcPhITjJPiHM1Una9NJmW+31jw8RJqR7/u53Nb1fEri+3VLDz1tOZ9LMGhNBw==
+  dependencies:
+    abs-svg-path "^0.1.1"
+    normalize-svg-path "^1.1.0"
+    parse-svg-path "^0.1.2"
+
 "@hapi/hoek@^9.0.0":
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.2.0.tgz#f3933a44e365864f4dad5db94158106d511e8131"
@@ -6095,7 +6104,7 @@ normalize-path@^3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
-normalize-svg-path@^1.0.1:
+normalize-svg-path@^1.0.1, normalize-svg-path@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/normalize-svg-path/-/normalize-svg-path-1.1.0.tgz#0e614eca23c39f0cffe821d6be6cd17e569a766c"
   integrity sha512-r9KHKG2UUeB5LoTouwDzBy2VxXlHsiM6fyLQvnJa0S5hrhzqElH/CH7TUGhT1fVvIYBIKf3OpY4YJ4CK+iaqHg==
