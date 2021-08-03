@@ -67,7 +67,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#f5f5f1',
     // marginBottom: 10,
     borderRadius: 10,
-    paddingBottom: 15,
+    paddingBottom: 10,
   },
   customListView: {
     padding: 15,
@@ -115,13 +115,14 @@ export const styles = StyleSheet.create({
     flexWrap: 'nowrap',
     alignItems: 'center',
     marginHorizontal: 16,
-    marginTop: 10,
+    marginTop: 5,
   },
   reactionIcon: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
+    paddingVertical: 5,
   },
   reactionText: {
     fontSize: 14,
@@ -130,7 +131,7 @@ export const styles = StyleSheet.create({
   },
   shareIcon: {
     position: 'absolute',
-
+    paddingLeft: 20,
     paddingVertical: 10,
     right: 0,
   },

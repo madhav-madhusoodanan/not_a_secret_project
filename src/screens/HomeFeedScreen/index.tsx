@@ -188,7 +188,15 @@ export default function HomeFeedScreen({navigator}) {
               style={styles.reactionIcon}
               onPress={() => console.log('Comment Button Pressed')}>
               <CommentIcon size="20" color="#001d3d" />
-              <Text style={{...styles.reactionText, color: '#001d3d'}}>4</Text>
+              <Text
+                style={{
+                  ...styles.reactionText,
+                  color: '#001d3d',
+                  paddingRight: 10,
+                  paddingVertical: 2,
+                }}>
+                4
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => console.log('Share Button Pressed')}
