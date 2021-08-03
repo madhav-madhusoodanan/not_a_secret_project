@@ -75,7 +75,7 @@ const HomeStackNavigator = () => (
     <HomeStack.Screen
       component={HomeFeedScreen}
       name="HomeFeedScreen"
-      options={{headerShown: false}}
+      options={{title: 'Welcome 👋'}}
     />
   </HomeStack.Navigator>
 );
