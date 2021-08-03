@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS,
   },
   post: {
-    backgroundColor: '#f0efeb',
+    backgroundColor: '#f5f5f1',
     // marginBottom: 10,
     borderRadius: 10,
     paddingBottom: 15,
@@ -115,7 +115,6 @@ export const styles = StyleSheet.create({
     flexWrap: 'nowrap',
     alignItems: 'center',
     marginHorizontal: 16,
-    // backgroundColor: 'pink',
     marginTop: 10,
   },
   reactionIcon: {

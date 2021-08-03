@@ -12,7 +12,8 @@ import {
 import CommentIcon from '@iconscout/react-native-unicons/icons/uil-comment';
 import ShareIcon from '@iconscout/react-native-unicons/icons/uil-share-alt';
 import HeartIcon from '@iconscout/react-native-unicons/icons/uil-heart';
-import {Button, Headline, Subheading, Menu} from 'react-native-paper';
+
+import {Button, Headline, Menu, Subheading} from 'react-native-paper';
 import Lightbox from 'react-native-lightbox-v2';
 import FastImage from 'react-native-fast-image';
 import {useTheme} from '@react-navigation/native';
@@ -55,6 +56,12 @@ const StickyItemView = ({
 };
 
 export default function HomeFeedScreen({navigator}) {
+  // Menu
+
+  const [visible, setVisible] = React.useState(false);
+  const openMenu = () => setVisible(true);
+  const closeMenu = () => setVisible(false);
+
   // methods
   const handleStickyItemPress = () => Alert.alert('Sticky Item Pressed');
 
@@ -126,11 +133,26 @@ export default function HomeFeedScreen({navigator}) {
                 </View>
               </View>
             </View>
-            <TouchableOpacity
-              onPress={() => console.log('User Avatar Pressed')}
-              style={{width: 25, alignItems: 'center'}}>
-              <SVGIcon height={18} type="kebab" width={18} />
-            </TouchableOpacity>
+            <Menu
+              visible={visible}
+              onDismiss={closeMenu}
+              anchor={
+                <TouchableOpacity
+                  onPress={openMenu}
+                  style={{
+                    // width: 25,
+                    paddingVertical: 10,
+                    paddingHorizontal: 10,
+                    borderRadius: 10,
+                    // backgroundColor: 'red',
+                    alignItems: 'center',
+                  }}>
+                  <SVGIcon height={18} type="kebab" width={18} />
+                </TouchableOpacity>
+              }>
+              <Menu.Item onPress={() => {}} title="Unfollow" />
+              <Menu.Item onPress={() => {}} title="Report" />
+            </Menu>
           </View>
           <View style={styles.contentContainer}>
             <Text style={styles.paragraph}>
@@ -175,14 +197,6 @@ export default function HomeFeedScreen({navigator}) {
             </TouchableOpacity>
           </View>
         </View>
-        {/* <View
-          style={{
-            borderBottomColor: 'black',
-            width: '100%',
-            paddingHorizontal: 16,
-            borderBottomWidth: 2,
-          }}
-        /> */}
       </ScrollView>
     </SafeAreaView>
   );
