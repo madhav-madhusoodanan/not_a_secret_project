@@ -4,7 +4,6 @@ import {Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {useKeyboard} from '../hooks/useKeyboard';
-import {SCText} from './SCText';
 import {SVGIcon} from './SVGIcon';
 
 const styles = StyleSheet.create({
@@ -17,9 +16,6 @@ const styles = StyleSheet.create({
   tabListContainer: {
     borderTopWidth: 0.5,
     flexDirection: 'row',
-  },
-  tabTitle: {
-    fontSize: 12,
   },
 });
 
@@ -50,12 +46,6 @@ export const BottomTabs = ({navigation, state}) => {
           iconActive: <SVGIcon height={26} type="post-tab-active" width={26} />,
           title: 'Post',
         };
-      // case 'notifications':
-      //   return {
-      //     icon: <SVGIcon height={26} type="dm-tab" width={26} />,
-      //     iconActive: <SVGIcon height={26} type="dm-tab-active" width={26} />,
-      //     title: 'Pings',
-      //   };
       case 'notifications':
         return {
           icon: <SVGIcon height={26} type="notifications-tab" width={26} />,
@@ -112,7 +102,6 @@ export const BottomTabs = ({navigation, state}) => {
             onPress={onPress}
             style={styles.tabContainer}>
             {isFocused ? tab.iconActive : tab.icon}
-            {/* <SCText style={styles.tabTitle}>{tab.title}</SCText> */}
           </TouchableOpacity>
         );
       })}

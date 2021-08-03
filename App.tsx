@@ -11,8 +11,6 @@ import {
 } from 'react-native-safe-area-context';
 
 import {
-  ActivityIndicator,
-  Alert,
   LogBox,
   StyleSheet,
   View,
@@ -40,7 +38,7 @@ const Tab = createBottomTabNavigator();
 
 const RootStack = createStackNavigator();
 const HomeStack = createStackNavigator();
-const ModalStack = createStackNavigator();
+const CommunityStack = createStackNavigator();
 const AuthStack = createStackNavigator();
 
 export default () => {
@@ -65,24 +63,19 @@ export default () => {
 };
 
 const HomeStackNavigator = () => (
-  <HomeStack.Navigator initialRouteName="HomeFeedScreen">
-    <HomeStack.Screen
-      component={HomeFeedScreen}
-      name="HomeFeedScreen"
-      // options={{title: 'Welcome 👋'}}
-      options={{headerShown: false}}
-    />
+  <HomeStack.Navigator
+    screenOptions={{headerShown: false}}
+    initialRouteName="HomeFeedScreen">
+    <HomeStack.Screen component={HomeFeedScreen} name="HomeFeedScreen" />
   </HomeStack.Navigator>
 );
 
 const TabNavigation = () => (
   <BottomSheetModalProvider>
-    <Tab.Navigator tabBar={props => <BottomTabs {...props} />}>
-      <Tab.Screen
-        options={{headerShown: false}}
-        component={HomeStackNavigator}
-        name="home"
-      />
+    <Tab.Navigator
+      screenOptions={{headerShown: false}}
+      tabBar={props => <BottomTabs {...props} />}>
+      <Tab.Screen component={HomeStackNavigator} name="home" />
       <Tab.Screen component={ExploreScreen} name={'explore'} />
       <Tab.Screen component={CreatePostScreen} name={'createPost'} />
       <Tab.Screen component={NotificationScreen} name={'notifications'} />
@@ -95,32 +88,14 @@ const RootNavigation = () => {
   const {bottom, top} = useSafeAreaInsets();
 
   return (
-    <RootStack.Navigator>
-      <RootStack.Screen
-        component={TabNavigation}
-        name="Tabs"
-        options={{headerShown: false}}
-      />
+    <RootStack.Navigator screenOptions={{headerShown: false}}>
+      <RootStack.Screen component={TabNavigation} name="Tabs" />
     </RootStack.Navigator>
   );
 };
 
 const styles = StyleSheet.create({
-  channelScreenContainer: {flexDirection: 'column', height: '100%'},
-  channelScreenSaveAreaView: {
-    backgroundColor: 'white',
-  },
-  chatContainer: {
-    backgroundColor: 'white',
-    flexGrow: 1,
-    flexShrink: 1,
-  },
   container: {
     flex: 1,
-  },
-  loadingContainer: {
-    alignItems: 'center',
-    height: '100%',
-    justifyContent: 'center',
   },
 });

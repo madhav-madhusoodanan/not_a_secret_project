@@ -10,12 +10,12 @@ const {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: 20,
-    // paddingHorizontal: 15,
+    paddingTop: 20,
+    paddingHorizontal: 15,
     backgroundColor: Theme.colors.background,
   },
   header: {
-    paddingHorizontal: 15,
+    // paddingHorizontal: 15,
   },
   headline: {
     fontSize: 28,
