@@ -83,7 +83,11 @@ const HomeStackNavigator = () => (
 const TabNavigation = () => (
   <BottomSheetModalProvider>
     <Tab.Navigator tabBar={props => <BottomTabs {...props} />}>
-      <Tab.Screen component={HomeStackNavigator} name="home" />
+      <Tab.Screen
+        options={{headerShown: false}}
+        component={HomeStackNavigator}
+        name="home"
+      />
       <Tab.Screen component={ExploreScreen} name={'explore'} />
       <Tab.Screen component={CreatePostScreen} name={'createPost'} />
       <Tab.Screen component={NotificationScreen} name={'notifications'} />
@@ -96,7 +100,7 @@ const RootNavigation = () => {
   const {bottom, top} = useSafeAreaInsets();
 
   return (
-    <RootStack.Navigator mode="modal">
+    <RootStack.Navigator>
       <RootStack.Screen
         component={TabNavigation}
         name="Tabs"
