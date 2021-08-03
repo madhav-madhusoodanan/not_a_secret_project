@@ -20,12 +20,12 @@ import {styles} from './styles';
 const data = [...Array(20)].fill(0).map((_, index) => ({id: `item-${index}`}));
 
 // configs
-const ITEM_WIDTH = 90;
-const ITEM_HEIGHT = 150;
+const ITEM_WIDTH = 100;
+const ITEM_HEIGHT = 100;
 const STICKY_ITEM_WIDTH = 24;
 const STICKY_ITEM_HEIGHT = 24;
 const STICKY_ITEM_BACKGROUNDS = ['#222', '#000'];
-const SEPARATOR_SIZE = 8;
+const SEPARATOR_SIZE = 16;
 const BORDER_RADIUS = 10;
 
 const StickyItemView = ({
@@ -58,6 +58,7 @@ export default function HomeFeedScreen() {
         backgroundColor: 'pink',
         width: ITEM_WIDTH,
         height: ITEM_HEIGHT,
+        borderRadius: BORDER_RADIUS,
       }}
     />
   );

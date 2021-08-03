@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     backgroundColor: Theme.colors.background,
   },
   header: {
-    // paddingHorizontal: 15,
+    marginBottom: 24,
   },
   headline: {
     fontSize: 28,
