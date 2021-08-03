@@ -5,26 +5,29 @@ import {
   TouchableOpacity,
   Alert,
   Animated,
+  ScrollView,
+  Image,
   FlatList,
 } from 'react-native';
-import {Button, Headline, Menu} from 'react-native-paper';
+import {Button, Headline, Subheading, Menu} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SVGIcon} from './../../components/SVGIcon';
 import {SafeAreaLayout} from './../../components/ScreenContainer';
+// import {ScaledImage} from './../../components/ScaledImage';
 import StickyItemFlatList from '@gorhom/sticky-item';
 
 import {styles} from './styles';
 
 // dummy data
-const data = [...Array(20)].fill(0).map((_, index) => ({id: `item-${index}`}));
+const data = [...Array(10)].fill(0).map((_, index) => ({id: `item-${index}`}));
 
 // configs
 const ITEM_WIDTH = 100;
-const ITEM_HEIGHT = 100;
-const STICKY_ITEM_WIDTH = 24;
-const STICKY_ITEM_HEIGHT = 24;
-const STICKY_ITEM_BACKGROUNDS = ['#222', '#000'];
+const ITEM_HEIGHT = 120;
+const STICKY_ITEM_WIDTH = 40;
+const STICKY_ITEM_HEIGHT = 46;
+const STICKY_ITEM_BACKGROUNDS = ['#9d0208', '#370617'];
 const SEPARATOR_SIZE = 16;
 const BORDER_RADIUS = 10;
 
@@ -52,15 +55,7 @@ export default function HomeFeedScreen() {
 
   // render
   const renderItem = ({item, index}) => (
-    <View
-      key={`item-${index}`}
-      style={{
-        backgroundColor: 'pink',
-        width: ITEM_WIDTH,
-        height: ITEM_HEIGHT,
-        borderRadius: BORDER_RADIUS,
-      }}
-    />
+    <View key={`item-${index}`} style={styles.joinedCommunities} />
   );
 
   return (
@@ -79,19 +74,81 @@ export default function HomeFeedScreen() {
           />
         </TouchableOpacity>
       </View>
-      <StickyItemFlatList
-        itemWidth={ITEM_WIDTH}
-        itemHeight={ITEM_HEIGHT}
-        separatorSize={SEPARATOR_SIZE}
-        borderRadius={BORDER_RADIUS}
-        stickyItemWidth={STICKY_ITEM_WIDTH}
-        stickyItemHeight={STICKY_ITEM_HEIGHT}
-        stickyItemBackgroundColors={STICKY_ITEM_BACKGROUNDS}
-        stickyItemContent={StickyItemView}
-        onStickyItemPress={handleStickyItemPress}
-        data={data}
-        renderItem={renderItem}
-      />
+      <ScrollView bounces={false} style={styles.listContainter}>
+        <View style={styles.communityScroll}>
+          <Subheading style={styles.subheading}>Your Communities</Subheading>
+          <StickyItemFlatList
+            itemWidth={ITEM_WIDTH}
+            itemHeight={ITEM_HEIGHT}
+            separatorSize={SEPARATOR_SIZE}
+            borderRadius={BORDER_RADIUS}
+            stickyItemWidth={STICKY_ITEM_WIDTH}
+            stickyItemHeight={STICKY_ITEM_HEIGHT}
+            stickyItemBackgroundColors={STICKY_ITEM_BACKGROUNDS}
+            stickyItemContent={StickyItemView}
+            onStickyItemPress={handleStickyItemPress}
+            data={data}
+            renderItem={renderItem}
+          />
+        </View>
+        <View style={styles.post}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View style={styles.customListView}>
+              <Image
+                style={styles.avatar}
+                source={{
+                  uri: 'https://pbs.twimg.com/profile_images/1347406184920190977/k2PegsXQ_400x400.jpg',
+                }}></Image>
+              <View style={styles.infoWrapper}>
+                <View style={styles.namesWrapper}>
+                  <TouchableOpacity
+                    onPress={() => console.log('User Avatar Pressed')}>
+                    <Text style={{fontSize: 14, fontWeight: '500'}}>
+                      Nishant's Advanced Math 2021
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.extraInfoWrapper}>
+                  <Text style={{color: 'gray', fontSize: 14, marginRight: 5}}>
+                    5h
+                  </Text>
+
+                  <SVGIcon height={4} type="dot" width={4} />
+
+                  <Text style={{fontSize: 12, marginLeft: 5, color: 'gray'}}>
+                    Posted by @daviz00
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <TouchableOpacity
+              onPress={() => console.log('User Avatar Pressed')}
+              style={{width: 25, alignItems: 'center'}}>
+              <SVGIcon height={18} type="kebab" width={18} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.contentContainer}>
+            <Text style={styles.paragraph}>
+              The packages given in my coaching are really comprehensive. They
+              are usually completed along with the chapter as the teachers give
+              regular homework from them. It may not be a national level
+              institute but believe me, I have seen Allen's and FIITJEE's
+              material and ours have a mixture of questions from all of them.
+              What should I do? #doubt #dcpandey
+            </Text>
+          </View>
+          <TouchableOpacity onPress={() => console.log('Image Button Pressed')}>
+            <View style={styles.imageContainer}>
+              {/* <ScaledImage height={300} source={item.image}></ScaledImage> */}
+              <Image
+                style={styles.postImage}
+                source={{
+                  uri: 'https://i.ibb.co/wpwTg4z/book.png',
+                }}></Image>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

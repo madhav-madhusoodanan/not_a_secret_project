@@ -33,6 +33,8 @@ import HomeTabIconActive from '../assets/icons/tab-bar/home-selected.svg';
 import HomeTabIcon from '../assets/icons/tab-bar/home.svg';
 import CreatePostTabIconActive from '../assets/icons/tab-bar/plus-selected.svg';
 import CreatePostTabIcon from '../assets/icons/tab-bar/plus.svg';
+import KebabIcon from '../assets/icons/post/kebab.svg';
+import DotIcon from '../assets/icons/post/dot.svg';
 import GlobalSearchSelectedIcon from '../assets/icons/tab-bar/search-selected.svg';
 import GlobalSearchIcon from '../assets/icons/tab-bar/search.svg';
 import YouTabIconActive from '../assets/icons/tab-bar/you-selected.svg';
@@ -88,6 +90,10 @@ const iconMap = {
 
   // Feed
   'drop-down': DropDownIcon,
+
+  // Post
+  kebab: KebabIcon,
+  dot: DotIcon,
 };
 
 export const SVGIcon = ({fill, height, type, width}) => {
