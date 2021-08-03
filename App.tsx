@@ -5,7 +5,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
-import {StreamApp} from 'react-native-activity-feed';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -57,12 +56,7 @@ export default () => {
         />
         <NavigationContainer theme={Theme}>
           <View style={styles.container}>
-            <StreamApp
-              apiKey="r249dw973zfa"
-              appId="1133749"
-              token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYmxhY2stcG9uZC0yIn0.POPurfP9551qegOVXF_pQJTcN280w8pLEkm4xR7BoQY">
-              <RootNavigation />
-            </StreamApp>
+            <RootNavigation />
           </View>
         </NavigationContainer>
       </SafeAreaProvider>
@@ -75,7 +69,8 @@ const HomeStackNavigator = () => (
     <HomeStack.Screen
       component={HomeFeedScreen}
       name="HomeFeedScreen"
-      options={{title: 'Welcome 👋'}}
+      // options={{title: 'Welcome 👋'}}
+      options={{headerShown: false}}
     />
   </HomeStack.Navigator>
 );

@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
     fontFamily: 'Gilroy-Bold',
   },
-
   pickerButton: {
     // paddingHorizontal: width * 0.0407,
     paddingVertical: height * 0.01,
@@ -35,19 +34,13 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     flexDirection: 'row',
   },
-
   pickerButtonActiveText: {
     fontFamily: 'Gilroy-Bold',
     color: '#C62828',
     fontSize: 24,
     marginRight: 10,
   },
-
   pickerButtonMenuIcon: {
     color: 'black',
-  },
-
-  feedPost: {
-    color: 'red',
   },
 });
