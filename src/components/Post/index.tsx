@@ -21,7 +21,8 @@ import TextInline from './TextInline';
 
 import {styles} from './styles';
 
-// const postContent = 'The packages given in my coaching are really comprehensive. They are usually completed along with the chapter as the teachers give regular homework from them. It may not be a national level institute but believe me, I have seen Allen's and FIITJEE's material and ours have a mixture of questions from all of them. What should I do? #doubt #dcpandey';
+const postContent =
+  "The packages given in my coaching are really comprehensive. They are usually completed along with the chapter as the teachers give regular homework from them. It may not be a national level institute but believe me, I have seen Allen's and FIITJEE's material and ours have a mixture of questions from all of them. What should I do? #doubt #dcpandey";
 
 export default function Post() {
   const [visible, setVisible] = React.useState(false);
@@ -93,12 +94,7 @@ export default function Post() {
         </Menu>
       </View>
       <View style={styles.contentContainer}>
-        <TextInline
-          text={
-            "The packages given in my coaching are really comprehensive. They are usually completed along with the chapter as the teachers give regular homework from them. It may not be a national level institute but believe me, I have seen Allen's and FIITJEE's material and ours have a mixture of questions from all of them. What should I do? #doubt #dcpandey"
-          }
-          targetLines={4}
-        />
+        <TextInline text={postContent} targetLines={4} />
       </View>
       <TouchableOpacity onPress={() => console.log('Image Button Pressed')}>
         <View style={styles.imageContainer}>

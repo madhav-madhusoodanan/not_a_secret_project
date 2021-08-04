@@ -63,7 +63,7 @@ const TextInline = (props: PropTypes) => {
 };
 const styles = StyleSheet.create({
   mainBody: {
-    marginTop: 15,
+    // marginTop: 15,
   },
   txtStyle: {
     fontFamily: 'Inter-Regular',
@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
   lessMoreStyle: {
     fontFamily: 'Inter-Regular',
     fontSize: 14,
-    color: Theme.colors.error,
+    color: Theme.colors.primary,
   },
 });
+
 export default TextInline;
