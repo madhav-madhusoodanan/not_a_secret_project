@@ -17,8 +17,11 @@ import Lightbox from 'react-native-lightbox-v2';
 import FastImage from 'react-native-fast-image';
 import {useTheme} from '@react-navigation/native';
 import {SVGIcon} from './../SVGIcon';
+import TextInline from './TextInline';
 
 import {styles} from './styles';
+
+// const postContent = 'The packages given in my coaching are really comprehensive. They are usually completed along with the chapter as the teachers give regular homework from them. It may not be a national level institute but believe me, I have seen Allen's and FIITJEE's material and ours have a mixture of questions from all of them. What should I do? #doubt #dcpandey';
 
 export default function Post() {
   const [visible, setVisible] = React.useState(false);
@@ -90,14 +93,12 @@ export default function Post() {
         </Menu>
       </View>
       <View style={styles.contentContainer}>
-        <Text style={styles.paragraph}>
-          The packages given in my coaching are really comprehensive. They are
-          usually completed along with the chapter as the teachers give regular
-          homework from them. It may not be a national level institute but
-          believe me, I have seen Allen's and FIITJEE's material and ours have a
-          mixture of questions from all of them. What should I do? #doubt
-          #dcpandey
-        </Text>
+        <TextInline
+          text={
+            "The packages given in my coaching are really comprehensive. They are usually completed along with the chapter as the teachers give regular homework from them. It may not be a national level institute but believe me, I have seen Allen's and FIITJEE's material and ours have a mixture of questions from all of them. What should I do? #doubt #dcpandey"
+          }
+          targetLines={4}
+        />
       </View>
       <TouchableOpacity onPress={() => console.log('Image Button Pressed')}>
         <View style={styles.imageContainer}>

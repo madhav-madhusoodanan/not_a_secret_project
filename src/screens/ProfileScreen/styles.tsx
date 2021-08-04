@@ -10,7 +10,7 @@ const {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: height * 0.071,
+    paddingTop: 30,
     paddingHorizontal: width * 0.063,
     alignItems: 'center',
     backgroundColor: Theme.colors.background,
