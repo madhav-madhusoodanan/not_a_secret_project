@@ -77,9 +77,9 @@ export default function ProfileScreen() {
             <MenuIcon size="24" color="#848c8e" />
           </TouchableOpacity>
         </View>
-        <Subheading style={styles.subheading}>My Communities</Subheading>
 
         <View style={styles.userCommunityContainer}>
+          <Subheading style={styles.subheading}>My Communities</Subheading>
           <View style={styles.communityListContainer}>
             <Pressable style={styles.communityViewBox}></Pressable>
             <Pressable style={styles.communityViewBox}></Pressable>
