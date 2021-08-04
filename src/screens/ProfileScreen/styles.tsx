@@ -10,7 +10,7 @@ const {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
+    // paddingTop: 10,
     flexDirection: 'column',
     paddingHorizontal: 16,
     backgroundColor: Theme.colors.background,
@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     width: 125,
     height: 125,
     borderRadius: 10,
+    marginTop: 10,
   },
 
   headContainer: {

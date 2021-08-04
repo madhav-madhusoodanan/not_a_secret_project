@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   tabListContainer: {
-    borderTopWidth: 0.5,
+    // borderTopWidth: 0.5,
+    elevation: 10,
     flexDirection: 'row',
   },
 });

@@ -17,6 +17,8 @@ import {
   Platform,
   StatusBar,
   Appearance,
+  TouchableOpacity,
+  Text,
 } from 'react-native';
 
 import {
@@ -26,6 +28,9 @@ import {
   NotificationScreen,
   ProfileScreen,
 } from './src/screens';
+
+import DropDownIcon from '@iconscout/react-native-unicons/icons/uil-angle-down';
+import SettingIcon from '@iconscout/react-native-unicons/icons/uil-setting';
 
 import {Theme} from './src/constants/appTheme';
 import {BottomTabs} from './src/components/BottomTabs';
@@ -50,7 +55,8 @@ export default () => {
         <StatusBar
           animated={true}
           barStyle="dark-content"
-          backgroundColor={Theme.colors.background}
+          // translucent={true}
+          backgroundColor={Theme.colors.backgroundSecondary}
         />
         <NavigationContainer theme={Theme}>
           <View style={styles.container}>
@@ -73,13 +79,82 @@ const HomeStackNavigator = () => (
 const TabNavigation = () => (
   <BottomSheetModalProvider>
     <Tab.Navigator
-      screenOptions={{headerShown: false}}
-      tabBar={props => <BottomTabs {...props} />}>
-      <Tab.Screen component={HomeStackNavigator} name="home" />
-      <Tab.Screen component={ExploreScreen} name={'explore'} />
-      <Tab.Screen component={CreatePostScreen} name={'createPost'} />
-      <Tab.Screen component={NotificationScreen} name={'notifications'} />
-      <Tab.Screen component={ProfileScreen} name={'you'} />
+      tabBar={props => <BottomTabs {...props} />}
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Theme.colors.backgroundSecondary,
+        },
+        headerTintColor: Theme.colors.text,
+        headerTitleAlign: 'left',
+        headerTitleStyle: {
+          fontFamily: 'Gilroy-Bold',
+          fontSize: 24,
+        },
+      }}>
+      <Tab.Screen
+        component={HomeStackNavigator}
+        name="home"
+        options={{
+          title: 'Welcome 👋',
+          headerRight: props => (
+            <TouchableOpacity
+              style={{
+                // paddingVertical: 5,
+                alignItems: 'center',
+                marginRight: 16,
+                alignSelf: 'flex-end',
+                flexDirection: 'row',
+              }}
+              onPress={() => console.log('Goal Selection Dropdown Pressed')}>
+              <DropDownIcon size="28" color="#081c15" />
+              <Text
+                style={{
+                  fontFamily: 'Gilroy-Bold',
+                  color: '#007f5f',
+                  fontSize: 24,
+                  marginLeft: 6,
+                }}>
+                IITJEE
+              </Text>
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Tab.Screen
+        component={ExploreScreen}
+        name={'explore'}
+        options={{title: 'Explore'}}
+      />
+      <Tab.Screen
+        component={CreatePostScreen}
+        name={'createPost'}
+        options={{title: 'Create Post'}}
+      />
+      <Tab.Screen
+        component={NotificationScreen}
+        name={'notifications'}
+        options={{title: 'Notifications'}}
+      />
+      <Tab.Screen
+        component={ProfileScreen}
+        name={'you'}
+        options={{
+          title: 'Profile',
+          headerRight: props => (
+            <TouchableOpacity
+              style={{
+                // paddingVertical: 5,
+                alignItems: 'center',
+                marginRight: 16,
+                alignSelf: 'flex-end',
+                flexDirection: 'row',
+              }}
+              onPress={() => console.log('Setting Button Pressed')}>
+              <SettingIcon size="24" color="#081c15" />
+            </TouchableOpacity>
+          ),
+        }}
+      />
     </Tab.Navigator>
   </BottomSheetModalProvider>
 );

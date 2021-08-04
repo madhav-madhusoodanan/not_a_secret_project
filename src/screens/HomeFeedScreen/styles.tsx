@@ -17,14 +17,8 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     flexDirection: 'column',
     backgroundColor: Theme.colors.background,
-  },
-  header: {
-    // marginBottom: 18,
-    // backgroundColor: 'red',
-    paddingHorizontal: 16,
   },
   headline: {
     fontSize: 28,

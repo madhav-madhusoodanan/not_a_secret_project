@@ -14,7 +14,7 @@ export default function ExploreScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <Searchbar
-        placeholder="Explore Communities"
+        placeholder="Search for Creators"
         onChangeText={onChangeSearch}
         style={styles.searchbar}
         value={searchQuery}

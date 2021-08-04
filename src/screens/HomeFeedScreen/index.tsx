@@ -67,20 +67,6 @@ export default function HomeFeedScreen({navigator}) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Headline style={styles.headline}>Welcome 👋</Headline>
-        <TouchableOpacity
-          style={styles.pickerButton}
-          onPress={() => console.log('Goal Selection Dropdown Pressed')}>
-          <Text style={[styles.pickerButtonActiveText]}>IITJEE</Text>
-
-          <DropDownIcon
-            style={[styles.pickerButtonMenuIcon]}
-            size="28"
-            color="#081c15"
-          />
-        </TouchableOpacity>
-      </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
         overScrollMode={'never'}
