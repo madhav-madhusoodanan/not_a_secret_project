@@ -103,7 +103,7 @@ export const styles = StyleSheet.create({
     // backgroundColor: '#f13a59',
   },
   reactionText: {
-    fontSize: 14,
+    fontSize: 13,
     marginLeft: 4,
     fontFamily: 'Inter-Medium',
   },

@@ -38,19 +38,31 @@ export default function Post() {
             <View style={styles.namesWrapper}>
               <TouchableOpacity
                 onPress={() => console.log('User Avatar Pressed')}>
-                <Text style={{fontSize: 14, fontWeight: '500'}}>
+                <Text style={{fontSize: 13, fontFamily: 'Inter-Medium'}}>
                   Nishant's Advanced Math 2021
                 </Text>
               </TouchableOpacity>
             </View>
             <View style={styles.extraInfoWrapper}>
-              <Text style={{color: 'gray', fontSize: 14, marginRight: 5}}>
+              <Text
+                style={{
+                  color: 'gray',
+                  fontSize: 12,
+                  marginRight: 5,
+                  fontFamily: 'Inter-Regular',
+                }}>
                 5h
               </Text>
 
               <SVGIcon height={4} type="dot" width={4} />
 
-              <Text style={{fontSize: 12, marginLeft: 5, color: 'gray'}}>
+              <Text
+                style={{
+                  fontSize: 12,
+                  marginLeft: 5,
+                  color: 'gray',
+                  fontFamily: 'Inter-Regular',
+                }}>
                 Posted by @daviz00
               </Text>
             </View>
