@@ -97,12 +97,8 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
 
-  menuButtonLabelStyles: {
-    alignContent: 'center',
-    alignItems: 'center',
-  },
-
   menuButtonContentStyles: {
+    alignSelf: 'center',
     height: 44,
     width: 44,
   },

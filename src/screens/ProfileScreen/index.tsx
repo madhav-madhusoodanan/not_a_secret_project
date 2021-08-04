@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  IconButton,
 } from 'react-native';
 
 import FastImage from 'react-native-fast-image';
@@ -76,7 +77,6 @@ export default function ProfileScreen() {
             color={'#BDBDBD'}
             contentStyle={styles.menuButtonContentStyles}
             style={styles.menuButtonStyles}
-            labelStyle={styles.menuButtonLabelStyles}
             onPress={() => console.log('Menu Button Pressed')}
           />
         </View>
