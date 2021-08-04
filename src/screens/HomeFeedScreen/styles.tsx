@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   communityScroll: {
-    marginBottom: 10,
+    marginBottom: 20,
   },
   joinedCommunities: {
     backgroundColor: '#faa307',
