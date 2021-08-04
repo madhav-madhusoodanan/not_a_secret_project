@@ -22,7 +22,8 @@ export const styles = StyleSheet.create({
     backgroundColor: Theme.colors.background,
   },
   header: {
-    marginBottom: 18,
+    // marginBottom: 18,
+    // backgroundColor: 'red',
     paddingHorizontal: 16,
   },
   headline: {
@@ -52,15 +53,19 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
     fontFamily: 'Inter-SemiBold',
     marginBottom: 12,
+    marginTop: 15,
     paddingHorizontal: 16,
   },
   communityScroll: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
   joinedCommunities: {
     backgroundColor: '#faa307',
     width: ITEM_WIDTH,
     height: ITEM_HEIGHT,
     borderRadius: BORDER_RADIUS,
+  },
+  listContainter: {
+    //
   },
 });

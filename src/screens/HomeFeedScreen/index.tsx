@@ -82,7 +82,7 @@ export default function HomeFeedScreen({navigator}) {
           />
         </TouchableOpacity>
       </View>
-      <ScrollView bounces={false} style={styles.listContainter}>
+      <ScrollView bounces={true} style={styles.listContainter}>
         <View style={styles.communityScroll}>
           <Subheading style={styles.subheading}>Your Communities</Subheading>
           <StickyItemFlatList

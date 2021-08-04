@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import CommentIcon from '@iconscout/react-native-unicons/icons/uil-comment';
 import ShareIcon from '@iconscout/react-native-unicons/icons/uil-share-alt';
-import HeartIcon from '@iconscout/react-native-unicons/icons/uil-heart';
+import UpVoteIcon from '@iconscout/react-native-unicons/icons/uil-arrow-circle-up';
+import DownVoteIcon from '@iconscout/react-native-unicons/icons/uil-arrow-circle-down';
 
 import {Menu} from 'react-native-paper';
 import Lightbox from 'react-native-lightbox-v2';
@@ -102,22 +103,28 @@ export default function Post() {
         </View>
       </TouchableOpacity>
       <View style={styles.postFooter}>
-        <TouchableOpacity style={styles.reactionIcon}>
-          <HeartIcon size="25" color="#e8304a" />
-          <Text style={{...styles.reactionText, color: '#e8304a'}}>12</Text>
-        </TouchableOpacity>
+        <View style={styles.voteContainer}>
+          <TouchableOpacity style={styles.upVoteIcon}>
+            <UpVoteIcon size="25" color="#00AAFF" />
+            <Text style={{...styles.reactionText, color: '#00AAFF'}}>12</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.downVoteIcon}>
+            <DownVoteIcon size="25" color="#848c8e" />
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
-          style={styles.reactionIcon}
+          style={styles.commentIcon}
           onPress={() => console.log('Comment Button Pressed')}>
           <CommentIcon size="20" color="#001d3d" />
           <Text
             style={{
               ...styles.reactionText,
               color: '#001d3d',
-              paddingRight: 10,
-              paddingVertical: 2,
+              // paddingRight: 10,
+              // paddingVertical: 2,
             }}>
-            4
+            646
           </Text>
         </TouchableOpacity>
         <TouchableOpacity

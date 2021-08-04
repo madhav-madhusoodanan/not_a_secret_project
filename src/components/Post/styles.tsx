@@ -16,11 +16,11 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 
 export const styles = StyleSheet.create({
   post: {
-    backgroundColor: '#f5f5f1',
+    // backgroundColor: '#f5f5f1',
     marginBottom: 10,
     borderRadius: 20,
     // elevation: 1,
-    paddingBottom: 10,
+    paddingBottom: 6,
   },
   customListView: {
     padding: 15,
@@ -69,13 +69,38 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 16,
     marginTop: 5,
+    // backgroundColor: '#f13a59',
+    // padding: 8,
   },
-  reactionIcon: {
+  voteContainer: {
+    backgroundColor: '#f6f5f4',
+    borderRadius: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 16,
-    paddingVertical: 5,
+    paddingHorizontal: 6,
+    paddingVertical: 4,
+  },
+  upVoteIcon: {
+    // paddingVertical: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // backgroundColor: '#f13a59',
+  },
+  downVoteIcon: {
+    marginLeft: 8,
+    // paddingRight: 5,
+    // backgroundColor: '#f13a59',
+  },
+  commentIcon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 6,
+    marginLeft: 10,
+
+    // backgroundColor: '#f13a59',
   },
   reactionText: {
     fontSize: 14,
