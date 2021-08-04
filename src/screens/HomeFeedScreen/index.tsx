@@ -10,13 +10,12 @@ import {
   FlatList,
 } from 'react-native';
 
-import {Button, Headline, Menu, Subheading} from 'react-native-paper';
+import {Headline, Subheading} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {SVGIcon} from './../../components/SVGIcon';
-import {SafeAreaLayout} from './../../components/ScreenContainer';
+import DropDownIcon from '@iconscout/react-native-unicons/icons/uil-angle-down';
 import Post from './../../components/Post';
-// import {ScaledImage} from './../../components/ScaledImage';
+
 import StickyItemFlatList from '@gorhom/sticky-item';
 
 import {styles} from './styles';
@@ -74,15 +73,18 @@ export default function HomeFeedScreen({navigator}) {
           style={styles.pickerButton}
           onPress={() => console.log('Goal Selection Dropdown Pressed')}>
           <Text style={[styles.pickerButtonActiveText]}>IITJEE</Text>
-          <SVGIcon
+
+          <DropDownIcon
             style={[styles.pickerButtonMenuIcon]}
-            height={25}
-            type="drop-down"
-            width={25}
+            size="28"
+            color="#081c15"
           />
         </TouchableOpacity>
       </View>
-      <ScrollView overScrollMode={'never'} style={styles.listContainter}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        overScrollMode={'never'}
+        style={styles.listContainter}>
         <View style={styles.communityScroll}>
           <Subheading style={styles.subheading}>Your Communities</Subheading>
           <StickyItemFlatList

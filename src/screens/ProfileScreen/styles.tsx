@@ -11,55 +11,99 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 30,
-    paddingHorizontal: width * 0.063,
-    alignItems: 'center',
+    flexDirection: 'column',
+    paddingHorizontal: 16,
     backgroundColor: Theme.colors.background,
-  },
-  profileImage: {
-    width: width / 3.14,
-    height: height / 6.45,
-    borderRadius: 15,
-    overflow: 'hidden',
-    marginTop: 5,
   },
 
   image: {
-    flex: 1,
-    height: undefined,
-    width: undefined,
-    borderWidth: 3,
+    width: 125,
+    height: 125,
+    borderRadius: 10,
   },
 
   headContainer: {
-    marginVertical: height / 40.3,
+    marginVertical: 10,
     alignItems: 'center',
   },
 
   text: {
     color: Theme.colors.text,
+    fontFamily: 'Inter-SemiBold',
   },
 
   statsContainer: {
     flexDirection: 'row',
     alignSelf: 'center',
-    marginBottom: 0,
+    paddingHorizontal: 60,
+    // backgroundColor: 'red',
+    margin: 8,
   },
 
   subText: {
-    fontSize: 12,
-    color: '#AEB5BC',
+    fontSize: 10,
+    color: '#4A5568',
     textTransform: 'uppercase',
-    fontWeight: '500',
+    fontFamily: 'Inter-Regular',
+  },
+
+  bioText: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 14,
+    color: Theme.colors.text,
+    lineHeight: 20,
+    textAlign: 'left',
   },
 
   infoContainer: {
-    // alignSelf: "center",
-    // alignItems: "center",
-    marginTop: height / 23.0285,
+    marginVertical: 10,
+    // alignItems: 'flex-start',
   },
 
   statsBox: {
     alignItems: 'center',
     flex: 1,
+  },
+
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 10,
+    flex: 1,
+  },
+
+  editButtonStyles: {
+    borderRadius: 10,
+    marginRight: 4,
+    borderColor: Theme.colors.primary,
+    borderWidth: 2,
+  },
+
+  editButtonLabelStyles: {
+    color: Theme.colors.primary,
+    textTransform: 'none',
+    fontFamily: 'Inter-Medium',
+    fontSize: 14,
+  },
+
+  editButtonContentStyles: {
+    height: 42,
+    width: 168,
+  },
+  menuButtonStyles: {
+    marginLeft: 4,
+    borderWidth: 2,
+    borderRadius: 10,
+  },
+
+  menuButtonLabelStyles: {
+    alignContent: 'center',
+    alignItems: 'center',
+  },
+
+  menuButtonContentStyles: {
+    height: 44,
+    width: 44,
   },
 });
