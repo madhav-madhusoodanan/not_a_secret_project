@@ -86,7 +86,7 @@ export default function HomeFeedScreen({navigator}) {
         overScrollMode={'never'}
         style={styles.listContainter}>
         <View style={styles.communityScroll}>
-          <Subheading style={styles.subheading}>Your Communities</Subheading>
+          <Subheading style={styles.subheading}>My Communities</Subheading>
           <StickyItemFlatList
             itemWidth={ITEM_WIDTH}
             itemHeight={ITEM_HEIGHT}

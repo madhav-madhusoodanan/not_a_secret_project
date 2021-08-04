@@ -70,7 +70,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 10,
-    flex: 1,
   },
 
   editButtonStyles: {
@@ -101,5 +100,31 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: 46,
+  },
+  subheading: {
+    fontSize: 18,
+    color: Theme.colors.text,
+    textAlign: 'left',
+    fontFamily: 'Inter-SemiBold',
+    marginBottom: 12,
+    marginTop: 15,
+    // paddingHorizontal: 16,
+  },
+
+  userCommunityContainer: {
+    flexDirection: 'column',
+  },
+
+  communityListContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  communityViewBox: {
+    width: '49%',
+    borderRadius: 10,
+    height: 100,
+    marginBottom: 10,
+    backgroundColor: '#14213d',
+    // marginHorizontal: 10,
   },
 });

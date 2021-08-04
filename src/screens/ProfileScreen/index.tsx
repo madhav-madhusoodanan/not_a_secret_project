@@ -7,13 +7,13 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  IconButton,
+  Pressable,
 } from 'react-native';
 
 import FastImage from 'react-native-fast-image';
 import MenuIcon from '@iconscout/react-native-unicons/icons/uil-ellipsis-h';
 import {useNavigation} from '@react-navigation/native';
-import {Button} from 'react-native-paper';
+import {Button, Subheading} from 'react-native-paper';
 import {styles} from './styles';
 
 export default function ProfileScreen() {
@@ -52,30 +52,53 @@ export default function ProfileScreen() {
         </View>
       </View>
 
+      <View style={styles.infoContainer}>
+        <Text style={styles.bioText}>
+          👉 To draw attention attention attention{'\n'}✈️ Commonly used by
+          travel brands attention{'\n'}🎥 To call attention to you YouTube
+          channel attention{'\n'}🥳 To indicate an achievement or award
+          attention
+        </Text>
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          mode={'outlined'}
+          color={'#00AAFF'}
+          contentStyle={styles.editButtonContentStyles}
+          style={styles.editButtonStyles}
+          labelStyle={styles.editButtonLabelStyles}
+          onPress={() => console.log('Edit Profile Button Pressed')}>
+          Edit Profile
+        </Button>
+        <TouchableOpacity
+          style={styles.menuButtonStyles}
+          onPress={() => console.log('Menu Button Pressed')}>
+          <MenuIcon size="24" color="#848c8e" />
+        </TouchableOpacity>
+      </View>
+      <Subheading style={styles.subheading}>My Communities</Subheading>
       <ScrollView overScrollMode={'never'} showsVerticalScrollIndicator={false}>
-        <View style={styles.infoContainer}>
-          <Text style={styles.bioText}>
-            👉 To draw attention attention attention{'\n'}✈️ Commonly used by
-            travel brands attention{'\n'}🎥 To call attention to you YouTube
-            channel attention{'\n'}🥳 To indicate an achievement or award
-            attention
-          </Text>
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            mode={'outlined'}
-            color={'#00AAFF'}
-            contentStyle={styles.editButtonContentStyles}
-            style={styles.editButtonStyles}
-            labelStyle={styles.editButtonLabelStyles}
-            onPress={() => console.log('Edit Profile Button Pressed')}>
-            Edit Profile
-          </Button>
-          <TouchableOpacity
-            style={styles.menuButtonStyles}
-            onPress={() => console.log('Menu Button Pressed')}>
-            <MenuIcon size="24" color="#848c8e" />
-          </TouchableOpacity>
+        <View style={styles.userCommunityContainer}>
+          <View style={styles.communityListContainer}>
+            <Pressable style={styles.communityViewBox}></Pressable>
+            <Pressable style={styles.communityViewBox}></Pressable>
+          </View>
+          <View style={styles.communityListContainer}>
+            <Pressable style={styles.communityViewBox}></Pressable>
+            <Pressable style={styles.communityViewBox}></Pressable>
+          </View>
+          <View style={styles.communityListContainer}>
+            <Pressable style={styles.communityViewBox}></Pressable>
+            <Pressable style={styles.communityViewBox}></Pressable>
+          </View>
+          <View style={styles.communityListContainer}>
+            <Pressable style={styles.communityViewBox}></Pressable>
+            <Pressable style={styles.communityViewBox}></Pressable>
+          </View>
+          <View style={styles.communityListContainer}>
+            <Pressable style={styles.communityViewBox}></Pressable>
+            <Pressable style={styles.communityViewBox}></Pressable>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
