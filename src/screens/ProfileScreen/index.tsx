@@ -71,14 +71,11 @@ export default function ProfileScreen() {
             onPress={() => console.log('Edit Profile Button Pressed')}>
             Edit Profile
           </Button>
-          <Button
-            mode={'outlined'}
-            icon={() => <MenuIcon size="24" color="#BDBDBD" />}
-            color={'#BDBDBD'}
-            contentStyle={styles.menuButtonContentStyles}
+          <TouchableOpacity
             style={styles.menuButtonStyles}
-            onPress={() => console.log('Menu Button Pressed')}
-          />
+            onPress={() => console.log('Menu Button Pressed')}>
+            <MenuIcon size="24" color="#848c8e" />
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>

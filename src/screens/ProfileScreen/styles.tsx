@@ -91,15 +91,15 @@ export const styles = StyleSheet.create({
     height: 42,
     width: 168,
   },
+
   menuButtonStyles: {
     marginLeft: 4,
     borderWidth: 2,
     borderRadius: 10,
-  },
-
-  menuButtonContentStyles: {
-    alignSelf: 'center',
-    height: 44,
-    width: 44,
+    height: 46,
+    borderColor: '#848c8e',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 46,
   },
 });
