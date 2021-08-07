@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 15,
     // alignItems: 'center',
-    backgroundColor: Theme.colors.background,
+    // backgroundColor: Theme.colors.background,
+    backgroundColor: '#F8F8F9',
   },
 });

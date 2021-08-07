@@ -1,18 +1,13 @@
 import React, {useCallback, useMemo, useRef} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  TextInput,
-} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {TextInput} from 'react-native-gesture-handler';
 import {
   Modal,
   Portal,
   Button,
   Headline,
   Chip,
+  Snackbar,
   Appbar,
 } from 'react-native-paper';
 import {styles} from './styles';
@@ -24,6 +19,11 @@ export default function CreatePostBottomSheetContent({}) {
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
   const containerStyle = {backgroundColor: 'white', padding: 20};
+
+  // snackbar
+  const [visibleSnackBar, setVisibleSnackBar] = React.useState(false);
+  const onToggleSnackBar = () => setVisibleSnackBar(!visible);
+  const onDismissSnackBar = () => setVisibleSnackBar(false);
 
   return (
     <View style={styles.container}>
@@ -51,33 +51,24 @@ export default function CreatePostBottomSheetContent({}) {
               </Text>
             </View>
             <View style={styles.extraInfoWrapper}>
-              {/* <Button mode={'contained'}>Yo nigga</Button> */}
-              <Chip onPress={showModal}>Nishant's Space</Chip>
+              <Chip icon="chevron-down" onPress={showModal}>
+                Nishant's Space
+              </Chip>
             </View>
           </View>
         </View>
-        <ScrollView
-          style={{
-            height: '100%',
-            marginTop: 20,
-            marginBottom: 92,
-            alignSelf: 'stretch',
-            width: '100%',
-            // backgroundColor: 'gray',
-            // justifyContent: 'center',
-          }}>
-          <TextInput
-            placeholderTextColor={'black'}
-            placeholder="What are you thinking ?"
-            multiline
-            style={{
-              ...styles.editor,
-              fontSize: 18,
-              textAlign: 'left',
-              fontFamily: 'Lato-Regular',
-              color: 'black',
-            }}></TextInput>
-        </ScrollView>
+
+        <TextInput
+          placeholderTextColor={'#adb5bd'}
+          placeholder="What do you want to talk about?"
+          multiline
+          selectionColor={'#c8e7ff'}
+          // onFocus
+          maxLength={900}
+          textBreakStrategy={'highQuality'}
+          autoCompleteType={'off'}
+          style={styles.editor}
+        />
       </View>
 
       <Appbar style={styles.bottomBar}>
@@ -90,8 +81,10 @@ export default function CreatePostBottomSheetContent({}) {
           onPress={() => console.log('Pressed mail')}
         />
         <Appbar.Action
-          icon="video"
-          onPress={() => console.log('Pressed label')}
+          icon="poll"
+          disabled
+          onPress={onToggleSnackBar}
+          // onPress={() => console.log('Pressed label')}
         />
         <Button
           mode={'contained'}
@@ -103,6 +96,17 @@ export default function CreatePostBottomSheetContent({}) {
           Post
         </Button>
       </Appbar>
+      <Snackbar
+        visible={visibleSnackBar}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: 'Undo',
+          onPress: () => {
+            // Do something
+          },
+        }}>
+        Hey there! I'm a Snackbar.
+      </Snackbar>
     </View>
   );
 }

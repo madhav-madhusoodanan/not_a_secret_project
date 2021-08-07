@@ -90,8 +90,12 @@ export const styles = StyleSheet.create({
     width: 159,
   },
   editor: {
-    justifyContent: 'center',
-    height: '100%',
-    width: '100%',
+    fontSize: 18,
+    textAlignVertical: 'top',
+    flex: 1,
+    fontFamily: 'Lato-Regular',
+    color: 'black',
+    marginTop: 10,
+    marginBottom: 72,
   },
 });

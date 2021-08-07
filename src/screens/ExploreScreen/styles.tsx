@@ -12,7 +12,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     // paddingTop: 20,
     paddingHorizontal: 16,
-    backgroundColor: Theme.colors.background,
+    // backgroundColor: Theme.colors.background,
+    backgroundColor: '#F8F8F9',
   },
   searchbar: {
     marginTop: 20,
