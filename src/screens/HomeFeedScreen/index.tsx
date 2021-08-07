@@ -99,6 +99,8 @@ export default function HomeFeedScreen({navigator}) {
         <Post />
         {/* <Divider style={styles.divider} /> */}
         <Post />
+        <Post />
+        <Post />
       </ScrollView>
       <FAB
         style={styles.fab}
