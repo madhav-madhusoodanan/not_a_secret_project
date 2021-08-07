@@ -1,16 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Alert,
-  Animated,
-  ScrollView,
-  Image,
-  FlatList,
-} from 'react-native';
+import React, {useCallback, useMemo, useRef} from 'react';
+import {View, Text, Alert, Animated, ScrollView, FlatList} from 'react-native';
 
-import {Headline, Subheading} from 'react-native-paper';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
+
+import {Divider, Subheading, FAB} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import DropDownIcon from '@iconscout/react-native-unicons/icons/uil-angle-down';
@@ -19,6 +12,8 @@ import Post from './../../components/Post';
 import StickyItemFlatList from '@gorhom/sticky-item';
 
 import {styles} from './styles';
+
+import {CreatePostBottomSheetContent} from './..';
 
 // dummy data
 const data = [...Array(10)].fill(0).map((_, index) => ({id: `item-${index}`}));
@@ -65,6 +60,20 @@ export default function HomeFeedScreen({navigator}) {
     <View key={`item-${index}`} style={styles.joinedCommunities} />
   );
 
+  // ref
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+
+  // variables
+  const snapPoints = useMemo(() => ['25%', '100%'], []);
+
+  // callbacks
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -88,8 +97,27 @@ export default function HomeFeedScreen({navigator}) {
           />
         </View>
         <Post />
+        {/* <Divider style={styles.divider} /> */}
+        <Post />
+        <Post />
         <Post />
       </ScrollView>
+      <FAB
+        style={styles.fab}
+        label={'Post'}
+        icon="plus"
+        color={'white'}
+        onPress={handlePresentModalPress}
+      />
+      <BottomSheetModal
+        ref={bottomSheetModalRef}
+        stackBehavior={'push'}
+        index={1}
+        name={'Create Post'}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
+        <CreatePostBottomSheetContent />
+      </BottomSheetModal>
     </SafeAreaView>
   );
 }

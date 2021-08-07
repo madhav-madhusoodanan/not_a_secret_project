@@ -18,7 +18,8 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: Theme.colors.background,
+    // backgroundColor: Theme.colors.background,
+    backgroundColor: '#F8F8F9',
   },
   headline: {
     fontSize: 28,
@@ -61,5 +62,15 @@ export const styles = StyleSheet.create({
   },
   listContainter: {
     //
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#00AAFF',
+  },
+  divider: {
+    backgroundColor: 'gray',
   },
 });

@@ -13,13 +13,14 @@ export const styles = StyleSheet.create({
     // paddingTop: 10,
     flexDirection: 'column',
     paddingHorizontal: 16,
-    backgroundColor: Theme.colors.background,
+    // backgroundColor: Theme.colors.background,
+    backgroundColor: '#F8F8F9',
   },
 
   image: {
     width: 125,
     height: 125,
-    borderRadius: 10,
+    borderRadius: 35,
     marginTop: 10,
   },
 

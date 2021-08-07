@@ -89,12 +89,12 @@ export default function Post() {
               <SVGIcon height={18} type="kebab" width={18} />
             </TouchableOpacity>
           }>
-          <Menu.Item onPress={() => {}} title="Unfollow" />
+          {/* <Menu.Item onPress={() => {}} title="Unfollow" /> */}
           <Menu.Item onPress={() => {}} title="Report" />
         </Menu>
       </View>
       <View style={styles.contentContainer}>
-        <TextInline text={postContent} targetLines={4} />
+        <TextInline text={postContent} targetLines={2} />
       </View>
       <TouchableOpacity onPress={() => console.log('Image Button Pressed')}>
         <View style={styles.imageContainer}>

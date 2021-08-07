@@ -16,7 +16,7 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 
 export const styles = StyleSheet.create({
   post: {
-    backgroundColor: '#f5f5f1',
+    backgroundColor: '#eff7f6',
     marginBottom: 10,
     borderRadius: 20,
     // elevation: 1,

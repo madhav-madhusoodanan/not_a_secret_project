@@ -4,6 +4,7 @@ import {Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {useKeyboard} from '../hooks/useKeyboard';
+import {SCText} from './SCText';
 import {SVGIcon} from './SVGIcon';
 
 const styles = StyleSheet.create({
@@ -18,6 +19,9 @@ const styles = StyleSheet.create({
     elevation: 10,
     flexDirection: 'row',
   },
+  tabTitle: {
+    fontSize: 12,
+  },
 });
 
 export const BottomTabs = ({navigation, state}) => {
@@ -29,36 +33,31 @@ export const BottomTabs = ({navigation, state}) => {
     switch (key) {
       case 'home':
         return {
-          icon: <SVGIcon height={26} type="home-tab" width={26} />,
-          iconActive: <SVGIcon height={26} type="home-tab-active" width={26} />,
+          icon: <SVGIcon height={24} type="home-tab" width={24} />,
+          iconActive: <SVGIcon height={24} type="home-tab-active" width={24} />,
           title: 'Home',
         };
       case 'explore':
         return {
-          icon: <SVGIcon height={26} type="search-tab" width={26} />,
+          icon: <SVGIcon height={24} type="search-tab" width={24} />,
           iconActive: (
-            <SVGIcon height={26} type="search-tab-active" width={26} />
+            <SVGIcon height={24} type="search-tab-active" width={24} />
           ),
           title: 'Explore',
         };
-      case 'createPost':
-        return {
-          icon: <SVGIcon height={26} type="post-tab" width={26} />,
-          iconActive: <SVGIcon height={26} type="post-tab-active" width={26} />,
-          title: 'Post',
-        };
+
       case 'notifications':
         return {
-          icon: <SVGIcon height={26} type="notifications-tab" width={26} />,
+          icon: <SVGIcon height={24} type="notifications-tab" width={24} />,
           iconActive: (
-            <SVGIcon height={26} type="notifications-tab-active" width={26} />
+            <SVGIcon height={24} type="notifications-tab-active" width={24} />
           ),
           title: 'Pings',
         };
       case 'you':
         return {
-          icon: <SVGIcon height={26} type="you-tab" width={26} />,
-          iconActive: <SVGIcon height={26} type="you-tab-active" width={26} />,
+          icon: <SVGIcon height={24} type="you-tab" width={24} />,
+          iconActive: <SVGIcon height={24} type="you-tab-active" width={24} />,
           title: 'You',
         };
     }
@@ -103,6 +102,7 @@ export const BottomTabs = ({navigation, state}) => {
             onPress={onPress}
             style={styles.tabContainer}>
             {isFocused ? tab.iconActive : tab.icon}
+            {/* <SCText style={styles.tabTitle}>{tab.title}</SCText> */}
           </TouchableOpacity>
         );
       })}
