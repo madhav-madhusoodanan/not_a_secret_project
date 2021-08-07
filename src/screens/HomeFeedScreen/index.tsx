@@ -3,7 +3,7 @@ import {View, Text, Alert, Animated, ScrollView, FlatList} from 'react-native';
 
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 
-import {Headline, Subheading, FAB} from 'react-native-paper';
+import {Divider, Subheading, FAB} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import DropDownIcon from '@iconscout/react-native-unicons/icons/uil-angle-down';
@@ -12,6 +12,8 @@ import Post from './../../components/Post';
 import StickyItemFlatList from '@gorhom/sticky-item';
 
 import {styles} from './styles';
+
+import {CreatePostBottomSheetContent} from './..';
 
 // dummy data
 const data = [...Array(10)].fill(0).map((_, index) => ({id: `item-${index}`}));
@@ -95,6 +97,7 @@ export default function HomeFeedScreen({navigator}) {
           />
         </View>
         <Post />
+        {/* <Divider style={styles.divider} /> */}
         <Post />
       </ScrollView>
       <FAB
@@ -109,9 +112,7 @@ export default function HomeFeedScreen({navigator}) {
         index={1}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}>
-        <View style={styles.contentContainer}>
-          <Text>Awesome 🎉</Text>
-        </View>
+        <CreatePostBottomSheetContent />
       </BottomSheetModal>
     </SafeAreaView>
   );

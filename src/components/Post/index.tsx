@@ -94,7 +94,7 @@ export default function Post() {
         </Menu>
       </View>
       <View style={styles.contentContainer}>
-        <TextInline text={postContent} targetLines={4} />
+        <TextInline text={postContent} targetLines={2} />
       </View>
       <TouchableOpacity onPress={() => console.log('Image Button Pressed')}>
         <View style={styles.imageContainer}>

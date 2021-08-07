@@ -24,7 +24,6 @@ import {
 import {
   HomeFeedScreen,
   ExploreScreen,
-  CreatePostScreen,
   NotificationScreen,
   ProfileScreen,
 } from './src/screens';
@@ -56,7 +55,7 @@ export default () => {
           animated={true}
           barStyle="dark-content"
           // translucent={true}
-          backgroundColor={Theme.colors.backgroundSecondary}
+          backgroundColor={Theme.colors.background}
         />
         <NavigationContainer theme={Theme}>
           <View style={styles.container}>
@@ -77,91 +76,91 @@ const HomeStackNavigator = () => (
 );
 
 const TabNavigation = () => (
-  <BottomSheetModalProvider>
-    <Tab.Navigator
-      tabBar={props => <BottomTabs {...props} />}
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: Theme.colors.backgroundSecondary,
-        },
-        headerTintColor: Theme.colors.text,
-        headerTitleAlign: 'left',
-        headerTitleStyle: {
-          fontFamily: 'Gilroy-Bold',
-          fontSize: 24,
-        },
-      }}>
-      <Tab.Screen
-        component={HomeStackNavigator}
-        name="home"
-        options={{
-          title: 'Welcome 👋',
-          headerRight: props => (
-            <TouchableOpacity
+  <Tab.Navigator
+    tabBar={props => <BottomTabs {...props} />}
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: Theme.colors.background,
+      },
+      headerTintColor: Theme.colors.text,
+      headerTitleAlign: 'left',
+      headerTitleStyle: {
+        fontFamily: 'Gilroy-Bold',
+        fontSize: 24,
+      },
+    }}>
+    <Tab.Screen
+      component={HomeStackNavigator}
+      name="home"
+      options={{
+        title: 'Welcome 👋',
+        headerRight: props => (
+          <TouchableOpacity
+            style={{
+              // paddingVertical: 5,
+              alignItems: 'center',
+              marginRight: 16,
+              alignSelf: 'flex-end',
+              flexDirection: 'row',
+            }}
+            onPress={() => console.log('Goal Selection Dropdown Pressed')}>
+            <DropDownIcon size="28" color="#081c15" />
+            <Text
               style={{
-                // paddingVertical: 5,
-                alignItems: 'center',
-                marginRight: 16,
-                alignSelf: 'flex-end',
-                flexDirection: 'row',
-              }}
-              onPress={() => console.log('Goal Selection Dropdown Pressed')}>
-              <DropDownIcon size="28" color="#081c15" />
-              <Text
-                style={{
-                  fontFamily: 'Gilroy-Bold',
-                  color: '#007f5f',
-                  fontSize: 24,
-                  marginLeft: 6,
-                }}>
-                IITJEE
-              </Text>
-            </TouchableOpacity>
-          ),
-        }}
-      />
-      <Tab.Screen
-        component={ExploreScreen}
-        name={'explore'}
-        options={{title: 'Explore'}}
-      />
+                fontFamily: 'Gilroy-Bold',
+                color: '#007f5f',
+                fontSize: 24,
+                marginLeft: 6,
+              }}>
+              IITJEE
+            </Text>
+          </TouchableOpacity>
+        ),
+      }}
+    />
+    <Tab.Screen
+      component={ExploreScreen}
+      name={'explore'}
+      options={{title: 'Explore'}}
+    />
 
-      <Tab.Screen
-        component={NotificationScreen}
-        name={'notifications'}
-        options={{title: 'Notifications'}}
-      />
-      <Tab.Screen
-        component={ProfileScreen}
-        name={'you'}
-        options={{
-          title: 'Profile',
-          headerRight: props => (
-            <TouchableOpacity
-              style={{
-                // paddingVertical: 5,
-                alignItems: 'center',
-                marginRight: 16,
-                alignSelf: 'flex-end',
-                flexDirection: 'row',
-              }}
-              onPress={() => console.log('Setting Button Pressed')}>
-              <SettingIcon size="24" color="#081c15" />
-            </TouchableOpacity>
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  </BottomSheetModalProvider>
+    <Tab.Screen
+      component={NotificationScreen}
+      name={'notifications'}
+      options={{title: 'Notifications'}}
+    />
+    <Tab.Screen
+      component={ProfileScreen}
+      name={'you'}
+      options={{
+        title: 'Profile',
+        headerRight: props => (
+          <TouchableOpacity
+            style={{
+              // paddingVertical: 5,
+              alignItems: 'center',
+              marginRight: 16,
+              alignSelf: 'flex-end',
+              flexDirection: 'row',
+            }}
+            onPress={() => console.log('Setting Button Pressed')}>
+            <SettingIcon size="24" color="#081c15" />
+          </TouchableOpacity>
+        ),
+      }}
+    />
+  </Tab.Navigator>
 );
 
 const RootNavigation = () => {
   const {bottom, top} = useSafeAreaInsets();
 
   return (
-    <RootStack.Navigator screenOptions={{headerShown: false}}>
-      <RootStack.Screen component={TabNavigation} name="Tabs" />
-    </RootStack.Navigator>
+    <BottomSheetModalProvider>
+      <RootStack.Navigator screenOptions={{headerShown: false}}>
+        <RootStack.Screen component={TabNavigation} name="Tabs" />
+      </RootStack.Navigator>
+    </BottomSheetModalProvider>
   );
 };
 
