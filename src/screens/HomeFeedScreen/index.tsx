@@ -1,14 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Alert,
-  Animated,
-  ScrollView,
-  Image,
-  FlatList,
-} from 'react-native';
+import React, {useCallback, useMemo, useRef} from 'react';
+import {View, Text, Alert, Animated, ScrollView, FlatList} from 'react-native';
+
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
 
 import {Headline, Subheading, FAB} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
@@ -65,6 +58,20 @@ export default function HomeFeedScreen({navigator}) {
     <View key={`item-${index}`} style={styles.joinedCommunities} />
   );
 
+  // ref
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+
+  // variables
+  const snapPoints = useMemo(() => ['25%', '100%'], []);
+
+  // callbacks
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -95,8 +102,17 @@ export default function HomeFeedScreen({navigator}) {
         label={'Post'}
         icon="plus"
         color={'white'}
-        onPress={() => console.log('Pressed')}
+        onPress={handlePresentModalPress}
       />
+      <BottomSheetModal
+        ref={bottomSheetModalRef}
+        index={1}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
+        <View style={styles.contentContainer}>
+          <Text>Awesome 🎉</Text>
+        </View>
+      </BottomSheetModal>
     </SafeAreaView>
   );
 }

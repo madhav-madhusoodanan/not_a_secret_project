@@ -89,7 +89,7 @@ export default function Post() {
               <SVGIcon height={18} type="kebab" width={18} />
             </TouchableOpacity>
           }>
-          <Menu.Item onPress={() => {}} title="Unfollow" />
+          {/* <Menu.Item onPress={() => {}} title="Unfollow" /> */}
           <Menu.Item onPress={() => {}} title="Report" />
         </Menu>
       </View>

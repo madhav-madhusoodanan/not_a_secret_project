@@ -69,4 +69,8 @@ export const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: '#00AAFF',
   },
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
 });
