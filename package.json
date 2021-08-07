@@ -26,6 +26,8 @@
     "@react-navigation/native": "^6.0.0",
     "@react-navigation/stack": "^6.0.0",
     "@types/react-router": "^5.1.16",
+    "lottie-ios": "3.2.3",
+    "lottie-react-native": "^4.0.3",
     "react": "^17.0.2",
     "react-native": "^0.64.2",
     "react-native-apple-header": "^0.1.1",
