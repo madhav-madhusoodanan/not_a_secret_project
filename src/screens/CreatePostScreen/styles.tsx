@@ -10,9 +10,21 @@ const {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Theme.colors.background,
+  },
+  headline: {
+    fontSize: 24,
+    marginLeft: 10,
+    marginVertical: 10,
+    color: Theme.colors.text,
+    textAlign: 'left',
+    fontFamily: 'Gilroy-Bold',
+  },
+  contentContainer: {
     paddingTop: 20,
     paddingHorizontal: 16,
-    alignItems: 'center',
-    backgroundColor: Theme.colors.background,
+    backgroundColor: 'pink',
+    flex: 1,
+    // alignItems: 'center',
   },
 });
