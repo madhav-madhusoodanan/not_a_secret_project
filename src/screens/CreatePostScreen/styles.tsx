@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 20,
-    paddingHorizontal: 15,
+    paddingHorizontal: 16,
     alignItems: 'center',
     backgroundColor: Theme.colors.background,
   },

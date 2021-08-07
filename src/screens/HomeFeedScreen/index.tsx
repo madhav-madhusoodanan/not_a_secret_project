@@ -109,7 +109,9 @@ export default function HomeFeedScreen({navigator}) {
       />
       <BottomSheetModal
         ref={bottomSheetModalRef}
+        stackBehavior={'push'}
         index={1}
+        name={'Create Post'}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}>
         <CreatePostBottomSheetContent />

@@ -1,7 +1,6 @@
 import React, {useCallback, useMemo, useRef} from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
-import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
-
+import {View, Text} from 'react-native';
+import {Appbar} from 'react-native-paper';
 import {styles} from './styles';
 
 export default function CreatePostBottomSheetContent({}) {
@@ -10,5 +9,4 @@ export default function CreatePostBottomSheetContent({}) {
       <Text>Awesome 🎉</Text>
     </View>
   );
-};
-
+}
