@@ -10,7 +10,7 @@ import {
   FlatList,
 } from 'react-native';
 
-import {Headline, Subheading} from 'react-native-paper';
+import {Headline, Subheading, FAB} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import DropDownIcon from '@iconscout/react-native-unicons/icons/uil-angle-down';
@@ -90,6 +90,13 @@ export default function HomeFeedScreen({navigator}) {
         <Post />
         <Post />
       </ScrollView>
+      <FAB
+        style={styles.fab}
+        label={'Post'}
+        icon="plus"
+        color={'white'}
+        onPress={() => console.log('Pressed')}
+      />
     </SafeAreaView>
   );
 }

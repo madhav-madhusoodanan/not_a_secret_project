@@ -125,11 +125,7 @@ const TabNavigation = () => (
         name={'explore'}
         options={{title: 'Explore'}}
       />
-      <Tab.Screen
-        component={CreatePostScreen}
-        name={'createPost'}
-        options={{title: 'Create Post'}}
-      />
+
       <Tab.Screen
         component={NotificationScreen}
         name={'notifications'}

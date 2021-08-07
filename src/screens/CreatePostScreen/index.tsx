@@ -1,17 +1,54 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {Button, Headline, Menu} from 'react-native-paper';
-import {useTheme} from '@react-navigation/native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {SVGIcon} from './../../components/SVGIcon';
-import {SafeAreaLayout} from './../../components/ScreenContainer';
+import React, {useCallback, useMemo, useRef} from 'react';
+import {View, Text, StyleSheet, Button} from 'react-native';
+import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 
-import {styles} from './styles';
+const CreatePostScreen = () => {
+  // ref
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
-export default function CreatePostScreen() {
+  // variables
+  const snapPoints = useMemo(() => ['25%', '100%'], []);
+
+  // callbacks
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
+
+  // renders
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Hey</Text>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Button
+        onPress={handlePresentModalPress}
+        title="Present Modal"
+        color="black"
+      />
+      <BottomSheetModal
+        ref={bottomSheetModalRef}
+        index={1}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
+        <View style={styles.contentContainer}>
+          <Text>Awesome 🎉</Text>
+        </View>
+      </BottomSheetModal>
+    </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,
+    justifyContent: 'center',
+    backgroundColor: 'grey',
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+});
+
+export default CreatePostScreen;
