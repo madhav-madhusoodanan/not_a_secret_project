@@ -1,5 +1,12 @@
 import React, {useCallback, useMemo, useRef} from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  TextInput,
+} from 'react-native';
 import {
   Modal,
   Portal,
@@ -49,7 +56,30 @@ export default function CreatePostBottomSheetContent({}) {
             </View>
           </View>
         </View>
+        <ScrollView
+          style={{
+            height: '100%',
+            marginTop: 20,
+            marginBottom: 92,
+            alignSelf: 'stretch',
+            width: '100%',
+            // backgroundColor: 'gray',
+            // justifyContent: 'center',
+          }}>
+          <TextInput
+            placeholderTextColor={'black'}
+            placeholder="What are you thinking ?"
+            multiline
+            style={{
+              ...styles.editor,
+              fontSize: 18,
+              textAlign: 'left',
+              fontFamily: 'Lato-Regular',
+              color: 'black',
+            }}></TextInput>
+        </ScrollView>
       </View>
+
       <Appbar style={styles.bottomBar}>
         <Appbar.Action
           icon="camera"

@@ -89,4 +89,9 @@ export const styles = StyleSheet.create({
     height: 44,
     width: 159,
   },
+  editor: {
+    justifyContent: 'center',
+    height: '100%',
+    width: '100%',
+  },
 });
