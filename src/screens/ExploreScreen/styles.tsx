@@ -10,16 +10,31 @@ const {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: 20,
-    paddingHorizontal: 16,
-    // backgroundColor: Theme.colors.background,
     backgroundColor: '#F8F8F9',
+  },
+  header: {
+    backgroundColor: Theme.colors.background,
+    paddingHorizontal: 16,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    flex: 1,
+    paddingBottom: 20,
+    borderBottomRightRadius: 20,
+    elevation: 1,
+    borderBottomLeftRadius: 20,
   },
   searchbar: {
     marginTop: 20,
-    // marginHorizontal: 10,
+    backgroundColor: '#F8F8F9',
+    color: 'black',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  viewContainer: {
+    flex: 1,
+    marginTop: 120,
   },
 });

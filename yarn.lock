@@ -925,6 +925,16 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@freakycoder/react-native-bounceable@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@freakycoder/react-native-bounceable/-/react-native-bounceable-0.2.5.tgz#ad61bdafbf68465e9c2145e99c09b500ae091f0e"
+  integrity sha512-J8WBOYxbm/um7SqXYneduZ08T5Kin9z+ixsS3wOLtpeNvKscuqmDEgsgefTYydeSIoI5dOfWmklnRRgu5i/8nA==
+
+"@freakycoder/react-native-helpers@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@freakycoder/react-native-helpers/-/react-native-helpers-1.0.1.tgz#e910cbc22bfcd7d7979d6dd438bb6fa41b86374c"
+  integrity sha512-qKYcSD5mFQTL1J6AfwrQGdZ+5+Imf/zKAN9es+JXWGDQi+mpHQWOiNJXkeLPEWvx1izIaX9RyIYCBNa9SufXFw==
+
 "@gorhom/bottom-sheet@^3":
   version "3.6.6"
   resolved "https://registry.yarnpkg.com/@gorhom/bottom-sheet/-/bottom-sheet-3.6.6.tgz#73e8ffaba6b417c353a8933a3ed09f10a8fd3e9d"
@@ -6697,6 +6707,21 @@ react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-androw@0.0.34, react-native-androw@^0.0.34:
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/react-native-androw/-/react-native-androw-0.0.34.tgz#5c4214b155946004a57916619a518974ebd96b36"
+  integrity sha512-YuW0GxYNzABvPPe6k+JdLUF5CAzKSW5R6IxxA/+fg5gc+4avE1tZgLmnRfNtXJCbW9r90YLYp33S9Uu2pe//fg==
+
+react-native-apple-card-views@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-apple-card-views/-/react-native-apple-card-views-2.1.3.tgz#e3177c5e2976ffdca1393025dc17b5d18aafe7c6"
+  integrity sha512-hGJl6XDBnxiPdKm7O/5YZzyN81Wy9M5LXoGE5yKUY+3vgEwSUJEpHX0Uv39XPOIRTI7tw2TlHMgRLhAjunMgoQ==
+  dependencies:
+    react-native-androw "0.0.34"
+    react-native-apple-header "^0.1.1"
+    react-native-linear-gradient "^2.5.6"
+    react-native-material-ripple "^0.9.1"
+
 react-native-apple-header@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-native-apple-header/-/react-native-apple-header-0.1.1.tgz#aa8bd7eb6b7f75626b7d7e6b348d79db670413b0"
@@ -6742,6 +6767,11 @@ react-native-dotenv@^3.1.1:
   dependencies:
     dotenv "^10.0.0"
 
+react-native-dynamic-vector-icons@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/react-native-dynamic-vector-icons/-/react-native-dynamic-vector-icons-1.1.6.tgz#a032cf647eb6934cbec56562deda772ca073ac67"
+  integrity sha512-tz098Wv/4TI70BRWfshSyVzWsoV4PRdp6fMMA7GRmxsaERfYshEy3Rs3bvD9tVjD+zKUcmM4Ce7bmAoJkGSNdg==
+
 react-native-fast-image@^8.3.7:
   version "8.3.7"
   resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.3.7.tgz#c4877de17903101f6d94b6736a4f7e5d7b019224"
@@ -6771,6 +6801,11 @@ react-native-haptic-feedback@^1.11.0:
   resolved "https://registry.yarnpkg.com/react-native-haptic-feedback/-/react-native-haptic-feedback-1.11.0.tgz#adfd841f3b67046532f912c6ec827aea0037d8ad"
   integrity sha512-KTIy7lExwMtB6pOpCARyUzFj5EzYTh+A1GN/FB5Eb0LrW5C6hbb1kdj9K2/RHyZC+wyAJD1M823ZaDCU6n6cLA==
 
+react-native-header-search-bar@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/react-native-header-search-bar/-/react-native-header-search-bar-0.1.10.tgz#58136bd1d613f36a71b1257be08e4c95edde6383"
+  integrity sha512-pXTXoBv6aelkuo6SGWeO6/PrserPe8brcpw2xDnRru0QGyyMzhqi+0+0C50/J66VSHEcuco17H8hisNkFS4Dyw==
+
 react-native-image-crop-picker@^0.36.2:
   version "0.36.2"
   resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.36.2.tgz#fcb35c1a12d805bedbb6d94a87078e86a6c9b49f"
@@ -6792,6 +6827,18 @@ react-native-lightbox-v2@^0.8.8:
   integrity sha512-Cgonl9A+b78yvVc9voU5763U3N5px7EAeSnM9u78pCg4z1lwPWqKzWkwZx/K0wTMDSfqav4Iizk6enMuUdgg/A==
   dependencies:
     prop-types "^15.7.2"
+
+react-native-linear-gradient@^2.5.6:
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
+  integrity sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg==
+
+react-native-material-ripple@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/react-native-material-ripple/-/react-native-material-ripple-0.9.1.tgz#db1ad9dd7cf97011e4cd8475ae2041ade0f891cb"
+  integrity sha512-dHjARdKoGD3LXwPh2TkURabywM5BfdpKc/AHplJTfBMalhVZ2bc7iJoJmNhNnmT/TZ+B3szL6uV1mO7Pv8zNeA==
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-pager-view@^5.4.0:
   version "5.4.0"

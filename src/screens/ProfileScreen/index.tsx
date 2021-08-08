@@ -78,7 +78,7 @@ export default function ProfileScreen() {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.userCommunityContainer}>
+        {/* <View style={styles.userCommunityContainer}>
           <Subheading style={styles.subheading}>My Communities</Subheading>
           <View style={styles.communityListContainer}>
             <Pressable style={styles.communityViewBox}></Pressable>
@@ -100,7 +100,7 @@ export default function ProfileScreen() {
             <Pressable style={styles.communityViewBox}></Pressable>
             <Pressable style={styles.communityViewBox}></Pressable>
           </View>
-        </View>
+        </View> */}
       </ScrollView>
     </SafeAreaView>
   );

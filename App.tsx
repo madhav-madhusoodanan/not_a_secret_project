@@ -121,7 +121,10 @@ const TabNavigation = () => (
     <Tab.Screen
       component={ExploreScreen}
       name={'explore'}
-      options={{title: 'Explore'}}
+      options={{
+        title: 'Explore',
+        headerShown: false,
+      }}
     />
 
     <Tab.Screen
