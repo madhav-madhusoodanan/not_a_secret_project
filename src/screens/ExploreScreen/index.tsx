@@ -31,16 +31,20 @@ export default function ExploreScreen() {
           value={searchQuery}
         />
       </View>
-      <ScrollView style={styles.viewContainer}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        overScrollMode={'never'}
+        style={styles.viewContainer}>
         <AppleCard
           smallTitle="Nishant Jindal"
           largeTitle="Math  Booster 2021"
           footnoteText="Public Group"
+          style={styles.communityCard}
           resizeMode="cover"
           source={{uri: 'https://picsum.photos/id/237/400/400'}}
           backgroundStyle={{
             height: 200,
-            width: screenWidth - 40,
+            width: screenWidth - 32,
           }}
           onPress={() => console.log('Community Cover Pressed')}
         />
