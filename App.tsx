@@ -123,7 +123,7 @@ const TabNavigation = () => (
       name={'explore'}
       options={{
         title: 'Explore',
-        headerShown: false,
+        // headerShown: false,
       }}
     />
 
