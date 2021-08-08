@@ -36,13 +36,5 @@ export const styles = StyleSheet.create({
   viewContainer: {
     paddingTop: 10,
     flex: 1,
-    // paddingHorizontal: 16,
-    // backgroundColor: 'red',
-  },
-  communityCard: {
-    // backgroundColor: 'blue',
-    // backgroundColor: '#F8F8F9',
-    marginBottom: 25,
-    alignItems: 'center',
   },
 });
