@@ -14,7 +14,7 @@ export default function NotificationScreen() {
       <View style={styles.announcementContainer}>
         <Text style={styles.heroText}>Hold Tight!</Text>
         <Text style={styles.supportingText}>
-          Notifications are Coming Soon :){' '}
+          Notifications are Coming Soon :)
         </Text>
       </View>
 
