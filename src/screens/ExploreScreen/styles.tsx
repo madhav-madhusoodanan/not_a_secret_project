@@ -22,11 +22,11 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 20,
     borderBottomRightRadius: 20,
-    elevation: 1,
+    elevation: 2,
     borderBottomLeftRadius: 20,
   },
   searchbar: {
-    marginTop: 10,
+    marginTop: 20,
     backgroundColor: '#F8F8F9',
     color: 'black',
     borderRadius: 10,
@@ -42,8 +42,7 @@ export const styles = StyleSheet.create({
   communityCard: {
     // backgroundColor: 'blue',
     // backgroundColor: '#F8F8F9',
-    marginBottom: 20,
-    // height: 200,
+    marginBottom: 25,
     alignItems: 'center',
   },
 });

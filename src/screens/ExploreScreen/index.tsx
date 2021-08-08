@@ -38,46 +38,12 @@ export default function ExploreScreen() {
         <AppleCard
           smallTitle="Nishant Jindal"
           largeTitle="Math  Booster 2021"
-          footnoteText="Public Group"
-          style={styles.communityCard}
-          resizeMode="cover"
-          source={{uri: 'https://picsum.photos/id/237/400/400'}}
-          backgroundStyle={{
-            height: 200,
-            width: screenWidth - 32,
+          footnoteText="200 Members"
+          footnoteTextStyle={{
+            color: 'black',
+            fontFamily: 'Lato-Bold',
+            fontSize: 12,
           }}
-          onPress={() => console.log('Community Cover Pressed')}
-        />
-        <AppleCard
-          smallTitle="Nishant Jindal"
-          largeTitle="Math  Booster 2021"
-          footnoteText="Public Group"
-          style={styles.communityCard}
-          resizeMode="cover"
-          source={{uri: 'https://picsum.photos/id/237/400/400'}}
-          backgroundStyle={{
-            height: 200,
-            width: screenWidth - 32,
-          }}
-          onPress={() => console.log('Community Cover Pressed')}
-        />
-        <AppleCard
-          smallTitle="Nishant Jindal"
-          largeTitle="Math  Booster 2021"
-          footnoteText="Public Group"
-          style={styles.communityCard}
-          resizeMode="cover"
-          source={{uri: 'https://picsum.photos/id/237/400/400'}}
-          backgroundStyle={{
-            height: 200,
-            width: screenWidth - 32,
-          }}
-          onPress={() => console.log('Community Cover Pressed')}
-        />
-        <AppleCard
-          smallTitle="Nishant Jindal"
-          largeTitle="Math  Booster 2021"
-          footnoteText="Public Group"
           style={styles.communityCard}
           resizeMode="cover"
           source={{uri: 'https://picsum.photos/id/237/400/400'}}
