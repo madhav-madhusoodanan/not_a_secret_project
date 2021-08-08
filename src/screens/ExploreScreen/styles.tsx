@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import {blue100} from 'react-native-paper/lib/typescript/styles/colors';
 import layout from '../../constants/appLayout';
 import {Theme} from '../../constants/appTheme';
@@ -7,6 +7,8 @@ const {
   window: {height, width},
   isSmallDevice,
 } = layout;
+
+const screenWidth = Math.round(Dimensions.get('window').width);
 
 export const styles = StyleSheet.create({
   container: {
@@ -33,13 +35,15 @@ export const styles = StyleSheet.create({
   },
   viewContainer: {
     paddingTop: 10,
-    // flex: 1,
+    flex: 1,
     // paddingHorizontal: 16,
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
   },
   communityCard: {
-    backgroundColor: 'blue',
-    // paddingVertical: 115,
+    // backgroundColor: 'blue',
+    // backgroundColor: '#F8F8F9',
+    marginBottom: 20,
+    // height: 200,
     alignItems: 'center',
   },
 });
