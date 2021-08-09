@@ -37,10 +37,10 @@ const DATA = [
   },
 ];
 
-export default function Welcome() {
+export default function WelcomeScreen() {
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
-    navigate('Phone');
+    navigate('PhoneScreen');
   };
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const inputRange = DATA.map((_, i) => i * width);

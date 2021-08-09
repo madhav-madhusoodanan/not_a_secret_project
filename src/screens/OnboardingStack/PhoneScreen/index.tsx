@@ -7,10 +7,10 @@ import styles from './styles';
 
 import NavButton from '../../../components/Buttons/NavigationButton';
 
-export default function Phone() {
+export default function PhoneScreen() {
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
-    navigate('OneTimePassword');
+    navigate('OneTimePasswordScreen');
   };
 
   return (

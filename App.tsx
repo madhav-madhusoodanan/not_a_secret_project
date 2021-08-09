@@ -22,6 +22,9 @@ import {
 } from 'react-native';
 
 import {
+  WelcomeScreen,
+  PhoneScreen,
+  OneTimePasswordScreen,
   HomeFeedScreen,
   ExploreScreen,
   NotificationScreen,
@@ -43,7 +46,7 @@ const Tab = createBottomTabNavigator();
 const RootStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const CommunityStack = createStackNavigator();
-const AuthStack = createStackNavigator();
+const OnboardingStack = createStackNavigator();
 
 export default () => {
   const scheme = Appearance.getColorScheme();
@@ -73,6 +76,19 @@ const HomeStackNavigator = () => (
     initialRouteName="HomeFeedScreen">
     <HomeStack.Screen component={HomeFeedScreen} name="HomeFeedScreen" />
   </HomeStack.Navigator>
+);
+
+const OnboardingNavigation = () => (
+  <OnboardingStack.Navigator
+    screenOptions={{headerShown: false}}
+    initialRouteName="WelcomeScreen">
+    <OnboardingStack.Screen component={WelcomeScreen} name="WelcomeScreen" />
+    <OnboardingStack.Screen component={PhoneScreen} name="PhoneScreen" />
+    <OnboardingStack.Screen
+      component={OneTimePasswordScreen}
+      name="OneTimePasswordScreen"
+    />
+  </OnboardingStack.Navigator>
 );
 
 const TabNavigation = () => (
@@ -161,6 +177,7 @@ const RootNavigation = () => {
   return (
     <BottomSheetModalProvider>
       <RootStack.Navigator screenOptions={{headerShown: false}}>
+        <RootStack.Screen component={OnboardingNavigation} name="Auth" />
         <RootStack.Screen component={TabNavigation} name="Tabs" />
       </RootStack.Navigator>
     </BottomSheetModalProvider>

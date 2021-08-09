@@ -45,7 +45,7 @@ const animateCell = ({hasValue, index, isFocused}) => {
   ]).start();
 };
 
-const OneTimePassword = () => {
+const OneTimePasswordScreen = () => {
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -122,4 +122,4 @@ const OneTimePassword = () => {
   );
 };
 
-export default OneTimePassword;
+export default OneTimePasswordScreen;
