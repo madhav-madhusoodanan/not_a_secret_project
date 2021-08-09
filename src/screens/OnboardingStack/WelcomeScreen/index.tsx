@@ -49,50 +49,8 @@ export default function WelcomeScreen() {
     outputRange: bgs,
   });
 
-  const YOLO = Animated.modulo(
-    Animated.divide(Animated.modulo(scrollX, width), new Animated.Value(width)),
-    1,
-  );
-
-  const rotate = YOLO.interpolate({
-    inputRange: [0, 0.5, 1],
-    outputRange: ['45deg', '-45deg', '45deg'],
-  });
-  const translateX = YOLO.interpolate({
-    inputRange: [0, 0.5, 1],
-    outputRange: [0, -height, 0],
-  });
-
   return (
     <View style={{flex: 1}}>
-      <Animated.View
-        style={[
-          StyleSheet.absoluteFillObject,
-          {
-            backgroundColor,
-          },
-        ]}
-      />
-      <Animated.View
-        style={{
-          width: height * 0.65,
-          height: height * 0.65,
-          borderRadius: 220,
-          backgroundColor: 'rgba(255,255,255,0.9)',
-          position: 'absolute',
-          top: -height * 0.2,
-          left: -height * 0.1,
-          transform: [
-            {
-              translateX,
-            },
-            {
-              rotate,
-            },
-          ],
-        }}
-      />
-
       <Animated.FlatList
         data={DATA}
         scrollEventThrottle={32}
