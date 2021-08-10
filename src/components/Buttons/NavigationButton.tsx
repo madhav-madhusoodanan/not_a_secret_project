@@ -29,9 +29,8 @@ export default NavButton;
 const styles = StyleSheet.create({
   navButtonStyles: {
     borderRadius: 60,
-    marginTop: 60,
-
-    // marginHorizontal: 34,
+    marginTop: 30,
+    marginHorizontal: 34,
     marginBottom: 100,
   },
 

@@ -149,7 +149,7 @@ export default function WelcomeScreen() {
           })}
         </View>
 
-        <NavButton onPress={submitHandler} text="Continue with Phone" />
+        <NavButton onPress={submitHandler} text="Join" />
       </View>
     </View>
   );

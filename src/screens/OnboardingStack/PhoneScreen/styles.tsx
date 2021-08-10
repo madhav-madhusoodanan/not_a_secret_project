@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     textAlign: 'left',
     fontFamily: 'Gilroy-Bold',
-    marginBottom: 40,
+    marginBottom: 100,
   },
   input: {
     flexDirection: 'row',
@@ -28,7 +28,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingHorizontal: 28,
   },
-
+  icon: {
+    width: 217 / 2.4,
+    height: 158 / 2.4,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
   inputStyle: {
     flex: 1,
     // justifyContent: 'center',
