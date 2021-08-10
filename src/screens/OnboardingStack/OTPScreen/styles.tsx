@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     minHeight: 800,
     paddingTop: 14,
     paddingHorizontal: 20,
+    backgroundColor: Theme.colors.background,
   },
   title: {
     marginTop: 50,

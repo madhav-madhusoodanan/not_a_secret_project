@@ -1,4 +1,5 @@
 import {StyleSheet, Platform} from 'react-native';
+import {Theme} from '../../../constants/appTheme';
 
 const styles = StyleSheet.create({
   container: {
@@ -6,11 +7,11 @@ const styles = StyleSheet.create({
     minHeight: 800,
     paddingTop: 14,
     paddingHorizontal: 20,
-    // alignItems: 'center',
+    backgroundColor: Theme.colors.background,
   },
 
   title: {
-    marginTop: 50,
+    marginTop: 40,
     lineHeight: 36,
     color: '#000',
     fontSize: 28,
@@ -18,34 +19,20 @@ const styles = StyleSheet.create({
     fontFamily: 'Gilroy-Bold',
     marginBottom: 100,
   },
-
-  // subTitle: {
-  //   marginTop: 20,
-  //   color: '#000',
-  //   fontSize: 10,
-  //   textAlign: 'center',
-  // },
-
-  // input: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   borderBottomWidth: 1.5,
-  //   borderBottomColor: '#DADADA',
-  //   width: 235,
-  //   marginTop: 50,
-  //   alignSelf: 'center',
-  //   paddingHorizontal: 25,
-  //   marginBottom: 50,
-  // },
-
-  // inputStyle: {
-  //   flex: 1,
-  //   fontFamily: 'Inter-SemiBold',
-  //   fontSize: 20,
-  //   color: 'black',
-  //   marginBottom: -2,
-  //   marginLeft: 2,
-  // },
+  input: {
+    flexDirection: 'column',
+    marginBottom: 15,
+    width: 220,
+    marginTop: 50,
+    alignSelf: 'center',
+  },
+  inputStyle: {
+    height: 60,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 10,
+  },
 });
 
 export default styles;

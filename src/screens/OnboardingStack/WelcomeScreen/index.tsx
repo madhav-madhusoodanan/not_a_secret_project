@@ -12,6 +12,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import NavButton from '../../../components/Buttons/NavigationButton';
 import {useNavigation} from '@react-navigation/native';
 
+import {Theme} from '../../../constants/appTheme';
 const {width, height} = Dimensions.get('screen');
 
 const DATA = [
@@ -46,7 +47,7 @@ export default function WelcomeScreen() {
   const inputRange = DATA.map((_, i) => i * width);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: Theme.colors.background}}>
       <Animated.FlatList
         data={DATA}
         scrollEventThrottle={32}
