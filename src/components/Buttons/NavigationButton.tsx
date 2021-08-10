@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
   navButtonStyles: {
     borderRadius: 60,
     marginTop: 60,
+
+    // marginHorizontal: 34,
     marginBottom: 100,
   },
 
@@ -37,12 +39,12 @@ const styles = StyleSheet.create({
     color: Theme.colors.background,
     textTransform: 'none',
     fontFamily: 'Inter-SemiBold',
-    fontSize: 20,
+    fontSize: 18,
   },
 
   navButtonContentStyles: {
     height: 60,
-    minWidth: 300,
+    minWidth: '75%',
     justifyContent: 'center',
   },
 });

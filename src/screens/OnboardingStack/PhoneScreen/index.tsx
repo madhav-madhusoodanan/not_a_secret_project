@@ -16,29 +16,34 @@ export default function PhoneScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Subheading style={styles.title}>
-        Let's start with your{'\n'}phone number
+      <Subheading numberOfLines={2} style={styles.title}>
+        Let's start with your {'\n'}phone number
       </Subheading>
       <View style={[styles.input, {}]}>
         <View>
-          <Text style={{fontSize: 20, color: 'grey'}}>{'+91 |'}</Text>
+          <Text
+            style={{
+              fontSize: 20,
+              color: 'grey',
+              // flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontFamily: 'Inter-Medium',
+              // backgroundColor: 'red',
+            }}>
+            {'+91'}
+          </Text>
         </View>
         <TextInput
-          // ref={input => (textInput = input)}
           style={styles.inputStyle}
-          placeholder="909 909 9090"
-          placeholderTextColor="grey"
+          placeholder="xxxxxxxxxx"
+          placeholderTextColor="#DADADA"
           keyboardType="numeric"
-          // value={phoneNum}
           maxLength={10}
-          // onChangeText={num => setPhoneNum(num)}
           secureTextEntry={false}
-          // onFocus={e => setFocusInput(true)}
-          // onBlur={e => setFocusInput(false)}
-          // autoComplete="tel"
         />
       </View>
-      <NavButton onPress={submitHandler} text="Continue with Phone" />
+      <NavButton onPress={submitHandler} text="Continue" />
     </SafeAreaView>
   );
 }
