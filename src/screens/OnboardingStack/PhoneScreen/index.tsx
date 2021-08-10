@@ -3,6 +3,7 @@ import {StyleSheet, View, KeyboardAvoidingView, Alert} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import {Text, Subheading} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './styles';
 
 import NavButton from '../../../components/Buttons/NavigationButton';
@@ -14,7 +15,7 @@ export default function PhoneScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         keyboardVerticalOffset={50}
         behavior={'height'}
@@ -43,6 +44,6 @@ export default function PhoneScreen() {
         </View>
         <NavButton onPress={submitHandler} text="Continue with Phone" />
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   );
 }

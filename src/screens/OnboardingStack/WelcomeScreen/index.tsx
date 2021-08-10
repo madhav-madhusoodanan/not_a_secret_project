@@ -13,7 +13,6 @@ import {useNavigation} from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('screen');
 
-const bgs = ['#e2eafc', '#e2eafc', '#e2eafc', '#e2eafc'];
 const DATA = [
   {
     key: '3571572',
@@ -44,10 +43,6 @@ export default function WelcomeScreen() {
   };
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const inputRange = DATA.map((_, i) => i * width);
-  const backgroundColor = scrollX.interpolate({
-    inputRange,
-    outputRange: bgs,
-  });
 
   return (
     <View style={{flex: 1}}>
