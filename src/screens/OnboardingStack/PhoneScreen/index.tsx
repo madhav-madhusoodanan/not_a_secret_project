@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
-import {Text, Subheading} from 'react-native-paper';
+import {Text, Subheading, Headline} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './styles';
@@ -20,9 +20,9 @@ export default function PhoneScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Subheading numberOfLines={2} style={styles.title}>
+      <Headline numberOfLines={2} style={styles.title}>
         Let's start with your {'\n'}phone number
-      </Subheading>
+      </Headline>
       <View style={[styles.input, {}]}>
         <View>
           <Text
@@ -33,7 +33,7 @@ export default function PhoneScreen() {
               justifyContent: 'center',
               fontFamily: 'Inter-Medium',
             }}>
-            {'+91'}
+            {'+91 -'}
           </Text>
         </View>
         <TextInput
@@ -45,7 +45,12 @@ export default function PhoneScreen() {
           secureTextEntry={false}
         />
       </View>
+
       <NavButton onPress={submitHandler} text="Continue" />
+      <Text style={styles.subTitle}>
+        by clicking continue you are agreeing to the terms of use {'\n'}
+        and acknowledging the privacy policy close
+      </Text>
     </SafeAreaView>
   );
 }

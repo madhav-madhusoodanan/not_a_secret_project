@@ -3,9 +3,10 @@
 Concept: https://dribbble.com/shots/5476562-Forgot-Password-Verification/attachments
 
 */
-import {Animated, Image, SafeAreaView, View} from 'react-native';
-import {Text, Subheading} from 'react-native-paper';
+import {Animated, Image, View} from 'react-native';
+import {Text, Subheading, Headline} from 'react-native-paper';
 import React, {useState} from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {
   CodeField,
@@ -62,7 +63,7 @@ const OneTimePasswordScreen = () => {
 
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
-    navigate('WelcomeScreen');
+    navigate('NameScreen');
   };
 
   const renderCell = ({index, symbol, isFocused}) => {
@@ -109,9 +110,9 @@ const OneTimePasswordScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Subheading numberOfLines={2} style={styles.title}>
+      <Headline numberOfLines={2} style={styles.title}>
         Verify OTP sent to {'\n'}+91 xxxxxxxxxx
-      </Subheading>
+      </Headline>
 
       <CodeField
         ref={ref}
@@ -124,6 +125,7 @@ const OneTimePasswordScreen = () => {
         textContentType="oneTimeCode"
         renderCell={renderCell}
       />
+
       <NavButton onPress={submitHandler} text="Verify" />
     </SafeAreaView>
   );

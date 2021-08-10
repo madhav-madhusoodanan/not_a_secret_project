@@ -25,6 +25,9 @@ import {
   WelcomeScreen,
   PhoneScreen,
   OneTimePasswordScreen,
+  NameScreen,
+  PersonalInfoScreen,
+  ProfilePictureScreen,
   HomeFeedScreen,
   ExploreScreen,
   NotificationScreen,
@@ -57,7 +60,6 @@ export default () => {
         <StatusBar
           animated={true}
           barStyle="dark-content"
-          // translucent={true}
           backgroundColor={Theme.colors.background}
         />
         <NavigationContainer theme={Theme}>
@@ -87,6 +89,15 @@ const OnboardingNavigation = () => (
     <OnboardingStack.Screen
       component={OneTimePasswordScreen}
       name="OneTimePasswordScreen"
+    />
+    <OnboardingStack.Screen component={NameScreen} name="NameScreen" />
+    <OnboardingStack.Screen
+      component={PersonalInfoScreen}
+      name="PersonalInfoScreen"
+    />
+    <OnboardingStack.Screen
+      component={ProfilePictureScreen}
+      name="ProfilePictureScreen"
     />
   </OnboardingStack.Navigator>
 );

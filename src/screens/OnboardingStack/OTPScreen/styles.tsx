@@ -1,16 +1,18 @@
 import {StyleSheet, Platform} from 'react-native';
+import {Theme} from '../../../constants/appTheme';
 
 export const CELL_SIZE = 55;
-export const CELL_BORDER_RADIUS = 8;
-export const DEFAULT_CELL_BG_COLOR = '#fff';
-export const NOT_EMPTY_CELL_BG_COLOR = '#3557b7';
-export const ACTIVE_CELL_BG_COLOR = '#f7fafe';
+export const CELL_BORDER_RADIUS = 12;
+export const DEFAULT_CELL_BG_COLOR = Theme.colors.background;
+export const NOT_EMPTY_CELL_BG_COLOR = Theme.colors.tertiary;
+export const ACTIVE_CELL_BG_COLOR = Theme.colors.backgroundSecondary;
 
 const styles = StyleSheet.create({
   codeFiledRoot: {
     height: CELL_SIZE,
-    marginTop: 30,
+    marginTop: 40,
     paddingHorizontal: 20,
+    marginBottom: 50,
     justifyContent: 'center',
   },
   cell: {
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     borderRadius: CELL_BORDER_RADIUS,
-    color: '#3759b8',
+    color: Theme.colors.primary,
     backgroundColor: '#fff',
 
     // IOS

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     marginTop: 30,
     marginHorizontal: 34,
-    marginBottom: 100,
+    // marginBottom: 20,
   },
 
   navButtonLabelStyles: {

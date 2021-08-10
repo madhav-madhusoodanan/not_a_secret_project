@@ -18,6 +18,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Gilroy-Bold',
     marginBottom: 100,
   },
+
+  subTitle: {
+    marginTop: 20,
+    color: '#000',
+    fontSize: 10,
+    textAlign: 'center',
+  },
+
   input: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -26,7 +34,8 @@ const styles = StyleSheet.create({
     width: 235,
     marginTop: 50,
     alignSelf: 'center',
-    paddingHorizontal: 28,
+    paddingHorizontal: 25,
+    marginBottom: 50,
   },
 
   inputStyle: {
@@ -35,6 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'black',
     marginBottom: -2,
+    marginLeft: 2,
   },
 });
 

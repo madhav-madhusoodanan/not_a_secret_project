@@ -3,6 +3,9 @@
 export {default as WelcomeScreen} from './OnboardingStack/WelcomeScreen';
 export {default as PhoneScreen} from './OnboardingStack/PhoneScreen';
 export {default as OneTimePasswordScreen} from './OnboardingStack/OTPScreen';
+export {default as NameScreen} from './OnboardingStack/NameScreen';
+export {default as PersonalInfoScreen} from './OnboardingStack/PersonalInfoScreen';
+export {default as ProfilePictureScreen} from './OnboardingStack/ProfilePictureScreen';
 
 // Home Stack
 export {default as HomeFeedScreen} from './HomeFeedScreen';

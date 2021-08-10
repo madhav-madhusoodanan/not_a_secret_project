@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import {Text} from 'react-native-paper';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import NavButton from '../../../components/Buttons/NavigationButton';
 import {useNavigation} from '@react-navigation/native';
 
@@ -16,7 +17,7 @@ const {width, height} = Dimensions.get('screen');
 const DATA = [
   {
     key: '3571572',
-    title: 'Welcome to Verse! \n Your social learning platform',
+    title: 'Welcome to Verse! \n Your social learning app',
     image: 'https://image.flaticon.com/icons/png/512/4219/4219791.png',
   },
   {
@@ -45,7 +46,7 @@ export default function WelcomeScreen() {
   const inputRange = DATA.map((_, i) => i * width);
 
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
       <Animated.FlatList
         data={DATA}
         scrollEventThrottle={32}
@@ -88,9 +89,10 @@ export default function WelcomeScreen() {
                   style={{
                     color: '#1E2022',
                     textAlign: 'center',
-                    fontWeight: 'bold',
+                    lineHeight: 40,
                     fontSize: 28,
                     paddingVertical: 10,
+                    fontFamily: 'Gilroy-Bold',
                   }}
                   numberOfLines={2}
                   adjustsFontSizeToFit>
@@ -151,6 +153,6 @@ export default function WelcomeScreen() {
 
         <NavButton onPress={submitHandler} text="Join" />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
