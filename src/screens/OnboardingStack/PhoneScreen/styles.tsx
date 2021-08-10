@@ -28,16 +28,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingHorizontal: 28,
   },
-  icon: {
-    width: 217 / 2.4,
-    height: 158 / 2.4,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
+
   inputStyle: {
     flex: 1,
-    // justifyContent: 'center',
-    // backgroundColor: 'red',
     fontFamily: 'Inter-SemiBold',
     fontSize: 20,
     color: 'black',

@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {StyleSheet, View, Image, Alert} from 'react-native';
+import {View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import {Text, Subheading} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
@@ -23,18 +23,15 @@ export default function PhoneScreen() {
       <Subheading numberOfLines={2} style={styles.title}>
         Let's start with your {'\n'}phone number
       </Subheading>
-      {/* <Image style={styles.icon} source={source} /> */}
       <View style={[styles.input, {}]}>
         <View>
           <Text
             style={{
               fontSize: 20,
               color: 'grey',
-              // flex: 1,
               alignItems: 'center',
               justifyContent: 'center',
               fontFamily: 'Inter-Medium',
-              // backgroundColor: 'red',
             }}>
             {'+91'}
           </Text>

@@ -112,11 +112,6 @@ const OneTimePasswordScreen = () => {
       <Subheading numberOfLines={2} style={styles.title}>
         Verify OTP sent to {'\n'}+91 xxxxxxxxxx
       </Subheading>
-      <Image style={styles.icon} source={source} />
-      <Text style={styles.subTitle}>
-        Please enter the verification code{'\n'}
-        we send to your phone number
-      </Text>
 
       <CodeField
         ref={ref}

@@ -54,32 +54,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Gilroy-Bold',
     marginBottom: 100,
   },
-  icon: {
-    width: 217 / 2.4,
-    height: 158 / 2.4,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-  subTitle: {
-    paddingTop: 30,
-    color: '#000',
-    textAlign: 'center',
-  },
-  nextButton: {
-    marginTop: 30,
-    borderRadius: 60,
-    height: 60,
-    backgroundColor: '#00AAFF',
-    justifyContent: 'center',
-    minWidth: 300,
-    marginBottom: 100,
-  },
-  nextButtonText: {
-    textAlign: 'center',
-    fontSize: 20,
-    color: '#fff',
-    fontWeight: '700',
-  },
 });
 
 export default styles;
