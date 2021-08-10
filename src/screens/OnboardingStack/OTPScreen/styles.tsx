@@ -39,17 +39,20 @@ const styles = StyleSheet.create({
 
   // =======================
 
-  root: {
+  container: {
+    flex: 1,
     minHeight: 800,
-    padding: 20,
+    paddingTop: 14,
+    paddingHorizontal: 20,
   },
   title: {
-    paddingTop: 50,
+    marginTop: 50,
+    lineHeight: 36,
     color: '#000',
-    fontSize: 25,
-    fontWeight: '700',
-    textAlign: 'center',
-    paddingBottom: 40,
+    fontSize: 28,
+    textAlign: 'left',
+    fontFamily: 'Gilroy-Bold',
+    marginBottom: 100,
   },
   icon: {
     width: 217 / 2.4,

@@ -3,7 +3,8 @@
 Concept: https://dribbble.com/shots/5476562-Forgot-Password-Verification/attachments
 
 */
-import {Animated, Image, SafeAreaView, Text, View} from 'react-native';
+import {Animated, Image, SafeAreaView, View} from 'react-native';
+import {Text, Subheading} from 'react-native-paper';
 import React, {useState} from 'react';
 
 import {
@@ -22,6 +23,8 @@ import styles, {
 } from './styles';
 
 import {useNavigation} from '@react-navigation/native';
+
+import NavButton from '../../../components/Buttons/NavigationButton';
 
 const {Value, Text: AnimatedText} = Animated;
 
@@ -54,6 +57,13 @@ const OneTimePasswordScreen = () => {
     value,
     setValue,
   });
+
+  // Navigation
+
+  const {navigate, goBack} = useNavigation();
+  const submitHandler = () => {
+    navigate('WelcomeScreen');
+  };
 
   const renderCell = ({index, symbol, isFocused}) => {
     const hasValue = Boolean(symbol);
@@ -98,12 +108,14 @@ const OneTimePasswordScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.root}>
-      <Text style={styles.title}>Verification</Text>
+    <SafeAreaView style={styles.container}>
+      <Subheading numberOfLines={2} style={styles.title}>
+        Verify OTP sent to {'\n'}+91 xxxxxxxxxx
+      </Subheading>
       <Image style={styles.icon} source={source} />
       <Text style={styles.subTitle}>
         Please enter the verification code{'\n'}
-        we send to your email address
+        we send to your phone number
       </Text>
 
       <CodeField
@@ -117,9 +129,7 @@ const OneTimePasswordScreen = () => {
         textContentType="oneTimeCode"
         renderCell={renderCell}
       />
-      <View style={styles.nextButton}>
-        <Text style={styles.nextButtonText}>Verify</Text>
-      </View>
+      <NavButton onPress={submitHandler} text="Verify" />
     </SafeAreaView>
   );
 };
