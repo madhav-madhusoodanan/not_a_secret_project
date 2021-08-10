@@ -1,10 +1,7 @@
 import * as React from 'react';
-import {Pressable, View} from 'react-native';
-import {Headline} from 'react-native-paper';
+import {View, Pressable} from 'react-native';
 import {View as MView} from 'moti';
 import {Easing} from 'react-native-reanimated';
-
-import styles from './styles';
 
 const SIZE = 60;
 const TRACK_SIZE = SIZE * 1.5;
@@ -14,7 +11,7 @@ const transition = {
   duration: 300,
   easing: Easing.inOut(Easing.ease),
 };
-const Switch = ({size = SIZE, onPress, isActive}) => {
+const GenderSwitch = ({size = SIZE, onPress, isActive}) => {
   return (
     <Pressable onPress={onPress}>
       <View style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -67,28 +64,4 @@ const Switch = ({size = SIZE, onPress, isActive}) => {
     </Pressable>
   );
 };
-export default function PersonalInfoScreen() {
-  const [isActive, setIsActive] = React.useState(false);
-
-  return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#F3F3F4',
-      }}>
-      <Headline
-        numberOfLines={2}
-        style={[styles.title, {color: isActive ? 'deeppink' : 'dodgerblue'}]}>
-        Boy
-      </Headline>
-      <Switch
-        isActive={isActive}
-        onPress={() => {
-          setIsActive(isActive => !isActive);
-        }}
-      />
-    </View>
-  );
-}
+export default GenderSwitch;
