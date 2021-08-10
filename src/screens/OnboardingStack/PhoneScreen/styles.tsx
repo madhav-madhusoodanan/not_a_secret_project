@@ -3,8 +3,9 @@ import {StyleSheet, Platform} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 10,
-    backgroundColor: 'yellow',
+    minHeight: 800,
+    padding: 20,
+    // backgroundColor: 'yellow',
   },
 
   containerAvoidingView: {
@@ -13,16 +14,12 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 20,
   },
   title: {
-    // marginTop: 20,
-    alignSelf: 'center',
+    paddingTop: 50,
+    color: '#000',
+    fontSize: 25,
+    fontWeight: '700',
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 28,
-    lineHeight: 35,
-    position: 'relative',
-    letterSpacing: 0.5,
-    color: 'black',
-    backgroundColor: 'red',
+    paddingBottom: 40,
   },
   input: {
     flexDirection: 'row',

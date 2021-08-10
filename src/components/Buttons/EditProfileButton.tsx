@@ -1,6 +1,8 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 
+// Defunct - page (replace with new content)
+
 const EditProfileButton = ({children, pressed}) => (
   <TouchableOpacity style={styles.button} onPress={pressed}>
     <Text style={styles.buttonText}>{children}</Text>

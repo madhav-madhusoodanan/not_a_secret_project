@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
 
+import {Theme} from '../../constants/appTheme';
 import layout from '../../constants/appLayout';
 
 const {
@@ -11,43 +12,37 @@ const {
 
 const NavButton = ({onPress, text}) => {
   return (
-    <View style={styles.btnView}>
-      <Button
-        mode="contained"
-        labelStyle={styles.labelStyle}
-        color="#00AAFF"
-        onPress={onPress}
-        // icon="phone"
-        style={styles.btn}>
-        {text}
-      </Button>
-    </View>
+    <Button
+      mode="contained"
+      contentStyle={styles.navButtonContentStyles}
+      style={styles.navButtonStyles}
+      labelStyle={styles.navButtonLabelStyles}
+      color="#00AAFF"
+      onPress={onPress}>
+      {text}
+    </Button>
   );
 };
 
 export default NavButton;
 
 const styles = StyleSheet.create({
-  btnView: {
-    // flex: 1,
-    // justifyContent: "flex-end",
-    alignSelf: 'stretch',
-    paddingVertical: 46,
-    // backgroundColor: 'red',
-    paddingHorizontal: 22,
+  navButtonStyles: {
+    borderRadius: 60,
+    marginTop: 60,
+    marginBottom: 100,
   },
-  btn: {
-    borderRadius: 50,
-  },
-  labelStyle: {
-    fontSize: height * 0.022,
-    paddingVertical: height * 0.0037,
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: '#fff',
-    // fontWeight: "bold",
+
+  navButtonLabelStyles: {
+    color: Theme.colors.background,
     textTransform: 'none',
-    minHeight: height * 0.03,
-    // fontFamily: 'ProductSans-Bold',
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 20,
+  },
+
+  navButtonContentStyles: {
+    height: 60,
+    minWidth: 300,
+    justifyContent: 'center',
   },
 });

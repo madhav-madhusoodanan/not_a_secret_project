@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     borderRadius: 60,
     height: 60,
-    backgroundColor: '#3557b7',
+    backgroundColor: '#00AAFF',
     justifyContent: 'center',
     minWidth: 300,
     marginBottom: 100,

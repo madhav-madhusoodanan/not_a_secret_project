@@ -21,6 +21,8 @@ import styles, {
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
 
+import {useNavigation} from '@react-navigation/native';
+
 const {Value, Text: AnimatedText} = Animated;
 
 const CELL_COUNT = 4;
