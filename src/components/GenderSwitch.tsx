@@ -16,12 +16,13 @@ const GenderSwitch = ({size = SIZE, onPress, isActive}) => {
     <Pressable onPress={onPress}>
       <View style={{alignItems: 'center', justifyContent: 'center'}}>
         <MView
-          from={{backgroundColor: isActive ? '#2C2C2C' : '#DCDCDC'}}
-          animate={{backgroundColor: isActive ? '#2C2C2C' : '#DCDCDC'}}
+          from={{backgroundColor: isActive ? 'deeppink' : 'dodgerblue'}}
+          animate={{backgroundColor: isActive ? 'deeppink' : 'dodgerblue'}}
           transition={transition}
           style={{
             position: 'absolute',
             width: TRACK_SIZE,
+            elevation: 5,
             height: TRACK_HEIGHT,
             borderRadius: TRACK_HEIGHT,
           }}
@@ -38,6 +39,7 @@ const GenderSwitch = ({size = SIZE, onPress, isActive}) => {
             width: SIZE,
             height: SIZE,
             borderRadius: SIZE,
+            elevation: 5,
             backgroundColor: '#fff',
             alignItems: 'center',
             justifyContent: 'center',
@@ -46,11 +48,11 @@ const GenderSwitch = ({size = SIZE, onPress, isActive}) => {
             transition={transition}
             from={{
               width: isActive ? 0 : SIZE * 0.6,
-              borderColor: isActive ? '#2C2C2C' : '#DCDCDC',
+              borderColor: isActive ? 'deeppink' : 'dodgerblue',
             }}
             animate={{
               width: isActive ? 0 : SIZE * 0.6,
-              borderColor: isActive ? '#2C2C2C' : '#DCDCDC',
+              borderColor: isActive ? 'deeppink' : 'dodgerblue',
             }}
             style={{
               width: SIZE * 0.6,
