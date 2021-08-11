@@ -45,7 +45,8 @@ export default function NameScreen() {
           ref={input => (textInput = input)}
           value={firstName}
           style={styles.inputStyle}
-          selectionColor="#D3D3D3"
+          selectionColor={'#c8e7ff'}
+          placeholderTextColor={'#adb5bd'}
           maxLength={15}
           caretHidden={true}
           placeholder="First Name"
@@ -61,7 +62,8 @@ export default function NameScreen() {
         <TextInput
           value={lastName}
           style={styles.inputStyle}
-          selectionColor="#D3D3D3"
+          selectionColor={'#c8e7ff'}
+          placeholderTextColor={'#adb5bd'}
           maxLength={15}
           caretHidden={true}
           placeholder="Last Name"
