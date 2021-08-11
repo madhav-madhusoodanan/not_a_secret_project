@@ -11,8 +11,9 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 export default function PersonalInfoScreen() {
   const [isActive, setIsActive] = React.useState(false);
+  const [Value, setValue] = React.useState(false);
   const {navigate, goBack} = useNavigation();
-  const [Value, setValue] = useState(false);
+
   const submitHandler = () => {
     navigate('ProfilePhotoScreen');
   };
@@ -24,15 +25,21 @@ export default function PersonalInfoScreen() {
       </Headline>
       <Headline
         numberOfLines={2}
-        style={[styles.gender, {color: isActive ? 'deeppink' : 'dodgerblue'}]}>
-        {Value}
+        style={[
+          styles.genderText,
+          {color: isActive ? 'deeppink' : 'dodgerblue'},
+        ]}>
+        Female
       </Headline>
-      <GenderSwitch
-        isActive={isActive}
-        onPress={() => {
-          setIsActive(isActive => !isActive);
-        }}
-      />
+      <View style={styles.switch}>
+        <GenderSwitch
+          isActive={isActive}
+          onPress={() => {
+            setIsActive(isActive => !isActive);
+          }}
+        />
+      </View>
+
       <NavButton onPress={submitHandler} text="Confirm" />
     </SafeAreaView>
   );

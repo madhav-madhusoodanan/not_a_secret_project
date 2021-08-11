@@ -18,15 +18,18 @@ const styles = StyleSheet.create({
     fontSize: 28,
     textAlign: 'left',
     fontFamily: 'Gilroy-Bold',
-    marginBottom: 100,
+    marginBottom: 50,
   },
-  gender: {
-    marginTop: 50,
+  genderText: {
+    marginTop: 130,
     lineHeight: 36,
     fontSize: 28,
     textAlign: 'center',
     fontFamily: 'Gilroy-Bold',
-    marginBottom: 40,
+    marginBottom: 100,
+  },
+  switch: {
+    marginBottom: 250,
   },
 });
 
