@@ -45,7 +45,8 @@ const animateCell = ({hasValue, index, isFocused}) => {
     }),
     Animated.spring(animationsScale[index], {
       useNativeDriver: false,
-      toValue: hasValue ? 0 : 1,
+      toValue: 1,
+      // @ts-ignore
       duration: hasValue ? 300 : 250,
     }),
   ]).start();
@@ -61,8 +62,9 @@ const OneTimePasswordScreen = () => {
 
   // Navigation
 
-  const {navigate, goBack} = useNavigation();
+  const {navigate} = useNavigation();
   const submitHandler = () => {
+    // @ts-ignore
     navigate('NameScreen');
   };
 
