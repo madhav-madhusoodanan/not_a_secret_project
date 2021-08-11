@@ -7,7 +7,7 @@ import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import {
   SafeAreaProvider,
 } from 'react-native-safe-area-context';
-
+import { Provider as ReduxProvider } from 'react-redux'
 import {
   LogBox,
   View,
@@ -17,7 +17,7 @@ import {
 import {Theme} from './src/constants/appTheme';
 import AuthNavigator from './src/navigation/AuthNavigator';
 import HomeNavigator from './src/navigation/HomeNavigator';
-
+import {store} from './src/store'
 LogBox.ignoreAllLogs();
 
 const RootStack = createStackNavigator();
@@ -27,18 +27,21 @@ export default () => {
 
   return (
     <PaperProvider>
+      <ReduxProvider store={store}>
+
       <SafeAreaProvider>
         <StatusBar
           animated={true}
           barStyle="dark-content"
           backgroundColor={Theme.colors.background}
-        />
+          />
         <NavigationContainer theme={Theme}>
           <View style={{flex: 1}}>
             <RootNavigation />
           </View>
         </NavigationContainer>
       </SafeAreaProvider>
+          </ReduxProvider>
     </PaperProvider>
   );
 };

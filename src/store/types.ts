@@ -1,0 +1,13 @@
+export const GET_PHONE_NUMS = 'GET_PHONE_NUMS'
+export const PHONE_NUMS_FAIL = 'PHONE_NUMS_FAIL'
+
+export const GET_OTP_LOADING = 'GET_OTP_LOADING'
+export const GET_OTP_SUCCESS = 'GET_OTP_SUCCESS'
+export const GET_OTP_FAIL = 'GET_OTP_FAIL'
+
+export const AUTH_LOADING = 'AUTH_LOADING'
+export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+export const AUTH_FAIL = 'AUTH_FAIL'
+
+export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS'
+export const GET_PROFILE_FAIL = 'GET_PROFILE_FAIL'
