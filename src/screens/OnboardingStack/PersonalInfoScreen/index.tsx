@@ -7,6 +7,7 @@ import faker from 'faker';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './styles';
+import ImagePicker from 'react-native-image-crop-picker';
 
 import NavButton from '../../../components/Buttons/NavigationButton';
 const {width, height} = Dimensions.get('screen');
@@ -17,8 +18,9 @@ const images = [
 ];
 
 const userGender = [
-  'https://img-premium.flaticon.com/png/512/179/179457.png?token=exp=1620036375~hmac=055dff03ba131ec3c2025a6f710b03d1',
-  'https://img-premium.flaticon.com/png/512/179/179449.png?token=exp=1620036397~hmac=6b9f6e3d0f2b1a07307261cf7be159a4',
+  `https://i.ibb.co/VMyMmwx/gender-male.png`,
+  `https://i.ibb.co/R4JbcMJ/gender-female.png`,
+  `https://i.ibb.co/nnwYSrB/gender-third.png`,
 ];
 
 const getCard = () => ({
@@ -123,26 +125,27 @@ export default function ColorfulCard() {
               // backgroundColor: 'yellow',
               padding: 10,
             }}>
-            <MImage
-              source={{
-                uri: 'https://pbs.twimg.com/profile_images/1824002576/pg-railsconf_400x400.jpg',
-              }}
-              style={{
-                width: 150,
-                height: 150,
-                resizeMode: 'cover',
-                borderRadius: 80,
-                borderWidth: 1,
-                borderColor: 'transparent',
-              }}
-              // blurRadius={20}
-            />
+            <TouchableOpacity onPress={() => this.pickSingle(true, true)}>
+              <MImage
+                source={{
+                  uri: 'https://pbs.twimg.com/profile_images/1824002576/pg-railsconf_400x400.jpg',
+                }}
+                style={{
+                  width: 150,
+                  height: 150,
+                  resizeMode: 'cover',
+                  borderRadius: 80,
+                  borderWidth: 1,
+                  borderColor: 'transparent',
+                }}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
 
       <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 170}}>
-        {images.map(uri => {
+        {userGender.map(uri => {
           return (
             <TouchableOpacity
               key={uri}
@@ -165,7 +168,6 @@ export default function ColorfulCard() {
                   borderColor: 'transparent',
                 }}
                 transition={{duration: 400}}
-                blurRadius={20}
               />
             </TouchableOpacity>
           );
