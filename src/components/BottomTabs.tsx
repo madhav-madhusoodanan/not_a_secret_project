@@ -33,14 +33,18 @@ export const BottomTabs = ({navigation, state}) => {
     switch (key) {
       case 'home':
         return {
+          // @ts-ignore
           icon: <SVGIcon height={24} type="home-tab" width={24} />,
+          // @ts-ignore
           iconActive: <SVGIcon height={24} type="home-tab-active" width={24} />,
           title: 'Home',
         };
       case 'explore':
         return {
+          // @ts-ignore
           icon: <SVGIcon height={24} type="search-tab" width={24} />,
           iconActive: (
+            // @ts-ignore
             <SVGIcon height={24} type="search-tab-active" width={24} />
           ),
           title: 'Explore',
@@ -48,15 +52,19 @@ export const BottomTabs = ({navigation, state}) => {
 
       case 'notifications':
         return {
+          // @ts-ignore
           icon: <SVGIcon height={24} type="notifications-tab" width={24} />,
           iconActive: (
+            // @ts-ignore
             <SVGIcon height={24} type="notifications-tab-active" width={24} />
           ),
           title: 'Pings',
         };
       case 'you':
         return {
+          // @ts-ignore
           icon: <SVGIcon height={24} type="you-tab" width={24} />,
+          // @ts-ignore
           iconActive: <SVGIcon height={24} type="you-tab-active" width={24} />,
           title: 'You',
         };
@@ -74,7 +82,7 @@ export const BottomTabs = ({navigation, state}) => {
     <View
       style={[
         {
-          backgroundColor: colors.backgroundTertiary,
+          backgroundColor: '#fff',
           borderTopColor: colors.border,
           paddingBottom: insets.bottom,
         },
@@ -101,6 +109,7 @@ export const BottomTabs = ({navigation, state}) => {
             key={route.name}
             onPress={onPress}
             style={styles.tabContainer}>
+            {/* @ts-ignore */}
             {isFocused ? tab.iconActive : tab.icon}
             {/* <SCText style={styles.tabTitle}>{tab.title}</SCText> */}
           </TouchableOpacity>

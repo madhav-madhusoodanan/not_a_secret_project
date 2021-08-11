@@ -1,7 +1,7 @@
 import {StyleSheet, Dimensions} from 'react-native';
 import {blue100} from 'react-native-paper/lib/typescript/styles/colors';
-import layout from '../../constants/appLayout';
-import {Theme} from '../../constants/appTheme';
+import layout from '../../../constants/appLayout';
+import {Theme} from '../../../constants/appTheme';
 
 const {
   window: {height, width},

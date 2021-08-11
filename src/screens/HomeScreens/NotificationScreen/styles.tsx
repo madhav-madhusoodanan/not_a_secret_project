@@ -1,11 +1,6 @@
 import {StyleSheet} from 'react-native';
-import layout from '../../constants/appLayout';
-import {Theme} from '../../constants/appTheme';
-
-const {
-  window: {height, width},
-  isSmallDevice,
-} = layout;
+import layout from '../../../constants/appLayout';
+import {Theme} from '../../../constants/appTheme';
 
 export const styles = StyleSheet.create({
   container: {

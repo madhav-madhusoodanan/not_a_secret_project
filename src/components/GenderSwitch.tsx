@@ -18,6 +18,7 @@ const GenderSwitch = ({size = SIZE, onPress, isActive}) => {
         <MView
           from={{backgroundColor: isActive ? 'deeppink' : 'dodgerblue'}}
           animate={{backgroundColor: isActive ? 'deeppink' : 'dodgerblue'}}
+                        // {/* @ts-ignore */}
           transition={transition}
           style={{
             position: 'absolute',
@@ -28,6 +29,7 @@ const GenderSwitch = ({size = SIZE, onPress, isActive}) => {
           }}
         />
         <MView
+                      // {/* @ts-ignore */}
           transition={transition}
           from={{
             translateX: isActive ? TRACK_SIZE / 4 : -TRACK_SIZE / 4,
@@ -45,6 +47,7 @@ const GenderSwitch = ({size = SIZE, onPress, isActive}) => {
             justifyContent: 'center',
           }}>
           <MView
+                        // {/* @ts-ignore */}
             transition={transition}
             from={{
               width: isActive ? 0 : SIZE * 0.6,

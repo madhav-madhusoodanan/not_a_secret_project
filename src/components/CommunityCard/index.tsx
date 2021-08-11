@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, Dimensions} from 'react-native';
 import {AppleCard, AppOfTheDayCard} from 'react-native-apple-card-views';
+import { calc } from '../../constants/appLayout';
 
 import {styles} from './styles';
 
@@ -21,7 +22,7 @@ export default function CommunityCard() {
       resizeMode="cover"
       source={{uri: 'https://picsum.photos/id/237/400/400'}}
       backgroundStyle={{
-        height: 200,
+        height: calc('height',200),
         width: screenWidth - 32,
       }}
       onPress={() => console.log('Community Cover Pressed')}

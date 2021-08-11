@@ -100,5 +100,5 @@ export const SVGIcon = ({fill, height, type, width}) => {
   const {colors} = useTheme();
   const Component = iconMap[type];
 
-  return <Component fill={fill || colors.icon} height={height} width={width} />;
+  return <Component fill={fill || '#000'} height={height} width={width} />;
 };

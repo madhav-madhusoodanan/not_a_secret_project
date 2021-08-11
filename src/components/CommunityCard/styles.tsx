@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import layout from '../../constants/appLayout';
+import layout, { calc } from '../../constants/appLayout';
 import {Theme} from '../../constants/appTheme';
 import {Dimensions} from 'react-native';
 
@@ -12,7 +12,7 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 
 export const styles = StyleSheet.create({
   container: {
-    marginBottom: 25,
+    marginBottom: calc('height',25),
     alignItems: 'center',
   },
 });

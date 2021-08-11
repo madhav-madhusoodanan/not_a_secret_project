@@ -1,21 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-  FlatList,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import CommentIcon from '@iconscout/react-native-unicons/icons/uil-comment';
 import ShareIcon from '@iconscout/react-native-unicons/icons/uil-share-alt';
 import UpVoteIcon from '@iconscout/react-native-unicons/icons/uil-arrow-circle-up';
 import DownVoteIcon from '@iconscout/react-native-unicons/icons/uil-arrow-circle-down';
 
 import {Menu} from 'react-native-paper';
-import Lightbox from 'react-native-lightbox-v2';
 import FastImage from 'react-native-fast-image';
-import {useTheme} from '@react-navigation/native';
 import {SVGIcon} from './../SVGIcon';
 import TextInline from './TextInline';
 
@@ -57,7 +48,7 @@ export default function Post() {
                 }}>
                 5h
               </Text>
-
+              {/* @ts-ignore */}
               <SVGIcon height={4} type="dot" width={4} />
 
               <Text
@@ -86,6 +77,7 @@ export default function Post() {
                 // backgroundColor: 'red',
                 alignItems: 'center',
               }}>
+              {/* @ts-ignore */}
               <SVGIcon height={18} type="kebab" width={18} />
             </TouchableOpacity>
           }>

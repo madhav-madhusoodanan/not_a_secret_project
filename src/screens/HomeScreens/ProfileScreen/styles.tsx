@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import layout from '../../constants/appLayout';
-import {Theme} from '../../constants/appTheme';
+import layout from '../../../constants/appLayout';
+import {Theme} from '../../../constants/appTheme';
 
 const {
   window: {height, width},

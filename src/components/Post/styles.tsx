@@ -1,16 +1,5 @@
 import {StyleSheet} from 'react-native';
-import layout from '../../constants/appLayout';
-import {Theme} from '../../constants/appTheme';
 import {Dimensions} from 'react-native';
-
-const {
-  window: {height, width},
-  isSmallDevice,
-} = layout;
-
-const BORDER_RADIUS = 10;
-const ITEM_WIDTH = 100;
-const ITEM_HEIGHT = 120;
 
 const screenWidth = Math.round(Dimensions.get('window').width);
 

@@ -35,7 +35,8 @@ const _height = _width * 0.6;
 export default function ColorfulCard() {
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
-    navigate('HomeFeedScreen');
+    // @ts-ignore
+    navigate('Home');
   };
 
   const card = getCard();
@@ -125,6 +126,7 @@ export default function ColorfulCard() {
               // backgroundColor: 'yellow',
               padding: 10,
             }}>
+              {/* @ts-ignore */}
             <TouchableOpacity onPress={() => this.pickSingle(true, true)}>
               <MImage
                 source={{
@@ -168,6 +170,7 @@ export default function ColorfulCard() {
                   borderWidth: 2,
                   borderColor: 'transparent',
                 }}
+                /* @ts-ignore */
                 transition={{duration: 400}}
               />
             </TouchableOpacity>

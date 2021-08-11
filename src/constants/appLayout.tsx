@@ -10,3 +10,10 @@ export default {
   },
   isSmallDevice: width < 375,
 };
+export const calc = (prop: 'width' | 'height', value: number) => {
+  const myHeight = 806;
+  const myWidth = 392;
+  const factor = prop === 'width' ? myWidth : myHeight;
+  const multiply = prop === 'height' ? height : width;
+  return (value * multiply) / factor;
+};

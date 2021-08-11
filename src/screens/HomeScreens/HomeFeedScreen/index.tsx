@@ -7,13 +7,13 @@ import {Divider, Subheading, FAB} from 'react-native-paper';
 import {useTheme} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import DropDownIcon from '@iconscout/react-native-unicons/icons/uil-angle-down';
-import Post from './../../components/Post';
+import Post from '../../../components/Post';
 
 import StickyItemFlatList from '@gorhom/sticky-item';
 
 import {styles} from './styles';
 
-import {CreatePostBottomSheetContent} from './..';
+import CreatePostBottomSheetContent from '../CreatePostScreen'
 
 // dummy data
 const data = [...Array(10)].fill(0).map((_, index) => ({id: `item-${index}`}));

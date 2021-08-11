@@ -31,6 +31,7 @@ const TextInline = (props: PropTypes) => {
         right: screenWidth - lines[lines.length - 1].width - 10,
       };
       setTriggerTextLocation(tempTxtLocaation);
+      /* @ts-ignore */
       setLengthMore(lines.length >= props.targetLines);
     }
   };

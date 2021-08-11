@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
 
 import {Theme} from '../../constants/appTheme';
-import layout from '../../constants/appLayout';
+import layout, { calc } from '../../constants/appLayout';
 
 const {
   window: {height, width},
@@ -29,8 +29,8 @@ export default NavButton;
 const styles = StyleSheet.create({
   navButtonStyles: {
     borderRadius: 60,
-    marginTop: 30,
-    marginHorizontal: 34,
+    marginTop: calc('height',30),
+    marginHorizontal: calc('width',34),
     // marginBottom: 20,
   },
 
@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
     color: Theme.colors.background,
     textTransform: 'none',
     fontFamily: 'Inter-SemiBold',
-    fontSize: 18,
+    fontSize: calc('height',18),
   },
 
   navButtonContentStyles: {
-    height: 60,
+    height: calc('height',60),
     minWidth: '75%',
     justifyContent: 'center',
   },
