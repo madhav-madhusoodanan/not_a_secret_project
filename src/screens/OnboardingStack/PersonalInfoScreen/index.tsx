@@ -1,11 +1,12 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {Text, View, Dimensions, TouchableOpacity} from 'react-native';
-import {Headline} from 'react-native-paper';
+import {View, Dimensions, TouchableOpacity} from 'react-native';
+import {Text, Headline} from 'react-native-paper';
 import {View as MView, Image as MImage, AnimatePresence} from 'moti';
 import {Easing} from 'react-native-reanimated';
 import faker from 'faker';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import styles from './styles';
 // import {StatusBar} from 'expo-status-bar';
 const {width, height} = Dimensions.get('screen');
 const images = [
@@ -34,17 +35,11 @@ export default function ColorfulCard() {
   const card = getCard();
   const [bg, setBg] = React.useState(images[0]);
   return (
-    <SafeAreaView
-      style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <View
-        style={{
-          width: _width,
-          height: _height,
-          overflow: 'hidden',
-          borderRadius: 20,
-          padding: 10,
-          justifyContent: 'center',
-        }}>
+    <SafeAreaView style={styles.container}>
+      <Headline numberOfLines={2} style={styles.title}>
+        Choose your Gender {'\n'}and Profile Photo
+      </Headline>
+      <View style={styles.card}>
         <AnimatePresence>
           <MView
             from={{opacity: 0, scale: 1}}
