@@ -1,46 +1,151 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {View} from 'react-native';
+import {Text, View, Dimensions, TouchableOpacity} from 'react-native';
 import {Headline} from 'react-native-paper';
-
-import styles from './styles';
-import GenderSwitch from './../../../components/GenderSwitch';
-import NavButton from '../../../components/Buttons/NavigationButton';
-
+import {View as MView, Image as MImage, AnimatePresence} from 'moti';
+import {Easing} from 'react-native-reanimated';
+import faker from 'faker';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+// import {StatusBar} from 'expo-status-bar';
+const {width, height} = Dimensions.get('screen');
+const images = [
+  `https://images.pexels.com/photos/1912832/pexels-photo-1912832.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`,
+  `https://images.pexels.com/photos/1193743/pexels-photo-1193743.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`,
+  `https://images.pexels.com/photos/2887710/pexels-photo-2887710.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260`,
+];
 
-export default function PersonalInfoScreen() {
-  const [isActive, setIsActive] = React.useState(false);
-  const [Value, setValue] = React.useState(false);
-  const {navigate, goBack} = useNavigation();
+const cardType = [
+  'https://img-premium.flaticon.com/png/512/179/179457.png?token=exp=1620036375~hmac=055dff03ba131ec3c2025a6f710b03d1',
+  'https://img-premium.flaticon.com/png/512/179/179449.png?token=exp=1620036397~hmac=6b9f6e3d0f2b1a07307261cf7be159a4',
+];
 
-  const submitHandler = () => {
-    navigate('ProfilePhotoScreen');
-  };
+const getCard = () => ({
+  amount: faker.finance.amount(50, 9999, faker.random.number(2), '$'),
+  bg: faker.helpers.randomize(images),
+  cardType: faker.helpers.randomize(cardType),
+  type: faker.helpers.randomize(['male', 'female', 'other']),
+  key: faker.random.uuid('visa'),
+  cc: faker.finance.mask(4),
+});
 
+const _width = width * 0.9;
+const _height = _width * 0.6;
+export default function ColorfulCard() {
+  const card = getCard();
+  const [bg, setBg] = React.useState(images[0]);
   return (
-    <SafeAreaView style={styles.container}>
-      <Headline numberOfLines={2} style={styles.title}>
-        Select Gender
-      </Headline>
-      <Headline
-        numberOfLines={2}
-        style={[
-          styles.genderText,
-          {color: isActive ? 'deeppink' : 'dodgerblue'},
-        ]}>
-        Female
-      </Headline>
-      <View style={styles.switch}>
-        <GenderSwitch
-          isActive={isActive}
-          onPress={() => {
-            setIsActive(isActive => !isActive);
-          }}
-        />
+    <SafeAreaView
+      style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View
+        style={{
+          width: _width,
+          height: _height,
+          overflow: 'hidden',
+          borderRadius: 20,
+          padding: 10,
+          justifyContent: 'center',
+        }}>
+        <AnimatePresence>
+          <MView
+            from={{opacity: 0, scale: 1}}
+            animate={{opacity: 1, scale: 1}}
+            exit={{opacity: 0, scale: 2}}
+            transition={{duration: 1000, type: 'timing'}}
+            key={bg}>
+            <MImage
+              source={{uri: bg}}
+              from={{
+                rotate: '0deg',
+                scale: 1.8,
+              }}
+              animate={{
+                rotate: '360deg',
+                scale: 3,
+              }}
+              transition={{
+                loop: true,
+                type: 'timing',
+                duration: 8000,
+                easing: Easing.linear,
+              }}
+              blurRadius={60}
+              style={{
+                width: _width * 1.5,
+                height: _height * 1.5,
+                resizeMode: 'cover',
+                position: 'absolute',
+                alignSelf: 'center',
+              }}
+            />
+          </MView>
+        </AnimatePresence>
+        <View style={{flex: 1, padding: 10}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <Text style={{color: 'white', fontFamily: 'Menlo', fontSize: 18}}>
+              **** **** **** {card.cc}
+            </Text>
+            <MImage
+              source={{uri: card.cardType}}
+              style={{
+                width: 40,
+                height: 40,
+                resizeMode: 'contain',
+              }}
+            />
+          </View>
+          <View style={{flex: 1, justifyContent: 'center'}}>
+            <Text style={{color: 'white'}}>Balance</Text>
+            <Text style={{color: 'white', fontSize: 32, fontWeight: '600'}}>
+              {card.amount}
+            </Text>
+          </View>
+          <Text
+            style={{
+              color: 'white',
+              textTransform: 'uppercase',
+              fontWeight: '900',
+              opacity: 0.6,
+              marginTop: 20,
+            }}>
+            {card.type}
+          </Text>
+        </View>
       </View>
-
-      <NavButton onPress={submitHandler} text="Confirm" />
+      <View style={{flexDirection: 'row', marginVertical: 20}}>
+        {images.map(uri => {
+          return (
+            <TouchableOpacity
+              key={uri}
+              onPress={() => {
+                setBg(uri);
+              }}>
+              <MImage
+                source={{uri}}
+                from={{borderColor: 'rgba(0,0,0,0)'}}
+                animate={{
+                  borderColor: uri === bg ? 'rgba(0,0,0,.5)' : 'rgba(0,0,0,0)',
+                }}
+                style={{
+                  marginRight: 10,
+                  width: 50,
+                  height: 50,
+                  resizeMode: 'cover',
+                  borderRadius: 25,
+                  borderWidth: 2,
+                  borderColor: 'transparent',
+                }}
+                transition={{duration: 400}}
+                blurRadius={20}
+              />
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </SafeAreaView>
   );
 }
