@@ -23,7 +23,7 @@ const userGender = [
 const getCard = () => ({
   bg: faker.helpers.randomize(images),
   userGender: faker.helpers.randomize(userGender),
-  type: faker.helpers.randomize(['male', 'female', 'other']),
+  type: faker.helpers.randomize(['male', 'female', 'third gender']),
   cc: faker.finance.mask(4),
 });
 
@@ -72,42 +72,66 @@ export default function ColorfulCard() {
             />
           </MView>
         </AnimatePresence>
-
-        <View style={{flex: 1, backgroundColor: 'black', padding: 10}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              backgroundColor: 'red',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
-            <Text style={{color: 'white', fontFamily: 'Menlo', fontSize: 18}}>
-              **** **** **** {card.cc}
+        <View style={{flexDirection: 'row', flex: 1, marginVertical: 0}}>
+          <View style={{flex: 1, backgroundColor: 'black', padding: 10}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                backgroundColor: 'red',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: 'white', fontFamily: 'Menlo', fontSize: 18}}>
+                **** **** **** {card.cc}
+              </Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: 'pink',
+                justifyContent: 'center',
+              }}>
+              <Text style={{color: 'white', fontSize: 32, fontWeight: '600'}}>
+                {/* {card.amount} */}
+                Devansh
+              </Text>
+              <Text style={{color: 'white', fontSize: 24}}>Agarwal</Text>
+            </View>
+            <Text
+              style={{
+                color: 'white',
+                backgroundColor: 'green',
+                textTransform: 'uppercase',
+                fontWeight: '900',
+                opacity: 0.6,
+                marginTop: 20,
+              }}>
+              {card.type}
             </Text>
           </View>
           <View
             style={{
               flex: 1,
-              backgroundColor: 'pink',
-              justifyContent: 'center',
+              alignSelf: 'center',
+              // backgroundColor: 'yellow',
+              padding: 10,
             }}>
-            <Text style={{color: 'white', fontSize: 32, fontWeight: '600'}}>
-              {/* {card.amount} */}
-              Devansh
-            </Text>
-            <Text style={{color: 'white', fontSize: 24}}>Agarwal</Text>
+            <MImage
+              source={{
+                uri: 'https://pbs.twimg.com/profile_images/1824002576/pg-railsconf_400x400.jpg',
+              }}
+              style={{
+                marginRight: 10,
+                width: 150,
+                height: 150,
+                resizeMode: 'cover',
+                borderRadius: 80,
+                borderWidth: 1,
+                borderColor: 'transparent',
+              }}
+              // blurRadius={20}
+            />
           </View>
-          <Text
-            style={{
-              color: 'white',
-              backgroundColor: 'green',
-              textTransform: 'uppercase',
-              fontWeight: '900',
-              opacity: 0.6,
-              marginTop: 20,
-            }}>
-            {card.type}
-          </Text>
         </View>
       </View>
 
