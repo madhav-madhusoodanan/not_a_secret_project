@@ -145,7 +145,8 @@ export default function ColorfulCard() {
       </View>
 
       <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 170}}>
-        {userGender.map(uri => {
+        {images.map(uri => {
+          // or userGender.map {for individual gender images but issue with linked background image}
           return (
             <TouchableOpacity
               key={uri}
@@ -153,7 +154,7 @@ export default function ColorfulCard() {
                 setBg(uri);
               }}>
               <MImage
-                source={{uri}}
+                source={{uri: 'https://i.ibb.co/VMyMmwx/gender-male.png'}}
                 from={{borderColor: 'rgba(0,0,0,0)'}}
                 animate={{
                   borderColor: uri === bg ? 'rgba(0,0,0,.5)' : 'rgba(0,0,0,0)',
