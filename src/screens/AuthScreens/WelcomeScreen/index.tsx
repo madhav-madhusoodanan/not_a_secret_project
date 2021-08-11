@@ -1,10 +1,8 @@
 import * as React from 'react';
 import {
-  StatusBar,
   Animated,
   Image,
   View,
-  StyleSheet,
   Dimensions,
 } from 'react-native';
 import {Text} from 'react-native-paper';

@@ -21,7 +21,7 @@ export const User = (state = initialState, action: any) => {
     case types.AUTH_SUCCESS:
       const {data, token} = payload;
       console.log('reached');
-      AsyncStorage.setItem('softxAuthToken', token);
+      AsyncStorage.setItem('verseAuthToken', token);
       return {
         ...state,
         user: data,
@@ -41,7 +41,7 @@ export const User = (state = initialState, action: any) => {
     case types.AUTH_FAIL:
     case types.GET_PROFILE_FAIL:
       console.log('reached error', payload)
-      AsyncStorage.removeItem('softxAuthToken');
+      AsyncStorage.removeItem('verseAuthToken');
       return {...state, user: null, error: payload, loading: false};
     default:
       return state;
