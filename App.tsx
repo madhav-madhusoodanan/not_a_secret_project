@@ -27,7 +27,6 @@ import {
   OneTimePasswordScreen,
   NameScreen,
   PersonalInfoScreen,
-  ProfilePictureScreen,
   HomeFeedScreen,
   ExploreScreen,
   NotificationScreen,
@@ -94,10 +93,6 @@ const OnboardingNavigation = () => (
     <OnboardingStack.Screen
       component={PersonalInfoScreen}
       name="PersonalInfoScreen"
-    />
-    <OnboardingStack.Screen
-      component={ProfilePictureScreen}
-      name="ProfilePictureScreen"
     />
   </OnboardingStack.Navigator>
 );

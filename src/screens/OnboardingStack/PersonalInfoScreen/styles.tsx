@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     textAlign: 'left',
     fontFamily: 'Gilroy-Bold',
-    marginBottom: 50,
+    marginBottom: 120,
   },
   card: {
     width: _width,

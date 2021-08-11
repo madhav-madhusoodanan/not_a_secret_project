@@ -7,7 +7,8 @@ import faker from 'faker';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './styles';
-// import {StatusBar} from 'expo-status-bar';
+
+import NavButton from '../../../components/Buttons/NavigationButton';
 const {width, height} = Dimensions.get('screen');
 const images = [
   `https://images.pexels.com/photos/1912832/pexels-photo-1912832.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`,
@@ -30,6 +31,11 @@ const getCard = () => ({
 const _width = width * 0.9;
 const _height = _width * 0.6;
 export default function ColorfulCard() {
+  const {navigate, goBack} = useNavigation();
+  const submitHandler = () => {
+    navigate('HomeFeedScreen');
+  };
+
   const card = getCard();
   const [bg, setBg] = React.useState(images[0]);
   return (
@@ -73,36 +79,37 @@ export default function ColorfulCard() {
           </MView>
         </AnimatePresence>
         <View style={{flexDirection: 'row', flex: 1, marginVertical: 0}}>
-          <View style={{flex: 1, backgroundColor: 'black', padding: 10}}>
-            <View
-              style={{
-                flexDirection: 'row',
-                backgroundColor: 'red',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}>
-              <Text style={{color: 'white', fontFamily: 'Menlo', fontSize: 18}}>
-                **** **** **** {card.cc}
-              </Text>
-            </View>
+          <View style={{flex: 1, padding: 10}}>
             <View
               style={{
                 flex: 1,
-                backgroundColor: 'pink',
+                // backgroundColor: 'pink',
                 justifyContent: 'center',
               }}>
-              <Text style={{color: 'white', fontSize: 32, fontWeight: '600'}}>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 32,
+                  fontFamily: 'Inter-SemiBold',
+                }}>
                 {/* {card.amount} */}
                 Devansh
               </Text>
-              <Text style={{color: 'white', fontSize: 24}}>Agarwal</Text>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 24,
+                  fontFamily: 'Inter-SemiBold',
+                }}>
+                Agarwal
+              </Text>
             </View>
             <Text
               style={{
                 color: 'white',
-                backgroundColor: 'green',
+                // backgroundColor: 'green',
                 textTransform: 'uppercase',
-                fontWeight: '900',
+                fontFamily: 'Gilroy-Bold',
                 opacity: 0.6,
                 marginTop: 20,
               }}>
@@ -121,7 +128,6 @@ export default function ColorfulCard() {
                 uri: 'https://pbs.twimg.com/profile_images/1824002576/pg-railsconf_400x400.jpg',
               }}
               style={{
-                marginRight: 10,
                 width: 150,
                 height: 150,
                 resizeMode: 'cover',
@@ -135,7 +141,7 @@ export default function ColorfulCard() {
         </View>
       </View>
 
-      <View style={{flexDirection: 'row', marginVertical: 20}}>
+      <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 170}}>
         {images.map(uri => {
           return (
             <TouchableOpacity
@@ -165,6 +171,7 @@ export default function ColorfulCard() {
           );
         })}
       </View>
+      <NavButton onPress={submitHandler} text="Continue" />
     </SafeAreaView>
   );
 }
