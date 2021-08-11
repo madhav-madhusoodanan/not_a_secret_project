@@ -3,8 +3,8 @@
 Concept: https://dribbble.com/shots/5476562-Forgot-Password-Verification/attachments
 
 */
-import {Animated, Image, View} from 'react-native';
-import {Text, Subheading, Headline} from 'react-native-paper';
+import {Animated} from 'react-native';
+import {Headline} from 'react-native-paper';
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
