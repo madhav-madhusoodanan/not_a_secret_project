@@ -14,7 +14,7 @@ const images = [
   `https://images.pexels.com/photos/2887710/pexels-photo-2887710.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260`,
 ];
 
-const cardType = [
+const userGender = [
   'https://img-premium.flaticon.com/png/512/179/179457.png?token=exp=1620036375~hmac=055dff03ba131ec3c2025a6f710b03d1',
   'https://img-premium.flaticon.com/png/512/179/179449.png?token=exp=1620036397~hmac=6b9f6e3d0f2b1a07307261cf7be159a4',
 ];
@@ -22,7 +22,7 @@ const cardType = [
 const getCard = () => ({
   amount: faker.finance.amount(50, 9999, faker.random.number(2), '$'),
   bg: faker.helpers.randomize(images),
-  cardType: faker.helpers.randomize(cardType),
+  userGender: faker.helpers.randomize(userGender),
   type: faker.helpers.randomize(['male', 'female', 'other']),
   key: faker.random.uuid('visa'),
   cc: faker.finance.mask(4),
@@ -89,20 +89,21 @@ export default function ColorfulCard() {
             <Text style={{color: 'white', fontFamily: 'Menlo', fontSize: 18}}>
               **** **** **** {card.cc}
             </Text>
-            <MImage
-              source={{uri: card.cardType}}
+            {/* <MImage
+              source={{uri: card.userGender}}
               style={{
                 width: 40,
                 height: 40,
                 resizeMode: 'contain',
               }}
-            />
+            /> */}
           </View>
           <View style={{flex: 1, justifyContent: 'center'}}>
-            <Text style={{color: 'white'}}>Balance</Text>
             <Text style={{color: 'white', fontSize: 32, fontWeight: '600'}}>
-              {card.amount}
+              {/* {card.amount} */}
+              Devansh
             </Text>
+            <Text style={{color: 'white', fontSize: 24}}>Agarwal</Text>
           </View>
           <Text
             style={{
