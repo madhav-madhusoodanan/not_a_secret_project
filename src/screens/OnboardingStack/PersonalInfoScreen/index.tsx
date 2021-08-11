@@ -21,11 +21,9 @@ const userGender = [
 ];
 
 const getCard = () => ({
-  amount: faker.finance.amount(50, 9999, faker.random.number(2), '$'),
   bg: faker.helpers.randomize(images),
   userGender: faker.helpers.randomize(userGender),
   type: faker.helpers.randomize(['male', 'female', 'other']),
-  key: faker.random.uuid('visa'),
   cc: faker.finance.mask(4),
 });
 
@@ -74,26 +72,25 @@ export default function ColorfulCard() {
             />
           </MView>
         </AnimatePresence>
-        <View style={{flex: 1, padding: 10}}>
+
+        <View style={{flex: 1, backgroundColor: 'black', padding: 10}}>
           <View
             style={{
               flexDirection: 'row',
+              backgroundColor: 'red',
               justifyContent: 'space-between',
               alignItems: 'center',
             }}>
             <Text style={{color: 'white', fontFamily: 'Menlo', fontSize: 18}}>
               **** **** **** {card.cc}
             </Text>
-            {/* <MImage
-              source={{uri: card.userGender}}
-              style={{
-                width: 40,
-                height: 40,
-                resizeMode: 'contain',
-              }}
-            /> */}
           </View>
-          <View style={{flex: 1, justifyContent: 'center'}}>
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: 'pink',
+              justifyContent: 'center',
+            }}>
             <Text style={{color: 'white', fontSize: 32, fontWeight: '600'}}>
               {/* {card.amount} */}
               Devansh
@@ -103,6 +100,7 @@ export default function ColorfulCard() {
           <Text
             style={{
               color: 'white',
+              backgroundColor: 'green',
               textTransform: 'uppercase',
               fontWeight: '900',
               opacity: 0.6,
@@ -112,6 +110,7 @@ export default function ColorfulCard() {
           </Text>
         </View>
       </View>
+
       <View style={{flexDirection: 'row', marginVertical: 20}}>
         {images.map(uri => {
           return (
