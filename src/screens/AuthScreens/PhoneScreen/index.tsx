@@ -5,25 +5,54 @@ import {Text, Subheading, Headline} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './styles';
-
 import NavButton from '../../../components/Buttons/NavigationButton';
+import {useDispatch, useSelector} from 'react-redux';
+import {getPhoneNums, sendOTP} from '../../../store/Actions/UserActions';
+import {showToast} from '../../../constants/appLayout'
 
 export default function PhoneScreen() {
-  const {navigate, goBack} = useNavigation();
-  const submitHandler = () => {
+  const {navigate} = useNavigation();
+  const auth = useSelector((state: any) => state.User);
+const [phoneNum, setPhoneNum] = useState('');
+  const dispatch = useDispatch();
+  const submitHandler = async () => {
+    console.log({'reached': 'reached'})
+    try {
+      var test = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(phoneNum);
+      if(test) {
+        await dispatch(sendOTP(phoneNum));
+        const condition = auth.nums.includes(`+91${phoneNum}`)
+        // @ts-ignore
+          navigation.navigate('OneTimePasswordScreen', { phoneNum: `+91${phoneNum}`, new: !condition})
+      } else {
+        showToast('Please enter valid mobile number')
+        return;
+      }
+    } catch (error) {
+      // console.log({e: error})
+    }  
+    // @ts-ignore
     navigate('OneTimePasswordScreen');
   };
 
-  const source = {
-    uri: 'https://user-images.githubusercontent.com/4661784/56352614-4631a680-61d8-11e9-880d-86ecb053413d.png',
+  const getPhones = async () => {
+    try {
+      await dispatch(getPhoneNums());
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    getPhones();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <Headline numberOfLines={2} style={styles.title}>
         Let's start with your {'\n'}phone number
       </Headline>
-      <View style={[styles.input, {}]}>
+      <View style={[styles.input]}>
         <View>
           <Text
             style={{
@@ -43,13 +72,13 @@ export default function PhoneScreen() {
           keyboardType="numeric"
           maxLength={10}
           secureTextEntry={false}
+          onChangeText={phone => setPhoneNum(phone)}
         />
       </View>
-
-      <NavButton onPress={submitHandler} text="Continue" />
+      <NavButton onPress={submitHandler} sending={auth.loading}  text="Continue" />
       <Text style={styles.subTitle}>
         by clicking continue you are agreeing to the terms of use {'\n'}
-        and acknowledging the privacy policy close
+        and acknowledging the privacy policy close duh
       </Text>
     </SafeAreaView>
   );

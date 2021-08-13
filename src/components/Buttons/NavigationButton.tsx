@@ -10,11 +10,19 @@ const {
   isSmallDevice,
 } = layout;
 
-const NavButton = ({onPress, text}) => {
+interface Props {
+  onPress: any;
+  text: any;
+  sending?: any;
+}
+
+const NavButton = ({onPress, text, sending}: Props) => {
   return (
     <Button
       mode="contained"
       contentStyle={styles.navButtonContentStyles}
+      disabled={sending}
+      loading={sending}
       style={styles.navButtonStyles}
       labelStyle={styles.navButtonLabelStyles}
       color="#00AAFF"
