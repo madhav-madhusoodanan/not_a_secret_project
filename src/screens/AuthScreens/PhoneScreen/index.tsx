@@ -8,31 +8,35 @@ import styles from './styles';
 import NavButton from '../../../components/Buttons/NavigationButton';
 import {useDispatch, useSelector} from 'react-redux';
 import {getPhoneNums, sendOTP} from '../../../store/Actions/UserActions';
-import {showToast} from '../../../constants/appLayout'
+import {showToast} from '../../../constants/appLayout';
 
 export default function PhoneScreen() {
   const {navigate} = useNavigation();
   const auth = useSelector((state: any) => state.User);
-const [phoneNum, setPhoneNum] = useState('');
+  const [phoneNum, setPhoneNum] = useState('');
   const dispatch = useDispatch();
   const submitHandler = async () => {
-    console.log({'reached': 'reached'})
+    console.log({reached: 'reached'});
     try {
-      var test = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(phoneNum);
-      if(test) {
+      var test =
+        /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(
+          phoneNum,
+        );
+      if (test) {
         await dispatch(sendOTP(phoneNum));
-        const condition = auth.nums.includes(`+91${phoneNum}`)
+        const condition = auth.nums.includes(`+91${phoneNum}`);
         // @ts-ignore
-          navigation.navigate('OneTimePasswordScreen', { phoneNum: `+91${phoneNum}`, new: !condition})
+        navigate('OneTimePasswordScreen', {
+          phoneNum: `+91${phoneNum}`,
+          new: !condition,
+        });
       } else {
-        showToast('Please enter valid mobile number')
+        showToast('Please enter valid mobile number');
         return;
       }
     } catch (error) {
-      // console.log({e: error})
-    }  
-    // @ts-ignore
-    navigate('OneTimePasswordScreen');
+      console.log({e: error})
+    }
   };
 
   const getPhones = async () => {
@@ -75,7 +79,11 @@ const [phoneNum, setPhoneNum] = useState('');
           onChangeText={phone => setPhoneNum(phone)}
         />
       </View>
-      <NavButton onPress={submitHandler} sending={auth.loading}  text="Continue" />
+      <NavButton
+        onPress={submitHandler}
+        sending={auth.loading}
+        text="Continue"
+      />
       <Text style={styles.subTitle}>
         by clicking continue you are agreeing to the terms of use {'\n'}
         and acknowledging the privacy policy close duh

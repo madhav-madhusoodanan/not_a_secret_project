@@ -1,20 +1,17 @@
-/*
 
-Concept: https://dribbble.com/shots/5476562-Forgot-Password-Verification/attachments
-
-*/
-import {Animated} from 'react-native';
+import {Alert, Animated} from 'react-native';
 import {Headline} from 'react-native-paper';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-
 import {
   CodeField,
   Cursor,
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import NavButton from '../../../components/Buttons/NavigationButton';
 import styles, {
   ACTIVE_CELL_BG_COLOR,
   CELL_BORDER_RADIUS,
@@ -22,18 +19,11 @@ import styles, {
   DEFAULT_CELL_BG_COLOR,
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
-
-import {useNavigation} from '@react-navigation/native';
-
-import NavButton from '../../../components/Buttons/NavigationButton';
+import { loginuser } from '../../../store/Actions/UserActions';
 
 const {Value, Text: AnimatedText} = Animated;
 
 const CELL_COUNT = 4;
-const source = {
-  uri: 'https://user-images.githubusercontent.com/4661784/56352614-4631a680-61d8-11e9-880d-86ecb053413d.png',
-};
-
 const animationsColor = [...new Array(CELL_COUNT)].map(() => new Value(0));
 const animationsScale = [...new Array(CELL_COUNT)].map(() => new Value(1));
 const animateCell = ({hasValue, index, isFocused}) => {
@@ -53,7 +43,15 @@ const animateCell = ({hasValue, index, isFocused}) => {
 };
 
 const OneTimePasswordScreen = () => {
+  const dispatch = useDispatch()
+  
+  const auth = useSelector((state: any) => state.User);
+  const route = useRoute();
+  //declarations for input field
   const [value, setValue] = useState('');
+  // @ts-ignore
+  const [phone, setPhone] = useState(route?.params?.phoneNum);
+  const [loading, setLoading] = useState(false)
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
@@ -63,10 +61,36 @@ const OneTimePasswordScreen = () => {
   // Navigation
 
   const {navigate} = useNavigation();
-  const submitHandler = () => {
-    // @ts-ignore
-    navigate('NameScreen');
+  const submitHandler = async (e: any) => {
+    setLoading(true)
+    if (value === auth.otp) {
+      // @ts-ignore
+      if (route.params.new) {
+        setTimeout(() => {
+          setLoading(false)
+          // @ts-ignore
+          navigate('NameScreen', {phoneNum: route.params?.phoneNum});
+        }, 1000);
+      } else {
+        setTimeout(async () => {
+          setLoading(false)
+          await dispatch(
+            loginuser({phoneNum: phone, isNew: false}, navigate),
+          );
+        }, 1000);
+      }
+    } else {
+      setLoading(false)
+      Alert.alert('Invalid Code!', 'Please enter the correct code', [
+        {text: 'Okay', style: 'cancel', onPress: () => setValue('')},
+      ]);
+      
+      return;
+    }
   };
+  useEffect(() => {
+    
+  },[])
 
   const renderCell = ({index, symbol, isFocused}) => {
     const hasValue = Boolean(symbol);
@@ -113,7 +137,7 @@ const OneTimePasswordScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Headline numberOfLines={2} style={styles.title}>
-        Verify OTP sent to {'\n'}+91 xxxxxxxxxx
+        Verify OTP sent to {'\n'} +91 {`${phone.slice(3,5)}`}XXXXXX{`${phone.slice(11,13)}`}
       </Headline>
 
       <CodeField
@@ -128,7 +152,7 @@ const OneTimePasswordScreen = () => {
         renderCell={renderCell}
       />
 
-      <NavButton onPress={submitHandler} text="Verify" />
+      <NavButton onPress={submitHandler} sending={loading} text="Verify" />
     </SafeAreaView>
   );
 };
