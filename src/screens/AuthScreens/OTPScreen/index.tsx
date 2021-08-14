@@ -64,6 +64,7 @@ const OneTimePasswordScreen = () => {
   const submitHandler = async (e: any) => {
     setLoading(true)
     if (value === auth.otp) {
+    // if (value === '1111') {
       // @ts-ignore
       if (route.params.new) {
         setTimeout(() => {

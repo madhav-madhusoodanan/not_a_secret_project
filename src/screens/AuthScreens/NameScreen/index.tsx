@@ -1,27 +1,26 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {View, Alert} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {Text, Headline} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {TextInput} from 'react-native-gesture-handler';
-
 import NavButton from '../../../components/Buttons/NavigationButton';
 import styles from './styles';
 
 export default function NameScreen() {
   const {navigate, goBack} = useNavigation();
-  const submitHandler = () => {
-    navigate('PersonalInfoScreen');
-  };
 
   let textInput = useRef(null);
   const [focusInput, setFocusInput] = useState(true);
+  const route = useRoute();
   let initialState = {
     firstName: '',
     lastName: '',
-    // phoneNum: route.params.phone,
+    // @ts-ignore
+    phoneNum: route.params.phoneNum,
   };
   const [values, setValues] = useState(initialState);
+  const [loading, setLoading] = useState(false);
   const {firstName, lastName} = values;
 
   const throwAlert = name => {
@@ -30,8 +29,25 @@ export default function NameScreen() {
       // check = true;
     ]);
   };
+  const submitHandler = () => {
+    if (!firstName) {
+      throwAlert('First ');
+      return;
+    }
+    if (!lastName) {
+      throwAlert('Last ');
+      return;
+    }
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      // @ts-ignore
+      navigate('PersonalInfoScreen', {values});
+    }, 700);
+  };
 
   useEffect(() => {
+    // @ts-ignore
     textInput.focus();
   }, []);
   return (
@@ -42,6 +58,7 @@ export default function NameScreen() {
 
       <View style={styles.input}>
         <TextInput
+          // @ts-ignore
           ref={input => (textInput = input)}
           value={firstName}
           style={styles.inputStyle}
@@ -75,7 +92,7 @@ export default function NameScreen() {
           onChangeText={e => setValues({...values, lastName: e})}
         />
       </View>
-      <NavButton onPress={submitHandler} text="Save" />
+      <NavButton onPress={submitHandler} sending={loading} text="Save" />
     </SafeAreaView>
   );
 }

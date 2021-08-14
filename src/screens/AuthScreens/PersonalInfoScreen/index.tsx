@@ -3,44 +3,49 @@ import {View, Dimensions, TouchableOpacity} from 'react-native';
 import {Text, Headline} from 'react-native-paper';
 import {View as MView, Image as MImage, AnimatePresence} from 'moti';
 import {Easing} from 'react-native-reanimated';
-import faker from 'faker';
-import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import { useNavigation, useRoute } from '@react-navigation/core';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './styles';
 import ImagePicker from 'react-native-image-crop-picker';
-
 import NavButton from '../../../components/Buttons/NavigationButton';
+import { loginuser } from '../../../store/Actions/UserActions';
 const {width, height} = Dimensions.get('screen');
-const images = [
-  `https://images.pexels.com/photos/1912832/pexels-photo-1912832.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`,
-  `https://images.pexels.com/photos/1193743/pexels-photo-1193743.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`,
-  `https://images.pexels.com/photos/2887710/pexels-photo-2887710.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260`,
-];
-
-const userGender = [
-  `https://i.ibb.co/VMyMmwx/gender-male.png`,
-  `https://i.ibb.co/R4JbcMJ/gender-female.png`,
-  `https://i.ibb.co/nnwYSrB/gender-third.png`,
-];
-
-const getCard = () => ({
-  bg: faker.helpers.randomize(images),
-  userGender: faker.helpers.randomize(userGender),
-  type: faker.helpers.randomize(['male', 'female', 'third gender']),
-  cc: faker.finance.mask(4),
-});
 
 const _width = width * 0.9;
 const _height = _width * 0.6;
+const data = [
+  {
+    gender: 'male',
+    background: `https://images.pexels.com/photos/1912832/pexels-photo-1912832.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`,
+    avatar: `https://i.ibb.co/VMyMmwx/gender-male.png`,
+  },
+  {
+    gender: 'female',
+    background: `https://images.pexels.com/photos/1193743/pexels-photo-1193743.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`,
+    avatar: `https://i.ibb.co/R4JbcMJ/gender-female.png`,
+  },
+  {
+    gender: 'other',
+    background: `https://images.pexels.com/photos/2887710/pexels-photo-2887710.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260`,
+    avatar: `https://i.ibb.co/nnwYSrB/gender-third.png`,
+  },
+];
 export default function ColorfulCard() {
+  const route = useRoute();
+  const dispatch = useDispatch()
+
+  // @ts-ignore
+  const [values, setValues] = useState(route.params.values);
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
+    dispatch(loginuser({ ...values, gender, isNew: true },navigate))
     // @ts-ignore
-    navigate('Home');
+    // navigate('Home');
   };
 
-  const card = getCard();
-  const [bg, setBg] = React.useState(images[0]);
+  const [bg, setBg] = React.useState(data[0].background);
+  const [gender, setGender] = useState(data[0].gender);
   return (
     <SafeAreaView style={styles.container}>
       <Headline numberOfLines={2} style={styles.title}>
@@ -96,7 +101,7 @@ export default function ColorfulCard() {
                   fontFamily: 'Inter-SemiBold',
                 }}>
                 {/* {card.amount} */}
-                Devansh
+                {values.firstName}
               </Text>
               <Text
                 style={{
@@ -104,7 +109,7 @@ export default function ColorfulCard() {
                   fontSize: 24,
                   fontFamily: 'Inter-SemiBold',
                 }}>
-                Agarwal
+                {values.lastName}
               </Text>
             </View>
             <Text
@@ -116,7 +121,7 @@ export default function ColorfulCard() {
                 opacity: 0.6,
                 marginTop: 20,
               }}>
-              {card.type}
+              {gender}
             </Text>
           </View>
           <View
@@ -126,8 +131,8 @@ export default function ColorfulCard() {
               // backgroundColor: 'yellow',
               padding: 10,
             }}>
-              {/* @ts-ignore */}
-            <TouchableOpacity onPress={() => this.pickSingle(true, true)}>
+            {/* @ts-ignore */}
+            <TouchableOpacity onPress={() => console.log('ohho')}>
               <MImage
                 source={{
                   uri: 'https://pbs.twimg.com/profile_images/1824002576/pg-railsconf_400x400.jpg',
@@ -147,19 +152,21 @@ export default function ColorfulCard() {
       </View>
 
       <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 170}}>
-        {images.map(uri => {
+        {data.map((each, i) => {
           // or userGender.map {for individual gender images but issue with linked background image}
           return (
             <TouchableOpacity
-              key={uri}
+              key={i}
               onPress={() => {
-                setBg(uri);
+                setGender(each.gender);
+                setBg(each.background);
               }}>
               <MImage
-                source={{uri: 'https://i.ibb.co/VMyMmwx/gender-male.png'}}
+                source={{uri: each.avatar}}
                 from={{borderColor: 'rgba(0,0,0,0)'}}
                 animate={{
-                  borderColor: uri === bg ? 'rgba(0,0,0,.5)' : 'rgba(0,0,0,0)',
+                  borderColor:
+                    each.background === bg ? 'rgba(0,0,0,.5)' : 'rgba(0,0,0,0)',
                 }}
                 style={{
                   marginRight: 10,
