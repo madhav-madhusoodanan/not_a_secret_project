@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
     minHeight: 800,
     paddingTop: 14,
     paddingHorizontal: 16,
+  },
+  screen: {
+    flex: 1,
     backgroundColor: Theme.colors.background,
   },
 });
