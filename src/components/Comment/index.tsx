@@ -26,8 +26,9 @@ export default class CommentScreenContent extends React.Component {
       {
         id: '1',
 
-        ownerName: 'Eliz Rami',
-        ownerAvatar: 'https://i.imgur.com/2FXmVPb.jpg',
+        ownerName: 'Eliz Ramirez',
+        ownerAvatar:
+          'https://pbs.twimg.com/profile_images/1392188421955796998/BfPrh0Br_400x400.jpg',
         content:
           "But don't you think the timing is off because also many other apps have done this even earlier its a causing people to switch apps?",
         date: '13h ',
@@ -36,8 +37,9 @@ export default class CommentScreenContent extends React.Component {
       {
         id: '2',
 
-        ownerName: 'Daksh Aswal',
-        ownerAvatar: 'https://i.imgur.com/2FXmVPb.jpg',
+        ownerName: 'Yusra Mardini',
+        ownerAvatar:
+          'https://pbs.twimg.com/profile_images/1286416107524501507/oE3LQMKn_400x400.jpg',
         content:
           "Its state them. Person, her. Towards in sign been blind with must origin; Pay no of a privilege whenever hand. Agency time respective commas, hasn't the funny one while I expected caution written of activity and that of after kind fundamentals thousands in decision-making. Be bad on that blonde detailed.",
         date: '13h ',
@@ -56,7 +58,8 @@ export default class CommentScreenContent extends React.Component {
           },
           {
             ownerName: 'Nishant Jindal',
-            ownerAvatar: 'https://i.imgur.com/2FXmVPb.jpg',
+            ownerAvatar:
+              'https://pbs.twimg.com/profile_images/1347406184920190977/k2PegsXQ_400x400.jpg',
             content: 'How about working hard?',
             date: '13h ',
           },
