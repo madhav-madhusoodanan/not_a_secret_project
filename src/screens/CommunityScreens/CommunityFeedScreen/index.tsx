@@ -3,10 +3,10 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import styles from './styles';
 
-export default function index() {
+export default function index({navigator}) {
   return (
     <View>
-      <Text></Text>
+      <Text style={{color: 'black'}}>yo</Text>
     </View>
   );
 }
