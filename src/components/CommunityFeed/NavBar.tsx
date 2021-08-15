@@ -1,15 +1,15 @@
-import React, { FunctionComponent, ReactNode } from 'react';
-import { Animated, StyleSheet, View, ViewStyle, Text } from 'react-native';
-import { useSafeArea } from 'react-native-safe-area-context';
+import React, {FunctionComponent, ReactNode} from 'react';
+import {Animated, StyleSheet, View, ViewStyle, Text} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export const NAV_HEADER_HEIGHT = 82;
 export const NAV_TITLE_HEIGHT = 56;
 
-export const NavBar: FunctionComponent = ({ children }) => {
-  const { top: paddingTop } = useSafeArea();
+export const NavBar: FunctionComponent = ({children}) => {
+  const {top: paddingTop} = useSafeAreaInsets();
 
   return (
-    <View style={[styles.container, { paddingTop }]}>
+    <View style={[styles.container, {paddingTop}]}>
       <Animated.View style={[styles.titleContainer]}>{children}</Animated.View>
     </View>
   );
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     textAlign: 'center',
+    // backgroundColor: 'lavender',
     fontWeight: 'bold',
   },
 });

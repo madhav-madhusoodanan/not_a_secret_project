@@ -13,31 +13,31 @@ import {
 } from './../../../components/Library';
 import {useScrollManager} from './../../../hooks';
 import {
-  Scene,
+  FeedScene,
   NavBar,
   NavBarTitle,
   Header,
 } from './../../../components/CommunityFeed';
 
 const initialWidth = Dimensions.get('window').width;
-export type tabKeys = 'all' | 'tradable' | 'gainers' | 'losers';
+export type tabKeys = 'feed' | 'about' | 'mods' | 'rules';
 export const tabs = [
-  {key: 'all' as tabKeys, title: 'Feed'},
-  {key: 'gainers' as tabKeys, title: 'About'},
-  {key: 'losers' as tabKeys, title: 'Mods'},
+  {key: 'feed' as tabKeys, title: 'Feed'},
+  {key: 'about' as tabKeys, title: 'About'},
+  {key: 'mods' as tabKeys, title: 'Mods'},
 ];
 
 export default function App() {
-  const {scrollY, index, setIndex, getRefForKey, ...sceneProps} =
+  const {scrollY, index, setIndex, getRefForKey, ...FeedSceneProps} =
     useScrollManager(tabs);
 
-  const renderScene = useCallback(
+  const renderFeedScene = useCallback(
     ({route: tab}: {route: ComTabRoute}) => (
-      <Scene
+      <FeedScene
         isActive={tabs[index].key === tab.key}
         routeKey={tab.key}
         scrollY={scrollY}
-        {...sceneProps}
+        {...FeedSceneProps}
       />
     ),
     [getRefForKey, index, tabs, scrollY],
@@ -51,7 +51,7 @@ export default function App() {
         </ComAnimatedNavBar>
       </NavBar>
 
-      <SafeAreaView style={styles.screen}>
+      <View style={styles.screen}>
         <ComAnimatedHeader scrollY={scrollY}>
           <Header />
         </ComAnimatedHeader>
@@ -66,9 +66,9 @@ export default function App() {
               <ComTabBar {...p} />
             </ComAnimatedTabBar>
           )}
-          renderScene={renderScene}
+          renderScene={renderFeedScene}
         />
-      </SafeAreaView>
+      </View>
     </SafeAreaProvider>
   );
 }

@@ -10,6 +10,7 @@ import {
   FlatList,
 } from 'react-native';
 import {ComAnimatedTabView} from '../Library';
+import Post from '../Post';
 
 type ScrollEvent = NativeSyntheticEvent<NativeScrollEvent>;
 
@@ -18,7 +19,7 @@ const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(i => ({
   key: `key-${i}`,
 }));
 
-interface SceneProps {
+interface FeedSceneProps {
   isActive: boolean;
   routeKey: string;
   scrollY: Animated.Value;
@@ -28,7 +29,7 @@ interface SceneProps {
   onScrollEndDrag: (e: ScrollEvent) => void;
 }
 
-export const Scene: FunctionComponent<SceneProps> = ({
+export const FeedScene: FunctionComponent<FeedSceneProps> = ({
   isActive,
   routeKey,
   scrollY,
@@ -48,7 +49,8 @@ export const Scene: FunctionComponent<SceneProps> = ({
       renderItem={({item}) => (
         <View style={styles.container}>
           <View style={styles.inner}>
-            <Text>{item.title}</Text>
+            {/* <Text>{item.title}</Text> */}
+            <Post />
           </View>
         </View>
       )}
@@ -68,8 +70,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inner: {
-    paddingHorizontal: 16,
-    paddingVertical: 20,
+    // paddingHorizontal: 16,
+    paddingVertical: 5,
     // backgroundColor: 'gray',
   },
 });

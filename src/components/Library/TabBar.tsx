@@ -107,13 +107,14 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   pill: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
     borderRadius: 16,
   },
   tabBar: {
     flexDirection: 'row',
-    paddingBottom: 16,
-    paddingLeft: 32,
+    paddingBottom: 12,
+    // paddingLeft: 32,
+    paddingLeft: 14,
   },
 });
