@@ -10,6 +10,7 @@ import {LogBox, View, StatusBar, Appearance} from 'react-native';
 import {Theme} from './src/constants/appTheme';
 import AuthNavigator from './src/navigation/AuthNavigator';
 import HomeNavigator from './src/navigation/HomeNavigator';
+import CommunityNavigator from './src/navigation/CommunityNavigator';
 import Splash from './src/screens/Splash';
 import {store} from './src/store';
 LogBox.ignoreAllLogs();
@@ -55,6 +56,10 @@ const RootNavigation = () => {
         <RootStack.Screen component={Splash} name="Splash" />
         <RootStack.Screen component={AuthNavigator} name="Auth" />
         <RootStack.Screen component={HomeNavigator} name="Home" />
+        <RootStack.Screen
+          component={CommunityNavigator}
+          name="CommunityFeedScreen"
+        />
       </RootStack.Navigator>
     </BottomSheetModalProvider>
   );
