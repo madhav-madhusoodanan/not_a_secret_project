@@ -56,10 +56,7 @@ const RootNavigation = () => {
         <RootStack.Screen component={Splash} name="Splash" />
         <RootStack.Screen component={AuthNavigator} name="Auth" />
         <RootStack.Screen component={HomeNavigator} name="Home" />
-        <RootStack.Screen
-          component={CommunityNavigator}
-          name="CommunityFeedScreen"
-        />
+        <RootStack.Screen component={CommunityNavigator} name="Community" />
       </RootStack.Navigator>
     </BottomSheetModalProvider>
   );

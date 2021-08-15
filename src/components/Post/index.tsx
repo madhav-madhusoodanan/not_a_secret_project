@@ -5,6 +5,7 @@ import ShareIcon from '@iconscout/react-native-unicons/icons/uil-share-alt';
 import UpVoteIcon from '@iconscout/react-native-unicons/icons/uil-arrow-circle-up';
 import DownVoteIcon from '@iconscout/react-native-unicons/icons/uil-arrow-circle-down';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
+import {useNavigation, useRoute} from '@react-navigation/core';
 
 import {Menu} from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
@@ -18,6 +19,11 @@ const postContent =
   "The packages given in my coaching are really comprehensive. They are usually completed along with the chapter as the teachers give regular homework from them. It may not be a national level institute but believe me, I have seen Allen's and FIITJEE's material and ours have a mixture of questions from all of them. What should I do? #doubt #dcpandey";
 
 export default function Post() {
+  const {navigate, goBack} = useNavigation();
+  const submitHandler = () => {
+    navigate('Community');
+  };
+
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -47,8 +53,7 @@ export default function Post() {
             }}></Image>
           <View style={styles.infoWrapper}>
             <View style={styles.namesWrapper}>
-              <TouchableOpacity
-                onPress={() => console.log('User Avatar Pressed')}>
+              <TouchableOpacity onPress={submitHandler}>
                 <Text style={{fontSize: 13, fontFamily: 'Inter-Medium'}}>
                   Nishant's Advanced Math 2021
                 </Text>

@@ -13,7 +13,7 @@ import StickyItemFlatList from '@gorhom/sticky-item';
 
 import {styles} from './styles';
 
-import CreatePostBottomSheetContent from '../CreatePostScreen'
+import CreatePostBottomSheetContent from '../CreatePostScreen';
 
 // dummy data
 const data = [...Array(10)].fill(0).map((_, index) => ({id: `item-${index}`}));
