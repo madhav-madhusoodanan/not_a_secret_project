@@ -13,7 +13,7 @@ export default class Comment extends Component {
     liked: false,
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     const {displayLike} = this.props;
     this.setState({
       liked: displayLike,

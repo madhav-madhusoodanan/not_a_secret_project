@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { View, Text, Image, TouchableHighlight } from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, Image, TouchableHighlight} from 'react-native';
 import commentStyling from './CommentStyling';
 import PropTypes from 'prop-types';
 
 export default class Reply extends Component {
   render() {
-    const { reply } = this.props;
+    const {reply} = this.props;
     return (
       <View>
         <View style={commentStyling.mainWrapper}>
           <Image
             style={commentStyling.replyImage}
-            source={{ uri: reply.ownerAvatar }}
+            source={{uri: reply.ownerAvatar}}
           />
           <View style={commentStyling.wrapper}>
             <View style={commentStyling.commentHeader}>
