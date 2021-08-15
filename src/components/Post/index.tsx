@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useMemo, useRef} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import CommentIcon from '@iconscout/react-native-unicons/icons/uil-comment';
 import ShareIcon from '@iconscout/react-native-unicons/icons/uil-share-alt';
 import UpVoteIcon from '@iconscout/react-native-unicons/icons/uil-arrow-circle-up';
 import DownVoteIcon from '@iconscout/react-native-unicons/icons/uil-arrow-circle-down';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
 
 import {Menu} from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
 import {SVGIcon} from './../SVGIcon';
 import TextInline from './TextInline';
+// import Comment from '../Comment';
 
 import {styles} from './styles';
 
@@ -19,6 +21,20 @@ export default function Post() {
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
+
+  // ref
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+
+  // variables
+  const snapPoints = useMemo(() => ['25%', '100%'], []);
+
+  // callbacks
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
 
   return (
     <View style={styles.post}>
