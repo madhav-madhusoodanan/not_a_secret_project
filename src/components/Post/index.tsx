@@ -10,7 +10,7 @@ import {Menu} from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
 import {SVGIcon} from './../SVGIcon';
 import TextInline from './TextInline';
-// import Comment from '../Comment';
+import CommentScreenContent from '../Comment';
 
 import {styles} from './styles';
 
@@ -132,7 +132,7 @@ export default function Post() {
         </View>
         <TouchableOpacity
           style={styles.commentIcon}
-          onPress={() => console.log('Comment Button Pressed')}>
+          onPress={handlePresentModalPress}>
           <CommentIcon size="20" color="#001d3d" />
           <Text
             style={{
@@ -150,6 +150,15 @@ export default function Post() {
           <ShareIcon size="20" color="#081c15" />
         </TouchableOpacity>
       </View>
+      <BottomSheetModal
+        ref={bottomSheetModalRef}
+        stackBehavior={'push'}
+        index={1}
+        name={'Comment Screen'}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
+        <CommentScreenContent />
+      </BottomSheetModal>
     </View>
   );
 }
