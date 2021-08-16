@@ -1,8 +1,7 @@
 import React, {useCallback} from 'react';
 import {Dimensions, View} from 'react-native';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import styles from './styles';
-
 import {
   ComAnimatedNavBar,
   ComAnimatedHeader,
@@ -30,6 +29,7 @@ export const tabs = [
 export default function App() {
   const {scrollY, index, setIndex, getRefForKey, ...FeedSceneProps} =
     useScrollManager(tabs);
+    console.log(index)
 
   const renderFeedScene = useCallback(
     ({route: tab}: {route: ComTabRoute}) => (

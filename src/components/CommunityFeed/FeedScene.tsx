@@ -11,6 +11,9 @@ import {
 } from 'react-native';
 import {ComAnimatedTabView} from '../Library';
 import Post from '../Post';
+import CommunityAbout from './CommunityAbout';
+import CommunityMods from './CommunityMods';
+import CommunityFeed from './CommunityFeed';
 
 type ScrollEvent = NativeSyntheticEvent<NativeScrollEvent>;
 
@@ -29,28 +32,27 @@ interface FeedSceneProps {
   onScrollEndDrag: (e: ScrollEvent) => void;
 }
 
-export const FeedScene: FunctionComponent<FeedSceneProps> = ({
-  isActive,
-  routeKey,
-  scrollY,
-  trackRef,
-  onMomentumScrollBegin,
-  onMomentumScrollEnd,
-  onScrollEndDrag,
-}) => (
-  <View style={styles.container}>
+export const FeedScene: FunctionComponent<FeedSceneProps> = props => {
+  const {
+    isActive,
+    routeKey,
+    scrollY,
+    trackRef,
+    onMomentumScrollBegin,
+    onMomentumScrollEnd,
+    onScrollEndDrag,
+  } = props;
+  const Mods = () => (
     <ComAnimatedTabView
       data={data}
       windowSize={3}
-      initialNumToRender={15}
       refreshControl={
         <RefreshControl refreshing={false} onRefresh={() => null} />
       }
       renderItem={({item}) => (
         <View style={styles.container}>
           <View style={styles.inner}>
-            {/* <Text>{item.title}</Text> */}
-            <Post />
+            <Text>{item.title}</Text>
           </View>
         </View>
       )}
@@ -62,8 +64,45 @@ export const FeedScene: FunctionComponent<FeedSceneProps> = ({
       onMomentumScrollBegin={onMomentumScrollBegin}
       onMomentumScrollEnd={onMomentumScrollEnd}
     />
-  </View>
-);
+  );
+  const Feed = () => (
+    <ComAnimatedTabView
+      data={data}
+      windowSize={3}
+      refreshControl={
+        <RefreshControl refreshing={false} onRefresh={() => null} />
+      }
+      renderItem={({item}) => (
+        <View style={styles.container}>
+          <View style={styles.inner}>
+            {/* <Text>{item.title}</Text> */}
+            <Post allowed />
+          </View>
+        </View>
+      )}
+      onRef={(ref: any) => {
+        trackRef(routeKey, ref);
+      }}
+      scrollY={isActive ? scrollY : undefined}
+      onScrollEndDrag={onScrollEndDrag}
+      onMomentumScrollBegin={onMomentumScrollBegin}
+      onMomentumScrollEnd={onMomentumScrollEnd}
+    />
+  );
+  return (
+    <View style={styles.container}>
+      {routeKey === 'feed' && (
+        <CommunityFeed styles={styles} {...props} data={data} />
+      )}
+      {routeKey === 'about' && (
+        <CommunityAbout styles={styles} {...props} data={data} />
+      )}
+      {routeKey === 'mods' && (
+        <CommunityMods styles={styles} {...props} data={data} />
+      )}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
