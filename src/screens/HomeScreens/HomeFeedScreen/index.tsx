@@ -96,11 +96,11 @@ export default function HomeFeedScreen({navigator}) {
             renderItem={renderItem}
           />
         </View>
-        <Post />
+        <Post  allowed />
         {/* <Divider style={styles.divider} /> */}
-        <Post />
-        <Post />
-        <Post />
+        <Post allowed />
+        <Post allowed />
+        <Post allowed />
       </ScrollView>
       <FAB
         style={styles.fab}

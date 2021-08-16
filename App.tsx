@@ -13,6 +13,7 @@ import HomeNavigator from './src/navigation/HomeNavigator';
 import CommunityNavigator from './src/navigation/CommunityNavigator';
 import Splash from './src/screens/Splash';
 import {store} from './src/store';
+import PostNavigator from './src/navigation/PostNavigator'
 LogBox.ignoreAllLogs();
 
 const RootStack = createStackNavigator();
@@ -57,6 +58,7 @@ const RootNavigation = () => {
         <RootStack.Screen component={AuthNavigator} name="Auth" />
         <RootStack.Screen component={HomeNavigator} name="Home" />
         <RootStack.Screen component={CommunityNavigator} name="Community" />
+        <RootStack.Screen component={PostNavigator} name="Post" />
       </RootStack.Navigator>
     </BottomSheetModalProvider>
   );

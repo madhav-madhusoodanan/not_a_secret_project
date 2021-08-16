@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import Post from '../Post';
 import CommentsList from './CommentsList';
 import NewCommentInput from './NewCommentInput';
 
@@ -66,21 +67,24 @@ const CommentScreenContent = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <CommentsList
-        topMargin={50}
-        data={data}
-        onAddComment={() => console.log('Comment Added')}
-        currentUser={{
-          id: 1,
-          name: 'Devansh Agarwal',
-          avatar:
-            'https://pbs.twimg.com/profile_images/1334955566993604608/vo4Ep1TZ_400x400.jpg',
-        }}
-      />
+    <>
+      <Post allowed={false} />
+      <View style={styles.container}>
+        <CommentsList
+          topMargin={50}
+          data={data}
+          onAddComment={() => console.log('Comment Added')}
+          currentUser={{
+            id: 1,
+            name: 'Devansh Agarwal',
+            avatar:
+              'https://pbs.twimg.com/profile_images/1334955566993604608/vo4Ep1TZ_400x400.jpg',
+          }}
+        />
 
-      <NewCommentInput onAddComment={onAddComment} />
-    </View>
+        <NewCommentInput onAddComment={onAddComment} />
+      </View>
+    </>
   );
 };
 
