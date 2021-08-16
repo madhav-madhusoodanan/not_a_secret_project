@@ -1,12 +1,15 @@
 import {StyleSheet} from 'react-native';
-
-export default styles = StyleSheet.create({
+const styles = StyleSheet.create({
   textInput: {
     marginTop: 10,
     justifyContent: 'flex-end',
     bottom: 0,
     borderRadius: 8,
     borderWidth: 1,
+
+    // changed color by madhav becuase it isnt visible
+    color: "#000",
+
     // borderColor: 'transparent',
     borderColor: '#1A1A1A0D',
     backgroundColor: '#FAFAFA',
@@ -33,3 +36,5 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default styles;
