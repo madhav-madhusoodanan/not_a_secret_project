@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import Post from '../Post';
 import CommentsList from './CommentsList';
 import NewCommentInput from './NewCommentInput';
 
@@ -68,10 +67,9 @@ const CommentScreenContent = () => {
 
   return (
     <>
-      <Post allowed={false} />
       <View style={styles.container}>
         <CommentsList
-          topMargin={50}
+          topMargin={40}
           data={data}
           onAddComment={() => console.log('Comment Added')}
           currentUser={{
