@@ -21,6 +21,7 @@ const postContent =
 export default function Post() {
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
+    // @ts-ignore
     navigate('Community');
   };
 
