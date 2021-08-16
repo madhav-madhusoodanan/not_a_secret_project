@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   FlatList,
   View,
@@ -11,14 +11,12 @@ import commentListStyling from './commentListStyling';
 import propTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-
-
 export default class CommentsList extends Component {
-  state = { text: '' };
+  state = {text: ''};
 
   addComment = () => {
-    let { data, onAddComment,currentUser } = this.props;
-    const { text } = this.state;
+    var {data, onAddComment, currentUser} = this.props;
+    const {text} = this.state;
     const newcomment = {
       ownerName: currentUser.name,
       ownerAvatar: currentUser.avatar,
@@ -26,7 +24,9 @@ export default class CommentsList extends Component {
       date: '13h ',
       likersIds: [],
     };
-    const randomNumber=`${Math.floor(Math.random() * 1000)+Math.floor(Math.random() * 1000) + 10}`
+    const randomNumber = `${
+      Math.floor(Math.random() * 1000) + Math.floor(Math.random() * 1000) + 10
+    }`;
 
     data.push({
       id: randomNumber,
@@ -41,35 +41,36 @@ export default class CommentsList extends Component {
     onAddComment(newcomment);
   };
 
-  displayLikeCondition = (commentId) => {
-    const { data, currentUser } = this.props;
-    let comment = data.filter((comment) => comment.id === commentId);
+  displayLikeCondition = commentId => {
+    const {data, currentUser} = this.props;
+    let comment = data.filter(comment => comment.id === commentId);
     //check if liker id equals to current user id
-    let founded = comment[0].likersIds.filter((likerId) => likerId === currentUser.id);
+    let founded = comment[0].likersIds.filter(
+      likerId => likerId === currentUser.id,
+    );
 
     if (founded.length) return true;
     else return false;
- 
   };
   render() {
-    const { data,topMargin } = this.props;
+    const {data, topMargin} = this.props;
 
     return (
       <View style={commentListStyling.mainContainer}>
-        <FlatList style={{marginTop: topMargin,}}
+        <FlatList
+          style={{marginTop: topMargin}}
           ref="flatList"
           onContentSizeChange={() => this.refs.flatList.scrollToEnd()}
           extraData={this.props}
           data={data}
-          keyExtractor={(item) => item.id}
-          renderItem={(info) => (
+          keyExtractor={item => item.id}
+          renderItem={info => (
             <Comment
               commentData={info.item}
               displayLike={this.displayLikeCondition(info.item.id)}
             />
           )}
         />
-
       </View>
     );
   }
@@ -88,7 +89,7 @@ CommentsList.propTypes = {
         ownerAvatar: propTypes.string,
         content: propTypes.string.isRequired,
         date: propTypes.string,
-      })
+      }),
     ),
   }),
   onAddComment: propTypes.func,
