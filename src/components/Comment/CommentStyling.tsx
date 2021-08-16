@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 export default styles = StyleSheet.create({
   mainWrapper: {
@@ -11,7 +11,6 @@ export default styles = StyleSheet.create({
     borderRadius: 20,
     height: 40,
     marginRight: 10,
-    // marginLeft: 10,
   },
 
   replyImage: {
