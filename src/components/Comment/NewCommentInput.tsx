@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   View,
   KeyboardAvoidingView,
@@ -10,13 +10,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class componentName extends Component {
   addComment = () => {
-    const { text } = this.state;
-    const { onAddComment } = this.props;
+    const {text} = this.state;
+    const {onAddComment} = this.props;
     const newcomment = {
-      ownerName: 'Hamada',
-      ownerAvatar: 'https://i.imgur.com/2FXmVPb.jpg',
+      ownerName: 'Devansh Agarwal',
+      ownerAvatar:
+        'https://pbs.twimg.com/profile_images/1334955566993604608/vo4Ep1TZ_400x400.jpg',
       content: text,
-      date: '13h ',
+      date: '12s ',
       likersIds: [],
     };
 
@@ -34,21 +35,21 @@ export default class componentName extends Component {
       <KeyboardAvoidingView enabled>
         <View style={commentListStyling.textInputContainer}>
           <TextInput
-            ref='TextInput'
-            onChangeText={(text) => {
-              this.setState({ text });
+            ref="TextInput"
+            onChangeText={text => {
+              this.setState({text});
             }}
-            placeholderTextColor='#C3C5C8'
+            placeholderTextColor="#C3C5C8"
             style={commentListStyling.textInput}
             multiline={true}
-            placeholder='Write a comment..'
+            placeholder="Write a comment.."
           />
           <TouchableOpacity onPress={this.addComment}>
             <Icon
               style={commentListStyling.icon}
-              name='send'
+              name="send"
               size={30}
-              color='#00AAFF'
+              color="#00AAFF"
             />
           </TouchableOpacity>
           {/* </TextInput> */}
