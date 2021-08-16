@@ -23,6 +23,7 @@ const HomeNavigator = () => {
         headerStyle: {
           backgroundColor: Theme.colors.background,
         },
+        headerTransparent: true,
         headerTintColor: Theme.colors.text,
         headerTitleAlign: 'left',
         headerTitleStyle: {

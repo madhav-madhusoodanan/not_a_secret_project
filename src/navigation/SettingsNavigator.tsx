@@ -6,9 +6,21 @@ const SettingsNavigator = () => {
   return (
     <Settings.Navigator
       initialRouteName="SettingsScreen"
-      screenOptions={{headerShown: false}}>
+      screenOptions={{
+        headerTransparent: true,
+        presentation: 'modal',
+        headerStyle: {
+          // backgroundColor: Theme.colors.background,
+        },
+        headerTintColor: 'black',
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          fontFamily: 'Gilroy-Bold',
+          fontSize: 24,
+        },
+      }}>
       <Settings.Screen
-        options={{headerShown: false}}
+        options={{title: 'Settings'}}
         name="SettingsScreen"
         component={SettingsScreens.SettingsScreen}
       />
