@@ -4,12 +4,18 @@ import {TouchableOpacity, Text} from 'react-native';
 import {HomeScreens} from '../screens/HomeScreens';
 import {BottomTabs} from '../components/BottomTabs';
 import {Theme} from '../constants/appTheme';
+import {useNavigation} from '@react-navigation/core';
 
 import DropDownIcon from '@iconscout/react-native-unicons/icons/uil-angle-down';
 import SettingIcon from '@iconscout/react-native-unicons/icons/uil-setting';
 
 const Tab = createBottomTabNavigator();
 const HomeNavigator = () => {
+  const {navigate, goBack} = useNavigation();
+  const submitHandler = () => {
+    navigate('Setting');
+  };
+
   return (
     <Tab.Navigator
       tabBar={props => <BottomTabs {...props} />}
@@ -81,7 +87,7 @@ const HomeNavigator = () => {
                 alignSelf: 'flex-end',
                 flexDirection: 'row',
               }}
-              onPress={() => console.log('Setting Button Pressed')}>
+              onPress={submitHandler}>
               <SettingIcon size="24" color="#081c15" />
             </TouchableOpacity>
           ),

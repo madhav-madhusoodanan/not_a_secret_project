@@ -7,7 +7,7 @@ import styles from './styles';
 export default function index() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{color: 'black'}}>yo</Text>
+      <Text style={{color: 'black'}}>Settings UI</Text>
     </SafeAreaView>
   );
 }
