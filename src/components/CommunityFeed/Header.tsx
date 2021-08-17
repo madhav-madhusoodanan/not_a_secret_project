@@ -48,11 +48,6 @@ const Header = () => {
             onPress={() => console.log('Follow Button Pressed')}>
             Follow
           </Button>
-          <TouchableOpacity
-            style={headerStyles.menuButtonStyles}
-            onPress={() => console.log('Menu Button Pressed')}>
-            <MenuIcon size="24" color="#848c8e" />
-          </TouchableOpacity>
         </View>
       </View>
     </View>

@@ -1,9 +1,9 @@
-import React, { FC, memo, useMemo } from "react";
-import { StyleSheet, Text, View, ViewProps } from "react-native";
+import React, {FC, memo, useMemo} from 'react';
+import {StyleSheet, Text, View, ViewProps} from 'react-native';
 
-type Props = Pick<ViewProps, "style"> & { name: string };
+type Props = Pick<ViewProps, 'style'> & {name: string};
 
-const HeaderOverlay: FC<Props> = ({ style, name }) => {
+const HeaderOverlay: FC<Props> = ({style, name}) => {
   const containerStyle = useMemo(() => [styles.container, style], [style]);
 
   return (
@@ -15,10 +15,11 @@ const HeaderOverlay: FC<Props> = ({ style, name }) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
+    fontFamily: 'Inter-Bold',
   },
 });
 

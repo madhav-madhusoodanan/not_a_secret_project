@@ -6,7 +6,7 @@ const {
   window: {height, width},
   isSmallDevice,
 } = layout;
-export const PHOTO_SIZE = 80;
+export const PHOTO_SIZE = 120;
 
 export const headerStyles = StyleSheet.create({
   infoContainer: {
@@ -22,13 +22,14 @@ export const headerStyles = StyleSheet.create({
   },
   stats: {
     fontSize: 15,
-    marginTop: 4,
+    marginTop: 6,
     fontFamily: 'Inter-Bold',
   },
   statsacomp: {
     fontSize: 15,
     marginLeft: 10,
-    marginTop: 4,
+    marginTop: 6,
+    color: '#4A5568',
     fontFamily: 'Inter-Medium',
   },
   photo: {
@@ -51,28 +52,18 @@ export const headerStyles = StyleSheet.create({
   followButtonLabelStyles: {
     color: Theme.colors.background,
     textTransform: 'none',
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Inter-SemiBold',
     fontSize: 14,
   },
 
   followButtonContentStyles: {
     height: 42,
-    width: 168,
-  },
-  menuButtonStyles: {
-    marginLeft: 4,
-    borderWidth: 2,
-    borderRadius: 10,
-    height: 46,
-    borderColor: '#848c8e',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 46,
+    width: 120,
   },
   buttonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     // justifyContent: 'center',
-    marginVertical: 10,
+    marginVertical: 12,
   },
 });
