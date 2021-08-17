@@ -15,6 +15,10 @@ export const headerStyles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
+  backButton: {
+    marginLeft: 10,
+    marginTop: 9,
+  },
   name: {
     fontSize: 20,
     fontFamily: 'Inter-Bold',
@@ -39,7 +43,7 @@ export const headerStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    padding: 20,
+    padding: 16,
   },
   followButtonStyles: {
     borderRadius: 10,
