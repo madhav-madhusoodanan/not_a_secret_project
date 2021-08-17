@@ -1,7 +1,16 @@
 import React, {FC, memo, useMemo} from 'react';
-import {ImageProps, StyleSheet, Text, View, ViewProps} from 'react-native';
+import {
+  ImageProps,
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
+  ViewProps,
+} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {headerStyles} from './HeaderStyles';
+import {Button} from 'react-native-paper';
+import MenuIcon from '@iconscout/react-native-unicons/icons/uil-ellipsis-h';
 
 type Props = Pick<ViewProps, 'style'> & {
   photo: string;
@@ -22,9 +31,29 @@ const Header = () => {
         }}
         resizeMode={FastImage.resizeMode.contain}
       />
-      <View style={headerStyles.textContainer}>
+      <View style={headerStyles.infoContainer}>
         <Text style={headerStyles.name}>JEE Mentorship</Text>
-        <Text style={headerStyles.bio}>by Nishant Jindal</Text>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={headerStyles.stats}>131k</Text>
+          <Text style={headerStyles.statsacomp}>Members</Text>
+        </View>
+
+        <View style={headerStyles.buttonContainer}>
+          <Button
+            mode={'contained'}
+            color={'#00AAFF'}
+            contentStyle={headerStyles.followButtonContentStyles}
+            style={headerStyles.followButtonStyles}
+            labelStyle={headerStyles.followButtonLabelStyles}
+            onPress={() => console.log('Follow Button Pressed')}>
+            Follow
+          </Button>
+          <TouchableOpacity
+            style={headerStyles.menuButtonStyles}
+            onPress={() => console.log('Menu Button Pressed')}>
+            <MenuIcon size="24" color="#848c8e" />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
