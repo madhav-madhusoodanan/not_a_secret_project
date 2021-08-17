@@ -7,8 +7,7 @@ import {
   View,
   ViewProps,
 } from 'react-native';
-
-export const PHOTO_SIZE = 120;
+import {headerStyles} from './HeaderStyles';
 
 type Props = Pick<ViewProps, 'style'> & {
   photo: string;
@@ -17,38 +16,24 @@ type Props = Pick<ViewProps, 'style'> & {
 };
 
 const Header = () => {
-  const containerStyle = useMemo(() => [styles.container], []);
+  const containerStyle = useMemo(() => [headerStyles.container], []);
 
   const photoSource = useMemo<ImageProps['source']>(
-    () => ({uri: 'https://picsum.photos/id/1027/300/300'}),
+    () => ({
+      uri: 'https://pbs.twimg.com/profile_images/1347406184920190977/k2PegsXQ_400x400.jpg',
+    }),
     [],
   );
 
   return (
     <View style={containerStyle}>
-      <Image style={styles.photo} source={photoSource} />
-      <View style={styles.textContainer}>
-        <Text style={styles.name}>Emily Davis</Text>
-        <Text style={styles.bio}>Let's get starnidsted 🚀</Text>
+      <Image style={headerStyles.photo} source={photoSource} />
+      <View style={headerStyles.textContainer}>
+        <Text style={headerStyles.name}>JEE Mentorship</Text>
+        <Text style={headerStyles.bio}>Let's get starnidsted 🚀</Text>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  textContainer: {marginLeft: 24, justifyContent: 'center', flex: 1},
-  name: {fontSize: 24, fontWeight: '700'},
-  bio: {fontSize: 15, marginTop: 4},
-  photo: {
-    height: PHOTO_SIZE,
-    width: PHOTO_SIZE,
-    borderRadius: PHOTO_SIZE / 2,
-  },
-  container: {
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    padding: 24,
-  },
-});
 
 export default memo(Header);
