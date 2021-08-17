@@ -4,6 +4,7 @@ import {List} from 'react-native-paper';
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
+import {SVGIcon} from './../../../components/SVGIcon';
 import styles from './styles';
 
 export default function index() {
@@ -18,6 +19,7 @@ export default function index() {
             left={() => <List.Icon color="#45E5A2" icon="folder" />}
           />
         </RNBounceable>
+        {/* <SVGIcon height={24} type="home-tab" width={24} /> */}
         <RNBounceable bounceEffect={0.97} onPress={() => {}}>
           <List.Item
             title="Report Bug"

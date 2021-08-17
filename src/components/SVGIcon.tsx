@@ -39,6 +39,9 @@ import GlobalSearchSelectedIcon from '../assets/icons/tab-bar/search-selected.sv
 import GlobalSearchIcon from '../assets/icons/tab-bar/search.svg';
 import YouTabIconActive from '../assets/icons/tab-bar/you-selected.svg';
 import YouTabIcon from '../assets/icons/tab-bar/you.svg';
+import BugIcon from '../assets/icons/settings/bug.svg';
+import PrivacyIcon from '../assets/icons/settings/privacy.svg';
+import LogOutIcon from '../assets/icons/settings/logout.svg';
 
 const iconMap = {
   // Tab related icons
@@ -94,6 +97,11 @@ const iconMap = {
   // Post
   kebab: KebabIcon,
   dot: DotIcon,
+
+  // Settings
+  logout: LogOutIcon,
+  bug: BugIcon,
+  privacy: PrivacyIcon,
 };
 
 export const SVGIcon = ({fill, height, type, width}) => {
