@@ -18,9 +18,9 @@ import {styles} from './styles';
 
 export default function ProfileScreen() {
   const {navigate, goBack} = useNavigation();
-  // const submitHandler = () => {
-  //   console.log('Follow Button Pressed')
-  // };
+  const submitHandler = () => {
+    navigate('Profile');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -68,7 +68,7 @@ export default function ProfileScreen() {
             contentStyle={styles.editButtonContentStyles}
             style={styles.editButtonStyles}
             labelStyle={styles.editButtonLabelStyles}
-            onPress={() => console.log('Edit Profile Button Pressed')}>
+            onPress={submitHandler}>
             Edit Profile
           </Button>
           <TouchableOpacity
