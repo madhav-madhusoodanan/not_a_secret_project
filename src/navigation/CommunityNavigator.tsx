@@ -219,7 +219,7 @@ const CommunityNavigator: FC = () => {
         <Header />
       </Animated.View>
       <Animated.View style={collapsedOverlayStyle}>
-        <HeaderOverlay name="JEE Mentorship" />
+        <HeaderOverlay />
       </Animated.View>
       <Community.Navigator
         screenOptions={{

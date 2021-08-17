@@ -11,13 +11,12 @@ export const PHOTO_SIZE = 120;
 export const headerStyles = StyleSheet.create({
   infoContainer: {
     marginLeft: 24,
-    // bottom: 4,
+    bottom: 4,
     justifyContent: 'center',
     flex: 1,
   },
   name: {
     fontSize: 20,
-    // fontWeight: '700',
     fontFamily: 'Inter-Bold',
   },
   stats: {
@@ -64,6 +63,6 @@ export const headerStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     // justifyContent: 'center',
-    marginVertical: 12,
+    marginTop: 12,
   },
 });

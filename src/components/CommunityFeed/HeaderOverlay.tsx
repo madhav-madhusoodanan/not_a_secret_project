@@ -1,14 +1,16 @@
 import React, {FC, memo, useMemo} from 'react';
 import {StyleSheet, Text, View, ViewProps} from 'react-native';
+import CrossIcon from '@iconscout/react-native-unicons/icons/uil-times';
 
 type Props = Pick<ViewProps, 'style'> & {name: string};
 
-const HeaderOverlay: FC<Props> = ({style, name}) => {
-  const containerStyle = useMemo(() => [styles.container, style], [style]);
+const HeaderOverlay = () => {
+  const containerStyle = useMemo(() => [styles.container], []);
 
   return (
     <View style={containerStyle}>
-      <Text style={styles.title}>{name}</Text>
+      {/* <CrossIcon size="30" color="#000" /> */}
+      <Text style={styles.title}>JEE Mentorship</Text>
     </View>
   );
 };
@@ -16,9 +18,11 @@ const HeaderOverlay: FC<Props> = ({style, name}) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    // flexDirection: 'row',
   },
   title: {
     fontSize: 20,
+    // alignSelf: 'center',
     fontFamily: 'Inter-Bold',
   },
 });
