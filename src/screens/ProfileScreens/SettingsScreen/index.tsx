@@ -16,10 +16,17 @@ export default function index() {
             title="Privacy Policy"
             style={styles.listItem}
             right={() => <List.Icon color="#000" icon="chevron-right" />}
-            left={() => <List.Icon color="#45E5A2" icon="folder" />}
+            left={() => (
+              <List.Icon
+                color="#45E5A2"
+                icon={props => (
+                  <SVGIcon {...props} height={50} type="privacy" width={50} />
+                )}
+              />
+            )}
           />
         </RNBounceable>
-        {/* <SVGIcon height={24} type="home-tab" width={24} /> */}
+
         <RNBounceable bounceEffect={0.97} onPress={() => {}}>
           <List.Item
             title="Report Bug"
