@@ -9,13 +9,13 @@ import {
 } from '@react-navigation/stack';
 import {Easing} from 'react-native';
 import {Text} from 'react-native-paper';
-import CommentScreenContent from '../components/Comment'
+import CommentScreenContent from '../components/Comment';
 
 const PostStack = createStackNavigator();
 
 const PostNavigator = () => {
   return (
-    <PostStack.Navigator initialRouteName='PostScreen'>
+    <PostStack.Navigator initialRouteName="PostScreen">
       <PostStack.Screen
         name="PostScreen"
         options={{
@@ -50,4 +50,4 @@ const PostNavigator = () => {
   );
 };
 
-export default PostNavigator
+export default PostNavigator;

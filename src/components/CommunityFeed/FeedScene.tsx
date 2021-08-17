@@ -75,7 +75,6 @@ export const FeedScene: FunctionComponent<FeedSceneProps> = props => {
       renderItem={({item}) => (
         <View style={styles.container}>
           <View style={styles.inner}>
-            {/* <Text>{item.title}</Text> */}
             <Post allowed />
           </View>
         </View>
