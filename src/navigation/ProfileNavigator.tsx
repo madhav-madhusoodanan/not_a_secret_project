@@ -1,5 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
+import AngleLeftIcon from '@iconscout/react-native-unicons/icons/uil-angle-left-b';
+import CrossIcon from '@iconscout/react-native-unicons/icons/uil-times';
 import {ProfileScreens} from '../screens/ProfileScreens';
 const Profile = createStackNavigator();
 const ProfileNavigator = () => {
@@ -20,12 +22,18 @@ const ProfileNavigator = () => {
         },
       }}>
       <Profile.Screen
-        options={{title: 'Settings'}}
+        options={{
+          title: 'Settings',
+          headerBackImage: () => <AngleLeftIcon size="30" color="#000" />,
+        }}
         name="SettingsScreen"
         component={ProfileScreens.SettingsScreen}
       />
       <Profile.Screen
-        options={{headerShown: false}}
+        options={{
+          title: 'Edit Profile',
+          headerBackImage: () => <CrossIcon size="30" color="#000" />,
+        }}
         name="EditProfileScreen"
         component={ProfileScreens.EditProfileScreen}
       />
