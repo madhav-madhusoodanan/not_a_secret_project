@@ -10,6 +10,7 @@ const HeaderOverlay = () => {
   return (
     <View style={containerStyle}>
       <AngleLeftIcon size="30" color="#000" />
+
       <Text style={styles.title}>JEE Mentorship</Text>
     </View>
   );

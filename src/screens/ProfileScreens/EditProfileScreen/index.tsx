@@ -1,7 +1,7 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {List} from 'react-native-paper';
-import RNBounceable from '@freakycoder/react-native-bounceable';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {List, Subheading, Colors} from 'react-native-paper';
+import {TextInput} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {SVGIcon} from './../../../components/SVGIcon';
@@ -10,66 +10,68 @@ import styles from './styles';
 export default function index() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.listGroup}>
-        <RNBounceable bounceEffect={0.97} onPress={() => {}}>
-          <List.Item
-            title="Privacy Policy"
-            titleStyle={styles.titleStyle}
-            style={styles.listItem}
-            right={() => <List.Icon color="#000" icon="chevron-right" />}
-            left={() => (
-              <List.Icon
-                color="#45E5A2"
-                icon={props => (
-                  <SVGIcon {...props} height={70} type="privacy" width={70} />
-                )}
-              />
-            )}
+      <View
+        style={{
+          justifyContent: 'center',
+          width: '100%',
+          flexDirection: 'row',
+        }}>
+        <View
+          style={{
+            marginVertical: 30,
+            width: 100,
+          }}>
+          <TouchableOpacity
+            onPress={() => {}}
+            activeOpacity={0.5}
+            style={{
+              position: 'absolute',
+              zIndex: 1,
+              bottom: -15,
+              right: -15,
+            }}>
+            <List.Icon
+              color={Colors.black}
+              icon="pencil"
+              style={{
+                borderRadius: 15,
+                height: 30,
+                width: 30,
+                backgroundColor: '#bbb',
+              }}
+            />
+          </TouchableOpacity>
+          <Image
+            style={{
+              width: 100,
+              height: 100,
+              borderRadius: 20,
+              marginHorizontal: 'auto',
+            }}
+            source={{uri: 'https://picsum.photos/700'}}
           />
-        </RNBounceable>
+        </View>
+      </View>
+      <View style={{marginVertical: 10}}>
+        <View>
+          <Subheading style={{color: 'black'}}>First Name</Subheading>
+          <TextInput style={styles.textInputContainer} placeholder="Devansh" />
+        </View>
 
-        <RNBounceable bounceEffect={0.97} onPress={() => {}}>
-          <List.Item
-            title="Report Bug"
-            titleStyle={styles.titleStyle}
-            style={styles.listItem}
-            right={() => <List.Icon color="#000" icon="chevron-right" />}
-            left={() => (
-              <List.Icon
-                color="#71A1FF"
-                icon={props => (
-                  <SVGIcon {...props} height={70} type="bug" width={70} />
-                )}
-              />
-            )}
-          />
-        </RNBounceable>
-        <RNBounceable bounceEffect={0.97} onPress={() => {}}>
-          <List.Item
-            title="Logout"
-            titleStyle={styles.titleStyle}
-            style={styles.listItem}
-            right={() => <List.Icon color="#000" icon="chevron-right" />}
-            left={() => (
-              <List.Icon
-                color="#FF5E5E"
-                icon={props => (
-                  <SVGIcon
-                    {...props}
-                    fill={'transparent'}
-                    height={70}
-                    type="logout"
-                    width={70}
-                  />
-                )}
-              />
-            )}
-          />
-        </RNBounceable>
+        <View style={{marginVertical: 10}}>
+          <Subheading style={{color: 'black'}}>Last Name</Subheading>
+          <TextInput style={styles.textInputContainer} placeholder="Agarwal" />
+        </View>
+        <View>
+          <Subheading style={{color: 'black'}}>Username</Subheading>
+          <TextInput style={styles.textInputContainer} placeholder="daviz00" />
+        </View>
       </View>
-      <View style={styles.footerText}>
-        <Text style={styles.footerTextStyles}>1.0 (081721)</Text>
-      </View>
+      <Text style={styles.bioText}>
+        👉 To draw attention attention attention{'\n'}✈️ Commonly used by travel
+        brands attention{'\n'}🎥 To call attention to you YouTube channel
+        attention{'\n'}🥳 To indicate an achievement or award attention
+      </Text>
     </SafeAreaView>
   );
 }
