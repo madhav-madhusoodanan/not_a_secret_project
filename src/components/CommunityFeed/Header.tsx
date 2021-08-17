@@ -24,7 +24,7 @@ const Header = () => {
       />
       <View style={headerStyles.textContainer}>
         <Text style={headerStyles.name}>JEE Mentorship</Text>
-        <Text style={headerStyles.bio}>Let's get starnidsted 🚀</Text>
+        <Text style={headerStyles.bio}>by Nishant Jindal</Text>
       </View>
     </View>
   );

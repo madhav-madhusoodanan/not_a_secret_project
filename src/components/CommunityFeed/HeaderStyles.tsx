@@ -9,9 +9,19 @@ const {
 export const PHOTO_SIZE = 80;
 
 export const headerStyles = StyleSheet.create({
-  textContainer: {marginLeft: 24, justifyContent: 'center', flex: 1},
-  name: {fontSize: 24, fontWeight: '700'},
-  bio: {fontSize: 15, marginTop: 4},
+  textContainer: {
+    marginLeft: 24,
+    justifyContent: 'center',
+    flex: 1,
+  },
+  name: {
+    fontSize: 24,
+    fontWeight: '700',
+  },
+  bio: {
+    fontSize: 15,
+    marginTop: 4,
+  },
   photo: {
     height: PHOTO_SIZE,
     width: PHOTO_SIZE,
