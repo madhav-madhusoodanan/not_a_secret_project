@@ -30,6 +30,20 @@ const styles = StyleSheet.create({
     top: -4,
     fontFamily: 'Inter-Bold',
   },
+  footerText: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    marginBottom: 30,
+    right: 0,
+    flex: 1,
+  },
+  footerTextStyles: {
+    color: '#adb5bd',
+    fontSize: 16,
+    textAlign: 'center',
+    fontFamily: 'Inter-Bold',
+  },
 });
 
 export default styles;

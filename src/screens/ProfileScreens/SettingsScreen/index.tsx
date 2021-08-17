@@ -67,6 +67,9 @@ export default function index() {
           />
         </RNBounceable>
       </View>
+      <View style={styles.footerText}>
+        <Text style={styles.footerTextStyles}>1.0 (081721)</Text>
+      </View>
     </SafeAreaView>
   );
 }
