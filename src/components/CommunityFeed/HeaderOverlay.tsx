@@ -17,14 +17,13 @@ const HeaderOverlay = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // alignItems: 'center',
     flexDirection: 'row',
     paddingHorizontal: 10,
   },
   title: {
     fontSize: 20,
     flex: 1,
-    right: 20,
+    right: 16,
     textAlign: 'center',
     fontFamily: 'Inter-Bold',
   },
