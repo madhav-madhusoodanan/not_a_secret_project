@@ -6,21 +6,49 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     paddingHorizontal: 16,
+
     backgroundColor: Theme.colors.background,
   },
   cardStyles: {
     borderRadius: 12,
     backgroundColor: '#F8F8F9',
     elevation: 10,
+    marginBottom: 20,
     paddingHorizontal: 12,
-    paddingVertical: 2,
+    paddingTop: 2,
+    paddingBottom: 12,
   },
   cardTitle: {
     color: '#000',
     fontSize: 16,
     fontFamily: 'Inter-SemiBold',
   },
-  listTitle: {color: '#828282', fontSize: 14, fontFamily: 'Inter-Medium'},
+  listTitle: {
+    color: '#828282',
+    fontSize: 14,
+    marginBottom: 6,
+    fontFamily: 'Inter-Medium',
+  },
+  listContent: {
+    color: '#000',
+    marginLeft: 8,
+    fontFamily: 'Inter-Medium',
+    fontSize: 14,
+  },
+  listContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  divider: {
+    marginTop: 8,
+    backgroundColor: '#F8F8F9',
+  },
+  listLinkContent: {
+    fontFamily: 'Inter-Medium',
+    textDecorationLine: 'underline',
+    fontSize: 14,
+    color: 'dodgerblue',
+  },
 });
 
 export default styles;
