@@ -33,6 +33,7 @@ import {HeaderConfig} from '../types/HeaderConfig';
 import {Visibility} from '../types/Visibility';
 import HeaderOverlay from './../components/CommunityFeed/HeaderOverlay';
 
+import {CommunityScreens} from '../screens/CommunityScreens';
 import FeedIcon from '@iconscout/react-native-unicons/icons/uil-th';
 import AboutIcon from '@iconscout/react-native-unicons/icons/uil-file-info-alt';
 
@@ -215,11 +216,7 @@ const CommunityNavigator: FC = () => {
   return (
     <View style={styles.container}>
       <Animated.View onLayout={handleHeaderLayout} style={headerContainerStyle}>
-        <Header
-          name="Emily Davis"
-          bio="Let's get started 🚀"
-          photo={'https://picsum.photos/id/1027/300/300'}
-        />
+        <Header />
       </Animated.View>
       <Animated.View style={collapsedOverlayStyle}>
         <HeaderOverlay name="JEE Mentorship" />

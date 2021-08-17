@@ -1,4 +1,4 @@
-import React, { FC, memo, useMemo } from "react";
+import React, {FC, memo, useMemo} from 'react';
 import {
   Image,
   ImageProps,
@@ -6,44 +6,47 @@ import {
   Text,
   View,
   ViewProps,
-} from "react-native";
+} from 'react-native';
 
 export const PHOTO_SIZE = 120;
 
-type Props = Pick<ViewProps, "style"> & {
+type Props = Pick<ViewProps, 'style'> & {
   photo: string;
   name: string;
   bio: string;
 };
 
-const Header: FC<Props> = ({ style, name, photo, bio }) => {
-  const containerStyle = useMemo(() => [styles.container, style], []);
+const Header = () => {
+  const containerStyle = useMemo(() => [styles.container], []);
 
-  const photoSource = useMemo<ImageProps["source"]>(() => ({ uri: photo }), []);
+  const photoSource = useMemo<ImageProps['source']>(
+    () => ({uri: 'https://picsum.photos/id/1027/300/300'}),
+    [],
+  );
 
   return (
     <View style={containerStyle}>
       <Image style={styles.photo} source={photoSource} />
       <View style={styles.textContainer}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.bio}>{bio}</Text>
+        <Text style={styles.name}>Emily Davis</Text>
+        <Text style={styles.bio}>Let's get starnidsted 🚀</Text>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  textContainer: { marginLeft: 24, justifyContent: "center", flex: 1 },
-  name: { fontSize: 24, fontWeight: "700" },
-  bio: { fontSize: 15, marginTop: 4 },
+  textContainer: {marginLeft: 24, justifyContent: 'center', flex: 1},
+  name: {fontSize: 24, fontWeight: '700'},
+  bio: {fontSize: 15, marginTop: 4},
   photo: {
     height: PHOTO_SIZE,
     width: PHOTO_SIZE,
     borderRadius: PHOTO_SIZE / 2,
   },
   container: {
-    flexDirection: "row",
-    backgroundColor: "white",
+    flexDirection: 'row',
+    backgroundColor: 'white',
     padding: 24,
   },
 });
