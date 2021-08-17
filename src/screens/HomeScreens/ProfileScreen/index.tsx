@@ -1,10 +1,8 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   SafeAreaView,
-  Image,
   TouchableOpacity,
   ScrollView,
   Pressable,
@@ -13,7 +11,7 @@ import {
 import FastImage from 'react-native-fast-image';
 import MenuIcon from '@iconscout/react-native-unicons/icons/uil-ellipsis-h';
 import {useNavigation} from '@react-navigation/native';
-import {Button, Subheading} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import {styles} from './styles';
 
 export default function ProfileScreen() {

@@ -1,12 +1,6 @@
 import React, {FC, memo, useMemo} from 'react';
-import {
-  Image,
-  ImageProps,
-  StyleSheet,
-  Text,
-  View,
-  ViewProps,
-} from 'react-native';
+import {ImageProps, StyleSheet, Text, View, ViewProps} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {headerStyles} from './HeaderStyles';
 
 type Props = Pick<ViewProps, 'style'> & {
@@ -18,16 +12,16 @@ type Props = Pick<ViewProps, 'style'> & {
 const Header = () => {
   const containerStyle = useMemo(() => [headerStyles.container], []);
 
-  const photoSource = useMemo<ImageProps['source']>(
-    () => ({
-      uri: 'https://pbs.twimg.com/profile_images/1347406184920190977/k2PegsXQ_400x400.jpg',
-    }),
-    [],
-  );
-
   return (
     <View style={containerStyle}>
-      <Image style={headerStyles.photo} source={photoSource} />
+      <FastImage
+        style={headerStyles.photo}
+        source={{
+          uri: 'https://pbs.twimg.com/profile_images/1347406184920190977/k2PegsXQ_400x400.jpg',
+          priority: FastImage.priority.normal,
+        }}
+        resizeMode={FastImage.resizeMode.contain}
+      />
       <View style={headerStyles.textContainer}>
         <Text style={headerStyles.name}>JEE Mentorship</Text>
         <Text style={headerStyles.bio}>Let's get starnidsted 🚀</Text>
