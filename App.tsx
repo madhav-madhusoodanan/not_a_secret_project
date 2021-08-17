@@ -11,7 +11,7 @@ import {Theme} from './src/constants/appTheme';
 import AuthNavigator from './src/navigation/AuthNavigator';
 import HomeNavigator from './src/navigation/HomeNavigator';
 import CommunityNavigator from './src/navigation/CommunityNavigator';
-import SettingsNavigator from './src/navigation/SettingsNavigator';
+import ProfileNavigator from './src/navigation/ProfileNavigator';
 import Splash from './src/screens/Splash';
 import {store} from './src/store';
 import PostNavigator from './src/navigation/PostNavigator';
@@ -59,7 +59,7 @@ const RootNavigation = () => {
         <RootStack.Screen component={AuthNavigator} name="Auth" />
         <RootStack.Screen component={HomeNavigator} name="Home" />
         <RootStack.Screen component={CommunityNavigator} name="Community" />
-        <RootStack.Screen component={SettingsNavigator} name="Setting" />
+        <RootStack.Screen component={ProfileNavigator} name="Profile" />
         <RootStack.Screen component={PostNavigator} name="Post" />
       </RootStack.Navigator>
     </BottomSheetModalProvider>

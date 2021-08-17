@@ -1,7 +1,7 @@
 import SettingsScreen from './SettingsScreen';
 import EditProfileScreen from './EditProfileScreen';
 
-export const SettingsScreens = {
+export const ProfileScreens = {
   SettingsScreen,
   EditProfileScreen,
 };

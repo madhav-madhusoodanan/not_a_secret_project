@@ -1,10 +1,10 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {SettingsScreens} from '../screens/SettingsScreens';
-const Settings = createStackNavigator();
-const SettingsNavigator = () => {
+import {ProfileScreens} from '../screens/ProfileScreens';
+const Profile = createStackNavigator();
+const ProfileNavigator = () => {
   return (
-    <Settings.Navigator
+    <Profile.Navigator
       initialRouteName="SettingsScreen"
       screenOptions={{
         headerTransparent: true,
@@ -19,18 +19,18 @@ const SettingsNavigator = () => {
           fontSize: 24,
         },
       }}>
-      <Settings.Screen
+      <Profile.Screen
         options={{title: 'Settings'}}
         name="SettingsScreen"
-        component={SettingsScreens.SettingsScreen}
+        component={ProfileScreens.SettingsScreen}
       />
-      <Settings.Screen
+      <Profile.Screen
         options={{headerShown: false}}
         name="EditProfileScreen"
-        component={SettingsScreens.EditProfileScreen}
+        component={ProfileScreens.EditProfileScreen}
       />
-    </Settings.Navigator>
+    </Profile.Navigator>
   );
 };
 
-export default SettingsNavigator;
+export default ProfileNavigator;
