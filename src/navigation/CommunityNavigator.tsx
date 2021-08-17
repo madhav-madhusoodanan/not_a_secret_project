@@ -33,6 +33,9 @@ import {HeaderConfig} from '../types/HeaderConfig';
 import {Visibility} from '../types/Visibility';
 import HeaderOverlay from './../components/CommunityFeed/HeaderOverlay';
 
+import FeedIcon from '@iconscout/react-native-unicons/icons/uil-th';
+import AboutIcon from '@iconscout/react-native-unicons/icons/uil-file-info-alt';
+
 const TAB_BAR_HEIGHT = 48;
 const HEADER_HEIGHT = 48;
 
@@ -219,12 +222,45 @@ const CommunityNavigator: FC = () => {
         />
       </Animated.View>
       <Animated.View style={collapsedOverlayStyle}>
-        <HeaderOverlay name="Emily Davis" />
+        <HeaderOverlay name="JEE Mentorship" />
       </Animated.View>
-      <Community.Navigator tabBar={renderTabBar}>
-        <Community.Screen name="Friends">{renderFriends}</Community.Screen>
-        <Community.Screen name="Suggestions">
+      <Community.Navigator
+        screenOptions={{
+          tabBarBounces: true,
+          tabBarIconStyle: {top: 2},
+          tabBarLabelStyle: {fontSize: 14, fontFamily: 'Inter-Bold'},
+          tabBarStyle: {
+            backgroundColor: 'white',
+          },
+          tabBarItemStyle: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: 10,
+          },
+          tabBarIndicatorStyle: {
+            backgroundColor: 'black',
+            borderBottomWidth: 3,
+          },
+        }}
+        initialRouteName="FeedScreen"
+        tabBar={renderTabBar}>
+        <Community.Screen
+          options={{
+            title: 'Feed',
+            lazy: true,
+
+            tabBarIcon: () => <FeedIcon size="20" color="#000" />,
+          }}
+          name="FeedScreen">
           {renderSuggestions}
+        </Community.Screen>
+        <Community.Screen
+          options={{
+            title: 'About',
+            tabBarIcon: () => <AboutIcon size="20" color="#000" />,
+          }}
+          name="AboutScreen">
+          {renderFriends}
         </Community.Screen>
       </Community.Navigator>
     </View>
