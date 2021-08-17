@@ -14,13 +14,14 @@ export default function index() {
         <RNBounceable bounceEffect={0.97} onPress={() => {}}>
           <List.Item
             title="Privacy Policy"
+            titleStyle={styles.titleStyle}
             style={styles.listItem}
             right={() => <List.Icon color="#000" icon="chevron-right" />}
             left={() => (
               <List.Icon
                 color="#45E5A2"
                 icon={props => (
-                  <SVGIcon {...props} height={50} type="privacy" width={50} />
+                  <SVGIcon {...props} height={70} type="privacy" width={70} />
                 )}
               />
             )}
@@ -30,17 +31,39 @@ export default function index() {
         <RNBounceable bounceEffect={0.97} onPress={() => {}}>
           <List.Item
             title="Report Bug"
+            titleStyle={styles.titleStyle}
             style={styles.listItem}
             right={() => <List.Icon color="#000" icon="chevron-right" />}
-            left={() => <List.Icon color="#71A1FF" icon="bug" />}
+            left={() => (
+              <List.Icon
+                color="#71A1FF"
+                icon={props => (
+                  <SVGIcon {...props} height={70} type="bug" width={70} />
+                )}
+              />
+            )}
           />
         </RNBounceable>
         <RNBounceable bounceEffect={0.97} onPress={() => {}}>
           <List.Item
             title="Logout"
+            titleStyle={styles.titleStyle}
             style={styles.listItem}
             right={() => <List.Icon color="#000" icon="chevron-right" />}
-            left={() => <List.Icon color="#FF5E5E" icon="folder" />}
+            left={() => (
+              <List.Icon
+                color="#FF5E5E"
+                icon={props => (
+                  <SVGIcon
+                    {...props}
+                    fill={'transparent'}
+                    height={70}
+                    type="logout"
+                    width={70}
+                  />
+                )}
+              />
+            )}
           />
         </RNBounceable>
       </View>

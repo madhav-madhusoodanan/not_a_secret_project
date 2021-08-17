@@ -17,11 +17,18 @@ const styles = StyleSheet.create({
   listItem: {
     backgroundColor: '#f5f3f4',
     borderRadius: 12,
-    marginVertical: 10,
+    marginVertical: 5,
     height: 60,
+    paddingTop: 15,
     width: '100%',
-    // alignItems: 'center',
+    alignContent: 'center',
     justifyContent: 'center',
+  },
+  titleStyle: {
+    color: 'black',
+    fontSize: 16,
+    top: -4,
+    fontFamily: 'Inter-Bold',
   },
 });
 
