@@ -19,7 +19,9 @@ import {styles} from './styles';
 export default function ProfileScreen() {
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
-    navigate('Profile');
+    navigate('Profile', {
+      screen: 'EditProfileScreen',
+    });
   };
 
   return (
