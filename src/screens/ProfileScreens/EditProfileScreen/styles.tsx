@@ -10,8 +10,9 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.colors.background,
   },
   textInputContainer: {
-    backgroundColor: Theme.colors.error,
+    // backgroundColor: Theme.colors.error,
     color: 'black',
+    borderBottomWidth: 1,
   },
   bioText: {
     fontFamily: 'Inter-Regular',
