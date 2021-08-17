@@ -1,7 +1,7 @@
-import CommunityFeedScreen from './CommunityFeedScreen';
-import EducatorProfileScreen from './EducatorProfileScreen';
+import FeedScreen from './FeedScreen';
+import AboutScreen from './AboutScreen';
 
 export const CommunityScreens = {
-  CommunityFeedScreen,
-  EducatorProfileScreen,
+  FeedScreen,
+  AboutScreen,
 };

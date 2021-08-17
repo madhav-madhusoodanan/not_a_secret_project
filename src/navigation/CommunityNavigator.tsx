@@ -1,21 +1,46 @@
-import {createStackNavigator} from '@react-navigation/stack';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+
+import FeedIcon from '@iconscout/react-native-unicons/icons/uil-th';
+import AboutIcon from '@iconscout/react-native-unicons/icons/uil-file-info-alt';
+
 import React from 'react';
 import {CommunityScreens} from '../screens/CommunityScreens';
-const Community = createStackNavigator();
+const Community = createMaterialTopTabNavigator();
 const CommunityNavigator = () => {
   return (
     <Community.Navigator
-      initialRouteName="CommunityFeedScreen"
-      screenOptions={{headerShown: false}}>
+      screenOptions={{
+        tabBarBounces: true,
+        tabBarIconStyle: {top: 2},
+        tabBarLabelStyle: {fontSize: 14, fontFamily: 'Inter-Bold'},
+        tabBarStyle: {
+          backgroundColor: 'white',
+        },
+        tabBarItemStyle: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          padding: 10,
+        },
+        tabBarIndicatorStyle: {backgroundColor: 'black', borderBottomWidth: 3},
+      }}
+      initialRouteName="FeedScreen">
       <Community.Screen
-        options={{headerShown: false}}
-        name="CommunityFeedScreen"
-        component={CommunityScreens.CommunityFeedScreen}
+        options={{
+          title: 'Feed',
+          lazy: true,
+
+          tabBarIcon: () => <FeedIcon size="20" color="#000" />,
+        }}
+        name="FeedScreen"
+        component={CommunityScreens.FeedScreen}
       />
       <Community.Screen
-        options={{headerShown: false}}
-        name="EducatorProfileScreen"
-        component={CommunityScreens.EducatorProfileScreen}
+        options={{
+          title: 'About',
+          tabBarIcon: () => <AboutIcon size="20" color="#000" />,
+        }}
+        name="AboutScreen"
+        component={CommunityScreens.AboutScreen}
       />
     </Community.Navigator>
   );
