@@ -44,13 +44,62 @@ export default function ColorfulCard() {
     // navigate('Home');
   };
 
-  const inlineStyles = StyleSheet.create({
+  const inlineStyle = StyleSheet.create({
     mImageOne: {
       width: _width * 1.5,
       height: _height * 1.5,
       resizeMode: 'cover',
       position: 'absolute',
       alignSelf: 'center',
+    },
+    mImageTwo: {
+      width: 150,
+      height: 150,
+      resizeMode: 'cover',
+      borderRadius: 80,
+      borderWidth: 1,
+      borderColor: 'transparent',
+    },
+    mImageThree: {
+      marginRight: 10,
+      width: 50,
+      height: 50,
+      resizeMode: 'cover',
+      borderRadius: 25,
+      borderWidth: 2,
+      borderColor: 'transparent',
+    },
+    viewOuterOne: {flexDirection: 'row', flex: 1, marginVertical: 0},
+    viewOuterTwo: {flexDirection: 'row', marginTop: 20, marginBottom: 170},
+    viewInnerOne: {flex: 1, padding: 10},
+    viewInnerTwo: {
+      flex: 1,
+      alignSelf: 'center',
+      // backgroundColor: 'yellow',
+      padding: 10,
+    },
+    viewInnerInnerOne: {
+      flex: 1,
+      // backgroundColor: 'pink',
+      justifyContent: 'center',
+    },
+    textOne: {
+      color: 'white',
+      fontSize: 32,
+      fontFamily: 'Inter-SemiBold',
+    },
+    textTwo: {
+      color: 'white',
+      fontSize: 24,
+      fontFamily: 'Inter-SemiBold',
+    },
+    textThree: {
+      color: 'white',
+      // backgroundColor: 'green',
+      textTransform: 'uppercase',
+      fontFamily: 'Gilroy-Bold',
+      opacity: 0.6,
+      marginTop: 20,
     },
   });
 
@@ -86,76 +135,36 @@ export default function ColorfulCard() {
                 easing: Easing.linear,
               }}
               blurRadius={60}
-              style={inlineStyles.mImageOne}
+              style={inlineStyle.mImageOne}
             />
           </MView>
         </AnimatePresence>
-        <View style={{flexDirection: 'row', flex: 1, marginVertical: 0}}>
-          <View style={{flex: 1, padding: 10}}>
-            <View
-              style={{
-                flex: 1,
-                // backgroundColor: 'pink',
-                justifyContent: 'center',
-              }}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 32,
-                  fontFamily: 'Inter-SemiBold',
-                }}>
+        <View style={inlineStyle.viewOuterOne}>
+          <View style={inlineStyle.viewInnerOne}>
+            <View style={inlineStyle.viewInnerInnerOne}>
+              <Text style={inlineStyle.textOne}>
                 {/* {card.amount} */}
                 {values.firstName}
               </Text>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 24,
-                  fontFamily: 'Inter-SemiBold',
-                }}>
-                {values.lastName}
-              </Text>
+              <Text style={inlineStyle.textTwo}>{values.lastName}</Text>
             </View>
-            <Text
-              style={{
-                color: 'white',
-                // backgroundColor: 'green',
-                textTransform: 'uppercase',
-                fontFamily: 'Gilroy-Bold',
-                opacity: 0.6,
-                marginTop: 20,
-              }}>
-              {gender}
-            </Text>
+            <Text style={inlineStyle.textThree}>{gender}</Text>
           </View>
-          <View
-            style={{
-              flex: 1,
-              alignSelf: 'center',
-              // backgroundColor: 'yellow',
-              padding: 10,
-            }}>
+          <View style={inlineStyle.viewInnerTwo}>
             {/* @ts-ignore */}
             <TouchableOpacity onPress={() => console.log('ohho')}>
               <MImage
                 source={{
                   uri: 'https://pbs.twimg.com/profile_images/1824002576/pg-railsconf_400x400.jpg',
                 }}
-                style={{
-                  width: 150,
-                  height: 150,
-                  resizeMode: 'cover',
-                  borderRadius: 80,
-                  borderWidth: 1,
-                  borderColor: 'transparent',
-                }}
+                style={inlineStyle.mImageTwo}
               />
             </TouchableOpacity>
           </View>
         </View>
       </View>
 
-      <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 170}}>
+      <View style={inlineStyle.viewOuterTwo}>
         {data.map((each, i) => {
           // or userGender.map {for individual gender images but issue with linked background image}
           return (
@@ -172,15 +181,7 @@ export default function ColorfulCard() {
                   borderColor:
                     each.background === bg ? 'rgba(0,0,0,.5)' : 'rgba(0,0,0,0)',
                 }}
-                style={{
-                  marginRight: 10,
-                  width: 50,
-                  height: 50,
-                  resizeMode: 'cover',
-                  borderRadius: 25,
-                  borderWidth: 2,
-                  borderColor: 'transparent',
-                }}
+                style={inlineStyle.mImageThree}
                 /* @ts-ignore */
                 transition={{duration: 400}}
               />
