@@ -1,8 +1,10 @@
 import React from 'react';
 import {
+  StyleSheet,
   Text,
   View,
   SafeAreaView,
+  Image,
   TouchableOpacity,
   ScrollView,
   Pressable,
@@ -11,7 +13,7 @@ import {
 import FastImage from 'react-native-fast-image';
 import MenuIcon from '@iconscout/react-native-unicons/icons/uil-ellipsis-h';
 import {useNavigation} from '@react-navigation/native';
-import {Button} from 'react-native-paper';
+import {Button, Subheading} from 'react-native-paper';
 import {styles} from './styles';
 
 export default function ProfileScreen() {
@@ -21,6 +23,12 @@ export default function ProfileScreen() {
       screen: 'EditProfileScreen',
     });
   };
+
+  const inlineStyle = StyleSheet.create({
+    text: {...styles.text, fontSize: 20},
+    tag: {...styles.text, color: '#333', fontSize: 14},
+    label: {...styles.text, ...styles.subText}
+  });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -37,19 +45,17 @@ export default function ProfileScreen() {
         </View>
 
         <View style={styles.headContainer}>
-          <Text style={[styles.text, {fontSize: 20}]}>Miron Catalin</Text>
-          <Text style={[styles.text, {color: '#333', fontSize: 14}]}>
-            @mironcatalin
-          </Text>
+          <Text style={inlineStyle.text}>Miron Catalin</Text>
+          <Text style={inlineStyle.tag}>@mironcatalin</Text>
         </View>
         <View style={styles.statsContainer}>
           <View style={styles.statsBox}>
-            <Text style={[styles.text, {fontSize: 20}]}>3916</Text>
-            <Text style={[styles.text, styles.subText]}>Followers</Text>
+            <Text style={inlineStyle.text}>3916</Text>
+            <Text style={inlineStyle.label}>Followers</Text>
           </View>
           <View style={styles.statsBox}>
-            <Text style={[styles.text, {fontSize: 20}]}>394</Text>
-            <Text style={[styles.text, styles.subText]}>Following</Text>
+            <Text style={inlineStyle.text}>394</Text>
+            <Text style={inlineStyle.label}>Following</Text>
           </View>
         </View>
 
