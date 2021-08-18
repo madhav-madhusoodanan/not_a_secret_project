@@ -18,65 +18,43 @@ export default function index() {
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView enabled>
         <View
-          style={{
-            justifyContent: 'center',
-            width: '100%',
-            flexDirection: 'row',
-          }}>
+          style={styles.viewOne}>
           <View
-            style={{
-              marginVertical: 30,
-              width: 100,
-            }}>
+            style={styles.viewTwo}>
             <TouchableOpacity
               onPress={() => {}}
               activeOpacity={0.5}
-              style={{
-                position: 'absolute',
-                zIndex: 1,
-                bottom: -15,
-                right: -15,
-              }}>
+              style={styles.touchableOpacityOne}>
               <List.Icon
                 color={Colors.black}
                 icon="pencil"
-                style={{
-                  borderRadius: 15,
-                  height: 30,
-                  width: 30,
-                  backgroundColor: '#bbb',
-                }}
+                style={styles.listIconOne}
               />
             </TouchableOpacity>
             <Image
-              style={{
-                width: 100,
-                height: 100,
-                borderRadius: 20,
-                marginHorizontal: 'auto',
-              }}
+              style={styles.imageOne}
               source={{uri: 'https://picsum.photos/700'}}
             />
           </View>
         </View>
-        <View style={{marginVertical: 10}}>
+        <View style={styles.name}>
           <View>
-            <Subheading style={{color: 'black'}}>First Name</Subheading>
+            <Subheading style={styles.subHeading}>First Name</Subheading>
             <TextInput
               style={styles.textInputContainer}
               placeholder="Devansh"
             />
           </View>
 
-          <View style={{marginVertical: 10}}>
-            <Subheading style={{color: 'black'}}>Last Name</Subheading>
+          <View style={styles.name}>
+            <Subheading style={styles.subHeading}>Last Name</Subheading>
             <TextInput
               style={styles.textInputContainer}
               placeholder="Agarwal"
             />
           </View>
           <View>
-            <Subheading style={{color: 'black'}}>Username</Subheading>
+            <Subheading style={styles.subHeading}>Username</Subheading>
             <TextInput
               style={styles.textInputContainer}
               placeholder="daviz00"

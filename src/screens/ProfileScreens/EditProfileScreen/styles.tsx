@@ -21,6 +21,35 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     textAlign: 'left',
   },
+  viewOne: {
+    justifyContent: 'center',
+    width: '100%',
+    flexDirection: 'row',
+  },
+  viewTwo: {
+    marginVertical: 30,
+    width: 100,
+  },
+  touchableOpacityOne: {
+    position: 'absolute',
+    zIndex: 1,
+    bottom: -15,
+    right: -15,
+  },
+  listIconOne: {
+    borderRadius: 15,
+    height: 30,
+    width: 30,
+    backgroundColor: '#bbb',
+  },
+  imageOne: {
+    width: 100,
+    height: 100,
+    borderRadius: 20,
+    marginHorizontal: 'auto',
+  },
+  name: {marginVertical: 10},
+  subHeading: {color: 'black'},
 });
 
 export default styles;
