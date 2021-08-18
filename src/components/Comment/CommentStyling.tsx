@@ -74,4 +74,7 @@ export default styles = StyleSheet.create({
     // color: '#2F8DFD',
     color: '#00AAFF',
   },
+  backgroundWhite: {
+    backgroundColor: '#FFFFFF',
+  },
 });

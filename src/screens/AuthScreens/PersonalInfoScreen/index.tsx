@@ -1,15 +1,15 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {View, Dimensions, TouchableOpacity} from 'react-native';
+import {View, Dimensions, TouchableOpacity, StyleSheet} from 'react-native';
 import {Text, Headline} from 'react-native-paper';
 import {View as MView, Image as MImage, AnimatePresence} from 'moti';
 import {Easing} from 'react-native-reanimated';
 import {useDispatch, useSelector} from 'react-redux';
-import { useNavigation, useRoute } from '@react-navigation/core';
+import {useNavigation, useRoute} from '@react-navigation/core';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './styles';
 import ImagePicker from 'react-native-image-crop-picker';
 import NavButton from '../../../components/Buttons/NavigationButton';
-import { loginuser } from '../../../store/Actions/UserActions';
+import {loginuser} from '../../../store/Actions/UserActions';
 const {width, height} = Dimensions.get('screen');
 
 const _width = width * 0.9;
@@ -33,16 +33,26 @@ const data = [
 ];
 export default function ColorfulCard() {
   const route = useRoute();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // @ts-ignore
   const [values, setValues] = useState(route.params.values);
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
-    dispatch(loginuser({ ...values, gender, isNew: true },navigate))
+    dispatch(loginuser({...values, gender, isNew: true}, navigate));
     // @ts-ignore
     // navigate('Home');
   };
+
+  const inlineStyles = StyleSheet.create({
+    mImageOne: {
+      width: _width * 1.5,
+      height: _height * 1.5,
+      resizeMode: 'cover',
+      position: 'absolute',
+      alignSelf: 'center',
+    },
+  });
 
   const [bg, setBg] = React.useState(data[0].background);
   const [gender, setGender] = useState(data[0].gender);
@@ -76,13 +86,7 @@ export default function ColorfulCard() {
                 easing: Easing.linear,
               }}
               blurRadius={60}
-              style={{
-                width: _width * 1.5,
-                height: _height * 1.5,
-                resizeMode: 'cover',
-                position: 'absolute',
-                alignSelf: 'center',
-              }}
+              style={inlineStyles.mImageOne}
             />
           </MView>
         </AnimatePresence>

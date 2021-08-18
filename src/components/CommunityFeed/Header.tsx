@@ -35,7 +35,7 @@ const Header = () => {
         />
         <View style={headerStyles.infoContainer}>
           <Text style={headerStyles.name}>JEE Mentorship</Text>
-          <View style={{flexDirection: 'row'}}>
+          <View style={headerStyles.flexRow}>
             <Text style={headerStyles.stats}>131k</Text>
             <Text style={headerStyles.statsacomp}>Members</Text>
           </View>

@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {HomeScreens} from '../screens/HomeScreens';
 import {BottomTabs} from '../components/BottomTabs';
 import {Theme} from '../constants/appTheme';
@@ -16,6 +16,32 @@ const HomeNavigator = () => {
     navigate('Profile');
   };
 
+  const styles = StyleSheet.create({
+    homeFeedScreenHeaderRight: {
+      // paddingVertical: 5,
+      alignItems: 'center',
+      marginRight: 16,
+      alignSelf: 'flex-end',
+      flexDirection: 'row',
+    },
+    homeFeedScreenHeaderRightText: {
+      fontFamily: 'Gilroy-Bold',
+      color: '#007f5f',
+      fontSize: 24,
+      marginLeft: 6,
+    },
+    profileFeedScreenHeaderRight: {
+      // paddingVertical: 5,
+      alignItems: 'center',
+      marginRight: 16,
+      alignSelf: 'flex-end',
+      flexDirection: 'row',
+    },
+    headerStyle: {
+          fontFamily: 'Gilroy-Bold',
+          fontSize: 24,
+        }
+  });
   return (
     <Tab.Navigator
       tabBar={props => <BottomTabs {...props} />}
@@ -26,10 +52,7 @@ const HomeNavigator = () => {
         headerTransparent: true,
         headerTintColor: Theme.colors.text,
         headerTitleAlign: 'left',
-        headerTitleStyle: {
-          fontFamily: 'Gilroy-Bold',
-          fontSize: 24,
-        },
+        headerTitleStyle: styles.headerStyle,
       }}>
       <Tab.Screen
         component={HomeScreens.HomeFeedScreen}
@@ -38,24 +61,10 @@ const HomeNavigator = () => {
           title: 'Welcome 👋',
           headerRight: props => (
             <TouchableOpacity
-              style={{
-                // paddingVertical: 5,
-                alignItems: 'center',
-                marginRight: 16,
-                alignSelf: 'flex-end',
-                flexDirection: 'row',
-              }}
+              style={styles.homeFeedScreenHeaderRight}
               onPress={() => console.log('Goal Selection Dropdown Pressed')}>
               <DropDownIcon size="28" color="#081c15" />
-              <Text
-                style={{
-                  fontFamily: 'Gilroy-Bold',
-                  color: '#007f5f',
-                  fontSize: 24,
-                  marginLeft: 6,
-                }}>
-                IITJEE
-              </Text>
+              <Text style={styles.homeFeedScreenHeaderRightText}>IITJEE</Text>
             </TouchableOpacity>
           ),
         }}
@@ -80,15 +89,7 @@ const HomeNavigator = () => {
         options={{
           title: 'Profile',
           headerRight: props => (
-            <TouchableOpacity
-              style={{
-                // paddingVertical: 5,
-                alignItems: 'center',
-                marginRight: 16,
-                alignSelf: 'flex-end',
-                flexDirection: 'row',
-              }}
-              onPress={submitHandler}>
+            <TouchableOpacity style={styles.profileFeedScreenHeaderRight} onPress={submitHandler}>
               <SettingIcon size="24" color="#081c15" />
             </TouchableOpacity>
           ),

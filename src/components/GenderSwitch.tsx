@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Pressable} from 'react-native';
+import {View, Pressable, StyleSheet} from 'react-native';
 import {View as MView} from 'moti';
 import {Easing} from 'react-native-reanimated';
 
@@ -11,25 +11,46 @@ const transition = {
   duration: 300,
   easing: Easing.inOut(Easing.ease),
 };
+
+const styles = StyleSheet.create({
+  viewOuter: {alignItems: 'center', justifyContent: 'center'},
+  mViewOne: {
+    position: 'absolute',
+    width: TRACK_SIZE,
+    elevation: 5,
+    height: TRACK_HEIGHT,
+    borderRadius: TRACK_HEIGHT,
+  },
+  mViewTwo: {
+    width: SIZE,
+    height: SIZE,
+    borderRadius: SIZE,
+    elevation: 5,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  mViewThree: {
+    width: SIZE * 0.6,
+    height: SIZE * 0.6,
+    borderRadius: SIZE * 0.6,
+    borderWidth: SIZE * 0.1,
+  },
+});
+
 const GenderSwitch = ({size = SIZE, onPress, isActive}) => {
   return (
     <Pressable onPress={onPress}>
-      <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      <View style={styles.viewOuter}>
         <MView
           from={{backgroundColor: isActive ? 'deeppink' : 'dodgerblue'}}
           animate={{backgroundColor: isActive ? 'deeppink' : 'dodgerblue'}}
-                        // {/* @ts-ignore */}
+          // {/* @ts-ignore */}
           transition={transition}
-          style={{
-            position: 'absolute',
-            width: TRACK_SIZE,
-            elevation: 5,
-            height: TRACK_HEIGHT,
-            borderRadius: TRACK_HEIGHT,
-          }}
+          style={styles.mViewOne}
         />
         <MView
-                      // {/* @ts-ignore */}
+          // {/* @ts-ignore */}
           transition={transition}
           from={{
             translateX: isActive ? TRACK_SIZE / 4 : -TRACK_SIZE / 4,
@@ -37,17 +58,9 @@ const GenderSwitch = ({size = SIZE, onPress, isActive}) => {
           animate={{
             translateX: isActive ? TRACK_SIZE / 4 : -TRACK_SIZE / 4,
           }}
-          style={{
-            width: SIZE,
-            height: SIZE,
-            borderRadius: SIZE,
-            elevation: 5,
-            backgroundColor: '#fff',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+          style={styles.mViewTwo}>
           <MView
-                        // {/* @ts-ignore */}
+            // {/* @ts-ignore */}
             transition={transition}
             from={{
               width: isActive ? 0 : SIZE * 0.6,
@@ -57,12 +70,7 @@ const GenderSwitch = ({size = SIZE, onPress, isActive}) => {
               width: isActive ? 0 : SIZE * 0.6,
               borderColor: isActive ? 'deeppink' : 'dodgerblue',
             }}
-            style={{
-              width: SIZE * 0.6,
-              height: SIZE * 0.6,
-              borderRadius: SIZE * 0.6,
-              borderWidth: SIZE * 0.1,
-            }}
+            style={styles.mViewThree}
           />
         </MView>
       </View>

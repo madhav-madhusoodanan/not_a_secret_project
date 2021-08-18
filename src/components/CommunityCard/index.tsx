@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, Dimensions} from 'react-native';
 import {AppleCard, AppOfTheDayCard} from 'react-native-apple-card-views';
-import { calc } from '../../constants/appLayout';
+import {calc} from '../../constants/appLayout';
 
 import {styles} from './styles';
 
@@ -13,18 +13,11 @@ export default function CommunityCard() {
       smallTitle="Nishant Jindal"
       largeTitle="Math  Booster 2021"
       footnoteText="200 Members"
-      footnoteTextStyle={{
-        color: 'black',
-        fontFamily: 'Lato-Bold',
-        fontSize: 12,
-      }}
+      footnoteTextStyle={styles.footnoteTextStyle}
       style={styles.container}
       resizeMode="cover"
       source={{uri: 'https://picsum.photos/id/237/400/400'}}
-      backgroundStyle={{
-        height: calc('height',200),
-        width: screenWidth - 32,
-      }}
+      backgroundStyle={styles.background}
       onPress={() => console.log('Community Cover Pressed')}
     />
   );

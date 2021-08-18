@@ -19,6 +19,26 @@ const TextInline = (props: PropTypes) => {
     right: 0,
   });
 
+  const styles = StyleSheet.create({
+    mainBody: {
+      // marginTop: 15,
+    },
+    txtStyle: {
+      fontFamily: 'Inter-Regular',
+      fontSize: 14,
+      color: Theme.colors.text,
+      flex: 1,
+    },
+    lessMoreStyle: {
+      fontFamily: 'Inter-Regular',
+      fontSize: 14,
+      color: Theme.colors.primary,
+      position: 'absolute',
+      backgroundColor: 'white',
+      right: triggerTextLocation.right,
+      top: triggerTextLocation.top,
+    },
+  });
   const toggleNumberOfLines = () => {
     setTextShown(!textShown);
   };
@@ -37,7 +57,7 @@ const TextInline = (props: PropTypes) => {
   };
 
   return (
-    <View style={[styles.mainBody, props.containerStyle]}>
+    <View style={props.containerStyle}>
       <Text
         onTextLayout={onTextLayout}
         numberOfLines={textShown ? undefined : props.targetLines || 1}
@@ -45,38 +65,12 @@ const TextInline = (props: PropTypes) => {
         {props.text || ''}
       </Text>
       {lengthMore ? (
-        <Text
-          onPress={toggleNumberOfLines}
-          style={[
-            styles.lessMoreStyle,
-            {
-              position: 'absolute',
-              backgroundColor: 'white',
-              right: triggerTextLocation.right,
-              top: triggerTextLocation.top,
-            },
-          ]}>
+        <Text onPress={toggleNumberOfLines} style={styles.lessMoreStyle}>
           {textShown ? ' less' : '... more'}
         </Text>
       ) : null}
     </View>
   );
 };
-const styles = StyleSheet.create({
-  mainBody: {
-    // marginTop: 15,
-  },
-  txtStyle: {
-    fontFamily: 'Inter-Regular',
-    fontSize: 14,
-    color: Theme.colors.text,
-    flex: 1,
-  },
-  lessMoreStyle: {
-    fontFamily: 'Inter-Regular',
-    fontSize: 14,
-    color: Theme.colors.primary,
-  },
-});
 
 export default TextInline;

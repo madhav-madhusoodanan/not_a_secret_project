@@ -69,4 +69,5 @@ export const headerStyles = StyleSheet.create({
     // justifyContent: 'center',
     marginTop: 12,
   },
+  flexRow: {flexDirection: 'row'}
 });
