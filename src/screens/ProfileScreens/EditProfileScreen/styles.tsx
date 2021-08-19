@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
   },
   content: {
-    marginVertical: 5,
+    marginVertical: 3,
   },
   subHeading: {
     color: 'black',

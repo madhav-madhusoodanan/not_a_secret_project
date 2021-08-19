@@ -53,6 +53,22 @@ const ProfileNavigator = () => {
         name="EditProfileScreen"
         component={ProfileScreens.EditProfileScreen}
       />
+      <Profile.Screen
+        options={{
+          title: 'Educator Profile',
+          headerBackImage: () => <AngleLeftIcon size="30" color="#000" />,
+        }}
+        name="EducatorProfileScreen"
+        component={ProfileScreens.EducatorProfileScreen}
+      />
+      <Profile.Screen
+        options={{
+          title: 'Peer Profile',
+          headerBackImage: () => <AngleLeftIcon size="30" color="#000" />,
+        }}
+        name="PeerProfileScreen"
+        component={ProfileScreens.PeerProfileScreen}
+      />
     </Profile.Navigator>
   );
 };

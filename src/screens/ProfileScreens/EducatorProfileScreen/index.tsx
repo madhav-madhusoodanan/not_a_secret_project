@@ -16,13 +16,8 @@ import {useNavigation} from '@react-navigation/native';
 import {Button, Subheading} from 'react-native-paper';
 import {styles} from './styles';
 
-export default function ProfileScreen() {
+export default function EducatorProfileScreen() {
   const {navigate, goBack} = useNavigation();
-  const submitHandler = () => {
-    navigate('Profile', {
-      screen: 'EditProfileScreen',
-    });
-  };
 
   const inlineStyle = StyleSheet.create({
     text: {...styles.text, fontSize: 20},
@@ -30,7 +25,8 @@ export default function ProfileScreen() {
     label: {...styles.text, ...styles.subText},
   });
 
-  const bioContent = " JEE Mentor \n Co-Founder @ Verse \n BITS Pilani '22";
+  const bioContent =
+    "JEE Aficionado India's Top JEE Mentor and Strategist Author of the best-selling book 'Dominate JEE' AIR 247 in IIT-JEE (in 4 months)";
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,7 +35,7 @@ export default function ProfileScreen() {
           <FastImage
             style={styles.image}
             source={{
-              uri: 'https://pbs.twimg.com/profile_images/1334955566993604608/vo4Ep1TZ_400x400.jpg',
+              uri: 'https://pbs.twimg.com/profile_images/1347406184920190977/k2PegsXQ_400x400.jpg',
               priority: FastImage.priority.normal,
             }}
             resizeMode={FastImage.resizeMode.contain}
@@ -47,8 +43,8 @@ export default function ProfileScreen() {
         </View>
 
         <View style={styles.headContainer}>
-          <Text style={inlineStyle.text}>Devansh Agarwal</Text>
-          <Text style={inlineStyle.tag}>@daviz00</Text>
+          <Text style={inlineStyle.text}>Nishant Jindal</Text>
+          <Text style={inlineStyle.tag}>@realnishantjindal</Text>
         </View>
         <View style={styles.statsContainer}>
           <View style={styles.statsBox}>
@@ -66,14 +62,43 @@ export default function ProfileScreen() {
         </View>
         <View style={styles.buttonContainer}>
           <Button
-            mode={'outlined'}
+            mode={'contained'}
             color={'#00AAFF'}
             contentStyle={styles.editButtonContentStyles}
             style={styles.editButtonStyles}
             labelStyle={styles.editButtonLabelStyles}
-            onPress={submitHandler}>
-            Edit Profile
+            onPress={() => console.log('Follow Button Pressed')}>
+            Follow
           </Button>
+          <TouchableOpacity
+            style={styles.menuButtonStyles}
+            onPress={() => console.log('Menu Button Pressed')}>
+            <MenuIcon size="24" color="#848c8e" />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.userCommunityContainer}>
+          <Subheading style={styles.subheading}>My Communities</Subheading>
+          <View style={styles.communityListContainer}>
+            <Pressable style={styles.communityViewBox}></Pressable>
+            <Pressable style={styles.communityViewBox}></Pressable>
+          </View>
+          <View style={styles.communityListContainer}>
+            <Pressable style={styles.communityViewBox}></Pressable>
+            <Pressable style={styles.communityViewBox}></Pressable>
+          </View>
+          <View style={styles.communityListContainer}>
+            <Pressable style={styles.communityViewBox}></Pressable>
+            <Pressable style={styles.communityViewBox}></Pressable>
+          </View>
+          <View style={styles.communityListContainer}>
+            <Pressable style={styles.communityViewBox}></Pressable>
+            <Pressable style={styles.communityViewBox}></Pressable>
+          </View>
+          <View style={styles.communityListContainer}>
+            <Pressable style={styles.communityViewBox}></Pressable>
+            <Pressable style={styles.communityViewBox}></Pressable>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

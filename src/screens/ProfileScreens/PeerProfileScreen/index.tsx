@@ -16,13 +16,8 @@ import {useNavigation} from '@react-navigation/native';
 import {Button, Subheading} from 'react-native-paper';
 import {styles} from './styles';
 
-export default function ProfileScreen() {
+export default function PeerProfileScreen() {
   const {navigate, goBack} = useNavigation();
-  const submitHandler = () => {
-    navigate('Profile', {
-      screen: 'EditProfileScreen',
-    });
-  };
 
   const inlineStyle = StyleSheet.create({
     text: {...styles.text, fontSize: 20},
@@ -30,7 +25,7 @@ export default function ProfileScreen() {
     label: {...styles.text, ...styles.subText},
   });
 
-  const bioContent = " JEE Mentor \n Co-Founder @ Verse \n BITS Pilani '22";
+  const bioContent = "JEE Aspitant | NTSE Air 249 | DPS Gurgaon '23";
 
   return (
     <SafeAreaView style={styles.container}>
@@ -66,14 +61,19 @@ export default function ProfileScreen() {
         </View>
         <View style={styles.buttonContainer}>
           <Button
-            mode={'outlined'}
+            mode={'contained'}
             color={'#00AAFF'}
             contentStyle={styles.editButtonContentStyles}
             style={styles.editButtonStyles}
             labelStyle={styles.editButtonLabelStyles}
-            onPress={submitHandler}>
-            Edit Profile
+            onPress={() => console.log('Follow Button Pressed')}>
+            Follow
           </Button>
+          <TouchableOpacity
+            style={styles.menuButtonStyles}
+            onPress={() => console.log('Menu Button Pressed')}>
+            <MenuIcon size="24" color="#848c8e" />
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>

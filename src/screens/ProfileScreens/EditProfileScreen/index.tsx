@@ -40,7 +40,7 @@ export default function index() {
               <FastImage
                 style={styles.imageOne}
                 source={{
-                  uri: 'https://picsum.photos/700',
+                  uri: 'https://pbs.twimg.com/profile_images/1334955566993604608/vo4Ep1TZ_400x400.jpg',
                   priority: FastImage.priority.normal,
                 }}
                 resizeMode={FastImage.resizeMode.contain}

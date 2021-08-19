@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   image: {
     width: 125,
     height: 125,
-    borderRadius: 22,
+    borderRadius: 35,
     marginTop: 10,
   },
 
@@ -82,7 +82,7 @@ export const styles = StyleSheet.create({
   },
 
   editButtonLabelStyles: {
-    color: Theme.colors.primary,
+    color: Theme.colors.background,
     textTransform: 'none',
     fontFamily: 'Inter-Medium',
     fontSize: 14,
@@ -90,6 +90,16 @@ export const styles = StyleSheet.create({
 
   editButtonContentStyles: {
     height: 42,
-    width: '100%',
+    width: 168,
+  },
+  menuButtonStyles: {
+    marginLeft: 4,
+    borderWidth: 2,
+    borderRadius: 10,
+    height: 46,
+    borderColor: '#848c8e',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 46,
   },
 });
