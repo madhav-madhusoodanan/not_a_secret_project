@@ -17,10 +17,8 @@ export default function index() {
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView enabled>
-        <View
-          style={styles.viewOne}>
-          <View
-            style={styles.viewTwo}>
+        <View style={styles.viewOne}>
+          <View style={styles.viewTwo}>
             <TouchableOpacity
               onPress={() => {}}
               activeOpacity={0.5}
@@ -42,6 +40,15 @@ export default function index() {
             <Subheading style={styles.subHeading}>First Name</Subheading>
             <TextInput
               style={styles.textInputContainer}
+              selectionColor={'#c8e7ff'}
+              placeholderTextColor={'#adb5bd'}
+              maxLength={15}
+              caretHidden={false}
+              autoCapitalize="sentences"
+              keyboardType="default"
+              selectTextOnFocus={true}
+              underlineColorAndroid="black"
+              returnKeyType="next"
               placeholder="Devansh"
             />
           </View>
@@ -50,6 +57,15 @@ export default function index() {
             <Subheading style={styles.subHeading}>Last Name</Subheading>
             <TextInput
               style={styles.textInputContainer}
+              selectionColor={'#c8e7ff'}
+              placeholderTextColor={'#adb5bd'}
+              maxLength={15}
+              caretHidden={false}
+              autoCapitalize="sentences"
+              keyboardType="default"
+              selectTextOnFocus={true}
+              underlineColorAndroid="black"
+              returnKeyType="next"
               placeholder="Agarwal"
             />
           </View>
@@ -57,6 +73,15 @@ export default function index() {
             <Subheading style={styles.subHeading}>Username</Subheading>
             <TextInput
               style={styles.textInputContainer}
+              selectionColor={'#c8e7ff'}
+              placeholderTextColor={'#adb5bd'}
+              maxLength={10}
+              caretHidden={false}
+              autoCapitalize="sentences"
+              keyboardType="default"
+              selectTextOnFocus={true}
+              underlineColorAndroid="black"
+              returnKeyType="next"
               placeholder="daviz00"
             />
           </View>

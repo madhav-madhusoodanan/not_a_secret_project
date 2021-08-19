@@ -12,7 +12,12 @@ const styles = StyleSheet.create({
   textInputContainer: {
     // backgroundColor: Theme.colors.error,
     color: 'black',
-    borderBottomWidth: 1,
+    height: 50,
+    right: 3,
+    textAlign: 'left',
+    fontFamily: 'Inter-Medium',
+    fontSize: 16,
+    marginBottom: 10,
   },
   bioText: {
     fontFamily: 'Inter-Regular',
@@ -49,7 +54,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
   },
   name: {marginVertical: 10},
-  subHeading: {color: 'black'},
+
+  subHeading: {
+    color: 'black',
+    fontFamily: 'Inter-SemiBold',
+  },
 });
 
 export default styles;
