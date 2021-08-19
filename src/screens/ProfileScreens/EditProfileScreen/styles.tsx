@@ -5,8 +5,8 @@ import {Theme} from '../../../constants/appTheme';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 64,
-    paddingHorizontal: 20,
+    paddingTop: 54,
+    // paddingHorizontal: 20,
     backgroundColor: Theme.colors.background,
   },
   textInputContainer: {
@@ -53,11 +53,24 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginHorizontal: 'auto',
   },
-  name: {marginVertical: 10},
-
+  content: {
+    marginVertical: 5,
+  },
   subHeading: {
     color: 'black',
     fontFamily: 'Inter-SemiBold',
+  },
+  editor: {
+    fontSize: 14,
+    textAlignVertical: 'top',
+    right: 3,
+    fontFamily: 'Inter-Medium',
+    color: 'black',
+    marginTop: 10,
+    paddingBottom: 18,
+  },
+  scrollStyle: {
+    paddingHorizontal: 20,
   },
 });
 

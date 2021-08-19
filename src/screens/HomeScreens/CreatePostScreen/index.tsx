@@ -42,12 +42,12 @@ export default function CreatePostBottomSheetContent({}) {
           <Image
             style={styles.avatar}
             source={{
-              uri: 'https://pbs.twimg.com/profile_images/641822497457860608/zd6kUAag_400x400.png',
+              uri: 'https://pbs.twimg.com/profile_images/1334955566993604608/vo4Ep1TZ_400x400.jpg',
             }}></Image>
           <View style={styles.infoWrapper}>
             <View style={styles.namesWrapper}>
               <Text style={{fontSize: 16, fontFamily: 'Inter-SemiBold'}}>
-                Eliz Rami
+                Devansh Agarwal
               </Text>
             </View>
             <View style={styles.extraInfoWrapper}>

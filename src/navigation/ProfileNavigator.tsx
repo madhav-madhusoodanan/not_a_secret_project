@@ -1,10 +1,18 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
+import {StyleSheet} from 'react-native';
+import {Button} from 'react-native-paper';
 import AngleLeftIcon from '@iconscout/react-native-unicons/icons/uil-angle-left-b';
 import CrossIcon from '@iconscout/react-native-unicons/icons/uil-times';
 import {ProfileScreens} from '../screens/ProfileScreens';
 const Profile = createStackNavigator();
 const ProfileNavigator = () => {
+  const styles = StyleSheet.create({
+    saveButton: {
+      fontSize: 14,
+      fontFamily: 'Inter-SemiBold',
+    },
+  });
   return (
     <Profile.Navigator
       initialRouteName="SettingsScreen"
@@ -18,7 +26,7 @@ const ProfileNavigator = () => {
         headerTitleAlign: 'center',
         headerTitleStyle: {
           fontFamily: 'Gilroy-Bold',
-          fontSize: 24,
+          fontSize: 22,
         },
       }}>
       <Profile.Screen
@@ -33,6 +41,14 @@ const ProfileNavigator = () => {
         options={{
           title: 'Edit Profile',
           headerBackImage: () => <CrossIcon size="30" color="#000" />,
+          headerRight: props => (
+            <Button
+              color={'#00AAFF'}
+              uppercase={false}
+              labelStyle={styles.saveButton}>
+              Save
+            </Button>
+          ),
         }}
         name="EditProfileScreen"
         component={ProfileScreens.EditProfileScreen}

@@ -27,7 +27,7 @@ export default function ProfileScreen() {
   const inlineStyle = StyleSheet.create({
     text: {...styles.text, fontSize: 20},
     tag: {...styles.text, color: '#333', fontSize: 14},
-    label: {...styles.text, ...styles.subText}
+    label: {...styles.text, ...styles.subText},
   });
 
   return (
@@ -37,7 +37,7 @@ export default function ProfileScreen() {
           <FastImage
             style={styles.image}
             source={{
-              uri: 'https://pbs.twimg.com/profile_images/1276570366555684865/7J55FrYi_400x400.jpg',
+              uri: 'https://pbs.twimg.com/profile_images/1334955566993604608/vo4Ep1TZ_400x400.jpg',
               priority: FastImage.priority.normal,
             }}
             resizeMode={FastImage.resizeMode.contain}
@@ -45,8 +45,8 @@ export default function ProfileScreen() {
         </View>
 
         <View style={styles.headContainer}>
-          <Text style={inlineStyle.text}>Miron Catalin</Text>
-          <Text style={inlineStyle.tag}>@mironcatalin</Text>
+          <Text style={inlineStyle.text}>Devansh Agarwal</Text>
+          <Text style={inlineStyle.tag}>@daviz00</Text>
         </View>
         <View style={styles.statsContainer}>
           <View style={styles.statsBox}>
