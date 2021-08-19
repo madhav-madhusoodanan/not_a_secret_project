@@ -4,6 +4,7 @@ export default styles = StyleSheet.create({
   mainWrapper: {
     flexDirection: 'row',
     marginHorizontal: 16,
+    paddingTop: 20,
   },
 
   image: {

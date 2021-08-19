@@ -38,9 +38,9 @@ const HomeNavigator = () => {
       flexDirection: 'row',
     },
     headerStyle: {
-          fontFamily: 'Gilroy-Bold',
-          fontSize: 24,
-        }
+      fontFamily: 'Gilroy-Bold',
+      fontSize: 24,
+    },
   });
   return (
     <Tab.Navigator
@@ -81,15 +81,21 @@ const HomeNavigator = () => {
       <Tab.Screen
         component={HomeScreens.NotificationScreen}
         name={'notifications'}
-        options={{title: 'Notifications'}}
+        options={{
+          title: 'Notifications',
+          headerTitleAlign: 'left',
+        }}
       />
       <Tab.Screen
         component={HomeScreens.ProfileScreen}
         name={'you'}
         options={{
           title: 'Profile',
+          headerTitleAlign: 'left',
           headerRight: props => (
-            <TouchableOpacity style={styles.profileFeedScreenHeaderRight} onPress={submitHandler}>
+            <TouchableOpacity
+              style={styles.profileFeedScreenHeaderRight}
+              onPress={submitHandler}>
               <SettingIcon size="24" color="#081c15" />
             </TouchableOpacity>
           ),
