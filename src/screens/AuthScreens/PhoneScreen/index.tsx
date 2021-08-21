@@ -23,7 +23,7 @@ export default function PhoneScreen() {
           phoneNum,
         );
       if (test) {
-        await dispatch(sendOTP(phoneNum));
+        // await dispatch(sendOTP(phoneNum));
         const condition = auth.nums.includes(`+91${phoneNum}`);
         // @ts-ignore
         navigate('OneTimePasswordScreen', {

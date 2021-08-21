@@ -41,7 +41,7 @@ export default function ColorfulCard() {
   const submitHandler = () => {
     dispatch(loginuser({...values, gender, isNew: true}, navigate));
     // @ts-ignore
-    // navigate('Home');
+    navigate('Home');
   };
 
   const inlineStyle = StyleSheet.create({
