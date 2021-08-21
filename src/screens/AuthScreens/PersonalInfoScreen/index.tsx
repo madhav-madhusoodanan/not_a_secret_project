@@ -33,6 +33,7 @@ const data = [
 ];
 export default function ColorfulCard() {
   const route = useRoute();
+  const auth = useSelector((state : any) => state.User)
   const dispatch = useDispatch();
 
   // @ts-ignore
@@ -40,8 +41,9 @@ export default function ColorfulCard() {
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
     dispatch(loginuser({...values, gender, isNew: true}, navigate));
+    console.log({...values, gender, isNew: true})
     // @ts-ignore
-    navigate('Home');
+    // navigate('Home');
   };
 
   const inlineStyle = StyleSheet.create({
@@ -105,6 +107,10 @@ export default function ColorfulCard() {
 
   const [bg, setBg] = React.useState(data[0].background);
   const [gender, setGender] = useState(data[0].gender);
+  console.log({ myerr: auth.error })
+  useEffect(() => {
+    console.log(route.params)
+  },[])
   return (
     <SafeAreaView style={styles.container}>
       <Headline numberOfLines={2} style={styles.title}>
@@ -189,7 +195,7 @@ export default function ColorfulCard() {
           );
         })}
       </View>
-      <NavButton onPress={submitHandler} text="Continue" />
+      <NavButton onPress={submitHandler} sending={auth.loading} text="Continue" />
     </SafeAreaView>
   );
 }

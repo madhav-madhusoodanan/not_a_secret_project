@@ -8,7 +8,7 @@ import styles from './styles';
 import NavButton from '../../../components/Buttons/NavigationButton';
 import {useDispatch, useSelector} from 'react-redux';
 import {getPhoneNums, sendOTP} from '../../../store/Actions/UserActions';
-import {showToast} from '../../../constants/appLayout';
+import {showAndroidToast} from '../../../constants/appLayout';
 
 export default function PhoneScreen() {
   const {navigate} = useNavigation();
@@ -31,7 +31,8 @@ export default function PhoneScreen() {
           new: !condition,
         });
       } else {
-        showToast('Please enter valid mobile number');
+        setPhoneNum('')
+        showAndroidToast('Please enter valid mobile number');
         return;
       }
     } catch (error) {
@@ -76,6 +77,7 @@ export default function PhoneScreen() {
           keyboardType="numeric"
           maxLength={10}
           secureTextEntry={false}
+          value={phoneNum}
           onChangeText={phone => setPhoneNum(phone)}
         />
       </View>

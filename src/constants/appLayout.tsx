@@ -11,7 +11,7 @@ export default {
   isSmallDevice: width < 375,
 };
 
-export const showToast = (
+export const showAndroidToast = (
   message: any,
   position?: 'top' | 'bottom' | 'center',
 ) => {

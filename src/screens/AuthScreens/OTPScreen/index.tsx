@@ -1,4 +1,3 @@
-
 import {Alert, Animated} from 'react-native';
 import {Headline} from 'react-native-paper';
 import React, {useEffect, useState} from 'react';
@@ -19,7 +18,7 @@ import styles, {
   DEFAULT_CELL_BG_COLOR,
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
-import { loginuser } from '../../../store/Actions/UserActions';
+import {loginuser} from '../../../store/Actions/UserActions';
 
 const {Value, Text: AnimatedText} = Animated;
 
@@ -43,15 +42,15 @@ const animateCell = ({hasValue, index, isFocused}) => {
 };
 
 const OneTimePasswordScreen = () => {
-  const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
+
   const auth = useSelector((state: any) => state.User);
   const route = useRoute();
   //declarations for input field
   const [value, setValue] = useState('');
   // @ts-ignore
   const [phone, setPhone] = useState(route?.params?.phoneNum);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
@@ -62,36 +61,32 @@ const OneTimePasswordScreen = () => {
 
   const {navigate} = useNavigation();
   const submitHandler = async (e: any) => {
-    setLoading(true)
-    if (true/* value === auth.otp */) {
-    // if (true/* value === '1111' */) {
+    setLoading(true);
+    // if (/* value === auth.otp */) {
+    if (value === '1111') {
       // @ts-ignore
       if (route.params.new) {
         setTimeout(() => {
-          setLoading(false)
+          setLoading(false);
           // @ts-ignore
           navigate('NameScreen', {phoneNum: route.params?.phoneNum});
         }, 1000);
       } else {
         setTimeout(async () => {
-          setLoading(false)
-          await dispatch(
-            loginuser({phoneNum: phone, isNew: false}, navigate),
-          );
+          setLoading(false);
+          await dispatch(loginuser({phoneNum: phone, isNew: false}, navigate));
         }, 1000);
       }
     } else {
-      setLoading(false)
+      setLoading(false);
       Alert.alert('Invalid Code!', 'Please enter the correct code', [
         {text: 'Okay', style: 'cancel', onPress: () => setValue('')},
       ]);
-      
+
       return;
     }
   };
-  useEffect(() => {
-    
-  },[])
+  useEffect(() => {}, []);
 
   const renderCell = ({index, symbol, isFocused}) => {
     const hasValue = Boolean(symbol);
@@ -138,7 +133,8 @@ const OneTimePasswordScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Headline numberOfLines={2} style={styles.title}>
-        Verify OTP sent to {'\n'} +91 {`${phone.slice(3,5)}`}XXXXXX{`${phone.slice(11,13)}`}
+        Verify OTP sent to {'\n'} +91 {`${phone.slice(3, 5)}`}XXXXXX
+        {`${phone.slice(11, 13)}`}
       </Headline>
 
       <CodeField
