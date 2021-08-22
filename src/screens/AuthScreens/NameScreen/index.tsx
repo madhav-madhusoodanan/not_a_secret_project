@@ -28,19 +28,14 @@ export default function NameScreen() {
   const throwAlert = name => {
     Alert.alert('Invalid name!', `Please enter ${name}name`, [
       {text: 'Okay', style: 'cancel', onPress: () => setValues(initialState)},
-      // check = true;
     ]);
   };
   const submitHandler = () => {
     if (!firstName) {
       setFirstErrorMessage('First name is required');
-      // throwAlert('First ');
-      // return;
     }
     if (!lastName) {
       setLastErrorMessage('Last name is required');
-      // throwAlert('Last ');
-      // return;
     }
     if (!(firstName && lastName)) {
       return;
