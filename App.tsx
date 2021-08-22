@@ -1,6 +1,6 @@
 import Reactotron from './src/constants/Reactotron';
 import React, {useEffect} from 'react';
-import {Provider as PaperProvider} from 'react-native-paper';
+import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
@@ -29,7 +29,13 @@ export default () => {
     }
   }, []);
   return (
-    <PaperProvider>
+    <PaperProvider
+      theme={{
+        ...DefaultTheme,
+        colors: {
+          ...DefaultTheme.colors,
+        },
+      }}>
       <ReduxProvider store={store}>
         <SafeAreaProvider>
           <StatusBar

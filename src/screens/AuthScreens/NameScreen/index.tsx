@@ -2,8 +2,8 @@ import React, {useState, useRef, useEffect} from 'react';
 import {View, Alert} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Text, Headline} from 'react-native-paper';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {TextInput} from 'react-native-gesture-handler';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import NavButton from '../../../components/Buttons/NavigationButton';
 import styles from './styles';
 
@@ -22,6 +22,8 @@ export default function NameScreen() {
   const [values, setValues] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const {firstName, lastName} = values;
+  const [firstErrorMessage, setFirstErrorMessage] = useState('');
+  const [lastErrorMessage, setLastErrorMessage] = useState('');
 
   const throwAlert = name => {
     Alert.alert('Invalid name!', `Please enter ${name}name`, [
@@ -31,11 +33,16 @@ export default function NameScreen() {
   };
   const submitHandler = () => {
     if (!firstName) {
-      throwAlert('First ');
-      return;
+      setFirstErrorMessage('First name is required');
+      // throwAlert('First ');
+      // return;
     }
     if (!lastName) {
-      throwAlert('Last ');
+      setLastErrorMessage('Last name is required');
+      // throwAlert('Last ');
+      // return;
+    }
+    if (!(firstName && lastName)) {
       return;
     }
     setLoading(true);
@@ -71,11 +78,22 @@ export default function NameScreen() {
           keyboardType="default"
           selectTextOnFocus={true}
           underlineColorAndroid="black"
-          onFocus={e => setFocusInput(true)}
+          onFocus={e => {
+            if (firstErrorMessage) {
+              setFirstErrorMessage('');
+            }
+            setFocusInput(true);
+          }}
           onBlur={e => setFocusInput(false)}
           returnKeyType="next"
-          onChangeText={e => setValues({...values, firstName: e})}
+          onChangeText={e => {
+            if (firstErrorMessage) {
+              setFirstErrorMessage('');
+            }
+            setValues({...values, firstName: e});
+          }}
         />
+        <Text style={styles.subTitle}>{firstErrorMessage}</Text>
         <TextInput
           value={lastName}
           style={styles.inputStyle}
@@ -89,8 +107,19 @@ export default function NameScreen() {
           selectTextOnFocus={true}
           underlineColorAndroid="black"
           returnKeyType="go"
-          onChangeText={e => setValues({...values, lastName: e})}
+          onFocus={e => {
+            if (lastErrorMessage) {
+              setLastErrorMessage('');
+            }
+          }}
+          onChangeText={e => {
+            if (lastErrorMessage) {
+              setLastErrorMessage('');
+            }
+            setValues({...values, lastName: e});
+          }}
         />
+        <Text style={styles.subTitle}>{lastErrorMessage}</Text>
       </View>
       <NavButton onPress={submitHandler} sending={loading} text="Save" />
     </SafeAreaView>
