@@ -59,7 +59,7 @@ const RootNavigation = () => {
     <BottomSheetModalProvider>
       <RootStack.Navigator
         screenOptions={{headerShown: false}}
-        initialRouteName="Auth">
+        initialRouteName="Splash">
         {/* change initial route to Splash on production */}
         <RootStack.Screen component={Splash} name="Splash" />
         <RootStack.Screen component={AuthNavigator} name="Auth" />

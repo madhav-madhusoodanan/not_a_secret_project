@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 20,
     backgroundColor: Theme.colors.background,
   },
+  saveButton: {
+    fontSize: 14,
+    fontFamily: 'Inter-SemiBold',
+  },
   textInputContainer: {
     // backgroundColor: Theme.colors.error,
     color: 'black',

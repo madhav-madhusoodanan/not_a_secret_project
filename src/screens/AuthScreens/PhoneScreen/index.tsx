@@ -7,12 +7,12 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './styles';
 import NavButton from '../../../components/Buttons/NavigationButton';
 import {useDispatch, useSelector} from 'react-redux';
-import {getPhoneNums, sendOTP} from '../../../store/Actions/UserActions';
+import {getPhoneNums, sendOTP} from '../../../store/Actions/AuthActions';
 import {showAndroidToast} from '../../../constants/appLayout';
 
 export default function PhoneScreen() {
   const {navigate} = useNavigation();
-  const auth = useSelector((state: any) => state.User);
+  const auth = useSelector((state: any) => state.Auth);
   const [phoneNum, setPhoneNum] = useState('');
   const dispatch = useDispatch();
   const submitHandler = async () => {
@@ -25,7 +25,8 @@ export default function PhoneScreen() {
       if (test) {
         // await dispatch(sendOTP(phoneNum));
         const condition = auth.nums.includes(`+91${phoneNum}`);
-        // @ts-ignore
+        console.log({condition})
+        // @ts-ignore        
         navigate('OneTimePasswordScreen', {
           phoneNum: `+91${phoneNum}`,
           new: !condition,

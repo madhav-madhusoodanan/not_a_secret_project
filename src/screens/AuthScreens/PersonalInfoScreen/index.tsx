@@ -9,7 +9,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './styles';
 import ImagePicker from 'react-native-image-crop-picker';
 import NavButton from '../../../components/Buttons/NavigationButton';
-import {loginuser} from '../../../store/Actions/UserActions';
+import {loginuser} from '../../../store/Actions/AuthActions';
 const {width, height} = Dimensions.get('screen');
 
 const _width = width * 0.9;
@@ -33,7 +33,7 @@ const data = [
 ];
 export default function ColorfulCard() {
   const route = useRoute();
-  const auth = useSelector((state : any) => state.User)
+  const auth = useSelector((state : any) => state.Auth)
   const dispatch = useDispatch();
 
   // @ts-ignore

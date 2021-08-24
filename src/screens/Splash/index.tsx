@@ -3,12 +3,12 @@ import {View, StyleSheet, Image, Dimensions} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {getMe} from '../../store/Actions/UserActions';
+import {getMe} from '../../store/Actions/AuthActions';
 const SplashImg = require('../../assets/images/splash.png');
 
 export default function SplashScreen() {
   const {height, width} = Dimensions.get('screen');
-  const User = useSelector((state: any) => state.User);
+  const User = useSelector((state: any) => state.Auth);
   const {navigate} = useNavigation();
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ export default function SplashScreen() {
       setTimeout(() => {
         // @ts-ignore
         navigate('Home');
-      }, 1500);
+      }, 500);
     } else {
       setTimeout(() => {
         // @ts-ignore

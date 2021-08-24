@@ -13,6 +13,7 @@ const Tab = createBottomTabNavigator();
 const HomeNavigator = () => {
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
+    // @ts-ignore
     navigate('Profile');
   };
 

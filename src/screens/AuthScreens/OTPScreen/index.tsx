@@ -18,7 +18,7 @@ import styles, {
   DEFAULT_CELL_BG_COLOR,
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
-import {loginuser} from '../../../store/Actions/UserActions';
+import {loginuser} from '../../../store/Actions/AuthActions';
 
 const {Value, Text: AnimatedText} = Animated;
 
@@ -44,7 +44,7 @@ const animateCell = ({hasValue, index, isFocused}) => {
 const OneTimePasswordScreen = () => {
   const dispatch = useDispatch();
 
-  const auth = useSelector((state: any) => state.User);
+  const auth = useSelector((state: any) => state.Auth);
   const route = useRoute();
   //declarations for input field
   const [value, setValue] = useState('');
