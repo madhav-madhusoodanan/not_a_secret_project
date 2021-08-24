@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, SafeAreaView, ScrollView} from 'react-native';
-import FastImage from 'react-native-fast-image';
+import {StyleSheet} from 'react-native';
 import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
-import {Button} from 'react-native-paper';
 import {styles} from './styles';
 import {useSelector, useDispatch} from 'react-redux';
 import {getProfile} from '../../../store/Actions/UserActions';
 import Spinner from '../../../components/Spinner';
+import ProfileTop from '../../../components/Profile/ProfileTop';
 
 export default function ProfileScreen() {
   const {navigate, goBack} = useNavigation();
@@ -45,54 +44,12 @@ export default function ProfileScreen() {
   return (
     <>
       {!profile.loading && profile.profile ? (
-        <SafeAreaView style={styles.container}>
-          <ScrollView
-            overScrollMode={'never'}
-            showsVerticalScrollIndicator={false}>
-            <View style={{alignSelf: 'center'}}>
-              <FastImage
-                style={styles.image}
-                source={{
-                  uri: user.avatar,
-                  priority: FastImage.priority.normal,
-                }}
-                resizeMode={FastImage.resizeMode.contain}
-              />
-            </View>
-
-            <View style={styles.headContainer}>
-              <Text style={inlineStyle.text}>
-                {user.firstName} {user.lastName}
-              </Text>
-              <Text style={inlineStyle.tag}>@{user.username}</Text>
-            </View>
-            <View style={styles.statsContainer}>
-              <View style={styles.statsBox}>
-                <Text style={inlineStyle.text}>{user.followers.length}</Text>
-                <Text style={inlineStyle.label}>Followers</Text>
-              </View>
-              <View style={styles.statsBox}>
-                <Text style={inlineStyle.text}>{user.following.length}</Text>
-                <Text style={inlineStyle.label}>Following</Text>
-              </View>
-            </View>
-
-            <View style={styles.infoContainer}>
-              <Text style={styles.bioText}>{user.bio}</Text>
-            </View>
-            <View style={styles.buttonContainer}>
-              <Button
-                mode={'outlined'}
-                color={'#00AAFF'}
-                contentStyle={styles.editButtonContentStyles}
-                style={styles.editButtonStyles}
-                labelStyle={styles.editButtonLabelStyles}
-                onPress={navigateToEditScreen}>
-                Edit Profile
-              </Button>
-            </View>
-          </ScrollView>
-        </SafeAreaView>
+        <ProfileTop
+          inlineStyle={inlineStyle}
+          navigateToEditScreen={navigateToEditScreen}
+          styles={styles}
+          user={profile.profile}
+        />
       ) : (
         <Spinner />
       )}
