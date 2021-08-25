@@ -49,6 +49,7 @@ export default function ProfileScreen() {
           navigateToEditScreen={navigateToEditScreen}
           styles={styles}
           user={profile.profile}
+          id={user._id}
         />
       ) : (
         <Spinner />
