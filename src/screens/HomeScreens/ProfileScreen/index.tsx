@@ -24,9 +24,9 @@ export default function ProfileScreen() {
   const loadProfile = async () => {
     if (route.params) {
       // @ts-ignore
-      await dispatch(getProfile(navigate, route.params.id));
+      await dispatch(getProfile(route.params.id));
     } else if (!profile.profile) {
-      await dispatch(getProfile(navigate, auth.user._id));
+      await dispatch(getProfile(auth.user._id));
     }
   };
   const inlineStyle = StyleSheet.create({

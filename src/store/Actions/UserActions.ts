@@ -9,7 +9,7 @@ const returnToken = async () => {
 };
 
 export const getProfile =
-  (navigate: null | any, id: any) => async (dispatch: any) => {
+  (id: any) => async (dispatch: any) => {
     dispatch({type: types.PROFILE_LOADING});
     try {
       const token = await returnToken();
