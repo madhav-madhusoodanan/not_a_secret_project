@@ -26,6 +26,7 @@ export default () => {
     // Reactotron
     if (__DEV__) {
       Reactotron.connect();
+      console.log(__DEV__)
     }
   }, []);
   return (

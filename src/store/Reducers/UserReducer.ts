@@ -4,11 +4,17 @@ import {
   GET_PROFILE_SUCCESS,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_FAIL,
+  FOLLOW_FAIL,
+  FOLLOW_LOADING,
+  FOLLOW_SUCCESS,
+  UNFOLLOW_FAIL,
+  UNFOLLOW_SUCCESS
 } from '../types';
 
 const initialState = {
   profile: null,
   loading: false,
+  followLoading: false,
   error: null,
 };
 export const User = (state = initialState, action: any) => {
@@ -16,6 +22,8 @@ export const User = (state = initialState, action: any) => {
   switch (type) {
     case PROFILE_LOADING:
       return {...state, loading: true};
+    case FOLLOW_LOADING:
+      return { ...state, followLoading: true }
     case GET_PROFILE_SUCCESS:
     case UPDATE_PROFILE_SUCCESS:
       return {
@@ -24,8 +32,20 @@ export const User = (state = initialState, action: any) => {
         error: null,
         loading: false,
       };
+    case FOLLOW_SUCCESS:
+    case UNFOLLOW_SUCCESS:
+      console.log({ payload })
+      return {
+        ...state,
+        error: null,
+        profile: payload.user,
+        followLoading: false
+      }
     case GET_PROFILE_FAIL:
-      return {...state, error: payload, loading: false};
+    case FOLLOW_FAIL:
+    case UNFOLLOW_FAIL:
+      console.log({ payload })
+      return {...state, error: payload, loading: false, followLoading: false};
     default:
       return state;
   }
