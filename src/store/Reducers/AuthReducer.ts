@@ -42,6 +42,7 @@ export const Auth = (state = initialState, action: any) => {
       return {...state, loading: false, error: payload};
     case types.AUTH_FAIL:
     case types.GET_ME_FAIL:
+    case types.LOGOUT_SUCCESS:
       console.log('reached error', payload);
       AsyncStorage.removeItem('verseAuthToken');
       return {...state, user: null, error: payload, loading: false};

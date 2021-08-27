@@ -11,6 +11,9 @@ export const AUTH_LOADING = 'AUTH_LOADING'
 export const AUTH_SUCCESS = 'AUTH_SUCCESS'
 export const AUTH_FAIL = 'AUTH_FAIL'
 
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+export const LOGOUT_FAIL = 'LOGOUT_FAIL'
+
 export const GET_ME_SUCCESS = 'GET_ME_SUCCESS'
 export const GET_ME_FAIL = 'GET_ME_FAIL'
 // USER

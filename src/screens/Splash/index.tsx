@@ -31,7 +31,7 @@ export default function SplashScreen() {
       setTimeout(() => {
         // @ts-ignore
         navigate('Home');
-      }, 500);
+      }, 300);
     } else {
       setTimeout(() => {
         // @ts-ignore
