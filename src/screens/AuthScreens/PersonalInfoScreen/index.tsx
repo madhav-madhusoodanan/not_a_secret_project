@@ -160,7 +160,7 @@ export default function ColorfulCard() {
           </View>
           <View style={inlineStyle.viewInnerTwo}>
             {/* @ts-ignore */}
-            <TouchableOpacity onPress={() => {console.log('ohho'); ImagePicker.openCamera({width: 400, height: 400, cropping: true}).then(image => /*replace this with setImage to change the image*/ console.log(image))}}>
+            <TouchableOpacity onPress={() => {console.log('ohho'); ImagePicker.openCamera({width: 400, height: 400, cropping: true}).then(image => /*replace this with setImage to change the image*/ setImage(image))}}>
               <MImage
                 source={{
                   uri: image,
