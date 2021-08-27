@@ -16,6 +16,7 @@ export default function CreatePostBottomSheetContent({}) {
   // modal initiation
 
   const [visible, setVisible] = React.useState(false);
+  const [message, setMessage] = React.useState("");
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
   const containerStyle = {backgroundColor: 'white', padding: 20};
@@ -59,6 +60,8 @@ export default function CreatePostBottomSheetContent({}) {
         </View>
 
         <TextInput
+          value={message}
+          onChangeText={(msg) => setMessage(msg)}
           placeholderTextColor={'#adb5bd'}
           placeholder="What do you want to talk about?"
           multiline
@@ -92,7 +95,7 @@ export default function CreatePostBottomSheetContent({}) {
           contentStyle={styles.postButtonContentStyles}
           style={styles.postButtonStyles}
           labelStyle={styles.postButtonLabelStyles}
-          onPress={() => console.log('Edit Profile Button Pressed')}>
+          onPress={() => {console.log(message)}}>
           Post
         </Button>
       </Appbar>

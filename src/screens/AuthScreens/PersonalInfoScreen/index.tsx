@@ -32,6 +32,7 @@ const data = [
   },
 ];
 export default function ColorfulCard() {
+	const [image, setImage] = useState('https://pbs.twimg.com/profile_images/1824002576/pg-railsconf_400x400.jpg');
   const route = useRoute();
   const auth = useSelector((state : any) => state.Auth)
   const dispatch = useDispatch();
@@ -158,10 +159,10 @@ export default function ColorfulCard() {
           </View>
           <View style={inlineStyle.viewInnerTwo}>
             {/* @ts-ignore */}
-            <TouchableOpacity onPress={() => console.log('ohho')}>
+            <TouchableOpacity onPress={() => {console.log('ohho'); ImagePicker.openCamera({width: 400, height: 400, cropping: true}).then(image => setImage(image.path))}}>
               <MImage
                 source={{
-                  uri: 'https://pbs.twimg.com/profile_images/1824002576/pg-railsconf_400x400.jpg',
+                  uri: image,
                 }}
                 style={inlineStyle.mImageTwo}
               />

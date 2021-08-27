@@ -28,3 +28,6 @@ export const FOLLOW_FAIL = 'FOLLOW_FAIL'
 
 export const UNFOLLOW_SUCCESS = 'UNFOLLOW_SUCCESS'
 export const UNFOLLOW_FAIL = 'UNFOLLOW_FAIL'
+
+export const POST_SUCCESS = "POST_SUCCESS"
+export const POST_FAIL = "POST_FAIL"
