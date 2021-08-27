@@ -11,6 +11,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import NavButton from '../../../components/Buttons/NavigationButton';
 import {loginuser} from '../../../store/Actions/AuthActions';
 const {width, height} = Dimensions.get('screen');
+var cloudinary = require('cloudinary');
 
 const _width = width * 0.9;
 const _height = _width * 0.6;
@@ -159,7 +160,7 @@ export default function ColorfulCard() {
           </View>
           <View style={inlineStyle.viewInnerTwo}>
             {/* @ts-ignore */}
-            <TouchableOpacity onPress={() => {console.log('ohho'); ImagePicker.openCamera({width: 400, height: 400, cropping: true}).then(image => setImage(image.path))}}>
+            <TouchableOpacity onPress={() => {console.log('ohho'); ImagePicker.openCamera({width: 400, height: 400, cropping: true}).then(image => /*replace this with setImage to change the image*/ console.log(image))}}>
               <MImage
                 source={{
                   uri: image,
