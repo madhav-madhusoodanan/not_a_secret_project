@@ -39,8 +39,7 @@ const EditProfileImage = ({
         snapPoints={snapPoints}
         stackBehavior={'push'}
         onChange={handleSheetChanges}>
-        <View
-          style={styles.modal}>
+        <View style={styles.modal}>
           <TouchableOpacity onPress={galleryHandler} style={styles.touchable}>
             <List.Icon color={Colors.black} icon="earth-box" />
             <Subheading style={styles.text}>Gallery</Subheading>
@@ -58,15 +57,15 @@ const EditProfileImage = ({
 export default EditProfileImage;
 
 const styles = StyleSheet.create({
-	touchable: {
-		alignItems: "center"
-	},
-	modal: {
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            height: '100%',
-          },
+  touchable: {
+    alignItems: 'center',
+  },
+  modal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    height: '100%',
+  },
   text: {
     color: 'black',
     fontSize: 24,
