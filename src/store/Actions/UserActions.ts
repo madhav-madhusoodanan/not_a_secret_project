@@ -1,72 +1,100 @@
 import * as types from '../types';
 import axios from '../../constants/api';
 const url = `/api/v1/users`;
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const getPhoneNums = () => async (dispatch: any) => {
-  try {
-    const response = await axios.get(`${url}?select=phone`);
-    const nums: any = [];
-    response.data.data.map((each: any) => nums.push(each.phone));
-    console.log(nums);
-    dispatch({type: types.GET_PHONE_NUMS, payload: nums});
-  } catch (error) {
-    console.log({error});
-    // const displayErr = error.response.data.error.split(',')[0];
-    // @ts-ignore
-    dispatch({type: types.PHONE_NUMS_FAIL, payload: error?.respnse});
-  }
+const returnToken = async () => {
+  const token = await AsyncStorage.getItem('verseAuthToken');
+  return token;
 };
 
-export const sendOTP = (phone: string) => async (dispatch: any) => {
-  dispatch({type: types.GET_OTP_LOADING});
+export const getProfile = (id: any) => async (dispatch: any) => {
+  dispatch({type: types.PROFILE_LOADING});
   try {
-    const {data} = await axios.get(`${url}/sendOTP/${phone}`);
-    console.log({data});
-    dispatch({type: types.GET_OTP_SUCCESS, payload: data});
+    const token = await returnToken();
+    const {data} = await axios.get(`${url}/${id}`, {
+      headers: {Authorization: `Bearer ${token}`},
+    });
+    dispatch({
+      type: types.GET_PROFILE_SUCCESS,
+      payload: {user: data.data},
+    });
   } catch (error) {
-    console.log({error});
     // const displayErr = error.response.data.error.split(',')[0];
-    // @ts-ignore
-    dispatch({type: types.GET_OTP_FAIL, payload: error?.respnse});
-  }
-};
-
-export const loginuser =
-  (values: any, navigate: null | any) => async (dispatch: any) => {
-    dispatch({type: types.AUTH_LOADING});
-    try {
-      const {data} = await axios.post(`${url}/signup`, values);
-      dispatch({type: types.AUTH_SUCCESS, payload: data});
-      console.log({data});
-      if (data.data) {
-        navigate('Home');
-      }
-    } catch (error) {
-      console.log({error});
+    dispatch({
+      type: types.GET_PROFILE_FAIL,
       // @ts-ignore
-      const displayErr = error.response.data.error.split(',')[0];
-      dispatch({type: types.AUTH_FAIL, payload: displayErr});
-    }
-  };
+      payload: error.respnse.data.error,
+    });
+  }
+};
 
-export const getMe =
-  (navigate: null | any, token: string) => async (dispatch: any) => {
-    dispatch({type: types.AUTH_LOADING});
-    try {
-      const {data} = await axios.get(`${url}/me`, {
+export const followUser = (id: any) => async (dispatch: any) => {
+  dispatch({type: types.FOLLOW_LOADING});
+  try {
+    const token = await returnToken();
+    const {data} = await axios.put(
+      `${url}/follow/${id}`,
+      {},
+      {
         headers: {Authorization: `Bearer ${token}`},
-      });
-      console.log({data});
-      dispatch({
-        type: types.GET_PROFILE_SUCCESS,
-        payload: {user: data.data, token},
-      });
-    } catch (error) {
-      // const displayErr = error.response.data.error.split(',')[0];
-      dispatch({
-        type: types.GET_PROFILE_FAIL,
-        // @ts-ignore
-        payload: error.respnse.data.error,
-      });
-    }
-  };
+      },
+    );
+    dispatch({
+      type: types.FOLLOW_SUCCESS,
+      payload: {user: data.data},
+    });
+  } catch (error) {
+    // const displayErr = error.response.data.error.split(',')[0];
+    dispatch({
+      type: types.FOLLOW_FAIL,
+      // @ts-ignore
+      payload: error.respnse.data.error,
+    });
+  }
+};
+
+export const unfollowUser = (id: any) => async (dispatch: any) => {
+  dispatch({type: types.FOLLOW_LOADING});
+  try {
+    const token = await returnToken();
+    const {data} = await axios.put(
+      `${url}/unfollow/${id}`,
+      {},
+      {
+        headers: {Authorization: `Bearer ${token}`},
+      },
+    );
+    console.log({datttttaaaaaaaaa: data.data});
+    dispatch({
+      type: types.UNFOLLOW_SUCCESS,
+      payload: {user: data.data},
+    });
+  } catch (error) {
+    // const displayErr = error.response.data.error.split(',')[0];
+    dispatch({
+      type: types.UNFOLLOW_FAIL,
+      // @ts-ignore
+      payload: error.response.data.error,
+    });
+  }
+};
+
+export const post = (data: any) => async (dispatch: any) => {
+  try {
+    // const token = await returnToken();
+    // const {data} = await axios.get(`${url}/${id}`, {
+    //   headers: {Authorization: `Bearer ${token}`},
+    // });
+    dispatch({
+    type: types.POST_SUCCESS,
+    payload: {message: data.message},
+  });
+  } catch (error) {
+    dispatch({
+    type: types.POST_FAIL,
+    payload: {message: error.message},
+  });
+  }
+  
+};

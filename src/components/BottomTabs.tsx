@@ -7,27 +7,30 @@ import {useKeyboard} from '../hooks/useKeyboard';
 import {SCText} from './SCText';
 import {SVGIcon} from './SVGIcon';
 
-const styles = StyleSheet.create({
-  tabContainer: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    padding: 10,
-  },
-  tabListContainer: {
-    // borderTopWidth: 0.5,
-    elevation: 10,
-    flexDirection: 'row',
-  },
-  tabTitle: {
-    fontSize: 12,
-  },
-});
-
 export const BottomTabs = ({navigation, state}) => {
   const {colors} = useTheme();
   const insets = useSafeAreaInsets();
   const {isOpen} = useKeyboard();
+
+  const styles = StyleSheet.create({
+    tabContainer: {
+      alignItems: 'center',
+      flex: 1,
+      justifyContent: 'center',
+      padding: 10,
+    },
+    tabListContainer: {
+      // borderTopWidth: 0.5,
+      elevation: 10,
+      flexDirection: 'row',
+      backgroundColor: '#fff',
+      borderTopColor: colors.border,
+      paddingBottom: insets.bottom,
+    },
+    tabTitle: {
+      fontSize: 12,
+    },
+  });
   const getTitle = key => {
     // eslint-disable-next-line default-case
     switch (key) {
@@ -79,15 +82,7 @@ export const BottomTabs = ({navigation, state}) => {
   }
 
   return (
-    <View
-      style={[
-        {
-          backgroundColor: '#fff',
-          borderTopColor: colors.border,
-          paddingBottom: insets.bottom,
-        },
-        styles.tabListContainer,
-      ]}>
+    <View style={[{}, styles.tabListContainer]}>
       {state.routes.map((route, index) => {
         const tab = getTitle(route.name);
 

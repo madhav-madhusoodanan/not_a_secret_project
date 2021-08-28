@@ -16,6 +16,7 @@ export default function CreatePostBottomSheetContent({}) {
   // modal initiation
 
   const [visible, setVisible] = React.useState(false);
+  const [message, setMessage] = React.useState("");
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
   const containerStyle = {backgroundColor: 'white', padding: 20};
@@ -42,12 +43,12 @@ export default function CreatePostBottomSheetContent({}) {
           <Image
             style={styles.avatar}
             source={{
-              uri: 'https://pbs.twimg.com/profile_images/641822497457860608/zd6kUAag_400x400.png',
+              uri: 'https://pbs.twimg.com/profile_images/1334955566993604608/vo4Ep1TZ_400x400.jpg',
             }}></Image>
           <View style={styles.infoWrapper}>
             <View style={styles.namesWrapper}>
               <Text style={{fontSize: 16, fontFamily: 'Inter-SemiBold'}}>
-                Eliz Rami
+                Devansh Agarwal
               </Text>
             </View>
             <View style={styles.extraInfoWrapper}>
@@ -59,6 +60,8 @@ export default function CreatePostBottomSheetContent({}) {
         </View>
 
         <TextInput
+          value={message}
+          onChangeText={(msg) => setMessage(msg)}
           placeholderTextColor={'#adb5bd'}
           placeholder="What do you want to talk about?"
           multiline
@@ -92,7 +95,7 @@ export default function CreatePostBottomSheetContent({}) {
           contentStyle={styles.postButtonContentStyles}
           style={styles.postButtonStyles}
           labelStyle={styles.postButtonLabelStyles}
-          onPress={() => console.log('Edit Profile Button Pressed')}>
+          onPress={() => {console.log(message)}}>
           Post
         </Button>
       </Appbar>

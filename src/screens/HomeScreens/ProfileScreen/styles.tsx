@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   image: {
     width: 125,
     height: 125,
-    borderRadius: 35,
+    borderRadius: 22,
     marginTop: 10,
   },
 
@@ -90,43 +90,6 @@ export const styles = StyleSheet.create({
 
   editButtonContentStyles: {
     height: 42,
-    width: 168,
-  },
-
-  menuButtonStyles: {
-    marginLeft: 4,
-    borderWidth: 2,
-    borderRadius: 10,
-    height: 46,
-    borderColor: '#848c8e',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 46,
-  },
-  subheading: {
-    fontSize: 18,
-    color: Theme.colors.text,
-    textAlign: 'left',
-    fontFamily: 'Inter-SemiBold',
-    marginBottom: 16,
-    marginTop: 15,
-    // paddingHorizontal: 16,
-  },
-
-  userCommunityContainer: {
-    flexDirection: 'column',
-  },
-
-  communityListContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  communityViewBox: {
-    width: '48%',
-    borderRadius: 10,
-    height: 100,
-    marginBottom: 13,
-    backgroundColor: '#14213d',
-    // marginHorizontal: 10,
+    width: '100%',
   },
 });
