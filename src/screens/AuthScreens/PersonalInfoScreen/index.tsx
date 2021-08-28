@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {View, Dimensions, TouchableOpacity, StyleSheet} from 'react-native';
 import {Text, Headline} from 'react-native-paper';
 import {View as MView, Image as MImage, AnimatePresence} from 'moti';
@@ -11,6 +11,9 @@ import ImagePicker from 'react-native-image-crop-picker';
 import NavButton from '../../../components/Buttons/NavigationButton';
 import {loginuser} from '../../../store/Actions/AuthActions';
 const {width, height} = Dimensions.get('screen');
+import axios from '../../../constants/api';
+import EditProfileImage from '../../../components/Profile/EditProfileImage';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
 var cloudinary = require('cloudinary');
 
 const _width = width * 0.9;
@@ -33,19 +36,31 @@ const data = [
   },
 ];
 export default function ColorfulCard() {
-	const [image, setImage] = useState('https://pbs.twimg.com/profile_images/1824002576/pg-railsconf_400x400.jpg');
+  const [image, setImage] = useState(
+    'https://pbs.twimg.com/profile_images/1824002576/pg-railsconf_400x400.jpg',
+  );
+  const [modalOpen, setModalOpen] = useState(false);
   const route = useRoute();
-  const auth = useSelector((state : any) => state.Auth)
+  const auth = useSelector((state: any) => state.Auth);
   const dispatch = useDispatch();
-
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   // @ts-ignore
   const [values, setValues] = useState(route.params.values);
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
     dispatch(loginuser({...values, gender, isNew: true}, navigate));
-    console.log({...values, gender, isNew: true})
+    // start of experimental image sending
+    axios.post('/dummy', {file: image});
+    //
+    console.log({...values, gender, isNew: true});
     // @ts-ignore
     // navigate('Home');
+  };
+  const modalHandler = () => {
+    setModalOpen(!modalOpen);
+    modalOpen
+      ? bottomSheetModalRef.current?.expand()
+      : bottomSheetModalRef.current?.close();
   };
 
   const inlineStyle = StyleSheet.create({
@@ -109,10 +124,10 @@ export default function ColorfulCard() {
 
   const [bg, setBg] = React.useState(data[0].background);
   const [gender, setGender] = useState(data[0].gender);
-  console.log({ myerr: auth.error })
+  console.log({myerr: auth.error});
   useEffect(() => {
-    console.log(route.params)
-  },[])
+    console.log(route.params);
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <Headline numberOfLines={2} style={styles.title}>
@@ -160,7 +175,7 @@ export default function ColorfulCard() {
           </View>
           <View style={inlineStyle.viewInnerTwo}>
             {/* @ts-ignore */}
-            <TouchableOpacity onPress={() => {console.log('ohho'); ImagePicker.openCamera({width: 400, height: 400, cropping: true}).then(image => /*replace this with setImage to change the image*/ setImage(image))}}>
+            <TouchableOpacity onPress={modalHandler}>
               <MImage
                 source={{
                   uri: image,
@@ -197,7 +212,15 @@ export default function ColorfulCard() {
           );
         })}
       </View>
-      <NavButton onPress={submitHandler} sending={auth.loading} text="Continue" />
+      <EditProfileImage
+        setImage={setImage}
+        bottomSheetModalRef={bottomSheetModalRef}
+      />
+      <NavButton
+        onPress={submitHandler}
+        sending={auth.loading}
+        text={'Continue'}
+      />
     </SafeAreaView>
   );
 }
