@@ -1,76 +1,120 @@
-import React, {useCallback, useEffect, useMemo, useRef} from 'react';
-import {BottomSheetModal, TouchableOpacity} from '@gorhom/bottom-sheet';
-import {View, StyleSheet} from 'react-native';
+import React from 'react';
+import {Pressable, SafeAreaView, StyleSheet, Text} from 'react-native';
+import {Modal, Portal} from 'react-native-paper';
+import {
+  CameraIcon,
+  ImageIcon,
+} from '../../screens/AuthScreens/PersonalInfoScreen/icons';
 import ImagePicker from 'react-native-image-crop-picker';
-import {Colors, List, Subheading} from 'react-native-paper';
+import axios from '../../constants/api';
 
 const EditProfileImage = ({
-  setImage,
-  bottomSheetModalRef = useRef<BottomSheetModal>(null),
+  visible,
+  setVisible,
+  setUri,
+  values,
+  setLoading,
 }) => {
-  const snapPoints = useMemo(() => [0, 150], []);
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetchanges ', index);
-  }, []);
-  useEffect(() => {
-    bottomSheetModalRef.current?.present();
-  }, []);
-
-  const galleryHandler = () => {
+  const chooseImage = () => {
     ImagePicker.openPicker({
-      width: 400,
+      width: 300,
       height: 400,
       cropping: true,
-    }).then(image => setImage(image.path));
+    })
+      .then(async image => {
+        setLoading(true);
+        setUri(image.path);
+        let arr = image.path.split('/');
+        const obj = {
+          uri: image.path,
+          name: image.path.split('/')[arr.length - 1],
+          type: image.mime,
+        };
+        const data = new FormData();
+        data.append('file', obj);
+        const config = {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+          },
+
+          body: {data, values},
+        };
+        const axiosres = await axios.post('/api/v1/users/getUrl', data, {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        console.log(axiosres.data);
+        setUri(axiosres.data.data.uri);
+      })
+      .finally(() => {
+        setVisible(false);
+        setLoading(false);
+      });
   };
 
-  const cameraHandler = () => {
+  const openCamera = () => {
     ImagePicker.openCamera({
-      width: 400,
+      width: 300,
       height: 400,
       cropping: true,
-    }).then(image => setImage(image.path));
+      compressImageQuality: 0.4,
+      compressImageMaxHeight: 300,
+      compressImageMaxWidth: 300,
+    })
+      .then(image => {
+        setUri(image.path);
+        console.log({image: image.filename});
+      })
+      .finally(() => setVisible(false));
   };
+
   return (
-    <View>
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        index={1}
-        snapPoints={snapPoints}
-        stackBehavior={'push'}
-        onChange={handleSheetChanges}>
-        <View style={styles.modal}>
-          <TouchableOpacity onPress={galleryHandler} style={styles.touchable}>
-            <List.Icon color={Colors.black} icon="earth-box" />
-            <Subheading style={styles.text}>Gallery</Subheading>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={cameraHandler} style={styles.touchable}>
-            <List.Icon color={Colors.black} icon="camera" />
-            <Subheading style={styles.text}>Camera</Subheading>
-          </TouchableOpacity>
-        </View>
-      </BottomSheetModal>
-    </View>
+    <>
+      <Portal>
+        <Modal
+          visible={visible}
+          onDismiss={() => setVisible(false)}
+          style={{justifyContent: 'flex-end', margin: 0}}>
+          <SafeAreaView style={styles.options}>
+            <Pressable style={styles.option} onPress={chooseImage}>
+              <ImageIcon />
+              <Text>Library </Text>
+            </Pressable>
+            <Pressable style={styles.option} onPress={openCamera}>
+              <CameraIcon />
+              <Text>Camera</Text>
+            </Pressable>
+          </SafeAreaView>
+        </Modal>
+      </Portal>
+    </>
   );
 };
 
 export default EditProfileImage;
 
 const styles = StyleSheet.create({
-  touchable: {
-    alignItems: 'center',
+  avatar: {
+    paddingTop: 20,
+    height: 100,
+    width: 100,
+    borderRadius: 100,
+    padding: 20,
   },
-  modal: {
+
+  options: {
+    backgroundColor: 'white',
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#FAFAFA',
-    height: '100%',
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
   },
-  text: {
-    color: 'black',
-    fontSize: 24,
-    fontFamily: 'Inter-SemiBold',
-    marginVertical: 10,
+  option: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -34,6 +34,7 @@ const DATA = [
 export default function WelcomeScreen() {
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
+    // @ts-ignore
     navigate('PhoneScreen');
   };
   const scrollX = React.useRef(new Animated.Value(0)).current;
