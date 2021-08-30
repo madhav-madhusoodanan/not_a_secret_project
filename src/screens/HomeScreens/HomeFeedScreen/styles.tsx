@@ -18,8 +18,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    // backgroundColor: Theme.colors.background,
-    backgroundColor: '#F8F8F9',
+    backgroundColor: Theme.colors.background,
   },
   headline: {
     fontSize: 28,

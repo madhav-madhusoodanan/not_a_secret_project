@@ -13,8 +13,7 @@ export const styles = StyleSheet.create({
     // paddingTop: 10,
     flexDirection: 'column',
     paddingHorizontal: 16,
-    // backgroundColor: Theme.colors.background,
-    backgroundColor: '#F8F8F9',
+    backgroundColor: Theme.colors.background,
   },
 
   image: {

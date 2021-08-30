@@ -21,7 +21,7 @@ export const BottomTabs = ({navigation, state}) => {
     },
     tabListContainer: {
       // borderTopWidth: 0.5,
-      elevation: 10,
+      elevation: 0,
       flexDirection: 'row',
       backgroundColor: '#fff',
       borderTopColor: colors.border,

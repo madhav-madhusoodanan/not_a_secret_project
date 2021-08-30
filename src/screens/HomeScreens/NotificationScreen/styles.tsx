@@ -9,8 +9,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
     alignItems: 'center',
     // justifyContent: 'center',
-    // backgroundColor: Theme.colors.background,
-    backgroundColor: '#F8F8F9',
+    backgroundColor: Theme.colors.background,
   },
   announcementContainer: {
     marginTop: 50,

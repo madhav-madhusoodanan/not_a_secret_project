@@ -15,14 +15,14 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     // paddingBottom: 10,
-    backgroundColor: '#F8F8F9',
+    backgroundColor: Theme.colors.background,
   },
   header: {
     backgroundColor: Theme.colors.background,
     paddingHorizontal: 16,
     paddingBottom: 20,
     borderBottomRightRadius: 20,
-    elevation: 2,
+    elevation: 0,
     borderBottomLeftRadius: 20,
   },
   searchbar: {

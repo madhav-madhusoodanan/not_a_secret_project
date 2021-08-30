@@ -49,6 +49,8 @@ const HomeNavigator = () => {
       screenOptions={{
         headerStyle: {
           backgroundColor: Theme.colors.background,
+          elevation: 0, // remove shadow on Android
+          shadowOpacity: 0, // remove shadow on iOS
         },
         headerTransparent: false,
         headerTintColor: Theme.colors.text,

@@ -27,9 +27,8 @@ export const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 20,
     paddingHorizontal: 16,
-    // backgroundColor: Theme.colors.background,
+    backgroundColor: Theme.colors.background,
     flex: 1,
-    backgroundColor: '#F8F8F9',
   },
   customListView: {
     width: screenWidth - 40,
@@ -59,6 +58,7 @@ export const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     height: 72,
+    elevation: 0,
     alignItems: 'center',
     backgroundColor: Theme.colors.background,
   },
