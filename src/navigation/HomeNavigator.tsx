@@ -50,7 +50,7 @@ const HomeNavigator = () => {
         headerStyle: {
           backgroundColor: Theme.colors.background,
         },
-        headerTransparent: true,
+        headerTransparent: false,
         headerTintColor: Theme.colors.text,
         headerTitleAlign: 'left',
         headerTitleStyle: styles.headerStyle,
