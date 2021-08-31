@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useRef} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef} from 'react';
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import {
@@ -10,11 +10,13 @@ import {
   Snackbar,
   Appbar,
 } from 'react-native-paper';
+import { useSelector } from 'react-redux';
 import {styles} from './styles';
 
 export default function CreatePostBottomSheetContent({}) {
-  // modal initiation
 
+  // modal initiation
+  const { user } = useSelector((state: any) => state.Auth)
   const [visible, setVisible] = React.useState(false);
   const [message, setMessage] = React.useState("");
   const showModal = () => setVisible(true);
@@ -43,12 +45,12 @@ export default function CreatePostBottomSheetContent({}) {
           <Image
             style={styles.avatar}
             source={{
-              uri: 'https://pbs.twimg.com/profile_images/1334955566993604608/vo4Ep1TZ_400x400.jpg',
+              uri: user.avatar,
             }}></Image>
           <View style={styles.infoWrapper}>
             <View style={styles.namesWrapper}>
               <Text style={{fontSize: 16, fontFamily: 'Inter-SemiBold'}}>
-                Devansh Agarwal
+                {user.firstName} {user.lastName}
               </Text>
             </View>
             <View style={styles.extraInfoWrapper}>
