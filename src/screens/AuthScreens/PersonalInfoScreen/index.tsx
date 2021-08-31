@@ -10,7 +10,7 @@ import styles from './styles';
 import NavButton from '../../../components/Buttons/NavigationButton';
 import {loginuser} from '../../../store/Actions/AuthActions';
 import {data} from '../../../constants/PersonalItemData';
-import EditProfileImage from '../../../components/Profile/EditProfileImage';
+import EditProfileImage from '../../../components/Profile/ImageModal';
 
 const {width, height} = Dimensions.get('screen');
 const _width = width * 0.9;
@@ -137,7 +137,6 @@ const PersonalInfoScreen = () => {
         setUri={setUri}
         setVisible={setVisible}
         visible={visible}
-        values={{...values, gender, isNew: true}}
         setLoading={setLoading}
       />
     </SafeAreaView>

@@ -12,44 +12,35 @@ const EditProfileImage = ({
   visible,
   setVisible,
   setUri,
-  values,
   setLoading,
 }) => {
+  const thenFunction = async image => {
+    setLoading(true);
+    setUri(image.path);
+    let arr = image.path.split('/');
+    const obj = {
+      uri: image.path,
+      name: image.path.split('/')[arr.length - 1],
+      type: image.mime,
+    };
+    const data = new FormData();
+    data.append('file', obj);
+
+    const axiosres = await axios.post('/api/v1/users/getUrl', data, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    setUri(axiosres.data.data.uri);
+  };
   const chooseImage = () => {
     ImagePicker.openPicker({
       width: 300,
       height: 400,
       cropping: true,
     })
-      .then(async image => {
-        setLoading(true);
-        setUri(image.path);
-        let arr = image.path.split('/');
-        const obj = {
-          uri: image.path,
-          name: image.path.split('/')[arr.length - 1],
-          type: image.mime,
-        };
-        const data = new FormData();
-        data.append('file', obj);
-        const config = {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'multipart/form-data',
-          },
-
-          body: {data, values},
-        };
-        const axiosres = await axios.post('/api/v1/users/getUrl', data, {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        console.log(axiosres.data);
-        setUri(axiosres.data.data.uri);
-      })
+      .then(image => thenFunction(image))
       .finally(() => {
         setVisible(false);
         setLoading(false);
@@ -65,10 +56,7 @@ const EditProfileImage = ({
       compressImageMaxHeight: 300,
       compressImageMaxWidth: 300,
     })
-      .then(image => {
-        setUri(image.path);
-        console.log({image: image.filename});
-      })
+      .then(image => thenFunction(image))
       .finally(() => setVisible(false));
   };
 
