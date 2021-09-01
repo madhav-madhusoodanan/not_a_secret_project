@@ -10,18 +10,16 @@ import {
   Snackbar,
   Appbar,
 } from 'react-native-paper';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 import {styles} from './styles';
 
 export default function CreatePostBottomSheetContent({}) {
-
   // modal initiation
-  const { user } = useSelector((state: any) => state.Auth)
+  const {user} = useSelector((state: any) => state.Auth);
   const [visible, setVisible] = React.useState(false);
-  const [message, setMessage] = React.useState("");
+  const [message, setMessage] = React.useState('');
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 20};
 
   // snackbar
   const [visibleSnackBar, setVisibleSnackBar] = React.useState(false);
@@ -40,7 +38,6 @@ export default function CreatePostBottomSheetContent({}) {
       </Portal>
       <Headline style={styles.headline}> Create Post </Headline>
       <View style={styles.contentContainer}>
-        {/* <Text>Awesome 🎉</Text> */}
         <View style={styles.customListView}>
           <Image
             style={styles.avatar}
@@ -63,7 +60,7 @@ export default function CreatePostBottomSheetContent({}) {
 
         <TextInput
           value={message}
-          onChangeText={(msg) => setMessage(msg)}
+          onChangeText={msg => setMessage(msg)}
           placeholderTextColor={'#adb5bd'}
           placeholder="What do you want to talk about?"
           multiline
@@ -97,7 +94,9 @@ export default function CreatePostBottomSheetContent({}) {
           contentStyle={styles.postButtonContentStyles}
           style={styles.postButtonStyles}
           labelStyle={styles.postButtonLabelStyles}
-          onPress={() => {console.log(message)}}>
+          onPress={() => {
+            console.log(message);
+          }}>
           Post
         </Button>
       </Appbar>

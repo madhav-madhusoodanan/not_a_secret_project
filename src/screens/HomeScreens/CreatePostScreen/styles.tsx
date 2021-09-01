@@ -63,7 +63,6 @@ export const styles = StyleSheet.create({
   containerStyle: {
     backgroundColor: Theme.colors.background,
     padding: 10,
-    // width: '50%',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -95,5 +94,6 @@ export const styles = StyleSheet.create({
     color: 'black',
     marginTop: 10,
     marginBottom: 72,
+    // backgroundColor: Theme.colors.error,
   },
 });
