@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     backgroundColor: Theme.colors.background,
     flex: 1,
+    marginBottom: 72,
   },
   customListView: {
     width: screenWidth - 40,
@@ -93,7 +94,18 @@ export const styles = StyleSheet.create({
     fontFamily: 'Lato-Regular',
     color: 'black',
     marginTop: 10,
-    marginBottom: 72,
-    // backgroundColor: Theme.colors.error,
+    marginBottom: 24,
+    height: 'auto',
+    minHeight: 80,
+    borderRadius: 10,
+  },
+  imageContainer: {
+    width: 'auto',
+    height: 'auto',
+  },
+  postImage: {
+    width: '100%',
+    height: 180,
+    borderRadius: 12,
   },
 });

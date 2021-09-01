@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useMemo, useRef} from 'react';
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {TextInput} from 'react-native-gesture-handler';
 import {
   Modal,
@@ -37,7 +38,7 @@ export default function CreatePostBottomSheetContent({}) {
         </Modal>
       </Portal>
       <Headline style={styles.headline}> Create Post </Headline>
-      <View style={styles.contentContainer}>
+      <ScrollView style={styles.contentContainer}>
         <View style={styles.customListView}>
           <Image
             style={styles.avatar}
@@ -71,7 +72,17 @@ export default function CreatePostBottomSheetContent({}) {
           autoCompleteType={'off'}
           style={styles.editor}
         />
-      </View>
+        <View style={styles.imageContainer}>
+          <FastImage
+            style={styles.postImage}
+            source={{
+              uri: 'https://i.ibb.co/wpwTg4z/book.png',
+              priority: FastImage.priority.normal,
+            }}
+            resizeMode={FastImage.resizeMode.cover}
+          />
+        </View>
+      </ScrollView>
 
       <Appbar style={styles.bottomBar}>
         <Appbar.Action
