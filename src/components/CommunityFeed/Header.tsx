@@ -48,7 +48,7 @@ const Header = () => {
               style={headerStyles.followButtonStyles}
               labelStyle={headerStyles.followButtonLabelStyles}
               onPress={() => console.log('Follow Button Pressed')}>
-              Follow
+              Join
             </Button>
           </View>
         </View>

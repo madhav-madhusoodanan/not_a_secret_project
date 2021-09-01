@@ -60,6 +60,7 @@ export const styles = StyleSheet.create({
     lineHeight: 21,
     textAlign: 'center',
     paddingVertical: 10,
+    marginHorizontal: 6,
   },
 
   infoContainer: {
