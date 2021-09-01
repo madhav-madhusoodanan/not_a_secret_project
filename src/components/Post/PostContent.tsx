@@ -1,8 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-// import Post from '.';
-// <Post allowed={false} />
+// import ImageModal from 'react-native-image-modal';
 import TextInline from './TextInline';
 
 const postContent =
@@ -16,6 +15,14 @@ const PostContent = ({styles, navigateToComments}) => {
       </View>
       <TouchableOpacity onPress={navigateToComments}>
         <View style={styles.imageContainer}>
+          {/* <ImageModal
+            resizeMode="contain"
+            imageBackgroundColor="#000000"
+            style={styles.postImage}
+            source={{
+              uri: 'https://i.ibb.co/wpwTg4z/book.png',
+            }}
+          /> */}
           <FastImage
             style={styles.postImage}
             source={{

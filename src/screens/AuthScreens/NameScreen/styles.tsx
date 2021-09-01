@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   inputStyle: {
-    backgroundColor: '#fafafa',
+    backgroundColor: Theme.colors.background,
     color: '#000',
     height: 50,
     textAlign: 'center',
