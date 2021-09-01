@@ -8,6 +8,7 @@ import {
   Button,
   Headline,
   Chip,
+  List,
   Snackbar,
   Appbar,
 } from 'react-native-paper';
@@ -73,6 +74,12 @@ export default function CreatePostBottomSheetContent({}) {
           style={styles.editor}
         />
         <View style={styles.imageContainer}>
+          <TouchableOpacity
+            onPress={() => console.log('Image Removed')}
+            activeOpacity={0.5}
+            style={styles.touchableOpacity}>
+            <List.Icon color={'black'} icon="close" style={styles.listIcon} />
+          </TouchableOpacity>
           <FastImage
             style={styles.postImage}
             source={{

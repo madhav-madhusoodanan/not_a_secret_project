@@ -108,4 +108,16 @@ export const styles = StyleSheet.create({
     height: 180,
     borderRadius: 12,
   },
+  touchableOpacity: {
+    position: 'absolute',
+    zIndex: 1,
+    top: 0,
+    right: 0,
+  },
+  listIcon: {
+    borderRadius: 15,
+    height: 30,
+    width: 30,
+    backgroundColor: '#bbb',
+  },
 });
