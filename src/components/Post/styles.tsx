@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#eff7f6',
     marginBottom: 10,
     borderRadius: 20,
-    // elevation: 1,
     paddingBottom: 6,
   },
   customListView: {
@@ -69,16 +68,12 @@ export const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   upVoteIcon: {
-    // paddingVertical: 5,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: '#f13a59',
   },
   downVoteIcon: {
     marginLeft: 8,
-    // paddingRight: 5,
-    // backgroundColor: '#f13a59',
   },
   commentIcon: {
     flexDirection: 'row',
@@ -86,7 +81,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 6,
     marginLeft: 10,
-    // backgroundColor: '#f13a59',
   },
   reactionText: {
     fontSize: 13,
@@ -97,7 +91,5 @@ export const styles = StyleSheet.create({
     paddingVertical: 6,
     marginLeft: 6,
     paddingHorizontal: 10,
-    // backgroundColor: '#f13a59',
-    // right: 0,
   },
 });

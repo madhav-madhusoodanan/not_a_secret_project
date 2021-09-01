@@ -33,10 +33,8 @@ const TextInline = (props: PropTypes) => {
       fontFamily: 'Inter-Regular',
       fontSize: 14,
       color: Theme.colors.primary,
-      position: 'absolute',
-      backgroundColor: 'white',
-      right: triggerTextLocation.right,
-      top: triggerTextLocation.top,
+      // right: triggerTextLocation.right,
+      // top: triggerTextLocation.top,
     },
   });
   const toggleNumberOfLines = () => {
