@@ -10,7 +10,6 @@ const {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: 10,
     flexDirection: 'column',
     paddingHorizontal: 16,
     backgroundColor: Theme.colors.background,
@@ -21,6 +20,8 @@ export const styles = StyleSheet.create({
     height: 125,
     borderRadius: 70,
     marginTop: 10,
+    borderWidth: 1,
+    borderColor: Theme.colors.border,
     backgroundColor: Theme.colors.text,
   },
 
@@ -50,15 +51,19 @@ export const styles = StyleSheet.create({
 
   bioText: {
     fontFamily: 'Inter-Medium',
+    borderRadius: 20,
     fontSize: 14,
+    backgroundColor: '#f8f9fa',
+    borderWidth: 1,
+    borderColor: '#dee2e6',
     color: Theme.colors.text,
-    lineHeight: 20,
-    textAlign: 'left',
+    lineHeight: 21,
+    textAlign: 'center',
+    paddingVertical: 10,
   },
 
   infoContainer: {
     marginVertical: 10,
-    // alignItems: 'flex-start',
   },
 
   statsBox: {
