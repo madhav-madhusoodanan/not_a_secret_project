@@ -31,9 +31,9 @@ const EditProfileForm = ({
   const [imageLoading, setImageLoading] = useState(false);
   const [uri, setUri] = useState(null);
   useEffect(() => {
-    console.log('aavo', uri)
-    setValues({ ...values, avatar: uri })
-  },[uri])
+    console.log('aavo', uri);
+    setValues({...values, avatar: uri});
+  }, [uri]);
   return (
     <KeyboardAvoidingView enabled>
       <ScrollView
@@ -61,7 +61,7 @@ const EditProfileForm = ({
                   uri: uri ? uri : values.avatar,
                   priority: FastImage.priority.normal,
                 }}
-                resizeMode={FastImage.resizeMode.contain}
+                resizeMode={FastImage.resizeMode.cover}
               />
             )}
           </View>

@@ -39,8 +39,7 @@ const styles = StyleSheet.create({
   imageOne: {
     width: 100,
     height: 100,
-    borderRadius: 20,
-    marginHorizontal: 'auto',
+    borderRadius: 50,
   },
   content: {
     marginVertical: 3,
