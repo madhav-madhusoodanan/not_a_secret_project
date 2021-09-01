@@ -1,15 +1,15 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import { Button } from 'react-native-paper';
-import { Theme } from '../../constants/appTheme';
+import {Button} from 'react-native-paper';
+import {Theme} from '../../constants/appTheme';
 
 interface Props {
-    submitHandler: any;
-    text: any;
-    loading?: any;
-  }
-  
-const ProfileButton = ({ text, submitHandler, loading }: Props) => {
+  submitHandler: any;
+  text: any;
+  loading?: any;
+}
+
+const ProfileButton = ({text, submitHandler, loading}: Props) => {
   return (
     <View style={styles.buttonContainer}>
       <Button
@@ -30,8 +30,6 @@ const ProfileButton = ({ text, submitHandler, loading }: Props) => {
 export default ProfileButton;
 
 const styles = StyleSheet.create({
-    
-  
   buttonContainer: {
     flexDirection: 'row',
     alignItems: 'center',

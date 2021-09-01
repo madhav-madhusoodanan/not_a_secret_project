@@ -19,8 +19,9 @@ export const styles = StyleSheet.create({
   image: {
     width: 125,
     height: 125,
-    borderRadius: 22,
+    borderRadius: 70,
     marginTop: 10,
+    backgroundColor: Theme.colors.text,
   },
 
   headContainer: {
@@ -37,7 +38,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
     paddingHorizontal: 60,
-    // backgroundColor: 'red',
     margin: 8,
   },
 
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
   },
 
   bioText: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'Inter-Medium',
     fontSize: 14,
     color: Theme.colors.text,
     lineHeight: 20,

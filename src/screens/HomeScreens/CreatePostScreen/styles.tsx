@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
     color: Theme.colors.text,
     textAlign: 'left',
     fontFamily: 'Gilroy-Bold',
-    // backgroundColor: 'red',
   },
   contentContainer: {
     paddingTop: 20,
@@ -44,7 +43,6 @@ export const styles = StyleSheet.create({
   },
   namesWrapper: {
     flexDirection: 'row',
-    // backgroundColor: '#f5f5f5',
     alignItems: 'center',
     marginBottom: 10,
   },

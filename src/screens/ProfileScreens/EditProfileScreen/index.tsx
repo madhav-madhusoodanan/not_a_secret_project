@@ -7,9 +7,7 @@ import styles from './styles';
 import {updateuser} from '../../../store/Actions/AuthActions';
 import {useIsFocused} from '@react-navigation/core';
 import EditProfileForm from '../../../components/Profile/EditProfileForm';
-import Spinner from '../../../components/Spinner'
-const bioContent =
-  '👉 To draw attention attention attention ✈️ Commonly used by travel brands attention 🎥 To call attention to you YouTube channel attention 🥳 To indicate an achievement or award attention';
+import Spinner from '../../../components/Spinner';
 
 export default function EditProfileScreen() {
   const isFocused = useIsFocused();
@@ -28,17 +26,6 @@ export default function EditProfileScreen() {
     // console.log({values});
     dispatch(updateuser(values, user._id));
   };
-  const SaveButton = () => (
-    <Button
-      color={'#00AAFF'}
-      loading={loading}
-      disabled={loading}
-      uppercase={false}
-      onPress={() => updateHandler()}
-      labelStyle={styles.saveButton}>
-      Save
-    </Button>
-  );
 
   const setUser = () => {
     setValues({
