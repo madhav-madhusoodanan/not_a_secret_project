@@ -61,9 +61,34 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Theme.colors.background,
   },
-  containerStyle: {
+  listGroup: {
+    marginHorizontal: 10,
+    marginTop: 20,
+    alignSelf: 'center',
+    flexDirection: 'column',
+  },
+  communityListItem: {
+    backgroundColor: '#f5f3f4',
+    borderRadius: 12,
+    marginVertical: 5,
+    height: 50,
+    width: screenWidth - 70,
+  },
+  communityTitleStyle: {
+    color: 'black',
+    fontSize: 14,
+    alignSelf: 'center',
+    fontFamily: 'Inter-Medium',
+  },
+  modalCommunityTitle: {
+    fontSize: 16,
+    fontFamily: 'Inter-Bold',
+  },
+  modalContainerStyle: {
     backgroundColor: Theme.colors.background,
-    padding: 10,
+    padding: 20,
+    borderRadius: 12,
+    marginHorizontal: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },

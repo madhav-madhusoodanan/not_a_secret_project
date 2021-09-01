@@ -12,6 +12,7 @@ import {
   Snackbar,
   Appbar,
 } from 'react-native-paper';
+import RNBounceable from '@freakycoder/react-native-bounceable';
 import {useSelector} from 'react-redux';
 import {styles} from './styles';
 
@@ -34,8 +35,17 @@ export default function CreatePostBottomSheetContent({}) {
         <Modal
           visible={visible}
           onDismiss={hideModal}
-          contentContainerStyle={styles.containerStyle}>
-          <Text>Select Community Modal</Text>
+          contentContainerStyle={styles.modalContainerStyle}>
+          <Text style={styles.modalCommunityTitle}>Select Community</Text>
+          <View style={styles.listGroup}>
+            <RNBounceable bounceEffect={0.97} onPress={() => {}}>
+              <List.Item
+                title="JEE Mentorship by Nishant Jindal"
+                titleStyle={styles.communityTitleStyle}
+                style={styles.communityListItem}
+              />
+            </RNBounceable>
+          </View>
         </Modal>
       </Portal>
       <Headline style={styles.headline}> Create Post </Headline>
@@ -54,7 +64,7 @@ export default function CreatePostBottomSheetContent({}) {
             </View>
             <View style={styles.extraInfoWrapper}>
               <Chip icon="chevron-down" onPress={showModal}>
-                Nishant's Space
+                JEE Mentorship ..
               </Chip>
             </View>
           </View>
