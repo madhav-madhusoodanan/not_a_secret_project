@@ -7,16 +7,16 @@ import {styles} from './styles';
 
 const screenWidth = Math.round(Dimensions.get('window').width);
 
-export default function CommunityCard() {
+export default function CommunityCard({ community }) {
   return (
     <AppleCard
-      smallTitle="Nishant Jindal"
-      largeTitle="Math  Booster 2021"
-      footnoteText="200 Members"
+      smallTitle={`${community.createdBy.firstName} ${community.createdBy.lastName}`}
+      largeTitle={`${community.name}`}
+      footnoteText={`${community.members.length} Members`}
       footnoteTextStyle={styles.footnoteTextStyle}
       style={styles.container}
       resizeMode="cover"
-      source={{uri: 'https://picsum.photos/id/237/400/400'}}
+      source={{uri: community.coverImage.uri}}
       backgroundStyle={styles.background}
       onPress={() => console.log('Community Cover Pressed')}
     />

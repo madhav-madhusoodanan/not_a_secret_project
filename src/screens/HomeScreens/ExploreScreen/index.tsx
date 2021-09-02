@@ -1,21 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Dimensions,
-  ScrollView,
-} from 'react-native';
-import {Button, Headline, Searchbar} from 'react-native-paper';
-import {useTheme} from '@react-navigation/native';
+import {View, ScrollView} from 'react-native';
+import {ActivityIndicator, Searchbar} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {SVGIcon} from '../../../components/SVGIcon';
-
+import {useDispatch, useSelector} from 'react-redux';
 import {styles} from './styles';
 import CommunityCard from '../../../components/CommunityCard';
-
-const screenWidth = Math.round(Dimensions.get('window').width);
+import {getCommunities} from '../../../store/Actions/CommunityActions';
 
 export default function ExploreScreen() {
+  const dispatch = useDispatch();
+  const community = useSelector((state: any) => state.Community);
   const [searchQuery, setSearchQuery] = React.useState('');
+  const fetchCommunities = async () => {
+    await dispatch(getCommunities());
+  };
+  useEffect(() => {
+    fetchCommunities();
+  }, []);
+
+  console.log(community);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -32,7 +35,15 @@ export default function ExploreScreen() {
         showsVerticalScrollIndicator={false}
         overScrollMode={'never'}
         style={styles.viewContainer}>
-
+        {!community.loading  && community.communities ? (
+          community.communities.map(c => (
+            <>
+              <CommunityCard community={c} key={c._id} />
+            </>
+          ))
+        ) : (
+          <ActivityIndicator animating color="#000" />
+        )}
       </ScrollView>
     </SafeAreaView>
   );
