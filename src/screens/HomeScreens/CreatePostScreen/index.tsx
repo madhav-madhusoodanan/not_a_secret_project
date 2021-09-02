@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useRef} from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {TextInput} from 'react-native-gesture-handler';
@@ -11,30 +11,48 @@ import {
   List,
   Snackbar,
   Appbar,
+  ActivityIndicator
 } from 'react-native-paper';
 import RNBounceable from '@freakycoder/react-native-bounceable';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {styles} from './styles';
+import ImageModal from '../../../components/Profile/ImageModal'
 
 export default function CreatePostBottomSheetContent({}) {
-  // modal initiation
   const {user} = useSelector((state: any) => state.Auth);
-  const [visible, setVisible] = React.useState(false);
-  const [message, setMessage] = React.useState('');
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
+  const dispatch = useDispatch()
+  const [visible, setVisible] = useState(false);
+  const [message, setMessage] = useState('');
+  const [imageModalVisible, setImageModalVisible] = useState(false)
+  const [imageLoading, setImageLoading] = useState(false)
+  const [imageData, setImageData] = useState(null)
+  const [uri, setUri] = useState(null)
 
   // snackbar
-  const [visibleSnackBar, setVisibleSnackBar] = React.useState(false);
+  const [visibleSnackBar, setVisibleSnackBar] = useState(false);
   const onToggleSnackBar = () => setVisibleSnackBar(!visible);
   const onDismissSnackBar = () => setVisibleSnackBar(false);
+
+  const submitHandler = () => {
+    const data = new FormData();
+    // @ts-ignore
+    const values = { description: message, community: `route.params.community` }
+    if(imageData){
+      data.append('file', imageData);
+    }
+    for(let item in values){
+        data.append(item, values[item])
+    }
+    
+    // dispatch(updateuser(data, user._id));
+  }
 
   return (
     <View style={styles.container}>
       <Portal>
         <Modal
           visible={visible}
-          onDismiss={hideModal}
+          onDismiss={() => setVisible(false)}
           contentContainerStyle={styles.modalContainerStyle}>
           <Text style={styles.modalCommunityTitle}>Select Community</Text>
           <View style={styles.listGroup}>
@@ -63,7 +81,7 @@ export default function CreatePostBottomSheetContent({}) {
               </Text>
             </View>
             <View style={styles.extraInfoWrapper}>
-              <Chip icon="chevron-down" onPress={showModal}>
+              <Chip icon="chevron-down" onPress={() => setVisible(true)}>
                 JEE Mentorship ..
               </Chip>
             </View>
@@ -83,9 +101,9 @@ export default function CreatePostBottomSheetContent({}) {
           autoCompleteType={'off'}
           style={styles.editor}
         />
-        <View style={styles.imageContainer}>
+        {uri ? !imageLoading ? <View style={styles.imageContainer}>
           <TouchableOpacity
-            onPress={() => console.log('Image Removed')}
+            onPress={() => setUri(null)}
             activeOpacity={0.5}
             style={styles.touchableOpacity}>
             <List.Icon color={'black'} icon="close" style={styles.listIcon} />
@@ -93,22 +111,19 @@ export default function CreatePostBottomSheetContent({}) {
           <FastImage
             style={styles.postImage}
             source={{
-              uri: 'https://i.ibb.co/wpwTg4z/book.png',
+              // @ts-ignore
+              uri,
               priority: FastImage.priority.normal,
             }}
             resizeMode={FastImage.resizeMode.cover}
           />
-        </View>
+        </View> : <Text>{JSON.stringify(uri)}</Text> : <></> }
       </ScrollView>
 
       <Appbar style={styles.bottomBar}>
         <Appbar.Action
-          icon="camera"
-          onPress={() => console.log('Pressed archive')}
-        />
-        <Appbar.Action
           icon="image"
-          onPress={() => console.log('Pressed mail')}
+          onPress={() => setImageModalVisible(true)}
         />
         <Appbar.Action
           icon="poll"
@@ -122,9 +137,7 @@ export default function CreatePostBottomSheetContent({}) {
           contentStyle={styles.postButtonContentStyles}
           style={styles.postButtonStyles}
           labelStyle={styles.postButtonLabelStyles}
-          onPress={() => {
-            console.log(message);
-          }}>
+          onPress={submitHandler}>
           Post
         </Button>
       </Appbar>
@@ -139,6 +152,14 @@ export default function CreatePostBottomSheetContent({}) {
         }}>
         Hey there! I'm a Snackbar.
       </Snackbar>
+      <ImageModal
+          setLoading={setImageLoading}
+          setUri={setUri}
+          setVisible={setImageModalVisible}
+          setImageData={setImageData}
+          visible={imageModalVisible}
+
+        />
     </View>
   );
 }

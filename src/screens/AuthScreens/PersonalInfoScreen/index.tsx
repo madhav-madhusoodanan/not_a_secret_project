@@ -10,7 +10,7 @@ import styles from './styles';
 import NavButton from '../../../components/Buttons/NavigationButton';
 import {loginuser} from '../../../store/Actions/AuthActions';
 import {data} from '../../../constants/PersonalItemData';
-import EditProfileImage from '../../../components/Profile/ImageModal';
+import ImageModal from '../../../components/Profile/ImageModal';
 
 const {width, height} = Dimensions.get('screen');
 const _width = width * 0.9;
@@ -22,6 +22,7 @@ const PersonalInfoScreen = () => {
 
   // @ts-ignore
   const [values, setValues] = useState(route.params.values);
+  const [imageData, setImageData] = useState(null)
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false)
   const initialUri =
@@ -31,7 +32,16 @@ const PersonalInfoScreen = () => {
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
     let final = {...values, gender, isNew: true, uri};
-    dispatch(loginuser(final, navigate));
+    const data = new FormData();
+    // @ts-ignore
+    if(imageData){
+      data.append('file', imageData);
+    }
+    for(let item in final){
+        data.append(item, values[item])
+    }
+    
+    dispatch(loginuser(data, navigate));
     console.log(final);
     // @ts-ignore
     // navigate('Home');
@@ -133,11 +143,12 @@ const PersonalInfoScreen = () => {
         sending={auth.loading}
         text="Continue"
       />
-      <EditProfileImage
+      <ImageModal
         setUri={setUri}
         setVisible={setVisible}
         visible={visible}
         setLoading={setLoading}
+        setImageData={setImageData}
       />
     </SafeAreaView>
   );

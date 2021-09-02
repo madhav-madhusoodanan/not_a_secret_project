@@ -12,26 +12,36 @@ import {Colors, List, Subheading, ActivityIndicator} from 'react-native-paper';
 import ProfileButton from '../Buttons/ProfileButton';
 import ProfileInput from '../TextInput/ProfileInput';
 import ImageModal from './ImageModal';
+import {useSelector, useDispatch} from 'react-redux';
+import {updateuser} from '../../store/Actions/AuthActions';
 
 interface Props {
   styles: any;
   values: any;
   setValues: any;
-  loading: any;
-  updateHandler: any;
 }
-const EditProfileForm = ({
-  styles,
-  values,
-  setValues,
-  loading,
-  updateHandler,
-}: Props) => {
+const EditProfileForm = ({styles, values, setValues}: Props) => {
+  const dispatch = useDispatch();
+  const auth = useSelector((state: any) => state.Auth);
+  const {user, loading} = auth;
   const [visible, setVisible] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
   const [uri, setUri] = useState(null);
+  const [imageData, setImageData] = useState(null)
+  const submitHandler = () => {
+    const data = new FormData();
+    if(imageData){
+      data.append('file', imageData);
+    }
+    for(let item in values){
+      if(item !== 'avatar'){
+        data.append(item, values[item])
+      }
+    }
+    dispatch(updateuser(data, user._id));
+  };
+
   useEffect(() => {
-    console.log('aavo', uri);
     setValues({...values, avatar: uri});
   }, [uri]);
   return (
@@ -102,7 +112,7 @@ const EditProfileForm = ({
         </View>
         <ProfileButton
           text="Save"
-          submitHandler={updateHandler}
+          submitHandler={submitHandler}
           loading={loading}
         />
         <ImageModal
@@ -110,6 +120,7 @@ const EditProfileForm = ({
           setUri={setUri}
           setVisible={setVisible}
           visible={visible}
+          setImageData={setImageData}
         />
       </ScrollView>
     </KeyboardAvoidingView>

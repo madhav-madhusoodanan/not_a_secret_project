@@ -8,7 +8,7 @@ import {
 import ImagePicker from 'react-native-image-crop-picker';
 import axios from '../../constants/api';
 
-const EditProfileImage = ({visible, setVisible, setUri, setLoading}) => {
+const ImageModal = ({visible, setVisible, setUri, setLoading, setImageData}) => {
   const thenFunction = async image => {
     setLoading(true);
     setUri(image.path);
@@ -18,16 +18,7 @@ const EditProfileImage = ({visible, setVisible, setUri, setLoading}) => {
       name: image.path.split('/')[arr.length - 1],
       type: image.mime,
     };
-    const data = new FormData();
-    data.append('file', obj);
-
-    const axiosres = await axios.post('/api/v1/users/getUrl', data, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    setUri(axiosres.data.data.uri);
+    setImageData(obj)
   };
   const chooseImage = () => {
     ImagePicker.openPicker({
@@ -83,7 +74,7 @@ const EditProfileImage = ({visible, setVisible, setUri, setLoading}) => {
   );
 };
 
-export default EditProfileImage;
+export default ImageModal;
 
 const styles = StyleSheet.create({
   avatar: {
