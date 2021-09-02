@@ -16,14 +16,13 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 
 export default function ExploreScreen() {
   const [searchQuery, setSearchQuery] = React.useState('');
-  const onChangeSearch = query => setSearchQuery(query);
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Searchbar
           placeholder="Explore Creators"
-          onChangeText={onChangeSearch}
+          onChangeText={query => setSearchQuery(query)}
           placeholderTextColor="gray"
           style={styles.searchbar}
           value={searchQuery}
@@ -33,7 +32,7 @@ export default function ExploreScreen() {
         showsVerticalScrollIndicator={false}
         overScrollMode={'never'}
         style={styles.viewContainer}>
-        <CommunityCard />
+
       </ScrollView>
     </SafeAreaView>
   );

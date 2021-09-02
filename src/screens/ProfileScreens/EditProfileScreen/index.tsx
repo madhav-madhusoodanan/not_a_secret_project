@@ -25,7 +25,7 @@ export default function EditProfileScreen() {
       lastName: user.lastName,
       username: user.username,
       bio: user.bio,
-      avatar: user.avatar,
+      avatar: user.avatar.uri,
     });
   };
 

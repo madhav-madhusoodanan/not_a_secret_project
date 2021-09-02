@@ -72,7 +72,7 @@ export default function CreatePostBottomSheetContent({}) {
           <Image
             style={styles.avatar}
             source={{
-              uri: user.avatar,
+              uri: user.avatar.uri,
             }}></Image>
           <View style={styles.infoWrapper}>
             <View style={styles.namesWrapper}>

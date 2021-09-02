@@ -21,7 +21,7 @@ const ProfileTop = ({styles, user, inlineStyle, navigateToEditScreen, id}) => {
           <FastImage
             style={styles.image}
             source={{
-              uri: user.avatar,
+              uri: user.avatar.uri,
               priority: FastImage.priority.normal,
             }}
             resizeMode={FastImage.resizeMode.cover}

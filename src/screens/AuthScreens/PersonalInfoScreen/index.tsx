@@ -29,6 +29,9 @@ const PersonalInfoScreen = () => {
     'https://pbs.twimg.com/profile_images/1824002576/pg-railsconf_400x400.jpg';
   const [uri, setUri] = useState(initialUri);
 
+  const [bg, setBg] = useState(data[0].background);
+  const [gender, setGender] = useState(data[0].gender);
+
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
     let final = {...values, gender, isNew: true, uri};
@@ -38,17 +41,14 @@ const PersonalInfoScreen = () => {
       data.append('file', imageData);
     }
     for(let item in final){
-        data.append(item, values[item])
+        data.append(item, final[item])
     }
     
     dispatch(loginuser(data, navigate));
-    console.log(final);
+    console.log(data);
     // @ts-ignore
     // navigate('Home');
   };
-
-  const [bg, setBg] = useState(data[0].background);
-  const [gender, setGender] = useState(data[0].gender);
 
   useEffect(() => {
     console.log(route.params);
