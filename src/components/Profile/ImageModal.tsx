@@ -8,12 +8,7 @@ import {
 import ImagePicker from 'react-native-image-crop-picker';
 import axios from '../../constants/api';
 
-const EditProfileImage = ({
-  visible,
-  setVisible,
-  setUri,
-  setLoading,
-}) => {
+const EditProfileImage = ({visible, setVisible, setUri, setLoading}) => {
   const thenFunction = async image => {
     setLoading(true);
     setUri(image.path);
@@ -41,6 +36,7 @@ const EditProfileImage = ({
       cropping: true,
     })
       .then(image => thenFunction(image))
+      .catch(err => console.log({err}))
       .finally(() => {
         setVisible(false);
         setLoading(false);
@@ -57,7 +53,11 @@ const EditProfileImage = ({
       compressImageMaxWidth: 300,
     })
       .then(image => thenFunction(image))
-      .finally(() => setVisible(false));
+      .catch(err => console.log({err}))
+      .finally(() => {
+        setVisible(false);
+        setLoading(false);
+      });
   };
 
   return (
