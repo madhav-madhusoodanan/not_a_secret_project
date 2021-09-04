@@ -135,6 +135,7 @@ const CommunityNavigator: FC = () => {
     () => ({
       contentContainerStyle,
       onMomentumScrollEnd: sync,
+      showsVerticalScrollIndicator: false,
       onScrollEndDrag: sync,
       scrollEventThrottle: 16,
       scrollIndicatorInsets: {top: heightExpanded},

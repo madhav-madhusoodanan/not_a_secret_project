@@ -74,11 +74,9 @@ export const getMe =
   (navigate: null | any, token: string) => async (dispatch: any) => {
     dispatch({type: types.AUTH_LOADING});
     try {
-      console.log('reached');
       const {data, status} = await axios.get(`${url}/me`, {
         headers: {Authorization: `Bearer ${token}`},
       });
-      console.log('reached2');
       console.log({status});
       dispatch({
         type: types.GET_ME_SUCCESS,

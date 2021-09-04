@@ -27,7 +27,6 @@ export default function SplashScreen() {
     const token = await AsyncStorage.getItem('verseAuthToken');
     if (token) {
       await dispatch(getMe(navigate, token));
-      console.log('reached');
       setTimeout(() => {
         // @ts-ignore
         navigate('Home');
