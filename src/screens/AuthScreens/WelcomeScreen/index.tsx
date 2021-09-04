@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  Animated,
-  Image,
-  View,
-  Dimensions,
-} from 'react-native';
+import {Animated, Image, View, Dimensions, StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import NavButton from '../../../components/Buttons/NavigationButton';
@@ -39,18 +34,67 @@ const DATA = [
 export default function WelcomeScreen() {
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
+    // @ts-ignore
     navigate('PhoneScreen');
   };
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const inputRange = DATA.map((_, i) => i * width);
 
+  const inlineStyle = StyleSheet.create({
+    outer: {
+      position: 'absolute',
+      bottom: 0,
+      height: height * 0.25,
+      padding: 20,
+      width,
+      justifyContent: 'space-between',
+    },
+    inner: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      marginBottom: 20,
+    },
+    animated: {paddingBottom: height * 0.25},
+    outerAnimated: {
+      width,
+      justifyContent: 'center',
+      height: '95%',
+    },
+    innerOneAnimated: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    innerTwoAnimated: {padding: 20},
+    imageAnimated: {
+      width: width / 2,
+      height: width / 2,
+      resizeMode: 'contain',
+    },
+    textAnimated: {
+      color: '#1E2022',
+      textAlign: 'center',
+      lineHeight: 40,
+      fontSize: 28,
+      paddingVertical: 10,
+      fontFamily: 'Gilroy-Bold',
+    },
+    animatedLast: {
+      width: 7,
+      height: 7,
+      borderRadius: 10,
+      margin: 6,
+      backgroundColor: '#414757',
+    },
+  });
+  
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: Theme.colors.background}}>
       <Animated.FlatList
         data={DATA}
         scrollEventThrottle={32}
         showsHorizontalScrollIndicator={false}
-        style={{paddingBottom: height * 0.25}}
+        style={inlineStyle.animated}
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {x: scrollX}}}],
           {
@@ -62,37 +106,16 @@ export default function WelcomeScreen() {
         horizontal
         renderItem={({item, index}) => {
           return (
-            <View
-              style={{
-                width,
-                justifyContent: 'center',
-                height: '95%',
-              }}>
-              <View
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
+            <View style={inlineStyle.outerAnimated}>
+              <View style={inlineStyle.innerOneAnimated}>
                 <Image
                   source={{uri: item.image}}
-                  style={{
-                    width: width / 2,
-                    height: width / 2,
-                    resizeMode: 'contain',
-                  }}
+                  style={inlineStyle.imageAnimated}
                 />
               </View>
-              <View style={{padding: 20}}>
+              <View style={inlineStyle.innerTwoAnimated}>
                 <Text
-                  style={{
-                    color: '#1E2022',
-                    textAlign: 'center',
-                    lineHeight: 40,
-                    fontSize: 28,
-                    paddingVertical: 10,
-                    fontFamily: 'Gilroy-Bold',
-                  }}
+                  style={inlineStyle.textAnimated}
                   numberOfLines={2}
                   adjustsFontSizeToFit>
                   {item.title}
@@ -102,21 +125,8 @@ export default function WelcomeScreen() {
           );
         }}
       />
-      <View
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          height: height * 0.25,
-          padding: 20,
-          width,
-          justifyContent: 'space-between',
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            marginBottom: 20,
-          }}>
+      <View style={inlineStyle.outer}>
+        <View style={inlineStyle.inner}>
           {DATA.map((_, i) => {
             const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
             const scale = scrollX.interpolate({
@@ -133,12 +143,8 @@ export default function WelcomeScreen() {
               <Animated.View
                 key={i}
                 style={{
-                  width: 7,
-                  height: 7,
-                  borderRadius: 10,
-                  margin: 6,
+                  ...inlineStyle.animatedLast,
                   opacity,
-                  backgroundColor: '#414757',
                   transform: [
                     {
                       scale,

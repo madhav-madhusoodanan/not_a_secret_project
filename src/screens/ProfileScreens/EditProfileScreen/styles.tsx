@@ -4,45 +4,61 @@ import {Theme} from '../../../constants/appTheme';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 64,
-    // paddingHorizontal: 20,
+    paddingTop: 54,
     backgroundColor: Theme.colors.background,
   },
-  listGroup: {
-    marginHorizontal: 10,
-    marginTop: 20,
-    // alignSelf: 'center',
-    flexDirection: 'column',
+
+  bioText: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 14,
+    color: Theme.colors.text,
+    lineHeight: 20,
+    textAlign: 'left',
   },
-  listItem: {
-    backgroundColor: '#f5f3f4',
-    borderRadius: 12,
-    marginVertical: 5,
-    height: 60,
-    paddingTop: 15,
-    width: '100%',
-    alignContent: 'center',
+  viewOne: {
     justifyContent: 'center',
+    width: '100%',
+    flexDirection: 'row',
   },
-  titleStyle: {
-    color: 'black',
-    fontSize: 16,
-    top: -4,
-    fontFamily: 'Inter-Bold',
+  viewTwo: {
+    marginVertical: 30,
+    width: 100,
   },
-  footerText: {
+  touchableOpacityOne: {
     position: 'absolute',
-    bottom: 0,
-    left: 0,
-    marginBottom: 30,
-    right: 0,
-    flex: 1,
+    zIndex: 1,
+    bottom: -15,
+    right: -15,
   },
-  footerTextStyles: {
-    color: '#adb5bd',
-    fontSize: 16,
-    textAlign: 'center',
-    fontFamily: 'Inter-Bold',
+  listIconOne: {
+    borderRadius: 15,
+    height: 30,
+    width: 30,
+    backgroundColor: '#bbb',
+  },
+  imageOne: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
+  content: {
+    marginVertical: 3,
+  },
+  subHeading: {
+    color: 'black',
+    fontFamily: 'Inter-SemiBold',
+  },
+  editor: {
+    fontSize: 14,
+    textAlignVertical: 'top',
+    right: 3,
+    fontFamily: 'Inter-Medium',
+    color: 'black',
+    marginTop: 10,
+    paddingBottom: 18,
+  },
+  scrollStyle: {
+    paddingHorizontal: 20,
   },
 });
 

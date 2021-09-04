@@ -21,7 +21,7 @@ const AuthNavigator = () => {
         options={{headerShown: false}}
         name="OneTimePasswordScreen"
         component={AuthScreens.OTPScreen}
-      />
+      /> 
       <Auth.Screen
         options={{headerShown: false}}
         name="NameScreen"

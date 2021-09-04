@@ -1,75 +1,50 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {List} from 'react-native-paper';
-import RNBounceable from '@freakycoder/react-native-bounceable';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-
-import {SVGIcon} from './../../../components/SVGIcon';
+import {useSelector} from 'react-redux';
 import styles from './styles';
+import {useIsFocused} from '@react-navigation/core';
+import EditProfileForm from '../../../components/Profile/EditProfileForm';
+import Spinner from '../../../components/Spinner';
 
-export default function index() {
+export default function EditProfileScreen() {
+  const isFocused = useIsFocused();
+  const auth = useSelector((state: any) => state.Auth);
+  const {user} = auth;
+  const [values, setValues] = useState({
+    firstName: '',
+    lastName: '',
+    username: '',
+    bio: '',
+    avatar: '',
+  });
+
+  const setUser = () => {
+    setValues({
+      ...values,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      username: user.username,
+      bio: user.bio,
+      avatar: user.avatar.uri,
+    });
+  };
+
+  useEffect(() => {
+    if (isFocused) {
+      setUser();
+    }
+  }, [isFocused]);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.listGroup}>
-        <RNBounceable bounceEffect={0.97} onPress={() => {}}>
-          <List.Item
-            title="Privacy Policy"
-            titleStyle={styles.titleStyle}
-            style={styles.listItem}
-            right={() => <List.Icon color="#000" icon="chevron-right" />}
-            left={() => (
-              <List.Icon
-                color="#45E5A2"
-                icon={props => (
-                  <SVGIcon {...props} height={70} type="privacy" width={70} />
-                )}
-              />
-            )}
-          />
-        </RNBounceable>
-
-        <RNBounceable bounceEffect={0.97} onPress={() => {}}>
-          <List.Item
-            title="Report Bug"
-            titleStyle={styles.titleStyle}
-            style={styles.listItem}
-            right={() => <List.Icon color="#000" icon="chevron-right" />}
-            left={() => (
-              <List.Icon
-                color="#71A1FF"
-                icon={props => (
-                  <SVGIcon {...props} height={70} type="bug" width={70} />
-                )}
-              />
-            )}
-          />
-        </RNBounceable>
-        <RNBounceable bounceEffect={0.97} onPress={() => {}}>
-          <List.Item
-            title="Logout"
-            titleStyle={styles.titleStyle}
-            style={styles.listItem}
-            right={() => <List.Icon color="#000" icon="chevron-right" />}
-            left={() => (
-              <List.Icon
-                color="#FF5E5E"
-                icon={props => (
-                  <SVGIcon
-                    {...props}
-                    fill={'transparent'}
-                    height={70}
-                    type="logout"
-                    width={70}
-                  />
-                )}
-              />
-            )}
-          />
-        </RNBounceable>
-      </View>
-      <View style={styles.footerText}>
-        <Text style={styles.footerTextStyles}>1.0 (081721)</Text>
-      </View>
+      {!user ? (
+        <Spinner />
+      ) : (
+        <EditProfileForm
+          setValues={setValues}
+          styles={styles}
+          values={values}
+        />
+      )}
     </SafeAreaView>
   );
 }

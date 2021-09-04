@@ -9,7 +9,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: Theme.colors.background,
   },
-
+  subTitle: {
+    marginBottom: 20,
+    color: '#f00',
+    fontSize: 12,
+    textAlign: 'left',
+  },
   title: {
     marginTop: 40,
     lineHeight: 36,
@@ -27,7 +32,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   inputStyle: {
-    height: 60,
+    backgroundColor: Theme.colors.background,
+    color: '#000',
+    height: 50,
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 20,

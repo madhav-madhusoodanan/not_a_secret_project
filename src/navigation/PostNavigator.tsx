@@ -8,6 +8,7 @@ import {
   TransitionSpecs,
 } from '@react-navigation/stack';
 import {Easing} from 'react-native';
+import CrossIcon from '@iconscout/react-native-unicons/icons/uil-times';
 import {Text} from 'react-native-paper';
 import CommentScreenContent from '../components/Comment';
 
@@ -15,11 +16,26 @@ const PostStack = createStackNavigator();
 
 const PostNavigator = () => {
   return (
-    <PostStack.Navigator initialRouteName="PostScreen">
+    <PostStack.Navigator
+      initialRouteName="PostScreen"
+      screenOptions={{
+        headerTransparent: true,
+        presentation: 'modal',
+        headerBackImage: () => <CrossIcon size="28" color="#000" />,
+        headerStyle: {
+          // backgroundColor: Theme.colors.background,
+        },
+        headerTintColor: 'black',
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          fontFamily: 'Gilroy-Bold',
+          fontSize: 20,
+        },
+      }}>
       <PostStack.Screen
         name="PostScreen"
         options={{
-          headerShown: false,
+          title: 'Comments',
           gestureDirection: 'vertical',
           transitionSpec: {
             open: TransitionSpecs.TransitionIOSSpec,

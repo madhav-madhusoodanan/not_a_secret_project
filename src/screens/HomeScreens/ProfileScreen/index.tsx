@@ -1,109 +1,59 @@
-import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  Pressable,
-} from 'react-native';
-
-import FastImage from 'react-native-fast-image';
-import MenuIcon from '@iconscout/react-native-unicons/icons/uil-ellipsis-h';
-import {useNavigation} from '@react-navigation/native';
-import {Button, Subheading} from 'react-native-paper';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet} from 'react-native';
+import {useNavigation, useIsFocused, useRoute} from '@react-navigation/native';
 import {styles} from './styles';
+import {useSelector, useDispatch} from 'react-redux';
+import {getProfile} from '../../../store/Actions/UserActions';
+import Spinner from '../../../components/Spinner';
+import ProfileTop from '../../../components/Profile/ProfileTop';
 
 export default function ProfileScreen() {
   const {navigate, goBack} = useNavigation();
-  const submitHandler = () => {
+  const isFocused = useIsFocused();
+  const route = useRoute();
+  const auth = useSelector((state: any) => state.Auth);
+  const profile = useSelector((state: any) => state.User);
+  const dispatch = useDispatch();
+  const {user} = auth;
+  const navigateToEditScreen = () => {
+    // @ts-ignore
     navigate('Profile', {
       screen: 'EditProfileScreen',
     });
   };
+  const loadProfile = async () => {
+    if (route.params) {
+      // @ts-ignore
+      await dispatch(getProfile(route.params.id));
+    } else if (!profile.profile) {
+      await dispatch(getProfile(auth.user._id));
+    }
+  };
+  const inlineStyle = StyleSheet.create({
+    text: {...styles.text, fontSize: 20},
+    tag: {...styles.text, color: '#333', fontSize: 14},
+    label: {...styles.text, ...styles.subText},
+  });
+  useEffect(() => {
+    if (isFocused) {
+      loadProfile();
+      console.log(user._id);
+    }
+  }, [isFocused]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView overScrollMode={'never'} showsVerticalScrollIndicator={false}>
-        <View style={{alignSelf: 'center'}}>
-          <FastImage
-            style={styles.image}
-            source={{
-              uri: 'https://pbs.twimg.com/profile_images/1276570366555684865/7J55FrYi_400x400.jpg',
-              priority: FastImage.priority.normal,
-            }}
-            resizeMode={FastImage.resizeMode.contain}
-          />
-        </View>
-
-        <View style={styles.headContainer}>
-          <Text style={[styles.text, {fontSize: 20}]}>Miron Catalin</Text>
-          <Text style={[styles.text, {color: '#333', fontSize: 14}]}>
-            @mironcatalin
-          </Text>
-        </View>
-        <View style={styles.statsContainer}>
-          <View style={styles.statsBox}>
-            <Text style={[styles.text, {fontSize: 20}]}>3916</Text>
-            <Text style={[styles.text, styles.subText]}>Followers</Text>
-          </View>
-          <View style={styles.statsBox}>
-            <Text style={[styles.text, {fontSize: 20}]}>394</Text>
-            <Text style={[styles.text, styles.subText]}>Following</Text>
-          </View>
-        </View>
-
-        <View style={styles.infoContainer}>
-          <Text style={styles.bioText}>
-            👉 To draw attention attention attention{'\n'}✈️ Commonly used by
-            travel brands attention{'\n'}🎥 To call attention to you YouTube
-            channel attention{'\n'}🥳 To indicate an achievement or award
-            attention
-          </Text>
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            mode={'outlined'}
-            color={'#00AAFF'}
-            contentStyle={styles.editButtonContentStyles}
-            style={styles.editButtonStyles}
-            labelStyle={styles.editButtonLabelStyles}
-            onPress={submitHandler}>
-            Edit Profile
-          </Button>
-          <TouchableOpacity
-            style={styles.menuButtonStyles}
-            onPress={() => console.log('Menu Button Pressed')}>
-            <MenuIcon size="24" color="#848c8e" />
-          </TouchableOpacity>
-        </View>
-
-        {/* <View style={styles.userCommunityContainer}>
-          <Subheading style={styles.subheading}>My Communities</Subheading>
-          <View style={styles.communityListContainer}>
-            <Pressable style={styles.communityViewBox}></Pressable>
-            <Pressable style={styles.communityViewBox}></Pressable>
-          </View>
-          <View style={styles.communityListContainer}>
-            <Pressable style={styles.communityViewBox}></Pressable>
-            <Pressable style={styles.communityViewBox}></Pressable>
-          </View>
-          <View style={styles.communityListContainer}>
-            <Pressable style={styles.communityViewBox}></Pressable>
-            <Pressable style={styles.communityViewBox}></Pressable>
-          </View>
-          <View style={styles.communityListContainer}>
-            <Pressable style={styles.communityViewBox}></Pressable>
-            <Pressable style={styles.communityViewBox}></Pressable>
-          </View>
-          <View style={styles.communityListContainer}>
-            <Pressable style={styles.communityViewBox}></Pressable>
-            <Pressable style={styles.communityViewBox}></Pressable>
-          </View>
-        </View> */}
-      </ScrollView>
-    </SafeAreaView>
+    <>
+      {!profile.loading && profile.profile ? (
+        <ProfileTop
+          inlineStyle={inlineStyle}
+          navigateToEditScreen={navigateToEditScreen}
+          styles={styles}
+          user={profile.profile}
+          id={user._id}
+        />
+      ) : (
+        <Spinner />
+      )}
+    </>
   );
 }

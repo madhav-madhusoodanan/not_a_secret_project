@@ -4,6 +4,7 @@ export default styles = StyleSheet.create({
   mainWrapper: {
     flexDirection: 'row',
     marginHorizontal: 16,
+    paddingTop: 4,
   },
 
   image: {
@@ -73,5 +74,8 @@ export default styles = StyleSheet.create({
     marginRight: 10,
     // color: '#2F8DFD',
     color: '#00AAFF',
+  },
+  backgroundWhite: {
+    backgroundColor: '#FFFFFF',
   },
 });

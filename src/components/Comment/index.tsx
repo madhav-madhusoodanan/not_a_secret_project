@@ -91,6 +91,7 @@ export default CommentScreenContent;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 15,
     // backgroundColor: '#F8F8F9',
     backgroundColor: '#FFF',
     justifyContent: 'center',

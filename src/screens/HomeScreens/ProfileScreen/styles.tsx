@@ -10,18 +10,19 @@ const {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: 10,
     flexDirection: 'column',
     paddingHorizontal: 16,
-    // backgroundColor: Theme.colors.background,
-    backgroundColor: '#F8F8F9',
+    backgroundColor: Theme.colors.background,
   },
 
   image: {
     width: 125,
     height: 125,
-    borderRadius: 35,
+    borderRadius: 70,
     marginTop: 10,
+    borderWidth: 1,
+    borderColor: Theme.colors.border,
+    backgroundColor: Theme.colors.text,
   },
 
   headContainer: {
@@ -38,7 +39,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
     paddingHorizontal: 60,
-    // backgroundColor: 'red',
     margin: 8,
   },
 
@@ -50,16 +50,21 @@ export const styles = StyleSheet.create({
   },
 
   bioText: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'Inter-Medium',
+    borderRadius: 20,
     fontSize: 14,
+    backgroundColor: '#f8f9fa',
+    borderWidth: 1,
+    borderColor: '#dee2e6',
     color: Theme.colors.text,
-    lineHeight: 20,
-    textAlign: 'left',
+    lineHeight: 21,
+    textAlign: 'center',
+    paddingVertical: 10,
+    marginHorizontal: 6,
   },
 
   infoContainer: {
     marginVertical: 10,
-    // alignItems: 'flex-start',
   },
 
   statsBox: {
@@ -90,43 +95,6 @@ export const styles = StyleSheet.create({
 
   editButtonContentStyles: {
     height: 42,
-    width: 168,
-  },
-
-  menuButtonStyles: {
-    marginLeft: 4,
-    borderWidth: 2,
-    borderRadius: 10,
-    height: 46,
-    borderColor: '#848c8e',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 46,
-  },
-  subheading: {
-    fontSize: 18,
-    color: Theme.colors.text,
-    textAlign: 'left',
-    fontFamily: 'Inter-SemiBold',
-    marginBottom: 16,
-    marginTop: 15,
-    // paddingHorizontal: 16,
-  },
-
-  userCommunityContainer: {
-    flexDirection: 'column',
-  },
-
-  communityListContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  communityViewBox: {
-    width: '48%',
-    borderRadius: 10,
-    height: 100,
-    marginBottom: 13,
-    backgroundColor: '#14213d',
-    // marginHorizontal: 10,
+    width: '100%',
   },
 });

@@ -24,7 +24,7 @@ const Comment = ({displayLike, commentData}) => {
     ));
   };
   return (
-    <View style={{backgroundColor: 'white'}}>
+    <View style={commentStyling.backgroundWhite}>
       <View style={commentStyling.mainWrapper}>
         <Image style={commentStyling.image} source={{uri: ownerAvatar}} />
         <View style={commentStyling.wrapper}>
