@@ -45,7 +45,7 @@ const PersonalInfoScreen = () => {
     }
     
     dispatch(loginuser(data, navigate));
-    console.log(data);
+    console.log("data" +data);
     // @ts-ignore
     navigate('Home');
   };
