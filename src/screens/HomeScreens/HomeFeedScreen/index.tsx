@@ -1,23 +1,15 @@
-import React, {useCallback, useMemo, useRef} from 'react';
-import {View, Text, Alert, Animated, ScrollView, FlatList} from 'react-native';
-
-import {BottomSheetModal} from '@gorhom/bottom-sheet';
-
-import {Divider, Subheading, FAB} from 'react-native-paper';
-import {useTheme} from '@react-navigation/native';
+import React, {useEffect} from 'react';
+import {View, Alert, Animated, ScrollView} from 'react-native';
+import {Subheading, FAB, ActivityIndicator} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import DropDownIcon from '@iconscout/react-native-unicons/icons/uil-angle-down';
-import Post from '../../../components/Post';
-
 import StickyItemFlatList from '@gorhom/sticky-item';
-
+import {useSelector} from 'react-redux';
+import Post from '../../../components/Post';
 import {styles} from './styles';
-
-import CreatePostBottomSheetContent from '../CreatePostScreen';
 
 // dummy data
 const data = [...Array(10)].fill(0).map((_, index) => ({id: `item-${index}`}));
-
 // configs
 const ITEM_WIDTH = 100;
 const ITEM_HEIGHT = 120;
@@ -27,16 +19,7 @@ const STICKY_ITEM_BACKGROUNDS = ['#660708', '#370617'];
 const SEPARATOR_SIZE = 16;
 const BORDER_RADIUS = 10;
 
-const StickyItemView = ({
-  x,
-  threshold,
-  itemWidth,
-  itemHeight,
-  stickyItemWidth,
-  stickyItemHeight,
-  separatorSize,
-  isRTL,
-}) => {
+const StickyItemView = stickyProps => {
   const amazingAnimation = {
     // here you add your custom interactive animation
     // based on the animated value `x`
@@ -45,13 +28,9 @@ const StickyItemView = ({
   return <Animated.View style={amazingAnimation} />;
 };
 
-export default function HomeFeedScreen({navigator}) {
-  // Menu
-
-  const [visible, setVisible] = React.useState(false);
-  const openMenu = () => setVisible(true);
-  const closeMenu = () => setVisible(false);
-
+export default function HomeFeedScreen({}) {
+  const {navigate} = useNavigation();
+  const post = useSelector((state: any) => state.Post);
   // methods
   const handleStickyItemPress = () => Alert.alert('Sticky Item Pressed');
 
@@ -60,19 +39,8 @@ export default function HomeFeedScreen({navigator}) {
     <View key={`item-${index}`} style={styles.joinedCommunities} />
   );
 
-  // ref
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-
-  // variables
-  const snapPoints = useMemo(() => ['25%', '100%'], []);
-
-  // callbacks
-  const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present();
-  }, []);
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
+  useEffect(() => {
+  }, [post.posts]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -96,28 +64,22 @@ export default function HomeFeedScreen({navigator}) {
             renderItem={renderItem}
           />
         </View>
-        <Post  allowed />
-        {/* <Divider style={styles.divider} /> */}
-        <Post allowed />
-        <Post allowed />
-        <Post allowed />
+        {post.posts ? (
+          post.posts.map((p, i) => {
+            return <Post post={p} allowed key={i} />;
+          })
+        ) : (
+          <ActivityIndicator animating color="#000" />
+        )}
       </ScrollView>
       <FAB
         style={styles.fab}
         label={'Post'}
         icon="plus"
         color={'white'}
-        onPress={handlePresentModalPress}
+        // @ts-ignore
+        onPress={() => navigate('Post', {screen: 'CreatePostScreen'})}
       />
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        stackBehavior={'push'}
-        index={1}
-        name={'Create Post'}
-        snapPoints={snapPoints}
-        onChange={handleSheetChanges}>
-        <CreatePostBottomSheetContent />
-      </BottomSheetModal>
     </SafeAreaView>
   );
 }

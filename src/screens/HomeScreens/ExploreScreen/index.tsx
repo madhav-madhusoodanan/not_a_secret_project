@@ -6,19 +6,21 @@ import {useDispatch, useSelector} from 'react-redux';
 import {styles} from './styles';
 import CommunityCard from '../../../components/CommunityCard';
 import {getCommunities} from '../../../store/Actions/CommunityActions';
+import {useIsFocused} from '@react-navigation/native';
 
 export default function ExploreScreen() {
   const dispatch = useDispatch();
   const community = useSelector((state: any) => state.Community);
   const [searchQuery, setSearchQuery] = React.useState('');
+  const isFocused = useIsFocused();
   const fetchCommunities = async () => {
     await dispatch(getCommunities());
   };
   useEffect(() => {
-    fetchCommunities();
-  }, []);
-
-  console.log(community);
+    if (isFocused) {
+      fetchCommunities();
+    }
+  }, [isFocused]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -35,12 +37,14 @@ export default function ExploreScreen() {
         showsVerticalScrollIndicator={false}
         overScrollMode={'never'}
         style={styles.viewContainer}>
-        {!community.loading  && community.communities ? (
-          community.communities.map(c => (
-            <>
-              <CommunityCard community={c} key={c._id} />
-            </>
-          ))
+        {!community.loading && community.communities[0].coverImage ? (
+          community.communities.map((c, i) => {
+            return (
+              <>
+                <CommunityCard community={c} key={i} />
+              </>
+            );
+          })
         ) : (
           <ActivityIndicator animating color="#000" />
         )}

@@ -34,7 +34,6 @@ export const User = (state = initialState, action: any) => {
       };
     case FOLLOW_SUCCESS:
     case UNFOLLOW_SUCCESS:
-      console.log({ payload })
       return {
         ...state,
         error: null,

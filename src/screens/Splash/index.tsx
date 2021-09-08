@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getMe} from '../../store/Actions/AuthActions';
+import {getPosts} from '../../store/Actions/PostActions';
 const SplashImg = require('../../assets/images/splash.png');
 
 export default function SplashScreen() {
@@ -27,10 +28,9 @@ export default function SplashScreen() {
     const token = await AsyncStorage.getItem('verseAuthToken');
     if (token) {
       await dispatch(getMe(navigate, token));
-      setTimeout(() => {
-        // @ts-ignore
-        navigate('Home');
-      }, 300);
+      await dispatch(getPosts('populate_community=name,coverImage&populate_author=username'));
+      // @ts-ignore
+      navigate('Home');
     } else {
       setTimeout(() => {
         // @ts-ignore

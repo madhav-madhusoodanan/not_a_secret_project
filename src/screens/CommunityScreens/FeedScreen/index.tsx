@@ -29,11 +29,10 @@ export default function FeedScreen({navigator}) {
         showsVerticalScrollIndicator={false}
         overScrollMode={'never'}
         style={styles.listContainter}>
-        <Post allowed />
         {/* <Divider style={styles.divider} /> */}
+        {/* <Post allowed />
         <Post allowed />
-        <Post allowed />
-        <Post allowed />
+        <Post allowed /> */}
       </ScrollView>
       <FAB
         style={styles.fab}

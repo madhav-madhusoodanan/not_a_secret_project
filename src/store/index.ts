@@ -4,10 +4,12 @@ import Reactotron from "../constants/Reactotron";
 import {Auth} from "./Reducers/AuthReducer";
 import {User} from "./Reducers/UserReducer";
 import {Community} from "./Reducers/CommunityReducer";
+import {Post} from "./Reducers/PostReducer";
 const rootReducer = combineReducers({
   Auth,
   User,
   Community,
+  Post,
 });
 // @ts-ignore
 const createdEnhancer = Reactotron.createEnhancer()

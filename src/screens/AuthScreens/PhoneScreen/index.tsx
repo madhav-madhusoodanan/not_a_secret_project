@@ -16,7 +16,6 @@ export default function PhoneScreen() {
   const [phoneNum, setPhoneNum] = useState('');
   const dispatch = useDispatch();
   const submitHandler = async () => {
-    console.log({reached: 'reached'});
     try {
       var test =
         /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(
@@ -25,7 +24,6 @@ export default function PhoneScreen() {
       if (test) {
         // await dispatch(sendOTP(phoneNum));
         const condition = auth.nums.includes(`+91${phoneNum}`);
-        console.log({condition})
         // @ts-ignore        
         navigate('OneTimePasswordScreen', {
           phoneNum: `+91${phoneNum}`,

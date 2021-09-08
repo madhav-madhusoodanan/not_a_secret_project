@@ -12,7 +12,6 @@ export const getPhoneNums = () => async (dispatch: any) => {
     const response = await axios.get(`${url}?select=phone`);
     const nums: any = [];
     response.data.data.map((each: any) => nums.push(each.phone));
-    console.log(nums);
     dispatch({type: types.GET_PHONE_NUMS, payload: nums});
   } catch (error) {
     console.log({error});
@@ -26,7 +25,6 @@ export const sendOTP = (phone: string) => async (dispatch: any) => {
   dispatch({type: types.GET_OTP_LOADING});
   try {
     const {data} = await axios.get(`${url}/sendOTP/${phone}`);
-    console.log({data});
     dispatch({type: types.GET_OTP_SUCCESS, payload: data});
   } catch (error) {
     console.log({error});
@@ -42,7 +40,6 @@ export const loginuser =
     try {
       const {data} = await axios.post(`${url}/signup`, values);
       dispatch({type: types.AUTH_SUCCESS, payload: data});
-      console.log({data});
       if (data.data) {
         navigate('Home');
       }
@@ -77,7 +74,6 @@ export const getMe =
       const {data, status} = await axios.get(`${url}/me`, {
         headers: {Authorization: `Bearer ${token}`},
       });
-      console.log({status});
       dispatch({
         type: types.GET_ME_SUCCESS,
         payload: {user: data.data, token},
@@ -96,7 +92,6 @@ export const logoutUser = (navigate: null | any) => async (dispatch: any) => {
   dispatch({type: types.AUTH_LOADING});
   try {
     const {data, status} = await axios.get(`${url}/logout`);
-    console.log({data, status});
     if (status === 200 && data.success) {
       console.log('we will miss you')
       dispatch({

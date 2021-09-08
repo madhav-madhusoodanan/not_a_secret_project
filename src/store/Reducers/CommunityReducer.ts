@@ -25,12 +25,12 @@ export const Community = (state = initialState, {type, payload}: any) => {
         error: null,
       };
     case GET_COMMUNITIES_FAIL:
-        return {
-            ...state,
-            error: payload,
-            communities: null,
-            community: null
-        }
+      return {
+        ...state,
+        error: payload,
+        communities: null,
+        community: null,
+      };
     default:
       return state;
   }

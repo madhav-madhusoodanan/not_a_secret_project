@@ -30,7 +30,7 @@ const EditProfileForm = ({styles, values, setValues}: Props) => {
   const [imageData, setImageData] = useState(null)
   const submitHandler = () => {
     const data = new FormData();
-    if(imageData){
+    if(imageData && uri){
       data.append('file', imageData);
     }
     for(let item in values){

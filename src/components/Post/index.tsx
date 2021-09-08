@@ -8,8 +8,9 @@ import PostHeader from './PostHeader';
 import PostContent from './PostContent';
 interface Post {
   allowed: Boolean;
+  post: any;
 }
-export default function Post({ allowed }: Post) {
+export default function Post({allowed, post}: Post) {
   const {navigate} = useNavigation();
   const navigateToCommunity = () => {
     // @ts-ignore
@@ -17,21 +18,27 @@ export default function Post({ allowed }: Post) {
   };
   // callbacks
   const navigateToComments = (allowed: Boolean) => {
-    // bottomSheetModalRef.current?.present();
-    if(allowed){
+    if (allowed) {
       // @ts-ignore
       navigate('Post');
     }
-    console.log('reached');
   };
 
   return (
     <View style={styles.post}>
-      <PostHeader styles={styles} navigateToCommunity={navigateToCommunity} />
-      <PostContent styles={styles} navigateToComments={() => navigateToComments(allowed)} />
-      <PostFooter
+      <PostHeader
         styles={styles}
-        navigateToComments={navigateToComments}
+        post={post}
+        navigateToCommunity={navigateToCommunity}
+      />
+      <PostContent
+        styles={styles}
+        post={post}
+        />
+      <PostFooter
+        post={post}
+        styles={styles}
+        navigateToComments={() => navigateToComments(allowed)}
       />
     </View>
   );

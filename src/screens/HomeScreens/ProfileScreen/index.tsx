@@ -25,7 +25,7 @@ export default function ProfileScreen() {
     if (route.params) {
       // @ts-ignore
       await dispatch(getProfile(route.params.id));
-    } else if (!profile.profile) {
+    } else {
       await dispatch(getProfile(auth.user._id));
     }
   };
@@ -37,7 +37,6 @@ export default function ProfileScreen() {
   useEffect(() => {
     if (isFocused) {
       loadProfile();
-      console.log(user._id);
     }
   }, [isFocused]);
 
