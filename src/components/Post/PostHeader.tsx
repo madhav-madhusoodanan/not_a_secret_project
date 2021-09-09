@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, Image, TouchableOpacity, StyleSheet} from 'react-native';
-import { useNavigation } from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native';
 import {Menu} from 'react-native-paper';
 import {SVGIcon} from '../SVGIcon';
 
@@ -8,10 +8,10 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
-  const { navigate } = useNavigation()
+  const {navigate} = useNavigation();
   const inlineStyle = StyleSheet.create({
     viewOuter: {flexDirection: 'row', alignItems: 'center'},
-    postHeader: {fontSize: 13, fontFamily: 'Inter-Medium'},
+    postHeader: {fontSize: 14, fontFamily: 'Inter-Bold', color: '#1E2022'},
     time: {
       color: 'gray',
       fontSize: 12,
@@ -19,7 +19,7 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
       fontFamily: 'Inter-Regular',
     },
     postedBy: {
-      fontSize: 13,
+      fontSize: 12,
       marginLeft: 5,
       color: 'gray',
       fontFamily: 'Inter-Regular',
@@ -54,18 +54,19 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
             <SVGIcon height={4} type="dot" width={4} />
 
             <Text style={inlineStyle.postedBy}>
-              Posted by
+              Posted by {''}
               {/* @ts-ignore */}
-              <TouchableOpacity onPress={() => navigate('you',{id: author._id})}>
+            </Text>
+            <TouchableOpacity onPress={() => navigate('you', {id: author._id})}>
               <Text
                 style={{
-                  color: '#000',
-                  fontWeight: 'bold',
+                  color: '#302D22',
+                  fontFamily: 'Inter-SemiBold',
+                  fontSize: 12,
                 }}>
                 @{author.username}
               </Text>
-              </TouchableOpacity>
-            </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

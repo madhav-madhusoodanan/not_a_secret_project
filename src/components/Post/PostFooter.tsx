@@ -22,26 +22,31 @@ const PostFooter = ({styles, navigateToComments, post}: Post) => {
     // paddingVertical: 2,
   };
 
-
   return (
     <View style={styles.postFooter}>
       <View style={styles.voteContainer}>
         <TouchableOpacity
           style={styles.upVoteIcon}
           onPress={() => dispatch(upVotePost(post._id))}>
-          <UpVoteIcon size="25" color={post.upvotes.includes(user._id) ? "#2f54eb" : '#000'} />
+          <UpVoteIcon
+            size="25"
+            color={post.upvotes.includes(user._id) ? '#00AAFF' : '#000'}
+          />
         </TouchableOpacity>
         <Text
           style={{
             ...styles.reactionText,
-            color: post.voteCount < 0 ? '#f5222d' : '#2f54eb',
+            color: post.voteCount < 0 ? '#f5222d' : '#00AAFF',
           }}>
           {post.voteCount}
         </Text>
         <TouchableOpacity
           style={styles.downVoteIcon}
           onPress={() => dispatch(downVotePost(post._id))}>
-          <DownVoteIcon size="25" color={post.downvotes.includes(user._id) ? "#f5222d" : '#000'} />
+          <DownVoteIcon
+            size="25"
+            color={post.downvotes.includes(user._id) ? '#f5222d' : '#000'}
+          />
         </TouchableOpacity>
       </View>
       <TouchableOpacity style={styles.commentIcon} onPress={navigateToComments}>

@@ -56,10 +56,10 @@ export const styles = StyleSheet.create({
     flexWrap: 'nowrap',
     alignItems: 'center',
     marginHorizontal: 16,
-    marginTop: 5,
+    marginTop: 12,
   },
   voteContainer: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#fff',
     borderRadius: 16,
     flexDirection: 'row',
     alignItems: 'center',
@@ -73,14 +73,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   downVoteIcon: {
-    marginLeft: 8,
+    marginLeft: 12,
   },
   commentIcon: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 6,
-    marginLeft: 10,
+    marginLeft: 16,
   },
   reactionText: {
     fontSize: 13,
