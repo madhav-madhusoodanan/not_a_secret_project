@@ -59,7 +59,4 @@ export const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: '#00AAFF',
   },
-  divider: {
-    backgroundColor: 'gray',
-  },
 });
