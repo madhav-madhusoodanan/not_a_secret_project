@@ -1,10 +1,8 @@
 import React from 'react';
-import {
-  createStackNavigator
-} from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import CrossIcon from '@iconscout/react-native-unicons/icons/uil-times';
 import CommentScreenContent from '../components/Comment';
-import CreatePostScreen from '../screens/HomeScreens/CreatePostScreen'
+import CreatePostScreen from '../screens/HomeScreens/CreatePostScreen';
 const PostStack = createStackNavigator();
 
 const PostNavigator = () => {
@@ -32,7 +30,13 @@ const PostNavigator = () => {
         }}
         component={CommentScreenContent}
       />
-      <PostStack.Screen name='CreatePostScreen' options={{ headerShown: false }} component={CreatePostScreen} />
+      <PostStack.Screen
+        name="CreatePostScreen"
+        options={{
+          title: 'Create Post',
+        }}
+        component={CreatePostScreen}
+      />
     </PostStack.Navigator>
   );
 };

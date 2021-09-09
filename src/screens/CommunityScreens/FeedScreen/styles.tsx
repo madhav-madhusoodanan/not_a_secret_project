@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: Theme.colors.background,
+    // backgroundColor: Theme.colors.background,
+    backgroundColor: '#f0f0f0',
   },
 
   listContainter: {
@@ -17,9 +18,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: '#00AAFF',
-  },
-  divider: {
-    backgroundColor: 'gray',
   },
 });
 

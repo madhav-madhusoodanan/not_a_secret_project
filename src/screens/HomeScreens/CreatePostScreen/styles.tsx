@@ -15,16 +15,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Theme.colors.background,
   },
-  headline: {
-    fontSize: 24,
-    marginLeft: 10,
-    marginBottom: 10,
-    color: Theme.colors.text,
-    textAlign: 'left',
-    fontFamily: 'Gilroy-Bold',
-  },
   contentContainer: {
     paddingTop: 20,
+    marginTop: 50,
     paddingHorizontal: 16,
     backgroundColor: Theme.colors.background,
     flex: 1,

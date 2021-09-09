@@ -24,7 +24,7 @@ export default function AboutScreen() {
         <Subheading style={styles.listTitle}>Owner</Subheading>
         <View style={styles.listContainer}>
           <OwnerIcon size="20" color="#000" />
-          <Text style={styles.listContent}>Aman Dhattarwal</Text>
+          <Text style={styles.listContent}>Nishant Jindal</Text>
         </View>
         <Divider style={styles.divider} />
         <Subheading style={styles.listTitle}>Privacy Status</Subheading>

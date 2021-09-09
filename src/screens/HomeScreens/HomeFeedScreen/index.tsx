@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react';
-import {View, Alert, Animated, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import {FAB, ActivityIndicator} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import StickyItemFlatList from '@gorhom/sticky-item';
 import {useSelector} from 'react-redux';
 import Post from '../../../components/Post';
 import {styles} from './styles';
