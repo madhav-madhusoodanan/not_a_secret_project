@@ -14,7 +14,6 @@ import {
   Modal,
   Portal,
   Button,
-  Headline,
   Chip,
   List,
   Snackbar,
@@ -31,7 +30,7 @@ import {newPost} from '../../../store/Actions/PostActions';
 export default function CreatePostBottomSheetContent({}) {
   const {user} = useSelector((state: any) => state.Auth);
   const {communities} = useSelector((state: any) => state.Community);
-  const { loading, posts } = useSelector((state: any) => state.Post);
+  const {loading, posts} = useSelector((state: any) => state.Post);
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
   const [visible, setVisible] = useState(false);
@@ -67,7 +66,7 @@ export default function CreatePostBottomSheetContent({}) {
     for (let item in values) {
       data.append(item, values[item]);
     }
-      dispatch(newPost(data, navigate, showMessage));
+    dispatch(newPost(data, navigate, showMessage));
   };
 
   const fetchCommunities = async () => {
@@ -109,7 +108,6 @@ export default function CreatePostBottomSheetContent({}) {
           </View>
         </Modal>
       </Portal>
-      <Headline style={styles.headline}> Create Post </Headline>
       <ScrollView style={styles.contentContainer}>
         <View style={styles.customListView}>
           <Image
