@@ -13,19 +13,20 @@ const PostContent = ({styles, post}) => {
       <View style={styles.contentContainer}>
         <TextInline text={post.description} targetLines={3} />
       </View>
-      {post.image &&
-      <Lightbox>
-        <View style={styles.imageContainer}>
-          <FastImage
-            style={styles.postImage}
-            source={{
-              uri: post.image.uri,
-              priority: FastImage.priority.normal,
-            }}
-            resizeMode={FastImage.resizeMode.contain}
-          />
-        </View>
-      </Lightbox>}
+      {post.image && (
+        <Lightbox>
+          <View style={styles.imageContainer}>
+            <FastImage
+              style={styles.postImage}
+              source={{
+                uri: post.image.uri,
+                priority: FastImage.priority.normal,
+              }}
+              resizeMode={FastImage.resizeMode.contain}
+            />
+          </View>
+        </Lightbox>
+      )}
     </>
   );
 };

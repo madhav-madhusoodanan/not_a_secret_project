@@ -5,9 +5,10 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 
 export const styles = StyleSheet.create({
   post: {
-    backgroundColor: '#eff7f6',
-    marginBottom: 10,
-    borderRadius: 20,
+    backgroundColor: '#fff',
+    marginBottom: 2,
+    marginTop: 8,
+    borderRadius: 0,
     paddingBottom: 6,
   },
   customListView: {

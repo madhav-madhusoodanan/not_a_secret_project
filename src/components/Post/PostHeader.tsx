@@ -25,11 +25,9 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
       fontFamily: 'Inter-Regular',
     },
     menu: {
-      // width: 25,
       paddingVertical: 10,
       paddingHorizontal: 10,
       borderRadius: 10,
-      // backgroundColor: 'red',
       alignItems: 'center',
     },
   });

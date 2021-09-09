@@ -18,7 +18,8 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: Theme.colors.background,
+    // backgroundColor: Theme.colors.borderThick,
+    backgroundColor: '#f0f0f0',
   },
   headline: {
     fontSize: 28,
@@ -41,18 +42,7 @@ export const styles = StyleSheet.create({
   pickerButtonMenuIcon: {
     color: 'black',
   },
-  subheading: {
-    fontSize: 18,
-    color: Theme.colors.text,
-    textAlign: 'left',
-    fontFamily: 'Inter-SemiBold',
-    marginBottom: 12,
-    marginTop: 15,
-    paddingHorizontal: 16,
-  },
-  communityScroll: {
-    marginBottom: 20,
-  },
+
   joinedCommunities: {
     backgroundColor: '#faa307',
     width: ITEM_WIDTH,

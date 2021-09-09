@@ -18,8 +18,6 @@ const PostFooter = ({styles, navigateToComments, post}: Post) => {
   const inlineStyle = {
     ...styles.reactionText,
     color: '#001d3d',
-    // paddingRight: 10,
-    // paddingVertical: 2,
   };
 
   return (
