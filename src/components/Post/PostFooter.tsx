@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
 import CommentIcon from '@iconscout/react-native-unicons/icons/uil-comment';
 import ShareIcon from '@iconscout/react-native-unicons/icons/uil-share-alt';
 import UpVoteIcon from '@iconscout/react-native-unicons/icons/uil-arrow-circle-up';
@@ -20,12 +20,16 @@ const PostFooter = ({styles, navigateToComments, post}: Post) => {
     color: '#001d3d',
   };
 
+  const upvoteHandler = async () => {
+    await dispatch(upVotePost(post._id))
+  }
+
   return (
     <View style={styles.postFooter}>
       <View style={styles.voteContainer}>
         <TouchableOpacity
           style={styles.upVoteIcon}
-          onPress={() => dispatch(upVotePost(post._id))}>
+          onPress={upvoteHandler}>
           <UpVoteIcon
             size="25"
             color={post.upvotes.includes(user._id) ? '#00AAFF' : '#000'}

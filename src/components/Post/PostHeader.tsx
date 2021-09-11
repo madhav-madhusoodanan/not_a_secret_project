@@ -52,9 +52,9 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
             <SVGIcon height={4} type="dot" width={4} />
 
             <Text style={inlineStyle.postedBy}>
-              Posted by {''}
-              {/* @ts-ignore */}
+              Posted by
             </Text>
+            {/* @ts-ignore */}
             <TouchableOpacity onPress={() => navigate('you', {id: author._id})}>
               <Text
                 style={{
@@ -74,9 +74,10 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
         anchor={
           <TouchableOpacity onPress={openMenu} style={inlineStyle.menu}>
             {/* @ts-ignore */}
-            <SVGIcon height={18} type="kebab" width={18} />
+            {/* <SVGIcon height={18} type="kebab" width={18} /> */}
           </TouchableOpacity>
         }>
+        <Menu.Item onPress={() => {}} title="Report" />
         <Menu.Item onPress={() => {}} title="Report" />
       </Menu>
     </View>
