@@ -1,5 +1,10 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  TouchableNativeFeedback,
+} from 'react-native';
 import CommentIcon from '@iconscout/react-native-unicons/icons/uil-comment';
 import ShareIcon from '@iconscout/react-native-unicons/icons/uil-share-alt';
 import UpVoteIcon from '@iconscout/react-native-unicons/icons/uil-arrow-circle-up';
@@ -20,16 +25,14 @@ const PostFooter = ({styles, navigateToComments, post}: Post) => {
     color: '#001d3d',
   };
 
-  const upvoteHandler = async () => {
-    await dispatch(upVotePost(post._id))
-  }
-
   return (
     <View style={styles.postFooter}>
       <View style={styles.voteContainer}>
         <TouchableOpacity
           style={styles.upVoteIcon}
-          onPress={upvoteHandler}>
+          onPress={async () => {
+            await dispatch(upVotePost(post._id));
+          }}>
           <UpVoteIcon
             size="25"
             color={post.upvotes.includes(user._id) ? '#00AAFF' : '#000'}
@@ -44,7 +47,9 @@ const PostFooter = ({styles, navigateToComments, post}: Post) => {
         </Text>
         <TouchableOpacity
           style={styles.downVoteIcon}
-          onPress={() => dispatch(downVotePost(post._id))}>
+          onPress={async () => {
+            await dispatch(downVotePost(post._id));
+          }}>
           <DownVoteIcon
             size="25"
             color={post.downvotes.includes(user._id) ? '#f5222d' : '#000'}

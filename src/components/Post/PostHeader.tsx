@@ -4,21 +4,43 @@ import {useNavigation} from '@react-navigation/native';
 import {Menu} from 'react-native-paper';
 import {SVGIcon} from '../SVGIcon';
 import {useDispatch, useSelector} from 'react-redux';
-import { PROFILE_LOADING } from '../../store/types';
+import {PROFILE_LOADING} from '../../store/types';
 
 const PostHeader = ({styles, navigateToCommunity, post}) => {
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
-  const { user } = useSelector((state: any) => state.Auth)
+  const {user} = useSelector((state: any) => state.Auth);
   const {navigate} = useNavigation();
   const dispatch = useDispatch();
-  const usernamePress = async () => {
-    if(user._id === author._id){
-      /* @ts-ignore */
-      navigate('Profile')
+  const timee = () => {
+    function between(x, min, max) {
+      return x >= min && x <= max;
     }
-    dispatch({ type: PROFILE_LOADING })    
+    let today = new Date();
+    console.log(post.createdAt);
+    let Christmas = new Date(post.createdAt);
+    // @ts-ignore
+    let diffMin = (today - Christmas) / 60000;
+    if (diffMin < 1) {
+      return 'Just now';
+    } else if (between(diffMin, 1, 60)) {
+      return `${diffMin}m`;
+    } else if (between(diffMin, 60, 1440)) {
+      return `${diffMin / 60}h`;
+    } else {
+      return `${diffMin / 1440}d`;
+    }
+  };
+  console.log(timee());
+  const usernamePress = async () => {
+    console.log(user._id === author._id);
+    if (user._id === author._id) {
+      /* @ts-ignore */
+      navigate('Home', {screen: 'you'});
+      return;
+    }
+    dispatch({type: PROFILE_LOADING});
     /* @ts-ignore */
     navigate('Profile', {
       screen: 'PeerProfileScreen',
@@ -48,6 +70,7 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
     },
   });
   const {community, author} = post;
+  const t = timee()
   return (
     <View style={inlineStyle.viewOuter}>
       <View style={styles.customListView}>
@@ -63,7 +86,13 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
             </TouchableOpacity>
           </View>
           <View style={styles.extraInfoWrapper}>
-            <Text style={inlineStyle.time}>5h</Text>
+            <Text style={inlineStyle.time}>
+              {t === 'Just now'
+                ? 'Just now'
+                : `${Math.round(
+                    parseFloat(t.substring(0, t.length - 1)),
+                  )}${t.substring(t.length - 1, t.length)}`}
+            </Text>
             {/* @ts-ignore */}
             <SVGIcon height={4} type="dot" width={4} />
 
@@ -87,11 +116,11 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
         anchor={
           <TouchableOpacity onPress={openMenu} style={inlineStyle.menu}>
             {/* @ts-ignore */}
-            {/* <SVGIcon height={18} type="kebab" width={18} /> */}
+            <SVGIcon height={18} type="kebab" width={18} />
           </TouchableOpacity>
         }>
-        <Menu.Item onPress={() => {}} title="Report" />
-        <Menu.Item onPress={() => {}} title="Report" />
+        <Menu.Item onPress={timee} title="Report" />
+        <Menu.Item onPress={timee} title="Report" />
       </Menu>
     </View>
   );

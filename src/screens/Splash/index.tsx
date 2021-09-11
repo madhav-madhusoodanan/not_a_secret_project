@@ -26,7 +26,6 @@ export default function SplashScreen() {
 
   const userCheck = async () => {
     const token = await AsyncStorage.getItem('verseAuthToken');
-    console.log(token)
     if (token) {
       await dispatch(getMe(navigate, token));
       await dispatch(getPosts('populate_community=name,coverImage&populate_author=username'));

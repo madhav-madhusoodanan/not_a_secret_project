@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, FlatList} from 'react-native';
 import {FAB, ActivityIndicator} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -15,18 +15,22 @@ export default function HomeFeedScreen({}) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        overScrollMode={'never'}
-        style={styles.listContainter}>
-        {post.posts ? (
-          post.posts.map((p, i) => {
-            return <Post post={p} allowed key={i} />;
-          })
-        ) : (
-          <ActivityIndicator animating color="#000" />
-        )}
-      </ScrollView>
+      {post.posts ? (
+        <FlatList
+          data={post.posts}
+          renderItem={({item}) => (
+            <>
+              <Post post={item} allowed />
+            </>
+          )}
+          showsVerticalScrollIndicator={false}
+          overScrollMode={'never'}
+          style={styles.listContainter}
+          keyExtractor={item => item._id.toString()}
+        />
+      ) : (
+        <ActivityIndicator animating color="#000" />
+      )}
       <FAB
         style={styles.fab}
         label={'Post'}
