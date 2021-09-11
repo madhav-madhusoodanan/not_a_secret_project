@@ -14,7 +14,7 @@ export default function ExploreScreen() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const isFocused = useIsFocused();
   const fetchCommunities = async () => {
-    await dispatch(getCommunities());
+    await dispatch(getCommunities('populate_createdBy=firstName,lastName'));
   };
   useEffect(() => {
     if (isFocused) {
