@@ -3,12 +3,28 @@ import {Text, View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Menu} from 'react-native-paper';
 import {SVGIcon} from '../SVGIcon';
+import {useDispatch, useSelector} from 'react-redux';
+import { PROFILE_LOADING } from '../../store/types';
 
 const PostHeader = ({styles, navigateToCommunity, post}) => {
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
+  const { user } = useSelector((state: any) => state.Auth)
   const {navigate} = useNavigation();
+  const dispatch = useDispatch();
+  const usernamePress = async () => {
+    if(user._id === author._id){
+      /* @ts-ignore */
+      navigate('Profile')
+    }
+    dispatch({ type: PROFILE_LOADING })    
+    /* @ts-ignore */
+    navigate('Profile', {
+      screen: 'PeerProfileScreen',
+      params: {id: author._id, username: author.username},
+    });
+  };
   const inlineStyle = StyleSheet.create({
     viewOuter: {flexDirection: 'row', alignItems: 'center'},
     postHeader: {fontSize: 14, fontFamily: 'Inter-Bold', color: '#1E2022'},
@@ -51,11 +67,8 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
             {/* @ts-ignore */}
             <SVGIcon height={4} type="dot" width={4} />
 
-            <Text style={inlineStyle.postedBy}>
-              Posted by
-            </Text>
-            {/* @ts-ignore */}
-            <TouchableOpacity onPress={() => navigate('you', {id: author._id})}>
+            <Text style={inlineStyle.postedBy}>Posted by</Text>
+            <TouchableOpacity onPress={usernamePress}>
               <Text
                 style={{
                   color: '#302D22',

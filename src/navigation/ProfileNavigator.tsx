@@ -18,7 +18,7 @@ const ProfileNavigator = () => {
     <Profile.Navigator
       initialRouteName="SettingsScreen"
       screenOptions={{
-        headerTransparent: true,
+        headerTransparent: false,
         // presentation: 'modal',
         headerStyle: {
           // backgroundColor: Theme.colors.background,
@@ -56,12 +56,11 @@ const ProfileNavigator = () => {
       />
       <Profile.Screen
         options={{
-          title: 'Peer Profile',
-          headerShown: false,
+          title: '',
           headerBackImage: () => <AngleLeftIcon size="30" color="#000" />,
         }}
         name="PeerProfileScreen"
-        component={HomeScreens.ProfileScreen}
+        component={ProfileScreens.PeerProfileScreen}
       />
     </Profile.Navigator>
   );

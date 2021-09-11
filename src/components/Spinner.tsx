@@ -6,7 +6,7 @@ const Spinner = () => (
     animating
     style={{flex: 1, justifyContent: 'center'}}
     color={Colors.blue300}
-    size='large'
+    size='small'
   />
 );
 

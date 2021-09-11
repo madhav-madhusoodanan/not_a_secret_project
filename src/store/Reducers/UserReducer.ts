@@ -3,7 +3,7 @@ import {
   GET_PROFILE_FAIL,
   GET_PROFILE_SUCCESS,
   UPDATE_PROFILE_SUCCESS,
-  UPDATE_PROFILE_FAIL,
+  EMPTY_PROFILE,
   FOLLOW_FAIL,
   FOLLOW_LOADING,
   FOLLOW_SUCCESS,
@@ -40,6 +40,8 @@ export const User = (state = initialState, action: any) => {
         profile: payload.user,
         followLoading: false
       }
+    case EMPTY_PROFILE:
+      return { ...state, profile: null }
     case GET_PROFILE_FAIL:
     case FOLLOW_FAIL:
     case UNFOLLOW_FAIL:

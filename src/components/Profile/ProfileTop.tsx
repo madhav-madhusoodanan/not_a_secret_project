@@ -7,13 +7,13 @@ import {followUser, unfollowUser} from '../../store/Actions/UserActions';
 
 const ProfileTop = ({styles, user, inlineStyle, navigateToEditScreen, id}) => {
   const profile = useSelector((state: any) => state.User);
+  const dispatch = useDispatch();
   const followFunction = async () => {
     await dispatch(followUser(user._id));
   };
   const unFollowFunction = async () => {
     await dispatch(unfollowUser(user._id));
   };
-  const dispatch = useDispatch();
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView overScrollMode={'never'} showsVerticalScrollIndicator={false}>
@@ -50,7 +50,7 @@ const ProfileTop = ({styles, user, inlineStyle, navigateToEditScreen, id}) => {
         </View>
 
         <View style={styles.infoContainer}>
-          <Text style={styles.bioText}>{user.bio}</Text>
+          <Text style={user.bio && styles.bioText}>{user.bio}</Text>
         </View>
         {id === user._id ? (
           <ProfileButton
