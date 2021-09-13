@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {View, Dimensions} from 'react-native';
-import {AppleCard, AppOfTheDayCard} from 'react-native-apple-card-views';
-import {calc} from '../../constants/appLayout';
+import {AppleCard} from 'react-native-apple-card-views';
+import { useNavigation } from '@react-navigation/native'
 
 import {styles} from './styles';
 
-const screenWidth = Math.round(Dimensions.get('window').width);
-
 export default function CommunityCard({ community }) {
+  const { navigate } = useNavigation()
   return (
     <AppleCard
       smallTitle={`${community.createdBy.firstName} ${community.createdBy.lastName}`}
@@ -18,7 +16,8 @@ export default function CommunityCard({ community }) {
       resizeMode="cover"
       source={{uri: community.coverImage.uri}}
       backgroundStyle={styles.background}
-      onPress={() => console.log('Community Cover Pressed')}
+      // @ts-ignore
+      onPress={() => navigate('Community')}
     />
   );
 }
