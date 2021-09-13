@@ -18,7 +18,6 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
       return x >= min && x <= max;
     }
     let today = new Date();
-    console.log(post.createdAt);
     let Christmas = new Date(post.createdAt);
     // @ts-ignore
     let diffMin = (today - Christmas) / 60000;
@@ -32,9 +31,7 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
       return `${diffMin / 1440}d`;
     }
   };
-  console.log(timee());
   const usernamePress = async () => {
-    console.log(user._id === author._id);
     if (user._id === author._id) {
       /* @ts-ignore */
       navigate('Home', {screen: 'you'});

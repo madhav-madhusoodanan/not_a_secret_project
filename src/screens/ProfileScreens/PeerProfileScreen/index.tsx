@@ -18,7 +18,6 @@ const PeerProfileScreen = () => {
   const [ pageLoading, setPageLoading ] = React.useState(true)
   const navigation = useNavigation()
   const route = useRoute()
-  const { user } = useSelector((state: any) => state.Auth)
   const dispatch = useDispatch()
   const loadProfile = async () => {
     // @ts-ignore
@@ -39,10 +38,8 @@ const PeerProfileScreen = () => {
         <>
         <ProfileTop
           inlineStyle={inlineStyle}
-          navigateToEditScreen={() => {}}
           styles={styles}
-          user={profile}
-          id={user._id}
+          profile={profile}
         />
         </>
       ) : (

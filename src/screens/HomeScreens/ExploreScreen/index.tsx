@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, FlatList} from 'react-native';
 import {ActivityIndicator, Searchbar} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
@@ -33,22 +33,22 @@ export default function ExploreScreen() {
           value={searchQuery}
         />
       </View>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        overScrollMode={'never'}
-        style={styles.viewContainer}>
-        {!community.loading && community.communities[0].coverImage ? (
-          community.communities.map((c, i) => {
-            return (
-              <>
-                <CommunityCard community={c} key={i} />
-              </>
-            );
-          })
-        ) : (
-          <ActivityIndicator animating color="#000" />
-        )}
-      </ScrollView>
+      {community.communities ? (
+        <FlatList
+          data={community.communities}
+          renderItem={({item}) => (
+            <>
+              <CommunityCard community={item} />
+            </>
+          )}
+          showsVerticalScrollIndicator={false}
+          overScrollMode={'never'}
+          style={styles.viewContainer}
+          keyExtractor={item => item._id.toString()}
+        />
+      ) : (
+        <ActivityIndicator animating color='#000' />
+      )}
     </SafeAreaView>
   );
 }

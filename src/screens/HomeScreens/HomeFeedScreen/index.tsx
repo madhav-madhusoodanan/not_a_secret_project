@@ -6,6 +6,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {useSelector} from 'react-redux';
 import Post from '../../../components/Post';
 import {styles} from './styles';
+import SkeletonView from '../../../components/Post/SkeletonView';
 
 export default function HomeFeedScreen({}) {
   const {navigate} = useNavigation();
@@ -29,7 +30,7 @@ export default function HomeFeedScreen({}) {
           keyExtractor={item => item._id.toString()}
         />
       ) : (
-        <ActivityIndicator animating color="#000" />
+        <SkeletonView />
       )}
       <FAB
         style={styles.fab}

@@ -12,12 +12,7 @@ export default function ProfileScreen() {
   const auth = useSelector((state: any) => state.Auth);
   const dispatch = useDispatch();
   const {user} = auth;
-  const navigateToEditScreen = () => {
-    // @ts-ignore
-    navigate('Profile', {
-      screen: 'EditProfileScreen',
-    });
-  };
+
   const loadProfile = async () => {
     await dispatch(getProfile(auth.user._id));
   };
@@ -35,10 +30,8 @@ export default function ProfileScreen() {
       {!auth.loading && auth.user ? (
         <ProfileTop
           inlineStyle={inlineStyle}
-          navigateToEditScreen={navigateToEditScreen}
           styles={styles}
-          user={auth.user}
-          id={user._id}
+          profile={user}
         />
       ) : (
         <Spinner />
