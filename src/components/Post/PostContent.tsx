@@ -2,7 +2,6 @@ import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import TextInline from './TextInline';
-import Lightbox from 'react-native-lightbox-v2';
 import ImageModal from 'react-native-image-modal';
 
 const PostContent = ({styles, post}) => {
@@ -12,18 +11,6 @@ const PostContent = ({styles, post}) => {
         <TextInline text={post.description} targetLines={3} />
       </View>
       {post.image && (
-        // <Lightbox>
-        //   <View style={styles.imageContainer}>
-        //     <FastImage
-        //       style={styles.postImage}
-        //       source={{
-        //         uri: post.image.uri,
-        //         priority: FastImage.priority.normal,
-        //       }}
-        //       resizeMode={FastImage.resizeMode.cover}
-        //     />
-        //   </View>
-        // </Lightbox>
         <View style={styles.imageContainer}>
           <ImageModal
             resizeMode="cover"
@@ -33,6 +20,7 @@ const PostContent = ({styles, post}) => {
             style={styles.postImage}
             source={{
               uri: post.image.uri,
+              priority: FastImage.priority.normal,
             }}
           />
         </View>

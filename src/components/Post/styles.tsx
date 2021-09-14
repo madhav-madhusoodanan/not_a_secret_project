@@ -41,7 +41,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 16,
-    backgroundColor: 'pink',
   },
   paragraph: {
     fontFamily: 'Inter-Regular',
@@ -51,7 +50,7 @@ export const styles = StyleSheet.create({
     // width: '100%',
     width: 360,
     height: 180,
-    borderRadius: 10,
+    borderRadius: 12,
   },
   postFooter: {
     position: 'relative',

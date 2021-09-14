@@ -1,10 +1,11 @@
 import React from 'react';
-import {Text, View, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Menu} from 'react-native-paper';
 import {SVGIcon} from '../SVGIcon';
 import {useDispatch, useSelector} from 'react-redux';
 import {PROFILE_LOADING} from '../../store/types';
+import FastImage from 'react-native-fast-image';
 
 const PostHeader = ({styles, navigateToCommunity, post}) => {
   const [visible, setVisible] = React.useState(false);
@@ -67,15 +68,18 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
     },
   });
   const {community, author} = post;
-  const t = timee()
+  const t = timee();
   return (
     <View style={inlineStyle.viewOuter}>
       <View style={styles.customListView}>
-        <Image
+        <FastImage
           style={styles.avatar}
           source={{
             uri: community.coverImage.uri,
-          }}></Image>
+            priority: FastImage.priority.normal,
+          }}
+          resizeMode={FastImage.resizeMode.cover}
+        />
         <View style={styles.infoWrapper}>
           <View style={styles.namesWrapper}>
             <TouchableOpacity onPress={navigateToCommunity}>
