@@ -12,9 +12,9 @@ import {
 } from 'react-native';
 import Header from './../components/CommunityFeed/Header';
 import {TabView, TabBar} from 'react-native-tab-view';
-import { useSelector } from 'react-redux';
-import AboutScreen from '../screens/CommunityScreens/AboutScreen'
-import Post from '../components/Post'
+import {useSelector} from 'react-redux';
+import AboutScreen from '../screens/CommunityScreens/AboutScreen';
+import Post from '../components/Post';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -27,12 +27,12 @@ const SafeStatusBar = Platform.select({
 const PullToRefreshDist = 150;
 
 const App = () => {
-  const { posts } = useSelector((state: any) => state.Post)
+  const {posts} = useSelector((state: any) => state.Post);
   /**
    * stats
    */
   const [tabIndex, setIndex] = useState(0);
-  const [canScroll, setCanScroll] = useState(false)
+  const [canScroll, setCanScroll] = useState(false);
   const [routes] = useState([
     {key: 'tab1', title: 'Feed'},
     {key: 'tab2', title: 'About'},
@@ -227,7 +227,6 @@ const App = () => {
   };
 
   const handlePanReleaseOrEnd = (evt, gestureState) => {
-    // console.log('handlePanReleaseOrEnd', scrollY._value);
     syncScrollOffset();
     headerScrollY.setValue(scrollY._value);
     if (Platform.OS === 'ios') {
@@ -277,14 +276,13 @@ const App = () => {
   const onMomentumScrollEnd = () => {
     isListGliding.current = false;
     syncScrollOffset();
-    // console.log('onMomentumScrollEnd');
   };
 
   const onScrollEndDrag = e => {
     syncScrollOffset();
 
     const offsetY = e.nativeEvent.contentOffset.y;
-    // console.log('onScrollEndDrag', offsetY);
+
     // iOS only
     if (Platform.OS === 'ios') {
       if (offsetY < -PullToRefreshDist && !refreshStatusRef.current) {
@@ -335,61 +333,62 @@ const App = () => {
     );
   };
 
-  const renderScene = ({ route }) => {
+  const renderScene = ({route}) => {
     const focused = route.key === routes[tabIndex].key;
     return (
       <>
-      { route.key === 'tab1' ?
-      <Animated.FlatList
-        scrollToOverflowEnabled={true}
-        // scrollEnabled={canScroll}
-        {...listPanResponder.panHandlers}
-        numColumns={1}
-        ref={ref => {
-          if (ref) {
-            const found = listRefArr.current.find(e => e.key === route.key);
-            if (!found) {
-              listRefArr.current.push({
-                key: route.key,
-                value: ref,
-              });
+        {route.key === 'tab1' ? (
+          <Animated.FlatList
+            scrollToOverflowEnabled={true}
+            // scrollEnabled={canScroll}
+            {...listPanResponder.panHandlers}
+            numColumns={1}
+            ref={ref => {
+              if (ref) {
+                const found = listRefArr.current.find(e => e.key === route.key);
+                if (!found) {
+                  listRefArr.current.push({
+                    key: route.key,
+                    value: ref,
+                  });
+                }
+              }
+            }}
+            scrollEventThrottle={16}
+            onScroll={
+              focused
+                ? Animated.event(
+                    [
+                      {
+                        nativeEvent: {contentOffset: {y: scrollY}},
+                      },
+                    ],
+                    {useNativeDriver: true},
+                  )
+                : null
             }
-          }
-        }}
-        scrollEventThrottle={16}
-        onScroll={
-          focused
-            ? Animated.event(
-                [
-                  {
-                    nativeEvent: {contentOffset: {y: scrollY}},
-                  },
-                ],
-                {useNativeDriver: true},
-              )
-            : null
-        }
-        onMomentumScrollBegin={onMomentumScrollBegin}
-        onScrollEndDrag={onScrollEndDrag}
-        onMomentumScrollEnd={onMomentumScrollEnd}
-        ItemSeparatorComponent={() => <View style={{height: 10}} />}
-        ListHeaderComponent={() => <View style={{height: 10}} />}
-        contentContainerStyle={{
-          paddingTop: HeaderHeight + TabBarHeight,
-          paddingHorizontal: 10,
-          minHeight: windowHeight - SafeStatusBar + HeaderHeight,
-        }}
-        showsHorizontalScrollIndicator={false}
-        data={posts}
-        renderItem={({ item }) => (
-          <Post post={item} allowed />
+            onMomentumScrollBegin={onMomentumScrollBegin}
+            onScrollEndDrag={onScrollEndDrag}
+            onMomentumScrollEnd={onMomentumScrollEnd}
+            ItemSeparatorComponent={() => <View style={{height: 10}} />}
+            ListHeaderComponent={() => <View style={{height: 10}} />}
+            contentContainerStyle={{
+              paddingTop: HeaderHeight + TabBarHeight,
+              paddingHorizontal: 10,
+              minHeight: windowHeight - SafeStatusBar + HeaderHeight,
+            }}
+            showsHorizontalScrollIndicator={false}
+            data={posts}
+            renderItem={({item}) => <Post post={item} allowed />}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        ) : (
+          <AboutScreen />
         )}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={(item, index) => index.toString()}
-      /> : <AboutScreen />}
       </>
-    )
-  }
+    );
+  };
 
   const renderTabBar = props => {
     const y = scrollY.interpolate({
@@ -459,13 +458,13 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     position: 'absolute',
-    backgroundColor: '#FFF',
+    backgroundColor: 'lightblue',
   },
   label: {fontSize: 14, fontFamily: 'Inter-Bold', color: 'black'},
   tab: {
     elevation: 0,
     shadowOpacity: 0,
-    backgroundColor: '#FFF',
+    backgroundColor: 'pink',
     height: TabBarHeight,
   },
   indicator: {backgroundColor: 'black', borderBottomWidth: 3},

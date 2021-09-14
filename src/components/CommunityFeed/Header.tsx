@@ -52,17 +52,19 @@ const Header = () => {
               <Text style={headerStyles.stats}>{community.members.length}</Text>
               <Text style={headerStyles.statsacomp}>Members</Text>
             </View>
-            {community.createdBy === user._id ? <JoinCommunityButton
+            {community.createdBy === user._id ? (
+              <JoinCommunityButton
                 headerStyles={headerStyles}
                 loading={joinLoading}
                 text="Edit"
                 // @ts-ignore
                 onPress={() => navigate('Community')}
-              /> : community.members.includes(user._id) ? (
+              />
+            ) : community.members.includes(user._id) ? (
               <JoinCommunityButton
                 headerStyles={headerStyles}
                 loading={joinLoading}
-                text="Leave"
+                text="Joined"
                 onPress={leaveComm}
               />
             ) : (
