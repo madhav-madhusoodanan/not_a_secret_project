@@ -20,17 +20,17 @@ import {
   Appbar,
 } from 'react-native-paper';
 import {showMessage} from 'react-native-flash-message';
+import axios from '../../../constants/api'
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import {useSelector, useDispatch} from 'react-redux';
 import {styles} from './styles';
 import ImageModal from '../../../components/Profile/ImageModal';
-import {getCommunities} from '../../../store/Actions/CommunityActions';
 import {newPost} from '../../../store/Actions/PostActions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CreatePostBottomSheetContent({}) {
   const {user} = useSelector((state: any) => state.Auth);
-  const {communities} = useSelector((state: any) => state.Community);
-  const {loading, posts} = useSelector((state: any) => state.Post);
+  const {loading} = useSelector((state: any) => state.Post);
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
   const [visible, setVisible] = useState(false);
@@ -41,6 +41,7 @@ export default function CreatePostBottomSheetContent({}) {
     name: 'Select a community',
     id: null,
   });
+  const [names, setNames] = useState([])
   const [imageLoading, setImageLoading] = useState(false);
   const [imageData, setImageData] = useState(null);
   const [uri, setUri] = useState(null);
@@ -70,7 +71,12 @@ export default function CreatePostBottomSheetContent({}) {
   };
 
   const fetchCommunities = async () => {
-    await dispatch(getCommunities('select=name'));
+    const token = await AsyncStorage.getItem('verseAuthToken');
+    console.log(token)
+    const { data } = await axios.get('/api/v1/communities?select=name',{
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    setNames(data.data)
   };
 
   useEffect(() => {
@@ -87,7 +93,7 @@ export default function CreatePostBottomSheetContent({}) {
           <Text style={styles.modalCommunityTitle}>Select Community</Text>
           <View style={styles.listGroup}>
             <FlatList
-              data={communities}
+              data={names}
               renderItem={({item}) => (
                 <RNBounceable
                   bounceEffect={0.9}
@@ -96,12 +102,14 @@ export default function CreatePostBottomSheetContent({}) {
                     setVisible(false);
                   }}>
                   <List.Item
-                    title={`${item.name}`}
-                    titleStyle={styles.communityTitleStyle}
-                    style={styles.communityListItem}
+                  // @ts-ignore
+                  title={`${item.name}`}
+                  titleStyle={styles.communityTitleStyle}
+                  style={styles.communityListItem}
                   />
                 </RNBounceable>
               )}
+              // @ts-ignore
               keyExtractor={item => item.toString()}
               showsVerticalScrollIndicator={false}
             />

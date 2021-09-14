@@ -2,12 +2,14 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import ProfileButton from '../Buttons/ProfileButton';
+import { useNavigation } from '@react-navigation/native'
 import {useDispatch, useSelector} from 'react-redux';
 import {followUser, unfollowUser} from '../../store/Actions/UserActions';
 
 const ProfileTop = ({styles, profile, inlineStyle}) => {
-  const { user } = useSelector((state: any) => state.Auth);
-  console.log(profile.username)
+  const {user} = useSelector((state: any) => state.Auth);
+  const { navigate } = useNavigation()
+  console.log('\nhey\n')
   const dispatch = useDispatch();
   const followFunction = async () => {
     await dispatch(followUser(profile._id));
@@ -16,11 +18,11 @@ const ProfileTop = ({styles, profile, inlineStyle}) => {
     await dispatch(unfollowUser(profile._id));
   };
   const navigateToEditScreen = () => {
-        // @ts-ignore
-        navigate('Profile', {
-          screen: 'EditProfileScreen',
-        });
-  }
+    // @ts-ignore
+    navigate('Profile', {
+      screen: 'EditProfileScreen',
+    });
+  };
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView overScrollMode={'never'} showsVerticalScrollIndicator={false}>
@@ -59,7 +61,7 @@ const ProfileTop = ({styles, profile, inlineStyle}) => {
         <View style={styles.infoContainer}>
           <Text style={profile.bio && styles.bioText}>{profile.bio}</Text>
         </View>
-         {user._id === profile._id ? (
+        {user._id === profile._id ? (
           <ProfileButton
             text="Edit Profile"
             submitHandler={navigateToEditScreen}

@@ -29,6 +29,72 @@ export const getCommunities =
     }
   };
 
-export const sendOTP = (phone: string) => async (dispatch: any) => {
-  
-}
+export const getCommunitiy =
+  (id: any, navigate: any) =>
+  async (dispatch: any) => {
+    dispatch({type: types.GET_COMMUNITY_LOADING});
+    try {
+      const token = await returnToken();
+      const response = await axios.get(`${url}/${id}`, {
+        headers: {Authorization: `Bearer ${token}`},
+      });
+      if(response.data.success){
+        dispatch({
+          type: types.GET_COMMUNITY_SUCCESS,
+          payload: response.data.data,
+        });
+        // navigate('Community')
+      }
+    } catch (error) {
+      console.log({error});
+      // const displayErr = error.response.data.error.split(',')[0];
+      // @ts-ignore
+      dispatch({type: types.GET_COMMUNITY_FAIL, payload: error?.respnse});
+    }
+  };
+
+export const joinCommunity =
+  (id: any) =>
+  async (dispatch: any) => {
+    dispatch({type: types.JOIN_LOADING});
+    try {
+      const token = await returnToken();
+      const response = await axios.put(`${url}/join/${id}`,{}, {
+        headers: {Authorization: `Bearer ${token}`},
+      });
+      if(response.data.success){
+        dispatch({
+          type: types.JOIN_COMMUNITY_SUCCESS,
+          payload: response.data.data,
+        });
+      }
+    } catch (error) {
+      console.log({error});
+      // const displayErr = error.response.data.error.split(',')[0];
+      // @ts-ignore
+      dispatch({type: types.JOIN_COMMUNITY_FAIL, payload: error?.respnse});
+    }
+  };
+
+export const leaveCommunity =
+  (id: any) =>
+  async (dispatch: any) => {
+    dispatch({type: types.JOIN_LOADING});
+    try {
+      const token = await returnToken();
+      const response = await axios.put(`${url}/leave/${id}`,{}, {
+        headers: {Authorization: `Bearer ${token}`},
+      });
+      if(response.data.success){
+        dispatch({
+          type: types.LEAVE_COMMUNITY_SUCCESS,
+          payload: response.data.data,
+        });
+      }
+    } catch (error) {
+      console.log({error});
+      // const displayErr = error.response.data.error.split(',')[0];
+      // @ts-ignore
+      dispatch({type: types.LEAVE_COMMUNITY_FAIL, payload: error?.respnse});
+    }
+  };
