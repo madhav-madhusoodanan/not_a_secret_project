@@ -3,7 +3,6 @@ import {
   Text,
   View,
   TouchableOpacity,
-  TouchableNativeFeedback,
 } from 'react-native';
 import CommentIcon from '@iconscout/react-native-unicons/icons/uil-comment';
 import ShareIcon from '@iconscout/react-native-unicons/icons/uil-share-alt';
