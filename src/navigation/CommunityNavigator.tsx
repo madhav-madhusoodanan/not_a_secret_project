@@ -12,13 +12,14 @@ import {
   StatusBar,
   ActivityIndicator,
 } from 'react-native';
+import Header from './../components/CommunityFeed/Header';
 import {TabView, TabBar} from 'react-native-tab-view';
 
 const AnimatedIndicator = Animated.createAnimatedComponent(ActivityIndicator);
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 const TabBarHeight = 48;
-const HeaderHeight = 300;
+const HeaderHeight = 200;
 const SafeStatusBar = Platform.select({
   ios: 44,
   android: StatusBar.currentHeight,
@@ -33,8 +34,8 @@ const App = () => {
    */
   const [tabIndex, setIndex] = useState(0);
   const [routes] = useState([
-    {key: 'tab1', title: 'Tab1'},
-    {key: 'tab2', title: 'Tab2'},
+    {key: 'tab1', title: 'Feed'},
+    {key: 'tab2', title: 'About'},
   ]);
   const [canScroll, setCanScroll] = useState(true);
   const [tab1Data] = useState(Array(40).fill(0));
@@ -325,12 +326,7 @@ const App = () => {
       <Animated.View
         {...headerPanResponder.panHandlers}
         style={[styles.header, {transform: [{translateY: y}]}]}>
-        <TouchableOpacity
-          style={{flex: 1, justifyContent: 'center'}}
-          activeOpacity={1}
-          onPress={() => Alert.alert('header Clicked!')}>
-          <Text>Pull to Refresh Header</Text>
-        </TouchableOpacity>
+        <Header />
       </Animated.View>
     );
   };
@@ -564,19 +560,18 @@ const styles = StyleSheet.create({
   header: {
     height: HeaderHeight,
     width: '100%',
-    alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    backgroundColor: '#FFA088',
+    backgroundColor: '#FFF',
   },
-  label: {fontSize: 16, color: '#222'},
+  label: {fontSize: 14, fontFamily: 'Inter-Bold', color: 'black'},
   tab: {
     elevation: 0,
     shadowOpacity: 0,
-    backgroundColor: '#FFCC80',
+    backgroundColor: '#FFF',
     height: TabBarHeight,
   },
-  indicator: {backgroundColor: '#222'},
+  indicator: {backgroundColor: 'black', borderBottomWidth: 3},
 });
 
 export default App;

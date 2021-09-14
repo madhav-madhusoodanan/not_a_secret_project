@@ -42,7 +42,6 @@ export const headerStyles = StyleSheet.create({
   },
   container: {
     flexDirection: 'row',
-    backgroundColor: 'white',
     padding: 16,
   },
   followButtonStyles: {
@@ -69,5 +68,5 @@ export const headerStyles = StyleSheet.create({
     // justifyContent: 'center',
     marginTop: 12,
   },
-  flexRow: {flexDirection: 'row'}
+  flexRow: {flexDirection: 'row'},
 });
