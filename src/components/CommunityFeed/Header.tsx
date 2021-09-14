@@ -1,12 +1,5 @@
 import React, {FC, memo, useMemo} from 'react';
-import {
-  ImageProps,
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  View,
-  ViewProps,
-} from 'react-native';
+import {Text, View, ViewProps} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {headerStyles} from './HeaderStyles';
 import {Button} from 'react-native-paper';
