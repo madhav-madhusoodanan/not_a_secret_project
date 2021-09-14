@@ -6,16 +6,17 @@ import {
   Dimensions,
   Animated,
   PanResponder,
+  FlatList,
   Platform,
-  TouchableOpacity,
-  Alert,
   StatusBar,
-  ActivityIndicator,
 } from 'react-native';
 import Header from './../components/CommunityFeed/Header';
 import {TabView, TabBar} from 'react-native-tab-view';
 
-const AnimatedIndicator = Animated.createAnimatedComponent(ActivityIndicator);
+import {useSelector} from 'react-redux';
+import AboutScreen from '../screens/CommunityScreens/AboutScreen';
+import Post from '../components/Post';
+
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 const TabBarHeight = 48;
@@ -29,6 +30,8 @@ const tab2ItemSize = (windowWidth - 40) / 3;
 const PullToRefreshDist = 150;
 
 const App = () => {
+  const {posts} = useSelector((state: any) => state.Post);
+
   /**
    * stats
    */
@@ -231,7 +234,6 @@ const App = () => {
   };
 
   const handlePanReleaseOrEnd = (evt, gestureState) => {
-    // console.log('handlePanReleaseOrEnd', scrollY._value);
     syncScrollOffset();
     headerScrollY.setValue(scrollY._value);
     if (Platform.OS === 'ios') {
