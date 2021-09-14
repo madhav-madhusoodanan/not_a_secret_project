@@ -22,7 +22,7 @@ const PostContent = ({styles, post}) => {
                 uri: post.image.uri,
                 priority: FastImage.priority.normal,
               }}
-              resizeMode={FastImage.resizeMode.contain}
+              resizeMode={FastImage.resizeMode.cover}
             />
           </View>
         </Lightbox>

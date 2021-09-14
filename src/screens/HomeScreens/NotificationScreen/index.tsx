@@ -8,21 +8,21 @@ import SkeletonView from '../../../components/Post/SkeletonView';
 
 export default function NotificationScreen() {
   return (
-    <SkeletonView  />    
-    );
-  }
-  
-  // <SafeAreaView style={styles.container}>
-  //   <View style={styles.announcementContainer}>
-  //     <Text style={styles.heroText}>Hold Tight!</Text>
-  //     <Text style={styles.supportingText}>
-  //       Notifications are Coming Soon :)
-  //     </Text>
-  //   </View>
+    // <SkeletonView  />
 
-  //   <LottieView
-  //     source={require('../../../assets/lottie/parachute.json')}
-  //     autoPlay
-  //     loop
-  //   />
-  // </SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.announcementContainer}>
+        <Text style={styles.heroText}>Hold Tight!</Text>
+        <Text style={styles.supportingText}>
+          Notifications are Coming Soon :)
+        </Text>
+      </View>
+
+      <LottieView
+        source={require('../../../assets/lottie/parachute.json')}
+        autoPlay
+        loop
+      />
+    </SafeAreaView>
+  );
+}

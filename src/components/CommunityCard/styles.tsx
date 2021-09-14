@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   footnoteTextStyle: {
-    color: 'black',
+    color: 'white',
     fontFamily: 'Lato-Bold',
     fontSize: 12,
   },

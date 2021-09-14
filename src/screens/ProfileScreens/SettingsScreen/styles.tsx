@@ -4,14 +4,11 @@ import {Theme} from '../../../constants/appTheme';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 64,
-    // paddingHorizontal: 20,
     backgroundColor: Theme.colors.background,
   },
   listGroup: {
     marginHorizontal: 10,
     marginTop: 20,
-    // alignSelf: 'center',
     flexDirection: 'column',
   },
   listItem: {

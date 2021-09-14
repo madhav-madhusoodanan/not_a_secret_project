@@ -48,7 +48,8 @@ export const styles = StyleSheet.create({
   },
   postImage: {
     width: '100%',
-    height: 170,
+    height: 180,
+    // height: '100%',
     borderRadius: 10,
   },
   postFooter: {
