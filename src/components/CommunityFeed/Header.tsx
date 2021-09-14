@@ -44,7 +44,7 @@ const Header = () => {
               uri: community && community.coverImage.uri,
               priority: FastImage.priority.normal,
             }}
-            resizeMode={FastImage.resizeMode.contain}
+            resizeMode={FastImage.resizeMode.cover}
           />
           <View style={headerStyles.infoContainer}>
             <Text style={headerStyles.name}>{community.name}</Text>
