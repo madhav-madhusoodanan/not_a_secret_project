@@ -7,15 +7,15 @@ import {
   Animated,
   PanResponder,
   Platform,
-  FlatList,
+  TouchableOpacity,
+  Alert,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native';
 import Header from './../components/CommunityFeed/Header';
 import {TabView, TabBar} from 'react-native-tab-view';
-import {useSelector} from 'react-redux';
-import AboutScreen from '../screens/CommunityScreens/AboutScreen';
-import Post from '../components/Post';
 
+const AnimatedIndicator = Animated.createAnimatedComponent(ActivityIndicator);
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 const TabBarHeight = 48;
@@ -24,19 +24,23 @@ const SafeStatusBar = Platform.select({
   ios: 44,
   android: StatusBar.currentHeight,
 });
+const tab1ItemSize = (windowWidth - 30) / 2;
+const tab2ItemSize = (windowWidth - 40) / 3;
 const PullToRefreshDist = 150;
 
 const App = () => {
-  const {posts} = useSelector((state: any) => state.Post);
   /**
    * stats
    */
   const [tabIndex, setIndex] = useState(0);
-  const [canScroll, setCanScroll] = useState(false);
   const [routes] = useState([
     {key: 'tab1', title: 'Feed'},
     {key: 'tab2', title: 'About'},
   ]);
+  const [canScroll, setCanScroll] = useState(true);
+  const [tab1Data] = useState(Array(40).fill(0));
+  const [tab2Data] = useState(Array(30).fill(0));
+
   /**
    * ref
    */
@@ -227,6 +231,7 @@ const App = () => {
   };
 
   const handlePanReleaseOrEnd = (evt, gestureState) => {
+    // console.log('handlePanReleaseOrEnd', scrollY._value);
     syncScrollOffset();
     headerScrollY.setValue(scrollY._value);
     if (Platform.OS === 'ios') {
@@ -276,13 +281,14 @@ const App = () => {
   const onMomentumScrollEnd = () => {
     isListGliding.current = false;
     syncScrollOffset();
+    // console.log('onMomentumScrollEnd');
   };
 
   const onScrollEndDrag = e => {
     syncScrollOffset();
 
     const offsetY = e.nativeEvent.contentOffset.y;
-
+    // console.log('onScrollEndDrag', offsetY);
     // iOS only
     if (Platform.OS === 'ios') {
       if (offsetY < -PullToRefreshDist && !refreshStatusRef.current) {
@@ -325,6 +331,40 @@ const App = () => {
     );
   };
 
+  const rednerTab1Item = ({item, index}) => {
+    return (
+      <View
+        style={{
+          borderRadius: 16,
+          marginLeft: index % 2 === 0 ? 0 : 10,
+          width: tab1ItemSize,
+          height: tab1ItemSize,
+          backgroundColor: '#aaa',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>{index}</Text>
+      </View>
+    );
+  };
+
+  const rednerTab2Item = ({item, index}) => {
+    return (
+      <View
+        style={{
+          marginLeft: index % 3 === 0 ? 0 : 10,
+          borderRadius: 16,
+          width: tab2ItemSize,
+          height: tab2ItemSize,
+          backgroundColor: '#aaa',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>{index}</Text>
+      </View>
+    );
+  };
+
   const renderLabel = ({route, focused}) => {
     return (
       <Text style={[styles.label, {opacity: focused ? 1 : 0.5}]}>
@@ -335,58 +375,69 @@ const App = () => {
 
   const renderScene = ({route}) => {
     const focused = route.key === routes[tabIndex].key;
+    let numCols;
+    let data;
+    let renderItem;
+    switch (route.key) {
+      case 'tab1':
+        numCols = 2;
+        data = tab1Data;
+        renderItem = rednerTab1Item;
+        break;
+      case 'tab2':
+        numCols = 3;
+        data = tab2Data;
+        renderItem = rednerTab2Item;
+        break;
+      default:
+        return null;
+    }
     return (
-      <>
-        {route.key === 'tab1' ? (
-          <Animated.FlatList
-            scrollToOverflowEnabled={true}
-            // scrollEnabled={canScroll}
-            {...listPanResponder.panHandlers}
-            numColumns={1}
-            ref={ref => {
-              if (ref) {
-                const found = listRefArr.current.find(e => e.key === route.key);
-                if (!found) {
-                  listRefArr.current.push({
-                    key: route.key,
-                    value: ref,
-                  });
-                }
-              }
-            }}
-            scrollEventThrottle={16}
-            onScroll={
-              focused
-                ? Animated.event(
-                    [
-                      {
-                        nativeEvent: {contentOffset: {y: scrollY}},
-                      },
-                    ],
-                    {useNativeDriver: true},
-                  )
-                : null
+      <Animated.FlatList
+        scrollToOverflowEnabled={true}
+        // scrollEnabled={canScroll}
+        {...listPanResponder.panHandlers}
+        numColumns={numCols}
+        ref={ref => {
+          if (ref) {
+            const found = listRefArr.current.find(e => e.key === route.key);
+            if (!found) {
+              listRefArr.current.push({
+                key: route.key,
+                value: ref,
+              });
             }
-            onMomentumScrollBegin={onMomentumScrollBegin}
-            onScrollEndDrag={onScrollEndDrag}
-            onMomentumScrollEnd={onMomentumScrollEnd}
-            ItemSeparatorComponent={() => <View style={{height: 10}} />}
-            ListHeaderComponent={() => <View style={{height: 10}} />}
-            contentContainerStyle={{
-              paddingTop: HeaderHeight + TabBarHeight,
-              paddingHorizontal: 10,
-              minHeight: windowHeight - SafeStatusBar + HeaderHeight,
-            }}
-            showsHorizontalScrollIndicator={false}
-            data={posts}
-            renderItem={({item}) => <Post post={item} allowed />}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item, index) => index.toString()}
-          />
-        ) : (
-          <AboutScreen />
-        )}
-      </>
+          }
+        }}
+        scrollEventThrottle={16}
+        onScroll={
+          focused
+            ? Animated.event(
+                [
+                  {
+                    nativeEvent: {contentOffset: {y: scrollY}},
+                  },
+                ],
+                {useNativeDriver: true},
+              )
+            : null
+        }
+        onMomentumScrollBegin={onMomentumScrollBegin}
+        onScrollEndDrag={onScrollEndDrag}
+        onMomentumScrollEnd={onMomentumScrollEnd}
+        ItemSeparatorComponent={() => <View style={{height: 10}} />}
+        ListHeaderComponent={() => <View style={{height: 10}} />}
+        contentContainerStyle={{
+          paddingTop: HeaderHeight + TabBarHeight,
+          paddingHorizontal: 10,
+          minHeight: windowHeight - SafeStatusBar + HeaderHeight,
+        }}
+        showsHorizontalScrollIndicator={false}
+        data={data}
+        renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item, index) => index.toString()}
+      />
     );
   };
 
@@ -458,13 +509,13 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     position: 'absolute',
-    backgroundColor: 'lightblue',
+    backgroundColor: '#FFF',
   },
   label: {fontSize: 14, fontFamily: 'Inter-Bold', color: 'black'},
   tab: {
     elevation: 0,
     shadowOpacity: 0,
-    backgroundColor: 'pink',
+    backgroundColor: '#FFF',
     height: TabBarHeight,
   },
   indicator: {backgroundColor: 'black', borderBottomWidth: 3},
