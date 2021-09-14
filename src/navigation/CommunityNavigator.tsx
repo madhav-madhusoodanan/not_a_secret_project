@@ -7,15 +7,15 @@ import {
   Animated,
   PanResponder,
   Platform,
-  TouchableOpacity,
-  Alert,
+  FlatList,
   StatusBar,
-  ActivityIndicator,
 } from 'react-native';
 import Header from './../components/CommunityFeed/Header';
 import {TabView, TabBar} from 'react-native-tab-view';
+import { useSelector } from 'react-redux';
+import AboutScreen from '../screens/CommunityScreens/AboutScreen'
+import Post from '../components/Post'
 
-const AnimatedIndicator = Animated.createAnimatedComponent(ActivityIndicator);
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 const TabBarHeight = 48;
@@ -24,23 +24,19 @@ const SafeStatusBar = Platform.select({
   ios: 44,
   android: StatusBar.currentHeight,
 });
-const tab1ItemSize = (windowWidth - 30) / 2;
-const tab2ItemSize = (windowWidth - 40) / 3;
 const PullToRefreshDist = 150;
 
 const App = () => {
+  const { posts } = useSelector((state: any) => state.Post)
   /**
    * stats
    */
   const [tabIndex, setIndex] = useState(0);
+  const [canScroll, setCanScroll] = useState(false)
   const [routes] = useState([
     {key: 'tab1', title: 'Feed'},
     {key: 'tab2', title: 'About'},
   ]);
-  const [canScroll, setCanScroll] = useState(true);
-  const [tab1Data] = useState(Array(40).fill(0));
-  const [tab2Data] = useState(Array(30).fill(0));
-
   /**
    * ref
    */
@@ -331,40 +327,6 @@ const App = () => {
     );
   };
 
-  const rednerTab1Item = ({item, index}) => {
-    return (
-      <View
-        style={{
-          borderRadius: 16,
-          marginLeft: index % 2 === 0 ? 0 : 10,
-          width: tab1ItemSize,
-          height: tab1ItemSize,
-          backgroundColor: '#aaa',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text>{index}</Text>
-      </View>
-    );
-  };
-
-  const rednerTab2Item = ({item, index}) => {
-    return (
-      <View
-        style={{
-          marginLeft: index % 3 === 0 ? 0 : 10,
-          borderRadius: 16,
-          width: tab2ItemSize,
-          height: tab2ItemSize,
-          backgroundColor: '#aaa',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text>{index}</Text>
-      </View>
-    );
-  };
-
   const renderLabel = ({route, focused}) => {
     return (
       <Text style={[styles.label, {opacity: focused ? 1 : 0.5}]}>
@@ -373,31 +335,16 @@ const App = () => {
     );
   };
 
-  const renderScene = ({route}) => {
+  const renderScene = ({ route }) => {
     const focused = route.key === routes[tabIndex].key;
-    let numCols;
-    let data;
-    let renderItem;
-    switch (route.key) {
-      case 'tab1':
-        numCols = 2;
-        data = tab1Data;
-        renderItem = rednerTab1Item;
-        break;
-      case 'tab2':
-        numCols = 3;
-        data = tab2Data;
-        renderItem = rednerTab2Item;
-        break;
-      default:
-        return null;
-    }
     return (
+      <>
+      { route.key === 'tab1' ?
       <Animated.FlatList
         scrollToOverflowEnabled={true}
         // scrollEnabled={canScroll}
         {...listPanResponder.panHandlers}
-        numColumns={numCols}
+        numColumns={1}
         ref={ref => {
           if (ref) {
             const found = listRefArr.current.find(e => e.key === route.key);
@@ -433,13 +380,16 @@ const App = () => {
           minHeight: windowHeight - SafeStatusBar + HeaderHeight,
         }}
         showsHorizontalScrollIndicator={false}
-        data={data}
-        renderItem={renderItem}
+        data={posts}
+        renderItem={({ item }) => (
+          <Post post={item} allowed />
+        )}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => index.toString()}
-      />
-    );
-  };
+      /> : <AboutScreen />}
+      </>
+    )
+  }
 
   const renderTabBar = props => {
     const y = scrollY.interpolate({
@@ -492,63 +442,10 @@ const App = () => {
     );
   };
 
-  const renderCustomRefresh = () => {
-    // headerMoveScrollY
-    return Platform.select({
-      ios: (
-        <AnimatedIndicator
-          style={{
-            top: -50,
-            position: 'absolute',
-            alignSelf: 'center',
-            transform: [
-              {
-                translateY: scrollY.interpolate({
-                  inputRange: [-100, 0],
-                  outputRange: [120, 0],
-                  extrapolate: 'clamp',
-                }),
-              },
-            ],
-          }}
-          animating
-        />
-      ),
-      android: (
-        <Animated.View
-          style={{
-            transform: [
-              {
-                translateY: headerMoveScrollY.interpolate({
-                  inputRange: [-300, 0],
-                  outputRange: [150, 0],
-                  extrapolate: 'clamp',
-                }),
-              },
-            ],
-            backgroundColor: '#eee',
-            height: 38,
-            width: 38,
-            borderRadius: 19,
-            borderWidth: 2,
-            borderColor: '#ddd',
-            justifyContent: 'center',
-            alignItems: 'center',
-            alignSelf: 'center',
-            top: -50,
-            position: 'absolute',
-          }}>
-          <ActivityIndicator animating />
-        </Animated.View>
-      ),
-    });
-  };
-
   return (
     <View style={styles.container}>
       {renderTabView()}
       {renderHeader()}
-      {renderCustomRefresh()}
     </View>
   );
 };

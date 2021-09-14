@@ -12,7 +12,9 @@ export default function FeedScreen({}) {
   const {navigate} = useNavigation();
   const post = useSelector((state: any) => state.Post);
 
-  useEffect(() => {}, [post.posts]);
+  useEffect(() => {
+    console.log('hell yeah', post.posts.length)
+  }, [post.posts]);
 
   return (
     <SafeAreaView style={styles.container}>

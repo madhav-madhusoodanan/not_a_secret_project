@@ -17,10 +17,8 @@ export default function ExploreScreen() {
     await dispatch(getCommunities('populate_createdBy=firstName,lastName'));
   };
   useEffect(() => {
-    if (isFocused) {
-      fetchCommunities();
-    }
-  }, [isFocused]);
+    fetchCommunities();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
