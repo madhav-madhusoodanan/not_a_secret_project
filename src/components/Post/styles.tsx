@@ -41,15 +41,16 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 16,
+    backgroundColor: 'pink',
   },
   paragraph: {
     fontFamily: 'Inter-Regular',
     fontSize: 14,
   },
   postImage: {
-    width: '100%',
+    // width: '100%',
+    width: 360,
     height: 180,
-    // height: '100%',
     borderRadius: 10,
   },
   postFooter: {
