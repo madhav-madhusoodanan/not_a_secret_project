@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {AppleCard} from 'react-native-apple-card-views';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
@@ -11,7 +11,7 @@ export default function CommunityCard({community}) {
   const navigateToCommunity = async () => {
     await dispatch(getCommunitiy(community._id, navigate));
     // @ts-ignore
-    navigate('Community')
+    navigate('Community');
   };
   return (
     <>

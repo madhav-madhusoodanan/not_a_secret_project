@@ -6,13 +6,15 @@ import {
   Dimensions,
   Animated,
   PanResponder,
-  FlatList,
   Platform,
+  FlatList,
+  TouchableOpacity,
+  Alert,
   StatusBar,
 } from 'react-native';
-import Header from './../components/CommunityFeed/Header';
 import {TabView, TabBar} from 'react-native-tab-view';
 
+import Header from './../components/CommunityFeed/Header';
 import {useSelector} from 'react-redux';
 import AboutScreen from '../screens/CommunityScreens/AboutScreen';
 import Post from '../components/Post';
@@ -27,7 +29,6 @@ const SafeStatusBar = Platform.select({
 });
 const tab1ItemSize = (windowWidth - 30) / 2;
 const tab2ItemSize = (windowWidth - 40) / 3;
-const PullToRefreshDist = 150;
 
 const App = () => {
   const {posts} = useSelector((state: any) => state.Post);
@@ -41,22 +42,19 @@ const App = () => {
     {key: 'tab2', title: 'About'},
   ]);
   const [canScroll, setCanScroll] = useState(true);
-  const [tab1Data] = useState(Array(40).fill(0));
-  const [tab2Data] = useState(Array(30).fill(0));
+  const [tab1Data] = useState(Array(10).fill(0));
+  const [tab2Data] = useState(Array(10).fill(0));
 
   /**
    * ref
    */
   const scrollY = useRef(new Animated.Value(0)).current;
   const headerScrollY = useRef(new Animated.Value(0)).current;
-  // for capturing header scroll on Android
-  const headerMoveScrollY = useRef(new Animated.Value(0)).current;
   const listRefArr = useRef([]);
   const listOffset = useRef({});
   const isListGliding = useRef(false);
   const headerScrollStart = useRef(0);
   const _tabIndex = useRef(0);
-  const refreshStatusRef = useRef(false);
 
   /**
    * PanResponder for header
@@ -75,35 +73,32 @@ const App = () => {
         headerScrollY.stopAnimation();
         return Math.abs(gestureState.dy) > 5;
       },
-      onPanResponderEnd: (evt, gestureState) => {
-        handlePanReleaseOrEnd(evt, gestureState);
+
+      onPanResponderRelease: (evt, gestureState) => {
+        syncScrollOffset();
+        if (Math.abs(gestureState.vy) < 0.2) {
+          return;
+        }
+        headerScrollY.setValue(scrollY._value);
+        Animated.decay(headerScrollY, {
+          velocity: -gestureState.vy,
+          useNativeDriver: true,
+        }).start(() => {
+          syncScrollOffset();
+        });
       },
       onPanResponderMove: (evt, gestureState) => {
-        const curListRef = listRefArr.current.find(
-          ref => ref.key === routes[_tabIndex.current].key,
-        );
-        const headerScrollOffset = -gestureState.dy + headerScrollStart.current;
-        if (curListRef.value) {
-          // scroll up
-          if (headerScrollOffset > 0) {
-            curListRef.value.scrollToOffset({
-              offset: headerScrollOffset,
+        listRefArr.current.forEach(item => {
+          if (item.key !== routes[_tabIndex.current].key) {
+            return;
+          }
+          if (item.value) {
+            item.value.scrollToOffset({
+              offset: -gestureState.dy + headerScrollStart.current,
               animated: false,
             });
-            // start pull down
-          } else {
-            if (Platform.OS === 'ios') {
-              curListRef.value.scrollToOffset({
-                offset: headerScrollOffset / 3,
-                animated: false,
-              });
-            } else if (Platform.OS === 'android') {
-              if (!refreshStatusRef.current) {
-                headerMoveScrollY.setValue(headerScrollOffset / 1.5);
-              }
-            }
           }
-        }
+        });
       },
       onShouldBlockNativeResponder: () => true,
       onPanResponderGrant: (evt, gestureState) => {
@@ -197,85 +192,6 @@ const App = () => {
     });
   };
 
-  const startRefreshAction = () => {
-    if (Platform.OS === 'ios') {
-      listRefArr.current.forEach(listRef => {
-        listRef.value.scrollToOffset({
-          offset: -50,
-          animated: true,
-        });
-      });
-      refresh().finally(() => {
-        syncScrollOffset();
-        // do not bounce back if user scroll to another position
-        if (scrollY._value < 0) {
-          listRefArr.current.forEach(listRef => {
-            listRef.value.scrollToOffset({
-              offset: 0,
-              animated: true,
-            });
-          });
-        }
-      });
-    } else if (Platform.OS === 'android') {
-      Animated.timing(headerMoveScrollY, {
-        toValue: -150,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
-      refresh().finally(() => {
-        Animated.timing(headerMoveScrollY, {
-          toValue: 0,
-          duration: 300,
-          useNativeDriver: true,
-        }).start();
-      });
-    }
-  };
-
-  const handlePanReleaseOrEnd = (evt, gestureState) => {
-    syncScrollOffset();
-    headerScrollY.setValue(scrollY._value);
-    if (Platform.OS === 'ios') {
-      if (scrollY._value < 0) {
-        if (scrollY._value < -PullToRefreshDist && !refreshStatusRef.current) {
-          startRefreshAction();
-        } else {
-          // should bounce back
-          listRefArr.current.forEach(listRef => {
-            listRef.value.scrollToOffset({
-              offset: 0,
-              animated: true,
-            });
-          });
-        }
-      } else {
-        if (Math.abs(gestureState.vy) < 0.2) {
-          return;
-        }
-        Animated.decay(headerScrollY, {
-          velocity: -gestureState.vy,
-          useNativeDriver: true,
-        }).start(() => {
-          syncScrollOffset();
-        });
-      }
-    } else if (Platform.OS === 'android') {
-      if (
-        headerMoveScrollY._value < 0 &&
-        headerMoveScrollY._value / 1.5 < -PullToRefreshDist
-      ) {
-        startRefreshAction();
-      } else {
-        Animated.timing(headerMoveScrollY, {
-          toValue: 0,
-          duration: 300,
-          useNativeDriver: true,
-        }).start();
-      }
-    }
-  };
-
   const onMomentumScrollBegin = () => {
     isListGliding.current = true;
   };
@@ -285,31 +201,8 @@ const App = () => {
     syncScrollOffset();
   };
 
-  const onScrollEndDrag = e => {
+  const onScrollEndDrag = () => {
     syncScrollOffset();
-
-    const offsetY = e.nativeEvent.contentOffset.y;
-    // iOS only
-    if (Platform.OS === 'ios') {
-      if (offsetY < -PullToRefreshDist && !refreshStatusRef.current) {
-        startRefreshAction();
-      }
-    }
-
-    // check pull to refresh
-  };
-
-  const refresh = async () => {
-    console.log('-- start refresh');
-    refreshStatusRef.current = true;
-    await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve('done');
-      }, 2000);
-    }).then(value => {
-      console.log('-- refresh done!');
-      refreshStatusRef.current = false;
-    });
   };
 
   /**
@@ -319,8 +212,7 @@ const App = () => {
     const y = scrollY.interpolate({
       inputRange: [0, HeaderHeight],
       outputRange: [0, -HeaderHeight],
-      extrapolateRight: 'clamp',
-      // extrapolate: 'clamp',
+      extrapolate: 'clamp',
     });
     return (
       <Animated.View
@@ -394,7 +286,6 @@ const App = () => {
     }
     return (
       <Animated.FlatList
-        scrollToOverflowEnabled={true}
         // scrollEnabled={canScroll}
         {...listPanResponder.panHandlers}
         numColumns={numCols}
@@ -445,7 +336,7 @@ const App = () => {
     const y = scrollY.interpolate({
       inputRange: [0, HeaderHeight],
       outputRange: [HeaderHeight, 0],
-      extrapolateRight: 'clamp',
+      extrapolate: 'clamp',
     });
     return (
       <Animated.View
