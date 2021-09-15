@@ -283,14 +283,12 @@ const App = () => {
   const onMomentumScrollEnd = () => {
     isListGliding.current = false;
     syncScrollOffset();
-    // console.log('onMomentumScrollEnd');
   };
 
   const onScrollEndDrag = e => {
     syncScrollOffset();
 
     const offsetY = e.nativeEvent.contentOffset.y;
-    // console.log('onScrollEndDrag', offsetY);
     // iOS only
     if (Platform.OS === 'ios') {
       if (offsetY < -PullToRefreshDist && !refreshStatusRef.current) {
@@ -447,7 +445,6 @@ const App = () => {
     const y = scrollY.interpolate({
       inputRange: [0, HeaderHeight],
       outputRange: [HeaderHeight, 0],
-      // extrapolate: 'clamp',
       extrapolateRight: 'clamp',
     });
     return (
