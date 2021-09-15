@@ -1,18 +1,21 @@
 import React from 'react';
 import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
-
+import { useDispatch } from 'react-redux'
 import {styles} from './styles';
 import PostFooter from './PostFooter';
 import PostHeader from './PostHeader';
 import PostContent from './PostContent';
+import { getCommunitiy } from '../../store/Actions/CommunityActions';
 interface Post {
   allowed: Boolean;
   post: any;
 }
 export default function Post({allowed, post}: Post) {
   const {navigate} = useNavigation();
-  const navigateToCommunity = () => {
+  const dispatch = useDispatch()
+  const navigateToCommunity = async() => {
+    await dispatch(getCommunitiy(post.community._id, navigate));
     // @ts-ignore
     navigate('Community');
   };
