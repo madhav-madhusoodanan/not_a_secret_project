@@ -27,8 +27,6 @@ const SafeStatusBar = Platform.select({
   ios: 44,
   android: StatusBar.currentHeight,
 });
-const tab1ItemSize = (windowWidth - 30) / 2;
-const tab2ItemSize = (windowWidth - 40) / 3;
 
 const App = () => {
   const {posts} = useSelector((state: any) => state.Post);
@@ -42,8 +40,6 @@ const App = () => {
     {key: 'tab2', title: 'About'},
   ]);
   const [canScroll, setCanScroll] = useState(true);
-  const [tab1Data] = useState(Array(10).fill(0));
-  const [tab2Data] = useState(Array(10).fill(0));
 
   /**
    * ref
