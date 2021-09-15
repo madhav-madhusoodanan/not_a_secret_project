@@ -8,6 +8,7 @@ import {
   NEW_POST_SUCCESS,
   UPVOTE_POST_SUCCESS,
   DOWNVOTE_POST_SUCCESS,
+  DELETE_POST_SUCCESS,
 } from '../types';
 
 const initialState = {
@@ -44,9 +45,22 @@ export const Post = (state = initialState, {type, payload}: any) => {
         // @ts-ignore
         posts: state.posts.map(post =>
           post._id === payload._id
-            ? {...post, upvotes: payload.upvotes, downvotes: payload.downvotes, voteCount: payload.voteCount}
+            ? {
+                ...post,
+                upvotes: payload.upvotes,
+                downvotes: payload.downvotes,
+                voteCount: payload.voteCount,
+              }
             : post,
         ),
+      };
+    case DELETE_POST_SUCCESS:
+      console.log({ payload })
+      return {
+        ...state,
+        // @ts-ignore
+        posts: state.posts.filter(post => post._id !== payload),
+        loading: false,
       };
     case NEW_POST_FAIL:
       return {

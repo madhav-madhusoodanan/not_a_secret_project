@@ -1,18 +1,23 @@
 import React, {useEffect} from 'react';
 import {ScrollView, FlatList} from 'react-native';
-import {FAB, ActivityIndicator} from 'react-native-paper';
+import {FAB} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Post from '../../../components/Post';
 import {styles} from './styles';
 import SkeletonView from '../../../components/Post/SkeletonView';
-
+import {getNames} from '../../../store/Actions/CommunityActions';
 export default function HomeFeedScreen({}) {
   const {navigate} = useNavigation();
+  const dispatch = useDispatch();
   const post = useSelector((state: any) => state.Post);
-
-  useEffect(() => {}, [post.posts]);
+  const fetchNames = async () => {
+    await dispatch(getNames())
+  }
+  useEffect(() => {
+    fetchNames();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>

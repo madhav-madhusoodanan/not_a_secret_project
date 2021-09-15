@@ -94,3 +94,25 @@ export const newPost =
       dispatch({type: types.DOWNVOTE_POST_FAIL, payload: error?.respnse});
     }
   };
+
+  export const deletePost =
+  (id: any) =>
+  async (dispatch: any) => {
+    try {
+      const token = await returnToken();
+      const { data } = await axios.delete(`${url}/${id}`,{
+        headers: {Authorization: `Bearer ${token}`},
+      });
+      if(!data){
+        dispatch({
+          type: types.DELETE_POST_SUCCESS,
+          payload: id,
+        });
+      }
+    } catch (error) {
+      console.log({error});
+      // const displayErr = error.response.data.error.split(',')[0];
+      // @ts-ignore
+      dispatch({type: types.DELETE_POST_FAIL, payload: error?.respnse});
+    }
+  };

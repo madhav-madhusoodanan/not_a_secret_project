@@ -1,12 +1,12 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, View, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Menu} from 'react-native-paper';
 import {SVGIcon} from '../SVGIcon';
 import {useDispatch, useSelector} from 'react-redux';
 import {PROFILE_LOADING} from '../../store/types';
 import FastImage from 'react-native-fast-image';
-
+import {deletePost} from '../../store/Actions/PostActions';
 const PostHeader = ({styles, navigateToCommunity, post}) => {
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
@@ -31,6 +31,28 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
     } else {
       return `${diffMin / 1440}d`;
     }
+  };
+  const deletePress = () => {
+    setVisible(false);
+    Alert.alert(
+      'Delete the Post',
+      'Are you sure you want to delete the post?',
+      [
+        {
+          text: 'Delete',
+          onPress: async () => {
+            setVisible(false);
+            await dispatch(deletePost(post._id));
+          },
+          style: 'default',
+        },
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+      ],
+      {cancelable: true, onDismiss: () => setVisible(false)},
+    );
   };
   const usernamePress = async () => {
     if (user._id === author._id) {
@@ -121,7 +143,12 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
           </TouchableOpacity>
         }>
         <Menu.Item onPress={timee} title="Report" />
-        <Menu.Item onPress={timee} title="Report" />
+        {author._id === user._id && (
+          <Menu.Item
+          title='Delete'
+            onPress={deletePress}
+            />
+        )}
       </Menu>
     </View>
   );

@@ -2,18 +2,17 @@ import {
   GET_COMMUNITIES_FAIL,
   GET_COMMUNITIES_SUCCESS,
   GET_COMMUNITIES_LOADING,
-  GET_COMMUNITY_FAIL,
   GET_COMMUNITY_LOADING,
   GET_COMMUNITY_SUCCESS,
   JOIN_LOADING,
-  JOIN_COMMUNITY_FAIL,
+  GET_COMMUNITY_NAMES,
   JOIN_COMMUNITY_SUCCESS,
-  LEAVE_COMMUNITY_FAIL,
-  LEAVE_COMMUNITY_SUCCESS
+  LEAVE_COMMUNITY_SUCCESS,
 } from '../types';
 
 const initialState = {
   communities: null,
+  communityNames: [],
   loading: false,
   community: false,
   error: null,
@@ -31,6 +30,11 @@ export const Community = (state = initialState, {type, payload}: any) => {
       return {
         ...state,
         joinLoading: true
+      }
+    case GET_COMMUNITY_NAMES:
+      return {
+        ...state,
+        communityNames: payload
       }
     case GET_COMMUNITIES_SUCCESS:
       return {

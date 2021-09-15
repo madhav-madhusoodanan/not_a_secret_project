@@ -8,6 +8,20 @@ const returnToken = async () => {
   return token;
 };
 
+export const getNames = () => async (dispatch: any) => {
+  try {
+    const token = await returnToken();
+    const response = await axios.get(`${url}?select=name`,{ headers: { Authorization: `Bearer ${token}` } });
+    dispatch({type: types.GET_COMMUNITY_NAMES, payload: response.data.data});
+    console.log({ data: response.data.data })
+  } catch (error) {
+    console.log({error});
+    // const displayErr = error.response.data.error.split(',')[0];
+    // @ts-ignore
+    dispatch({type: types.COMMUNITY_NAMES_FAIL, payload: error?.respnse});
+  }
+};
+
 export const getCommunities =
   (query: any = '') =>
   async (dispatch: any) => {

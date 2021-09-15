@@ -19,6 +19,8 @@ import styles, {
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
 import {loginuser} from '../../../store/Actions/AuthActions';
+import { getPosts } from '../../../store/Actions/PostActions';
+import { getNames } from '../../../store/Actions/CommunityActions';
 
 const {Value, Text: AnimatedText} = Animated;
 
@@ -75,6 +77,8 @@ const OneTimePasswordScreen = () => {
         setTimeout(async () => {
           setLoading(false);
           await dispatch(loginuser({phoneNum: phone, isNew: false}, navigate));
+          await dispatch(getPosts('populate_community=name,coverImage&populate_author=username'));
+          await dispatch(getNames());
         }, 1000);
       }
     } else {

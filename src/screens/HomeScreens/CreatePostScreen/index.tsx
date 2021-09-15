@@ -31,6 +31,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function CreatePostBottomSheetContent({}) {
   const {user} = useSelector((state: any) => state.Auth);
   const {loading} = useSelector((state: any) => state.Post);
+  const {communityNames} = useSelector((state: any) => state.Community);
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
   const [visible, setVisible] = useState(false);
@@ -70,19 +71,6 @@ export default function CreatePostBottomSheetContent({}) {
     dispatch(newPost(data, navigate, showMessage));
   };
 
-  const fetchCommunities = async () => {
-    const token = await AsyncStorage.getItem('verseAuthToken');
-    console.log(token);
-    const {data} = await axios.get('/api/v1/communities?select=name', {
-      headers: {Authorization: `Bearer ${token}`},
-    });
-    setNames(data.data);
-  };
-
-  useEffect(() => {
-    fetchCommunities();
-  }, []);
-
   return (
     <View style={styles.container}>
       <Portal>
@@ -93,7 +81,7 @@ export default function CreatePostBottomSheetContent({}) {
           <Text style={styles.modalCommunityTitle}>Select Community</Text>
           <View style={styles.listGroup}>
             <FlatList
-              data={names}
+              data={communityNames}
               renderItem={({item}) => (
                 <RNBounceable
                   bounceEffect={0.8}
