@@ -7,6 +7,7 @@ import {
   Animated,
   PanResponder,
   FlatList,
+  ScrollView,
 } from 'react-native';
 import {TabView, TabBar} from 'react-native-tab-view';
 
@@ -230,7 +231,6 @@ const App = () => {
         {route.key === 'tab1' ? (
           <Animated.FlatList
             style={{marginTop: 0}}
-            scrollToOverflowEnabled={true}
             {...listPanResponder.panHandlers}
             numColumns={1}
             ref={ref => {
@@ -244,7 +244,6 @@ const App = () => {
                 }
               }
             }}
-            scrollEventThrottle={16}
             onScroll={
               focused
                 ? Animated.event(
@@ -273,7 +272,31 @@ const App = () => {
             keyExtractor={(item, index) => index.toString()}
           />
         ) : (
-          <AboutScreen />
+          <Animated.ScrollView
+            style={styles.aboutContainer}
+            {...listPanResponder.panHandlers}
+            onScroll={
+              focused
+                ? Animated.event(
+                    [
+                      {
+                        nativeEvent: {contentOffset: {y: scrollY}},
+                      },
+                    ],
+                    {useNativeDriver: true},
+                  )
+                : null
+            }
+            onMomentumScrollBegin={onMomentumScrollBegin}
+            onScrollEndDrag={onScrollEndDrag}
+            onMomentumScrollEnd={onMomentumScrollEnd}
+            contentContainerStyle={{
+              paddingTop: HeaderHeight + TabBarHeight,
+              paddingHorizontal: 0,
+            }}
+            showsHorizontalScrollIndicator={false}>
+            <AboutScreen />
+          </Animated.ScrollView>
         )}
       </>
     );
@@ -342,6 +365,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f0f0f0',
+  },
+  aboutContainer: {
+    flex: 1,
+    paddingTop: 20,
+    paddingHorizontal: 16,
   },
   header: {
     height: HeaderHeight,
