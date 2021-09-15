@@ -227,6 +227,14 @@ const App = () => {
     );
   };
 
+  // const renderIcon = ({route, focused}) => {
+  //   return (
+  //     <Text style={[styles.label, {opacity: focused ? 1 : 0.5}]}>
+  //       {route.title}
+  //     </Text>
+  //   );
+  // };
+
   const renderScene = ({route}) => {
     const focused = route.key === routes[tabIndex].key;
     return (
@@ -318,6 +326,7 @@ const App = () => {
       <TabView
         onSwipeStart={() => setCanScroll(false)}
         onSwipeEnd={() => setCanScroll(true)}
+        swipeEnabled={false}
         onIndexChange={id => {
           _tabIndex.current = id;
           setIndex(id);
