@@ -12,7 +12,7 @@ import styles from './styles';
 
 export default function AboutScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View>
       <Card style={styles.cardStyles}>
         <Title style={styles.cardTitle}>Group Details</Title>
         <Subheading style={styles.listTitle}>Created</Subheading>
@@ -49,6 +49,6 @@ export default function AboutScreen() {
           https://unacademy.com/@nishantjindal
         </Text>
       </Card>
-    </SafeAreaView>
+    </View>
   );
 }

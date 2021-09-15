@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 
 import {styles} from './styles';
 import PostFooter from './PostFooter';
@@ -31,10 +31,7 @@ export default function Post({allowed, post}: Post) {
         post={post}
         navigateToCommunity={navigateToCommunity}
       />
-      <PostContent
-        styles={styles}
-        post={post}
-        />
+      <PostContent styles={styles} post={post} />
       <PostFooter
         post={post}
         styles={styles}
