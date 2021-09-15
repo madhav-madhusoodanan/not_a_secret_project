@@ -20,7 +20,7 @@ import {
   Appbar,
 } from 'react-native-paper';
 import {showMessage} from 'react-native-flash-message';
-import axios from '../../../constants/api'
+import axios from '../../../constants/api';
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import {useSelector, useDispatch} from 'react-redux';
 import {styles} from './styles';
@@ -41,7 +41,7 @@ export default function CreatePostBottomSheetContent({}) {
     name: 'Select a community',
     id: null,
   });
-  const [names, setNames] = useState([])
+  const [names, setNames] = useState([]);
   const [imageLoading, setImageLoading] = useState(false);
   const [imageData, setImageData] = useState(null);
   const [uri, setUri] = useState(null);
@@ -72,11 +72,11 @@ export default function CreatePostBottomSheetContent({}) {
 
   const fetchCommunities = async () => {
     const token = await AsyncStorage.getItem('verseAuthToken');
-    console.log(token)
-    const { data } = await axios.get('/api/v1/communities?select=name',{
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    setNames(data.data)
+    console.log(token);
+    const {data} = await axios.get('/api/v1/communities?select=name', {
+      headers: {Authorization: `Bearer ${token}`},
+    });
+    setNames(data.data);
   };
 
   useEffect(() => {
@@ -96,16 +96,16 @@ export default function CreatePostBottomSheetContent({}) {
               data={names}
               renderItem={({item}) => (
                 <RNBounceable
-                  bounceEffect={0.9}
+                  bounceEffect={0.8}
                   onPress={() => {
                     setCommunity(item);
                     setVisible(false);
                   }}>
                   <List.Item
-                  // @ts-ignore
-                  title={`${item.name}`}
-                  titleStyle={styles.communityTitleStyle}
-                  style={styles.communityListItem}
+                    // @ts-ignore
+                    title={`${item.name}`}
+                    titleStyle={styles.communityTitleStyle}
+                    style={styles.communityListItem}
                   />
                 </RNBounceable>
               )}
