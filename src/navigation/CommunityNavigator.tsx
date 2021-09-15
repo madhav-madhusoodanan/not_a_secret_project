@@ -6,11 +6,7 @@ import {
   Dimensions,
   Animated,
   PanResponder,
-  Platform,
   FlatList,
-  TouchableOpacity,
-  Alert,
-  StatusBar,
 } from 'react-native';
 import {TabView, TabBar} from 'react-native-tab-view';
 
@@ -23,10 +19,6 @@ const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 const TabBarHeight = 48;
 const HeaderHeight = 200;
-const SafeStatusBar = Platform.select({
-  ios: 44,
-  android: StatusBar.currentHeight,
-});
 
 const App = () => {
   const {posts} = useSelector((state: any) => state.Post);

@@ -5,14 +5,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 20,
-    marginTop: 255,
+    marginTop: 240,
     paddingHorizontal: 16,
-    backgroundColor: Theme.colors.background,
+    // backgroundColor: Theme.colors.background,
   },
   cardStyles: {
     borderRadius: 12,
     backgroundColor: '#F8F8F9',
-    elevation: 10,
+    elevation: 5,
     marginBottom: 20,
     paddingHorizontal: 12,
     paddingTop: 2,
