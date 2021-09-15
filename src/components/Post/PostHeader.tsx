@@ -97,7 +97,7 @@ const PostHeader = ({styles, navigateToCommunity, post}) => {
             {/* @ts-ignore */}
             <SVGIcon height={4} type="dot" width={4} />
 
-            <Text style={inlineStyle.postedBy}>Posted by</Text>
+            <Text style={inlineStyle.postedBy}>Posted by {''}</Text>
             <TouchableOpacity onPress={usernamePress}>
               <Text
                 style={{

@@ -228,11 +228,7 @@ const App = () => {
   };
 
   // const renderIcon = ({route, focused}) => {
-  //   return (
-  //     <Text style={[styles.label, {opacity: focused ? 1 : 0.5}]}>
-  //       {route.title}
-  //     </Text>
-  //   );
+  //   return <Icon name={focused ? 'abums' : 'albums-outlined'} color={color} />;
   // };
 
   const renderScene = ({route}) => {
