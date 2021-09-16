@@ -18,7 +18,9 @@ const ProfileInput = ({value, onChange, label}) => {
         underlineColorAndroid="#BDBDBD"
         returnKeyType="next"
         value={value}
-        onChangeText={onChange}
+        onChangeText={onChange
+        
+        }
       />
     </View>
   );

@@ -61,8 +61,6 @@ const CommentScreenContent = () => {
         ...newComment,
       },
     ]);
-
-    console.log('hello world');
   };
 
   return (

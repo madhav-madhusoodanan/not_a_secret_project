@@ -22,15 +22,14 @@ interface Props {
 }
 const EditProfileForm = ({styles, values, setValues}: Props) => {
   const dispatch = useDispatch();
-  const auth = useSelector((state: any) => state.Auth);
-  const {user, loading} = auth;
+  const {user, loading} = useSelector((state: any) => state.Auth);
   const [visible, setVisible] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
   const [uri, setUri] = useState(null);
   const [imageData, setImageData] = useState(null)
   const submitHandler = () => {
     const data = new FormData();
-    if(imageData){
+    if(imageData && uri){
       data.append('file', imageData);
     }
     for(let item in values){

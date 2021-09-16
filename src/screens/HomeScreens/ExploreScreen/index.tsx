@@ -1,24 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, FlatList} from 'react-native';
 import {ActivityIndicator, Searchbar} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
 import {styles} from './styles';
 import CommunityCard from '../../../components/CommunityCard';
 import {getCommunities} from '../../../store/Actions/CommunityActions';
+import {useIsFocused} from '@react-navigation/native';
 
 export default function ExploreScreen() {
   const dispatch = useDispatch();
   const community = useSelector((state: any) => state.Community);
   const [searchQuery, setSearchQuery] = React.useState('');
+  const isFocused = useIsFocused();
   const fetchCommunities = async () => {
-    await dispatch(getCommunities());
+    await dispatch(getCommunities('populate_createdBy=firstName,lastName'));
   };
   useEffect(() => {
     fetchCommunities();
   }, []);
-
-  console.log(community);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -31,20 +31,22 @@ export default function ExploreScreen() {
           value={searchQuery}
         />
       </View>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        overScrollMode={'never'}
-        style={styles.viewContainer}>
-        {!community.loading  && community.communities ? (
-          community.communities.map(c => (
+      {community.communities ? (
+        <FlatList
+          data={community.communities}
+          renderItem={({item}) => (
             <>
-              <CommunityCard community={c} key={c._id} />
+              <CommunityCard community={item} />
             </>
-          ))
-        ) : (
-          <ActivityIndicator animating color="#000" />
-        )}
-      </ScrollView>
+          )}
+          showsVerticalScrollIndicator={false}
+          overScrollMode={'never'}
+          style={styles.viewContainer}
+          keyExtractor={item => item._id.toString()}
+        />
+      ) : (
+        <ActivityIndicator animating color='#000' />
+      )}
     </SafeAreaView>
   );
 }

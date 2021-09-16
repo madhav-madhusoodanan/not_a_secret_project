@@ -4,9 +4,12 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import LottieView from 'lottie-react-native';
 
 import {styles} from './styles';
+import SkeletonView from '../../../components/Post/SkeletonView';
 
 export default function NotificationScreen() {
   return (
+    // <SkeletonView  />
+
     <SafeAreaView style={styles.container}>
       <View style={styles.announcementContainer}>
         <Text style={styles.heroText}>Hold Tight!</Text>

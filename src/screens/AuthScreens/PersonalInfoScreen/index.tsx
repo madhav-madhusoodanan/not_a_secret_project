@@ -34,10 +34,10 @@ const PersonalInfoScreen = () => {
 
   const {navigate, goBack} = useNavigation();
   const submitHandler = () => {
-    let final = {...values, gender, isNew: true, uri};
+    let final = {...values, gender, isNew: true};
     const data = new FormData();
     // @ts-ignore
-    if(imageData){
+    if(imageData && uri){
       data.append('file', imageData);
     }
     for(let item in final){
@@ -45,14 +45,9 @@ const PersonalInfoScreen = () => {
     }
     
     dispatch(loginuser(data, navigate));
-    console.log("data" +data);
     // @ts-ignore
     navigate('Home');
   };
-
-  useEffect(() => {
-    console.log(route.params);
-  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <Headline numberOfLines={2} style={styles.title}>

@@ -8,113 +8,107 @@ const returnToken = async () => {
   return token;
 };
 
-export const getCommunities = () => async (dispatch: any) => {
+export const getNames = () => async (dispatch: any) => {
+  try {
+    const token = await returnToken();
+    const response = await axios.get(`${url}?select=name`,{ headers: { Authorization: `Bearer ${token}` } });
+    dispatch({type: types.GET_COMMUNITY_NAMES, payload: response.data.data});
+    console.log({ data: response.data.data })
+  } catch (error) {
+    console.log({error});
+    // const displayErr = error.response.data.error.split(',')[0];
+    // @ts-ignore
+    dispatch({type: types.COMMUNITY_NAMES_FAIL, payload: error?.respnse});
+  }
+};
+
+export const getCommunities =
+  (query: any = '') =>
+  async (dispatch: any) => {
     dispatch({type: types.GET_COMMUNITIES_LOADING});
-  try {
-    const response = await axios.get(`${url}`);
-    dispatch({
-      type: types.GET_COMMUNITIES_SUCCESS,
-      payload: response.data.data,
-    });
-  } catch (error) {
-    console.log({error});
-    // const displayErr = error.response.data.error.split(',')[0];
-    // @ts-ignore
-    dispatch({type: types.GET_COMMUNITIES_FAIL, payload: error?.respnse});
-  }
-};
-
-export const sendOTP = (phone: string) => async (dispatch: any) => {
-  dispatch({type: types.GET_OTP_LOADING});
-  try {
-    const {data} = await axios.get(`${url}/sendOTP/${phone}`);
-    console.log({data});
-    dispatch({type: types.GET_OTP_SUCCESS, payload: data});
-  } catch (error) {
-    console.log({error});
-    // const displayErr = error.response.data.error.split(',')[0];
-    // @ts-ignore
-    dispatch({type: types.GET_OTP_FAIL, payload: error?.respnse});
-  }
-};
-
-export const loginuser =
-  (values: any, navigate: null | any) => async (dispatch: any) => {
-    dispatch({type: types.AUTH_LOADING});
     try {
-      const {data} = await axios.post(`${url}/signup`, values);
-      dispatch({type: types.AUTH_SUCCESS, payload: data});
-      console.log({data});
-      if (data.data) {
-        navigate('Home');
+      const token = await returnToken();
+      const response = await axios.get(`${url}?${query}`, {
+        headers: {Authorization: `Bearer ${token}`},
+      });
+      dispatch({
+        type: types.GET_COMMUNITIES_SUCCESS,
+        payload: response.data.data,
+      });
+    } catch (error) {
+      console.log({error});
+      // const displayErr = error.response.data.error.split(',')[0];
+      // @ts-ignore
+      dispatch({type: types.GET_COMMUNITIES_FAIL, payload: error?.respnse});
+    }
+  };
+
+export const getCommunitiy =
+  (id: any, navigate: any) =>
+  async (dispatch: any) => {
+    dispatch({type: types.GET_COMMUNITY_LOADING});
+    try {
+      const token = await returnToken();
+      const response = await axios.get(`${url}/${id}`, {
+        headers: {Authorization: `Bearer ${token}`},
+      });
+      if(response.data.success){
+        dispatch({
+          type: types.GET_COMMUNITY_SUCCESS,
+          payload: response.data.data,
+        });
+        // navigate('Community')
       }
     } catch (error) {
       console.log({error});
+      // const displayErr = error.response.data.error.split(',')[0];
       // @ts-ignore
-      const displayErr = error.response.data.error.split(',')[0];
-      dispatch({type: types.AUTH_FAIL, payload: displayErr});
+      dispatch({type: types.GET_COMMUNITY_FAIL, payload: error?.respnse});
     }
   };
 
-export const updateuser = (values: any, id: any) => async (dispatch: any) => {
-  dispatch({type: types.AUTH_LOADING});
-  try {
-    const token = await returnToken();
-    const {data} = await axios.put(`${url}/${id}`, values, {
-      headers: {Authorization: `Bearer ${token}`},
-    });
-    dispatch({type: types.UPDATE_PROFILE_SUCCESS, payload: {user: data.data}});
-  } catch (error) {
-    console.log({error});
-    // @ts-ignore
-    // const displayErr = error.response.data.error.split(',')[0];
-    dispatch({type: types.UPDATE_PROFILE_FAIL, payload: 'displayErr'});
-  }
-};
-
-export const getMe =
-  (navigate: null | any, token: string) => async (dispatch: any) => {
-    dispatch({type: types.AUTH_LOADING});
+export const joinCommunity =
+  (id: any) =>
+  async (dispatch: any) => {
+    dispatch({type: types.JOIN_LOADING});
     try {
-      console.log('reached');
-      const {data, status} = await axios.get(`${url}/me`, {
+      const token = await returnToken();
+      const response = await axios.put(`${url}/join/${id}`,{}, {
         headers: {Authorization: `Bearer ${token}`},
       });
-      console.log('reached2');
-      console.log({status});
-      dispatch({
-        type: types.GET_ME_SUCCESS,
-        payload: {user: data.data, token},
-      });
+      if(response.data.success){
+        dispatch({
+          type: types.JOIN_COMMUNITY_SUCCESS,
+          payload: response.data.data,
+        });
+      }
     } catch (error) {
+      console.log({error});
       // const displayErr = error.response.data.error.split(',')[0];
-      dispatch({
-        type: types.GET_ME_FAIL,
-        // @ts-ignore
-        payload: error.respnse.data.error,
-      });
+      // @ts-ignore
+      dispatch({type: types.JOIN_COMMUNITY_FAIL, payload: error?.respnse});
     }
   };
 
-export const logoutUser = (navigate: null | any) => async (dispatch: any) => {
-  dispatch({type: types.AUTH_LOADING});
-  try {
-    const {data, status} = await axios.get(`${url}/logout`);
-    console.log({data, status});
-    if (status === 200 && data.success) {
-      console.log('we will miss you');
-      dispatch({
-        type: types.LOGOUT_SUCCESS,
-        payload: null,
+export const leaveCommunity =
+  (id: any) =>
+  async (dispatch: any) => {
+    dispatch({type: types.JOIN_LOADING});
+    try {
+      const token = await returnToken();
+      const response = await axios.put(`${url}/leave/${id}`,{}, {
+        headers: {Authorization: `Bearer ${token}`},
       });
-      // navigate('Auth')
-    }
-  } catch (error) {
-    // const displayErr = error.response.data.error.split(',')[0];
-    dispatch({
-      type: types.LOGOUT_FAIL,
+      if(response.data.success){
+        dispatch({
+          type: types.LEAVE_COMMUNITY_SUCCESS,
+          payload: response.data.data,
+        });
+      }
+    } catch (error) {
+      console.log({error});
+      // const displayErr = error.response.data.error.split(',')[0];
       // @ts-ignore
-      payload: error.respnse.data.error,
-    });
-  }
-};
+      dispatch({type: types.LEAVE_COMMUNITY_FAIL, payload: error?.respnse});
+    }
+  };

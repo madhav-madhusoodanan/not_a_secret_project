@@ -15,16 +15,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Theme.colors.background,
   },
-  headline: {
-    fontSize: 24,
-    marginLeft: 10,
-    marginBottom: 10,
-    color: Theme.colors.text,
-    textAlign: 'left',
-    fontFamily: 'Gilroy-Bold',
-  },
   contentContainer: {
     paddingTop: 20,
+    marginTop: 50,
     paddingHorizontal: 16,
     backgroundColor: Theme.colors.background,
     flex: 1,
@@ -69,10 +62,10 @@ export const styles = StyleSheet.create({
   },
   communityListItem: {
     backgroundColor: '#f5f3f4',
-    borderRadius: 12,
+    borderRadius: 16,
     marginVertical: 5,
     height: 50,
-    width: screenWidth - 70,
+    width: screenWidth - 100,
   },
   communityTitleStyle: {
     color: 'black',
@@ -82,11 +75,13 @@ export const styles = StyleSheet.create({
   },
   modalCommunityTitle: {
     fontSize: 16,
+    marginTop: 20,
     fontFamily: 'Inter-Bold',
   },
   modalContainerStyle: {
     backgroundColor: Theme.colors.background,
     padding: 20,
+    height: 400,
     borderRadius: 12,
     marginHorizontal: 16,
     alignItems: 'center',

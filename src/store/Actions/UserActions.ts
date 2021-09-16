@@ -65,7 +65,6 @@ export const unfollowUser = (id: any) => async (dispatch: any) => {
         headers: {Authorization: `Bearer ${token}`},
       },
     );
-    console.log({datttttaaaaaaaaa: data.data});
     dispatch({
       type: types.UNFOLLOW_SUCCESS,
       payload: {user: data.data},
@@ -93,6 +92,7 @@ export const post = (data: any) => async (dispatch: any) => {
   } catch (error) {
     dispatch({
     type: types.POST_FAIL,
+    // @ts-ignore
     payload: {message: error.message},
   });
   }

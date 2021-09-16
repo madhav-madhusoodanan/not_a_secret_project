@@ -5,9 +5,10 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 
 export const styles = StyleSheet.create({
   post: {
-    backgroundColor: '#eff7f6',
-    marginBottom: 10,
-    borderRadius: 20,
+    backgroundColor: '#fff',
+    marginBottom: 2,
+    marginTop: 8,
+    borderRadius: 0,
     paddingBottom: 6,
   },
   customListView: {
@@ -46,9 +47,10 @@ export const styles = StyleSheet.create({
     fontSize: 14,
   },
   postImage: {
-    width: '100%',
-    height: 170,
-    borderRadius: 10,
+    // width: '100%',
+    width: 360,
+    height: 180,
+    borderRadius: 12,
   },
   postFooter: {
     position: 'relative',
@@ -56,10 +58,10 @@ export const styles = StyleSheet.create({
     flexWrap: 'nowrap',
     alignItems: 'center',
     marginHorizontal: 16,
-    marginTop: 5,
+    marginTop: 12,
   },
   voteContainer: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#fff',
     borderRadius: 16,
     flexDirection: 'row',
     alignItems: 'center',
@@ -73,14 +75,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   downVoteIcon: {
-    marginLeft: 8,
+    marginLeft: 12,
   },
   commentIcon: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 6,
-    marginLeft: 10,
+    marginLeft: 16,
   },
   reactionText: {
     fontSize: 13,

@@ -2,18 +2,27 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import ProfileButton from '../Buttons/ProfileButton';
+import { useNavigation } from '@react-navigation/native'
 import {useDispatch, useSelector} from 'react-redux';
 import {followUser, unfollowUser} from '../../store/Actions/UserActions';
 
-const ProfileTop = ({styles, user, inlineStyle, navigateToEditScreen, id}) => {
-  const profile = useSelector((state: any) => state.User);
+const ProfileTop = ({styles, profile, inlineStyle}) => {
+  const {user} = useSelector((state: any) => state.Auth);
+  const { navigate } = useNavigation()
+  console.log('\nhey\n')
+  const dispatch = useDispatch();
   const followFunction = async () => {
-    await dispatch(followUser(user._id));
+    await dispatch(followUser(profile._id));
   };
   const unFollowFunction = async () => {
-    await dispatch(unfollowUser(user._id));
+    await dispatch(unfollowUser(profile._id));
   };
-  const dispatch = useDispatch();
+  const navigateToEditScreen = () => {
+    // @ts-ignore
+    navigate('Profile', {
+      screen: 'EditProfileScreen',
+    });
+  };
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView overScrollMode={'never'} showsVerticalScrollIndicator={false}>
@@ -21,7 +30,7 @@ const ProfileTop = ({styles, user, inlineStyle, navigateToEditScreen, id}) => {
           <FastImage
             style={styles.image}
             source={{
-              uri: user.avatar.uri,
+              uri: profile.avatar.uri,
               priority: FastImage.priority.normal,
             }}
             resizeMode={FastImage.resizeMode.cover}
@@ -30,34 +39,34 @@ const ProfileTop = ({styles, user, inlineStyle, navigateToEditScreen, id}) => {
 
         <View style={styles.headContainer}>
           <Text style={inlineStyle.text}>
-            {user.firstName} {user.lastName}
+            {profile.firstName} {profile.lastName}
           </Text>
-          <Text style={inlineStyle.tag}>@{user.username}</Text>
+          <Text style={inlineStyle.tag}>@{profile.username}</Text>
         </View>
         <View style={styles.statsContainer}>
           <View style={styles.statsBox}>
             <Text style={inlineStyle.text}>
-              {user.followers && user.followers.length}
+              {profile.followers && profile.followers.length}
             </Text>
             <Text style={inlineStyle.label}>Followers</Text>
           </View>
           <View style={styles.statsBox}>
             <Text style={inlineStyle.text}>
-              {user.following && user.following.length}
+              {profile.following && profile.following.length}
             </Text>
             <Text style={inlineStyle.label}>Following</Text>
           </View>
         </View>
 
         <View style={styles.infoContainer}>
-          <Text style={styles.bioText}>{user.bio}</Text>
+          <Text style={profile.bio && styles.bioText}>{profile.bio}</Text>
         </View>
-        {id === user._id ? (
+        {user._id === profile._id ? (
           <ProfileButton
             text="Edit Profile"
             submitHandler={navigateToEditScreen}
           />
-        ) : user.following.includes(id) ? (
+        ) : profile.followers.includes(user._id) ? (
           <ProfileButton
             text="Unfollow"
             submitHandler={unFollowFunction}
@@ -76,5 +85,3 @@ const ProfileTop = ({styles, user, inlineStyle, navigateToEditScreen, id}) => {
 };
 
 export default ProfileTop;
-
-const styles = StyleSheet.create({});

@@ -1,51 +1,75 @@
-import React, {useState} from 'react';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  FlatList,
+} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {TextInput} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
 import {
   Modal,
   Portal,
   Button,
-  Headline,
   Chip,
   List,
   Snackbar,
   Appbar,
-  ActivityIndicator
 } from 'react-native-paper';
+import {showMessage} from 'react-native-flash-message';
+import axios from '../../../constants/api';
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import {useSelector, useDispatch} from 'react-redux';
 import {styles} from './styles';
-import ImageModal from '../../../components/Profile/ImageModal'
+import ImageModal from '../../../components/Profile/ImageModal';
+import {newPost} from '../../../store/Actions/PostActions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CreatePostBottomSheetContent({}) {
   const {user} = useSelector((state: any) => state.Auth);
-  const dispatch = useDispatch()
+  const {loading} = useSelector((state: any) => state.Post);
+  const {communityNames} = useSelector((state: any) => state.Community);
+  const dispatch = useDispatch();
+  const {navigate} = useNavigation();
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState('');
-  const [imageModalVisible, setImageModalVisible] = useState(false)
-  const [imageLoading, setImageLoading] = useState(false)
-  const [imageData, setImageData] = useState(null)
-  const [uri, setUri] = useState(null)
+  const [imageModalVisible, setImageModalVisible] = useState(false);
+  const [community, setCommunity] = useState({
+    _id: null,
+    name: 'Select a community',
+    id: null,
+  });
+  const [names, setNames] = useState([]);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [imageData, setImageData] = useState(null);
+  const [uri, setUri] = useState(null);
 
   // snackbar
   const [visibleSnackBar, setVisibleSnackBar] = useState(false);
   const onToggleSnackBar = () => setVisibleSnackBar(!visible);
   const onDismissSnackBar = () => setVisibleSnackBar(false);
-
   const submitHandler = () => {
     const data = new FormData();
+    if (!community._id) {
+      showMessage({
+        message: 'Please Select a community',
+        type: 'danger',
+      });
+      return;
+    }
     // @ts-ignore
-    const values = { description: message, community: `route.params.community` }
-    if(imageData){
+    const values = {description: message, community: community._id};
+    if (imageData && uri) {
       data.append('file', imageData);
     }
-    for(let item in values){
-        data.append(item, values[item])
+    for (let item in values) {
+      data.append(item, values[item]);
     }
-    
-    // dispatch(updateuser(data, user._id));
-  }
+    dispatch(newPost(data, navigate, showMessage));
+  };
 
   return (
     <View style={styles.container}>
@@ -56,17 +80,30 @@ export default function CreatePostBottomSheetContent({}) {
           contentContainerStyle={styles.modalContainerStyle}>
           <Text style={styles.modalCommunityTitle}>Select Community</Text>
           <View style={styles.listGroup}>
-            <RNBounceable bounceEffect={0.97} onPress={() => {}}>
-              <List.Item
-                title="JEE Mentorship by Nishant Jindal"
-                titleStyle={styles.communityTitleStyle}
-                style={styles.communityListItem}
-              />
-            </RNBounceable>
+            <FlatList
+              data={communityNames}
+              renderItem={({item}) => (
+                <RNBounceable
+                  bounceEffect={0.8}
+                  onPress={() => {
+                    setCommunity(item);
+                    setVisible(false);
+                  }}>
+                  <List.Item
+                    // @ts-ignore
+                    title={`${item.name}`}
+                    titleStyle={styles.communityTitleStyle}
+                    style={styles.communityListItem}
+                  />
+                </RNBounceable>
+              )}
+              // @ts-ignore
+              keyExtractor={item => item.toString()}
+              showsVerticalScrollIndicator={false}
+            />
           </View>
         </Modal>
       </Portal>
-      <Headline style={styles.headline}> Create Post </Headline>
       <ScrollView style={styles.contentContainer}>
         <View style={styles.customListView}>
           <Image
@@ -82,7 +119,8 @@ export default function CreatePostBottomSheetContent({}) {
             </View>
             <View style={styles.extraInfoWrapper}>
               <Chip icon="chevron-down" onPress={() => setVisible(true)}>
-                JEE Mentorship ..
+                {/* @ts-ignore */}
+                {community ? community.name : 'Select a community'}
               </Chip>
             </View>
           </View>
@@ -101,23 +139,35 @@ export default function CreatePostBottomSheetContent({}) {
           autoCompleteType={'off'}
           style={styles.editor}
         />
-        {uri ? !imageLoading ? <View style={styles.imageContainer}>
-          <TouchableOpacity
-            onPress={() => setUri(null)}
-            activeOpacity={0.5}
-            style={styles.touchableOpacity}>
-            <List.Icon color={'black'} icon="close" style={styles.listIcon} />
-          </TouchableOpacity>
-          <FastImage
-            style={styles.postImage}
-            source={{
-              // @ts-ignore
-              uri,
-              priority: FastImage.priority.normal,
-            }}
-            resizeMode={FastImage.resizeMode.cover}
-          />
-        </View> : <Text>{JSON.stringify(uri)}</Text> : <></> }
+        {uri ? (
+          !imageLoading ? (
+            <View style={styles.imageContainer}>
+              <TouchableOpacity
+                onPress={() => setUri(null)}
+                activeOpacity={0.5}
+                style={styles.touchableOpacity}>
+                <List.Icon
+                  color={'black'}
+                  icon="close"
+                  style={styles.listIcon}
+                />
+              </TouchableOpacity>
+              <FastImage
+                style={styles.postImage}
+                source={{
+                  // @ts-ignore
+                  uri,
+                  priority: FastImage.priority.normal,
+                }}
+                resizeMode={FastImage.resizeMode.cover}
+              />
+            </View>
+          ) : (
+            <Text>{JSON.stringify(uri)}</Text>
+          )
+        ) : (
+          <></>
+        )}
       </ScrollView>
 
       <Appbar style={styles.bottomBar}>
@@ -134,6 +184,8 @@ export default function CreatePostBottomSheetContent({}) {
         <Button
           mode={'contained'}
           color={'#00AAFF'}
+          disabled={loading}
+          loading={loading}
           contentStyle={styles.postButtonContentStyles}
           style={styles.postButtonStyles}
           labelStyle={styles.postButtonLabelStyles}
@@ -153,13 +205,12 @@ export default function CreatePostBottomSheetContent({}) {
         Hey there! I'm a Snackbar.
       </Snackbar>
       <ImageModal
-          setLoading={setImageLoading}
-          setUri={setUri}
-          setVisible={setImageModalVisible}
-          setImageData={setImageData}
-          visible={imageModalVisible}
-
-        />
+        setLoading={setImageLoading}
+        setUri={setUri}
+        setVisible={setImageModalVisible}
+        setImageData={setImageData}
+        visible={imageModalVisible}
+      />
     </View>
   );
 }

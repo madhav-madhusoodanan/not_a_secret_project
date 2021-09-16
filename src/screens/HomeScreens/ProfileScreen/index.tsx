@@ -9,25 +9,12 @@ import ProfileTop from '../../../components/Profile/ProfileTop';
 
 export default function ProfileScreen() {
   const {navigate, goBack} = useNavigation();
-  const isFocused = useIsFocused();
-  const route = useRoute();
   const auth = useSelector((state: any) => state.Auth);
-  const profile = useSelector((state: any) => state.User);
   const dispatch = useDispatch();
   const {user} = auth;
-  const navigateToEditScreen = () => {
-    // @ts-ignore
-    navigate('Profile', {
-      screen: 'EditProfileScreen',
-    });
-  };
+
   const loadProfile = async () => {
-    if (route.params) {
-      // @ts-ignore
-      await dispatch(getProfile(route.params.id));
-    } else if (!profile.profile) {
-      await dispatch(getProfile(auth.user._id));
-    }
+    await dispatch(getProfile(auth.user._id));
   };
   const inlineStyle = StyleSheet.create({
     text: {...styles.text, fontSize: 20},
@@ -35,21 +22,16 @@ export default function ProfileScreen() {
     label: {...styles.text, ...styles.subText},
   });
   useEffect(() => {
-    if (isFocused) {
-      loadProfile();
-      console.log(user._id);
-    }
-  }, [isFocused]);
+    loadProfile();
+  }, []);
 
   return (
     <>
-      {!profile.loading && profile.profile ? (
+      {!auth.loading && auth.user ? (
         <ProfileTop
           inlineStyle={inlineStyle}
-          navigateToEditScreen={navigateToEditScreen}
           styles={styles}
-          user={profile.profile}
-          id={user._id}
+          profile={user}
         />
       ) : (
         <Spinner />

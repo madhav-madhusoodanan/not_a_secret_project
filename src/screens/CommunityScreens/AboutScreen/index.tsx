@@ -12,7 +12,7 @@ import styles from './styles';
 
 export default function AboutScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View>
       <Card style={styles.cardStyles}>
         <Title style={styles.cardTitle}>Group Details</Title>
         <Subheading style={styles.listTitle}>Created</Subheading>
@@ -24,7 +24,7 @@ export default function AboutScreen() {
         <Subheading style={styles.listTitle}>Owner</Subheading>
         <View style={styles.listContainer}>
           <OwnerIcon size="20" color="#000" />
-          <Text style={styles.listContent}>Aman Dhattarwal</Text>
+          <Text style={styles.listContent}>Nishant Jindal</Text>
         </View>
         <Divider style={styles.divider} />
         <Subheading style={styles.listTitle}>Privacy Status</Subheading>
@@ -49,6 +49,6 @@ export default function AboutScreen() {
           https://unacademy.com/@nishantjindal
         </Text>
       </Card>
-    </SafeAreaView>
+    </View>
   );
 }

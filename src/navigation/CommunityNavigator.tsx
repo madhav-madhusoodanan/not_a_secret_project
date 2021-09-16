@@ -1,266 +1,362 @@
+import React, {useState, useEffect, useRef} from 'react';
 import {
-  createMaterialTopTabNavigator,
-  MaterialTopTabBarProps,
-} from '@react-navigation/material-top-tabs';
-import React, {FC, memo, useCallback, useMemo, useRef, useState} from 'react';
-import {
-  FlatList,
-  FlatListProps,
-  StyleProp,
   StyleSheet,
   View,
-  ViewProps,
-  ViewStyle,
   Text,
-  useWindowDimensions,
+  Dimensions,
+  Animated,
+  PanResponder,
+  FlatList,
+  ScrollView,
 } from 'react-native';
-import Animated, {
-  interpolate,
-  useAnimatedScrollHandler,
-  useAnimatedStyle,
-  useDerivedValue,
-  useSharedValue,
-} from 'react-native-reanimated';
+import {TabView, TabBar} from 'react-native-tab-view';
+
 import Header from './../components/CommunityFeed/Header';
-import TabBar from './../components/CommunityFeed/TabBar';
-import useScrollSync from '../hooks/useScrollSync';
-import ConnectionList from './../components/CommunityFeed/ConnectionList';
-import {Connection} from '../types/Connection';
-import {ScrollPair} from '../types/ScrollPair';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {FRIENDS, SUGGESTIONS} from '../mocks/connections';
-import {HeaderConfig} from '../types/HeaderConfig';
-import {Visibility} from '../types/Visibility';
-import HeaderOverlay from './../components/CommunityFeed/HeaderOverlay';
+import {useSelector} from 'react-redux';
+import AboutScreen from '../screens/CommunityScreens/AboutScreen';
+import Post from '../components/Post';
 
-import {CommunityScreens} from '../screens/CommunityScreens';
-import FeedIcon from '@iconscout/react-native-unicons/icons/uil-th';
-import AboutIcon from '@iconscout/react-native-unicons/icons/uil-file-info-alt';
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
+const TabBarHeight = 48;
+const HeaderHeight = 200;
 
-const TAB_BAR_HEIGHT = 48;
-const HEADER_HEIGHT = 48;
+const App = () => {
+  const {posts} = useSelector((state: any) => state.Post);
 
-const OVERLAY_VISIBILITY_OFFSET = 32;
+  /**
+   * stats
+   */
+  const [tabIndex, setIndex] = useState(0);
+  const [routes] = useState([
+    {key: 'tab1', title: 'Feed'},
+    {key: 'tab2', title: 'About'},
+  ]);
+  const [canScroll, setCanScroll] = useState(true);
 
-const Community = createMaterialTopTabNavigator();
+  /**
+   * ref
+   */
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const headerScrollY = useRef(new Animated.Value(0)).current;
+  const listRefArr = useRef([]);
+  const listOffset = useRef({});
+  const isListGliding = useRef(false);
+  const headerScrollStart = useRef(0);
+  const _tabIndex = useRef(0);
 
-const CommunityNavigator: FC = () => {
-  const {top, bottom} = useSafeAreaInsets();
+  /**
+   * PanResponder for header
+   */
+  const headerPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponderCapture: (evt, gestureState) => false,
+      onMoveShouldSetPanResponderCapture: (evt, gestureState) => false,
+      onStartShouldSetPanResponder: (evt, gestureState) => {
+        headerScrollY.stopAnimation();
+        syncScrollOffset();
+        return false;
+      },
 
-  const {height: screenHeight} = useWindowDimensions();
+      onMoveShouldSetPanResponder: (evt, gestureState) => {
+        headerScrollY.stopAnimation();
+        return Math.abs(gestureState.dy) > 5;
+      },
 
-  const friendsRef = useRef<FlatList>(null);
-  const suggestionsRef = useRef<FlatList>(null);
-
-  const [tabIndex, setTabIndex] = useState(0);
-
-  const [headerHeight, setHeaderHeight] = useState(0);
-
-  const defaultHeaderHeight = top + HEADER_HEIGHT;
-
-  const headerConfig = useMemo<HeaderConfig>(
-    () => ({
-      heightCollapsed: defaultHeaderHeight,
-      heightExpanded: headerHeight,
+      onPanResponderRelease: (evt, gestureState) => {
+        syncScrollOffset();
+        if (Math.abs(gestureState.vy) < 0.2) {
+          return;
+        }
+        headerScrollY.setValue(scrollY._value);
+        Animated.decay(headerScrollY, {
+          velocity: -gestureState.vy,
+          useNativeDriver: true,
+        }).start(() => {
+          syncScrollOffset();
+        });
+      },
+      onPanResponderMove: (evt, gestureState) => {
+        listRefArr.current.forEach(item => {
+          if (item.key !== routes[_tabIndex.current].key) {
+            return;
+          }
+          if (item.value) {
+            item.value.scrollToOffset({
+              offset: -gestureState.dy + headerScrollStart.current,
+              animated: false,
+            });
+          }
+        });
+      },
+      onShouldBlockNativeResponder: () => true,
+      onPanResponderGrant: (evt, gestureState) => {
+        headerScrollStart.current = scrollY._value;
+      },
     }),
-    [defaultHeaderHeight, headerHeight],
-  );
+  ).current;
 
-  const {heightCollapsed, heightExpanded} = headerConfig;
-
-  const headerDiff = heightExpanded - heightCollapsed;
-
-  const rendered = headerHeight > 0;
-
-  const handleHeaderLayout = useCallback<NonNullable<ViewProps['onLayout']>>(
-    event => setHeaderHeight(event.nativeEvent.layout.height),
-    [],
-  );
-
-  const friendsScrollValue = useSharedValue(0);
-
-  const friendsScrollHandler = useAnimatedScrollHandler(
-    event => (friendsScrollValue.value = event.contentOffset.y),
-  );
-
-  const suggestionsScrollValue = useSharedValue(0);
-
-  const suggestionsScrollHandler = useAnimatedScrollHandler(
-    event => (suggestionsScrollValue.value = event.contentOffset.y),
-  );
-
-  const scrollPairs = useMemo<ScrollPair[]>(
-    () => [
-      {list: friendsRef, position: friendsScrollValue},
-      {list: suggestionsRef, position: suggestionsScrollValue},
-    ],
-    [friendsRef, friendsScrollValue, suggestionsRef, suggestionsScrollValue],
-  );
-
-  const {sync} = useScrollSync(scrollPairs, headerConfig);
-
-  const сurrentScrollValue = useDerivedValue(
-    () =>
-      tabIndex === 0 ? friendsScrollValue.value : suggestionsScrollValue.value,
-    [tabIndex, friendsScrollValue, suggestionsScrollValue],
-  );
-
-  const translateY = useDerivedValue(
-    () => -Math.min(сurrentScrollValue.value, headerDiff),
-  );
-
-  const tabBarAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{translateY: translateY.value}],
-  }));
-
-  const headerAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{translateY: translateY.value}],
-    opacity: interpolate(
-      translateY.value,
-      [-headerDiff, 0],
-      [Visibility.Hidden, Visibility.Visible],
-    ),
-  }));
-
-  const contentContainerStyle = useMemo<StyleProp<ViewStyle>>(
-    () => ({
-      paddingTop: rendered ? headerHeight + TAB_BAR_HEIGHT : 0,
-      paddingBottom: bottom,
-      minHeight: screenHeight + headerDiff,
+  /**
+   * PanResponder for list in tab scene
+   */
+  const listPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponderCapture: (evt, gestureState) => false,
+      onMoveShouldSetPanResponderCapture: (evt, gestureState) => false,
+      onStartShouldSetPanResponder: (evt, gestureState) => false,
+      onMoveShouldSetPanResponder: (evt, gestureState) => {
+        headerScrollY.stopAnimation();
+        return false;
+      },
+      onShouldBlockNativeResponder: () => true,
+      onPanResponderGrant: (evt, gestureState) => {
+        headerScrollY.stopAnimation();
+      },
     }),
-    [rendered, headerHeight, bottom, screenHeight, headerDiff],
-  );
+  ).current;
 
-  const sharedProps = useMemo<Partial<FlatListProps<Connection>>>(
-    () => ({
-      contentContainerStyle,
-      onMomentumScrollEnd: sync,
-      showsVerticalScrollIndicator: false,
-      onScrollEndDrag: sync,
-      scrollEventThrottle: 16,
-      scrollIndicatorInsets: {top: heightExpanded},
-    }),
-    [contentContainerStyle, sync, heightExpanded],
-  );
+  /**
+   * effect
+   */
+  useEffect(() => {
+    scrollY.addListener(({value}) => {
+      const curRoute = routes[tabIndex].key;
+      listOffset.current[curRoute] = value;
+    });
 
-  const renderFriends = useCallback(
-    () => (
-      <ConnectionList
-        ref={friendsRef}
-        data={FRIENDS}
-        onScroll={friendsScrollHandler}
-        {...sharedProps}
-      />
-    ),
-    [friendsRef, friendsScrollHandler, sharedProps],
-  );
+    headerScrollY.addListener(({value}) => {
+      listRefArr.current.forEach(item => {
+        if (item.key !== routes[tabIndex].key) {
+          return;
+        }
+        if (value > HeaderHeight || value < 0) {
+          headerScrollY.stopAnimation();
+          syncScrollOffset();
+        }
+        if (item.value && value <= HeaderHeight) {
+          item.value.scrollToOffset({
+            offset: value,
+            animated: false,
+          });
+        }
+      });
+    });
+    return () => {
+      scrollY.removeAllListeners();
+      headerScrollY.removeAllListeners();
+    };
+  }, [routes, tabIndex]);
 
-  const renderSuggestions = useCallback(
-    () => (
-      <ConnectionList
-        ref={suggestionsRef}
-        data={SUGGESTIONS}
-        onScroll={suggestionsScrollHandler}
-        {...sharedProps}
-      />
-    ),
-    [suggestionsRef, suggestionsScrollHandler, sharedProps],
-  );
+  /**
+   *  helper functions
+   */
+  const syncScrollOffset = () => {
+    const curRouteKey = routes[_tabIndex.current].key;
 
-  const tabBarStyle = useMemo<StyleProp<ViewStyle>>(
-    () => [
-      rendered ? styles.tabBarContainer : undefined,
-      {top: rendered ? headerHeight : undefined},
-      tabBarAnimatedStyle,
-    ],
-    [rendered, headerHeight, tabBarAnimatedStyle],
-  );
+    listRefArr.current.forEach(item => {
+      if (item.key !== curRouteKey) {
+        if (scrollY._value < HeaderHeight && scrollY._value >= 0) {
+          if (item.value) {
+            item.value.scrollToOffset({
+              offset: scrollY._value,
+              animated: false,
+            });
+            listOffset.current[item.key] = scrollY._value;
+          }
+        } else if (scrollY._value >= HeaderHeight) {
+          if (
+            listOffset.current[item.key] < HeaderHeight ||
+            listOffset.current[item.key] == null
+          ) {
+            if (item.value) {
+              item.value.scrollToOffset({
+                offset: HeaderHeight,
+                animated: false,
+              });
+              listOffset.current[item.key] = HeaderHeight;
+            }
+          }
+        }
+      }
+    });
+  };
 
-  const renderTabBar = useCallback<
-    (props: MaterialTopTabBarProps) => React.ReactElement
-  >(
-    props => (
-      <Animated.View style={tabBarStyle}>
-        <TabBar onIndexChange={setTabIndex} {...props} />
+  const onMomentumScrollBegin = () => {
+    isListGliding.current = true;
+  };
+
+  const onMomentumScrollEnd = () => {
+    isListGliding.current = false;
+    syncScrollOffset();
+  };
+
+  const onScrollEndDrag = () => {
+    syncScrollOffset();
+  };
+
+  /**
+   * render Helper
+   */
+  const renderHeader = () => {
+    const y = scrollY.interpolate({
+      inputRange: [0, HeaderHeight],
+      outputRange: [0, -HeaderHeight],
+      extrapolate: 'clamp',
+    });
+    return (
+      <Animated.View
+        {...headerPanResponder.panHandlers}
+        style={[styles.header, {transform: [{translateY: y}]}]}>
+        <Header />
       </Animated.View>
-    ),
-    [tabBarStyle],
-  );
+    );
+  };
 
-  const headerContainerStyle = useMemo<StyleProp<ViewStyle>>(
-    () => [
-      rendered ? styles.headerContainer : undefined,
-      {paddingTop: top},
-      headerAnimatedStyle,
-    ],
+  const renderLabel = ({route, focused}) => {
+    return (
+      <Text style={[styles.label, {opacity: focused ? 1 : 0.5}]}>
+        {route.title}
+      </Text>
+    );
+  };
 
-    [rendered, top, headerAnimatedStyle],
-  );
+  // const renderIcon = ({route, focused}) => {
+  //   return <Icon name={focused ? 'abums' : 'albums-outlined'} color={color} />;
+  // };
 
-  const collapsedOverlayAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(
-      translateY.value,
-      [-headerDiff, OVERLAY_VISIBILITY_OFFSET - headerDiff, 0],
-      [Visibility.Visible, Visibility.Hidden, Visibility.Hidden],
-    ),
-  }));
+  const renderScene = ({route}) => {
+    const focused = route.key === routes[tabIndex].key;
+    return (
+      <>
+        {route.key === 'tab1' ? (
+          <Animated.FlatList
+            style={{marginTop: 0}}
+            {...listPanResponder.panHandlers}
+            numColumns={1}
+            ref={ref => {
+              if (ref) {
+                const found = listRefArr.current.find(e => e.key === route.key);
+                if (!found) {
+                  listRefArr.current.push({
+                    key: route.key,
+                    value: ref,
+                  });
+                }
+              }
+            }}
+            onScroll={
+              focused
+                ? Animated.event(
+                    [
+                      {
+                        nativeEvent: {contentOffset: {y: scrollY}},
+                      },
+                    ],
+                    {useNativeDriver: true},
+                  )
+                : null
+            }
+            onMomentumScrollBegin={onMomentumScrollBegin}
+            onScrollEndDrag={onScrollEndDrag}
+            onMomentumScrollEnd={onMomentumScrollEnd}
+            ItemSeparatorComponent={() => <View style={{height: 0}} />}
+            ListHeaderComponent={() => <View style={{height: 0}} />}
+            contentContainerStyle={{
+              paddingTop: HeaderHeight + TabBarHeight,
+              paddingHorizontal: 0,
+            }}
+            showsHorizontalScrollIndicator={false}
+            data={posts}
+            renderItem={({item}) => <Post post={item} allowed />}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        ) : (
+          <Animated.ScrollView
+            style={styles.aboutContainer}
+            {...listPanResponder.panHandlers}
+            onScroll={
+              focused
+                ? Animated.event(
+                    [
+                      {
+                        nativeEvent: {contentOffset: {y: scrollY}},
+                      },
+                    ],
+                    {useNativeDriver: true},
+                  )
+                : null
+            }
+            onMomentumScrollBegin={onMomentumScrollBegin}
+            onScrollEndDrag={onScrollEndDrag}
+            onMomentumScrollEnd={onMomentumScrollEnd}
+            contentContainerStyle={{
+              paddingTop: HeaderHeight + TabBarHeight,
+              paddingHorizontal: 0,
+            }}
+            showsHorizontalScrollIndicator={false}>
+            <AboutScreen />
+          </Animated.ScrollView>
+        )}
+      </>
+    );
+  };
 
-  const collapsedOverlayStyle = useMemo<StyleProp<ViewStyle>>(
-    () => [
-      styles.collapsedOvarlay,
-      collapsedOverlayAnimatedStyle,
-      {height: heightCollapsed, paddingTop: top},
-    ],
-    [collapsedOverlayAnimatedStyle, heightCollapsed, top],
-  );
+  const renderTabBar = props => {
+    const y = scrollY.interpolate({
+      inputRange: [0, HeaderHeight],
+      outputRange: [HeaderHeight, 0],
+      extrapolate: 'clamp',
+    });
+    return (
+      <Animated.View
+        style={{
+          top: 0,
+          zIndex: 1,
+          position: 'absolute',
+          transform: [{translateY: y}],
+          width: '100%',
+        }}>
+        <TabBar
+          {...props}
+          onTabPress={({route, preventDefault}) => {
+            if (isListGliding.current) {
+              preventDefault();
+            }
+          }}
+          style={styles.tab}
+          renderLabel={renderLabel}
+          indicatorStyle={styles.indicator}
+        />
+      </Animated.View>
+    );
+  };
+
+  const renderTabView = () => {
+    return (
+      <TabView
+        onSwipeStart={() => setCanScroll(false)}
+        onSwipeEnd={() => setCanScroll(true)}
+        swipeEnabled={false}
+        onIndexChange={id => {
+          _tabIndex.current = id;
+          setIndex(id);
+        }}
+        navigationState={{index: tabIndex, routes}}
+        renderScene={renderScene}
+        renderTabBar={renderTabBar}
+        initialLayout={{
+          height: 0,
+          width: windowWidth,
+        }}
+      />
+    );
+  };
 
   return (
     <View style={styles.container}>
-      <Animated.View onLayout={handleHeaderLayout} style={headerContainerStyle}>
-        <Header />
-      </Animated.View>
-      <Animated.View style={collapsedOverlayStyle}>
-        <HeaderOverlay />
-      </Animated.View>
-      <Community.Navigator
-        screenOptions={{
-          tabBarBounces: true,
-          tabBarIconStyle: {top: 2},
-          tabBarLabelStyle: {fontSize: 14, fontFamily: 'Inter-Bold'},
-          tabBarStyle: {
-            backgroundColor: 'white',
-          },
-          tabBarItemStyle: {
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: 10,
-          },
-          tabBarIndicatorStyle: {
-            backgroundColor: 'black',
-            borderBottomWidth: 3,
-          },
-        }}
-        initialRouteName="FeedScreen"
-        tabBar={renderTabBar}>
-        <Community.Screen
-          options={{
-            title: 'Feed',
-            lazy: true,
-
-            tabBarIcon: () => <FeedIcon size="20" color="#000" />,
-          }}
-          name="FeedScreen">
-          {renderSuggestions}
-        </Community.Screen>
-        <Community.Screen
-          options={{
-            title: 'About',
-            tabBarIcon: () => <AboutIcon size="20" color="#000" />,
-          }}
-          name="AboutScreen">
-          {renderFriends}
-        </Community.Screen>
-      </Community.Navigator>
+      {renderTabView()}
+      {renderHeader()}
     </View>
   );
 };
@@ -268,34 +364,28 @@ const CommunityNavigator: FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#f0f0f0',
   },
-  tabBarContainer: {
-    top: 0,
-    left: 0,
-    right: 0,
-    position: 'absolute',
-    zIndex: 1,
+  aboutContainer: {
+    flex: 1,
+    paddingTop: 20,
+    paddingHorizontal: 16,
   },
-  overlayName: {
-    fontSize: 24,
-  },
-  collapsedOvarlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'white',
+  header: {
+    height: HeaderHeight,
+    width: '100%',
     justifyContent: 'center',
-    zIndex: 2,
-  },
-  headerContainer: {
-    top: 0,
-    left: 0,
-    right: 0,
     position: 'absolute',
-    zIndex: 1,
+    backgroundColor: '#FFF',
   },
+  label: {fontSize: 14, fontFamily: 'Inter-Bold', color: 'black'},
+  tab: {
+    elevation: 0,
+    shadowOpacity: 0,
+    backgroundColor: '#FFF',
+    height: TabBarHeight,
+  },
+  indicator: {backgroundColor: 'black', borderBottomWidth: 3},
 });
 
-export default memo(CommunityNavigator);
+export default App;

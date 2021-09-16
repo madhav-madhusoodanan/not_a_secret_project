@@ -16,28 +16,26 @@ export default function PhoneScreen() {
   const [phoneNum, setPhoneNum] = useState('');
   const dispatch = useDispatch();
   const submitHandler = async () => {
-    console.log({reached: 'reached'});
     try {
       var test =
         /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(
           phoneNum,
         );
       if (test) {
-        // await dispatch(sendOTP(phoneNum));
+        await dispatch(sendOTP(phoneNum));
         const condition = auth.nums.includes(`+91${phoneNum}`);
-        console.log({condition})
-        // @ts-ignore        
+        // @ts-ignore
         navigate('OneTimePasswordScreen', {
           phoneNum: `+91${phoneNum}`,
           new: !condition,
         });
       } else {
-        setPhoneNum('')
+        setPhoneNum('');
         showAndroidToast('Please enter valid mobile number');
         return;
       }
     } catch (error) {
-      console.log({e: error})
+      console.log({e: error});
     }
   };
 

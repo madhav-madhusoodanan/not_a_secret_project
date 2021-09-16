@@ -1,23 +1,14 @@
-import React, {useEffect} from 'react';
-import {
-  createStackNavigator,
-  CardStyleInterpolators,
-  HeaderStyleInterpolators,
-  StackCardInterpolationProps,
-  StackNavigationOptions,
-  TransitionSpecs,
-} from '@react-navigation/stack';
-import {Easing} from 'react-native';
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
 import CrossIcon from '@iconscout/react-native-unicons/icons/uil-times';
-import {Text} from 'react-native-paper';
 import CommentScreenContent from '../components/Comment';
-
+import CreatePostScreen from '../screens/HomeScreens/CreatePostScreen';
 const PostStack = createStackNavigator();
 
 const PostNavigator = () => {
   return (
     <PostStack.Navigator
-      initialRouteName="PostScreen"
+      initialRouteName="CommentsScreen"
       screenOptions={{
         headerTransparent: true,
         presentation: 'modal',
@@ -33,34 +24,18 @@ const PostNavigator = () => {
         },
       }}>
       <PostStack.Screen
-        name="PostScreen"
+        name="CommentsScreen"
         options={{
           title: 'Comments',
-          gestureDirection: 'vertical',
-          transitionSpec: {
-            open: TransitionSpecs.TransitionIOSSpec,
-            close: TransitionSpecs.TransitionIOSSpec,
-          },
-          headerStyleInterpolator: HeaderStyleInterpolators.forSlideUp,
-          cardStyleInterpolator: ({
-            current,
-            layouts,
-          }: StackCardInterpolationProps) => {
-            return {
-              cardStyle: {
-                transform: [
-                  {
-                    translateY: current.progress.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [layouts.screen.height, 0],
-                    }),
-                  },
-                ],
-              },
-            };
-          },
         }}
         component={CommentScreenContent}
+      />
+      <PostStack.Screen
+        name="CreatePostScreen"
+        options={{
+          title: 'Create Post',
+        }}
+        component={CreatePostScreen}
       />
     </PostStack.Navigator>
   );
