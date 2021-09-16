@@ -22,20 +22,20 @@ export default function PhoneScreen() {
           phoneNum,
         );
       if (test) {
-        // await dispatch(sendOTP(phoneNum));
+        await dispatch(sendOTP(phoneNum));
         const condition = auth.nums.includes(`+91${phoneNum}`);
-        // @ts-ignore        
+        // @ts-ignore
         navigate('OneTimePasswordScreen', {
           phoneNum: `+91${phoneNum}`,
           new: !condition,
         });
       } else {
-        setPhoneNum('')
+        setPhoneNum('');
         showAndroidToast('Please enter valid mobile number');
         return;
       }
     } catch (error) {
-      console.log({e: error})
+      console.log({e: error});
     }
   };
 
