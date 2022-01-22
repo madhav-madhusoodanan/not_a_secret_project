@@ -2,7 +2,7 @@ import React, {Component, useRef, useState} from 'react';
 import {FlatList, View} from 'react-native';
 import Comment from './Comment';
 import commentListStyling from './commentListStyling';
-
+import MoreOptions from './MoreOptions';
 const CommentsList = ({data, onAddComment, currentUser, topMargin}) => {
   const [text, setText] = React.useState('');
   const flatList = useRef<FlatList>(null);
@@ -26,6 +26,9 @@ const CommentsList = ({data, onAddComment, currentUser, topMargin}) => {
     onAddComment(newcomment);
   };
 
+  const deleteFunc = commentId => {
+    data = data.filter(comment => comment.id === commentId);
+  };
   const displayLikeCondition = commentId => {
     let comment = data.filter(comment => comment.id === commentId);
     //check if liker id equals to current user id

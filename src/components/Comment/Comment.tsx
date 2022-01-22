@@ -23,7 +23,12 @@ const Comment = ({displayLike, commentData}) => {
       </View>
     ));
   };
+
+  const options = index => {
+    
+  }
   return (
+    <TouchableOpacity onLongPress={() => {}}>
     <View style={commentStyling.backgroundWhite}>
       <View style={commentStyling.mainWrapper}>
         <Image style={commentStyling.image} source={{uri: ownerAvatar}} />
@@ -56,6 +61,7 @@ const Comment = ({displayLike, commentData}) => {
       </View>
       {replies ? renderReplies(replies) : null}
     </View>
+    </TouchableOpacity>
   );
 };
 
